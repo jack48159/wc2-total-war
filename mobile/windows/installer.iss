@@ -27,6 +27,7 @@ Name: "desktopicon"; Description: "创建桌面快捷方式"; Flags: checkedonce
 [Files]
 Source: "{#NodeExe}"; DestDir: "{app}"; DestName: "node.exe"; Flags: ignoreversion
 Source: "launch.vbs"; DestDir: "{app}"; Flags: ignoreversion
+Source: "start-server.cmd"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#Root}\server.js"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#Root}\auth_store.js"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#Root}\public\*"; DestDir: "{app}\public"; Flags: ignoreversion recursesubdirs createallsubdirs
