@@ -155,15 +155,15 @@ export class MapRenderer {
     if (this._layerKey === key && this._layers) return this._layers;
     this.zoneRebuilds++;
     const st = this.stage, b = st.bounds, W = Math.ceil(b.x1 - b.x0), H = Math.ceil(b.y1 - b.y0);
-    // Release replaced backing stores eagerly; keep native map resolution.
-    if (this._layers) for (const layer of Object.values(this._layers)) layer.cv.width = layer.cv.height = 0;
-    const mk = () => {
-      const cv = document.createElement('canvas');
-      cv.width = W; cv.height = H;
+    // Reuse native-resolution backing stores when ownership or visibility changes.
+    const mk = previous => {
+      const cv = previous?.cv || document.createElement('canvas');
+      if (cv.width !== W || cv.height !== H) { cv.width = W; cv.height = H; }
       const g = cv.getContext('2d');
+      g.clearRect(0, 0, W, H);
       return { cv, g, x: b.x0, y: b.y0, w: W, h: H };
     };
-    const closed = mk(), owned = mk();
+    const closed = mk(this._layers?.closed), owned = mk(this._layers?.owned);
     for (const a of World.areas) {
       if (a.f === 1 || a.x > b.x1 || a.x + a.w < b.x0 || a.y > b.y1 || a.y + a.h < b.y0) continue;
       const id = a.id, dx = a.x - b.x0, dy = a.y - b.y0;

@@ -28,7 +28,7 @@ const WALL_MM = 2500;
 // The room's floor: a plane TABLE_MM below the desk top, from the far wall to under the camera, the room's repeating floor tile covering
 // FLOOR_TILE_MM of floor.
 const FLOOR_TILE_MM = 1200, FLOOR_STEP = 4;
-const TEX = 2048, BORDER = 90;                    // max size of the map canvas; the paper border strip around the map rect (map units)
+const TEX = 4096, BORDER = 90;                    // max size of the map canvas; the paper border strip around the map rect (map units)
 const TILE_MM = 600;                              // a seamless desk tile (assets/desktop/tiles/<id>.png) covers this much real desk: sharp wood grain instead of one stretched photo
 const NATIVE = Infinity;                          // (was 2 = the tiles' own density; capping there made the base repaint every frame at high zoom and cost more than it gained)
 const SHARP = 1.15, MARGIN = 0.6;                 // painted texels per screen pixel at the nearest point; extra area painted around the view (fraction)
@@ -133,7 +133,7 @@ export class Layer3D {
   }
   covers(N, key, ignoreKey = false) {
     const R = this.region;
-    const need = Math.min(N.near * SHARP, NATIVE);                    // the texel density wanted now, compared with what was wanted when the region was painted
+    const need = Math.min(N.near * SHARP * (E.cv.width / E.W), NATIVE);                    // the texel density wanted now, compared with what was wanted when the region was painted
     return !!R && (ignoreKey || R.key === key) && N.x0 >= R.x0 - 0.5 && N.x1 <= R.x1 + 0.5 && N.y0 >= R.y0 - 0.5 && N.y1 <= R.y1 + 0.5 && need <= R.need * 1.1 && R.need <= need * 3;
   }
 
@@ -150,7 +150,7 @@ export class Layer3D {
   paintBase(paint, N, key) {
     const b = this.bounds, mx0 = b.x0 - BORDER, mx1 = b.x1 + BORDER, my0 = b.y0 - BORDER, my1 = b.y1 + BORDER;
     const nw = N.x1 - N.x0, nh = N.y1 - N.y0;
-    const ppu = Math.max(0.02, Math.min(N.near * SHARP, NATIVE, TEX / Math.max(nw, nh))), S = TEX / ppu;
+    const ppu = Math.max(0.02, Math.min(N.near * SHARP * (E.cv.width / E.W), NATIVE, TEX / Math.max(nw, nh))), S = TEX / ppu;
     const fit = (n0, n1, want, lo, hi) => {                                   // a window of length `want` around [n0, n1], kept inside [lo, hi]
       let a = (n0 + n1) / 2 - want / 2, z = a + want;
       if (a < lo) { z += lo - a; a = lo; }
@@ -162,7 +162,7 @@ export class Layer3D {
     const tw = Math.min(TEX, Math.ceil((rx1 - rx0) * ppu)), th = Math.min(TEX, Math.ceil((ry1 - ry0) * ppu));
     const cw = Math.ceil(tw / 64) * 64, ch = Math.ceil(th / 64) * 64;         // canvases rounded up so they are rarely reallocated
     if (this.base.width !== cw || this.base.height !== ch) { this.base.width = cw; this.base.height = ch; }
-    const R = this.region = { x0: rx0, y0: ry0, x1: rx0 + tw / ppu, y1: ry0 + th / ppu, ppu, need: Math.min(N.near * SHARP, NATIVE), key, tw, th, cw, ch };
+    const R = this.region = { x0: rx0, y0: ry0, x1: rx0 + tw / ppu, y1: ry0 + th / ppu, ppu, need: Math.min(N.near * SHARP * (E.cv.width / E.W), NATIVE), key, tw, th, cw, ch };
     this.withFlat(this.baseCtx, R, paint);
     if (this.baseLv) this.baseLv.reset(this.base); else this.baseLv = new Levels(this.base);
     this.baseVer++; this.repaints++;
@@ -177,7 +177,7 @@ export class Layer3D {
     // reach a few px past it so the clip, not the strip end, decides where the edge is
     const o0 = cam.project(P.x0, yTop), o1 = cam.project(P.x1, yTop), o2 = cam.project(P.x1, yBot), o3 = cam.project(P.x0, yBot);
     c.save(); c.beginPath(); c.moveTo(o0.x, o0.y); c.lineTo(o1.x, o1.y); c.lineTo(o2.x, o2.y); c.lineTo(o3.x, o3.y); c.closePath(); c.clip();
-    c.imageSmoothingEnabled = true; c.imageSmoothingQuality = P.smooth || 'low';
+    c.imageSmoothingEnabled = true; c.imageSmoothingQuality = P.smooth || 'high';
     // strips start and end on whole DEVICE pixels, so neighbours abut exactly (no seam, no overlap: an overlap would blend a translucent layer twice)
     const sc = E.cv.width / E.W, dTop = Math.max(0, Math.floor(cam.project(cam.x, yTop).y * sc)), dBot = Math.min(Math.floor(H * sc), Math.ceil(cam.project(cam.x, yBot).y * sc));
     let ya = Math.max(P.y0, rowY(dTop / sc));
