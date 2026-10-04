@@ -4,7 +4,11 @@ TOM-AKA 创作的战争策略游戏重制项目。Windows 浏览器、Android �
 
 ## Windows
 
-安装 Node.js 22.13 或更新版本，在项目根目录运行 `node server.js`。浏览器访问 `http://127.0.0.1:8642`。Windows 版本目前采用本地网页运行方式。
+可从 [Release](https://github.com/jack48159/wc2-total-war/releases) 下载 EXE 安装包，自选安装目录，安装后从桌面快捷方式启动。安装包自带 Node.js，以 Edge 应用窗口运行本地游戏。
+
+从源码运行：安装 Node.js 22.13 或更新版本，在项目根目录运行 `node server.js`，浏览器访问 `http://127.0.0.1:8642`。
+
+构建安装包：安装 Inno Setup 6，执行 `ISCC.exe /DNodeExe=你的node.exe路径 mobile/windows/installer.iss`。输出位于 `dist`。编译本身不会启动游戏。
 
 ## Android
 
