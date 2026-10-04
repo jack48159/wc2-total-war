@@ -17,7 +17,7 @@ OutputDir={#Root}\dist
 OutputBaseFilename=wc2-total-war-windows-setup-1.0.1
 SetupIconFile={#Root}\public\game-icon.ico
 UninstallDisplayIcon={app}\public\game-icon.ico
-Compression=zip
+Compression=zip/1
 SolidCompression=no
 WizardStyle=modern
 [Languages]

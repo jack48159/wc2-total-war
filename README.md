@@ -4,7 +4,7 @@ TOM-AKA 创作的战争策略游戏重制项目。Windows 浏览器、Android �
 
 ## Windows
 
-可从 [Release](https://github.com/jack48159/wc2-total-war/releases) 下载 EXE 安装包，自选安装目录，安装后从桌面快捷方式启动。安装包自带 Node.js，以 Edge 应用窗口运行本地游戏。
+可从 [Release](https://github.com/jack48159/wc2-total-war/releases) 下载 EXE 安装包，自选安装目录，安装后从桌面快捷方式启动。安装包自带 Node.js，以 Chrome 或 Edge 应用窗口运行本地游戏；两者均未安装时使用默认浏览器。
 
 从源码运行：安装 Node.js 22.13 或更新版本，在项目根目录运行 `node server.js`，浏览器访问 `http://127.0.0.1:8642`。
 
