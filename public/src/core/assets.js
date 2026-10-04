@@ -55,11 +55,12 @@ E.drawFrame = (f, x, y, o = {}) => {
     const r = E.layout.sprite(f, dx, dy, dw, dh, o.lid, o.layoutGroup, o.alpha ?? c.globalAlpha);
     if (r) { if (r.hidden) return; dx = r.x; dy = r.y; dw = r.w; dh = r.h; o = { ...o, alpha: r.alpha }; }
   }
-  c.save();
+  const changeState = o.alpha != null || (o.filter && o.filter !== 'none');
+  if (changeState) c.save();
   if (o.alpha != null) c.globalAlpha = o.alpha;
   if (o.filter && o.filter !== 'none') c.filter = o.filter;
   if (f.cv) c.drawImage(f.cv, dx, dy, dw, dh); else c.drawImage(f.img, f.x, f.y, f.w, f.h, dx, dy, dw, dh);
-  c.restore();
+  if (changeState) c.restore();
 };
 // Give every frame of an atlas its own small canvas (the HUD's corner boards / buttons): drawing them no longer samples the big shared sheet,
 // which the browser was re-uploading / evicting when the battle filled GPU memory (the corner widgets flickered and stuttered).

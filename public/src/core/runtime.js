@@ -92,7 +92,7 @@ E.start = async (canvasId, initial) => {
       if (platform.isTouch) {
         const id = e.pointerId;
         hold = { id, x: p.x, y: p.y, fired: false, timer: setTimeout(() => {
-          if (!hold || hold.id !== id || E.pinching || !toScene || !live() || !E.scene.pointerCancel) return;
+          if (!hold || hold.id !== id || E.pinching || !toScene || !live() || !E.scene.pointerCancel || E.scene.cmdUI?.box) return;
           hold.fired = true;
           E.scene.pointerCancel();
           const right = Object.assign(E.layout.inputPoint({ x: hold.x, y: hold.y }), { button: 2, pointerType: 'touch' });
@@ -159,13 +159,13 @@ E.start = async (canvasId, initial) => {
   });
   const dropTouch = e => { clearHold(); touches.delete(e.pointerId); if (!touches.size) { E.pinching = false; pinch = null; ts = null; } };
   cv.addEventListener('pointercancel', e => { dropTouch(e); cancelPointer(); });
-  cv.addEventListener('lostpointercapture', e => { dropTouch(e); cancelPointer(); });
+  cv.addEventListener('lostpointercapture', e => { if (E.pointer.down) { dropTouch(e); cancelPointer(); } });
   window.addEventListener('blur', cancelPointer);
   // iOS 偶尔吞掉 pointerup/pointercancel(系统手势、边缘滑动、来电/通知、手指在 DOM 浮层上抬起)：touches 里残留“幽灵手指”，
   // E.pinching 一直为 true，之后所有点击/拖动都被当成缩放而失灵。用原生 touch 事件(其 e.touches 是真实手指数)兜底：全部抬起就清空状态(只在 0 根手指时处理，避免和正常 pointerup 抢顺序)。
   const resetTouches = () => { clearHold(); touches.clear(); pinch = null; ts = null; E.pinching = false; cancelPointer(); };
   const syncTouches = e => {
-    if (e.touches.length === 0) { if (touches.size || E.pinching || E.pointer.down) resetTouches(); }
+    if (e.touches.length === 0) setTimeout(() => { if (touches.size || E.pinching || E.pointer.down) resetTouches(); }, 0);
   };
   for (const ev of ['touchend', 'touchcancel']) window.addEventListener(ev, syncTouches, { capture: true, passive: true });
   document.addEventListener('visibilitychange', () => { if (document.hidden) resetTouches(); });

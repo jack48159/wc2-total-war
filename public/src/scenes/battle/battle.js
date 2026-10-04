@@ -387,7 +387,7 @@ export class Battle extends Page {
   photoTap(p) { if (this.tapRun(p) >= PHOTO_TAPS) this.setPhoto(false); }
   zoomBy(f) { this.aiTurnRunner?.manualCamera(); this.cam.zoomAt(E.W / 2, E.H / 2, f); this.cam.clamp(); }
   // two-finger gesture (see core/runtime.js): zoom and pan the map
-  pinch(scale, cx, cy, dx, dy) { this.replayView?.wake(); if (!this.opening) { this.aiTurnRunner?.manualCamera(); this.cam.pinch(scale, cx, cy, dx, dy); } }
+  pinch(scale, cx, cy, dx, dy) { if (this.cmdUI?.touchBoxSelect || this.cmdUI?.box) return; this.replayView?.wake(); if (!this.opening) { this.aiTurnRunner?.manualCamera(); this.cam.pinch(scale, cx, cy, dx, dy); } }
   goSave() { E.go('saveScreen', this); }
   goOptions() { E.go('options', null, this); }
   // 回放对手(LLM)买卡时，非交互地画出卡牌商城并选中那张卡，让玩家看到它在商城里的选择
@@ -710,6 +710,7 @@ export class Battle extends Page {
     this.drag = this.dragFrom(p);
   }
   pointerMove(p) {
+    if (this.cmdUI?.touchBoxSelect || this.cmdUI?.box) { this.cmdUI.pointerMove(p); return; }
     if (this.hud?.barMove?.(p)) return;
     if (!this.dialog && !this.opening && !this.replayView && this.aiTurnRunner.blocksInput) {
       if (this.aiTurnRunner.moveBannerDrag(p)) return;
@@ -1628,7 +1629,7 @@ export class Battle extends Page {
       this.map.update(elapsed); this.effects.update(elapsed); this.units.update(elapsed); return;
     }
     this.fps = (this.fps || 30) * 0.92 + 0.08 / Math.max(dt, 1e-3);
-    this.cam.update(dt);
+    if (!this.cmdUI?.touchBoxSelect && !this.cmdUI?.box) this.cam.update(dt);
     if (this.blink > 0) this.blink = Math.max(0, this.blink - dt);
     this.updateMultiplayerTurnWarning();
     const h = this.accHold;                                                 // long press on an accessory: pick it up

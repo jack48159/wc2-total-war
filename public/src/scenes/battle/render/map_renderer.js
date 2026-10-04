@@ -122,7 +122,7 @@ export class MapRenderer {
         c.drawImage(img, Math.floor(s.x), Math.floor(s.y), Math.ceil(n) + 1, Math.ceil(n) + 1);
       }
     c.save(); cam.apply(c);
-    const L = this.zoneLayers(), put = (l, alpha) => { c.globalAlpha = alpha; c.drawImage(l.cv, l.x, l.y); c.globalAlpha = 1; };
+    const L = this.zoneLayers(), put = (l, alpha) => { c.globalAlpha = alpha; c.drawImage(l.cv, l.x, l.y, l.w, l.h); c.globalAlpha = 1; };
     put(L.closed, CLOSED_ALPHA); put(L.owned, OWN_ALPHA);
     if (part === 'all') { c.globalAlpha = this.flashAlpha(); for (const d of this.flashList(sel, flashing)) c.drawImage(d.cv, d.x, d.y); c.globalAlpha = 1; }
     c.restore();
@@ -155,7 +155,14 @@ export class MapRenderer {
     if (this._layerKey === key && this._layers) return this._layers;
     this.zoneRebuilds++;
     const st = this.stage, b = st.bounds, W = Math.ceil(b.x1 - b.x0), H = Math.ceil(b.y1 - b.y0);
-    const mk = () => { const cv = document.createElement('canvas'); cv.width = W; cv.height = H; return { cv, g: cv.getContext('2d'), x: b.x0, y: b.y0 }; };
+    // Release replaced backing stores eagerly; keep native map resolution.
+    if (this._layers) for (const layer of Object.values(this._layers)) layer.cv.width = layer.cv.height = 0;
+    const mk = () => {
+      const cv = document.createElement('canvas');
+      cv.width = W; cv.height = H;
+      const g = cv.getContext('2d');
+      return { cv, g, x: b.x0, y: b.y0, w: W, h: H };
+    };
     const closed = mk(), owned = mk();
     for (const a of World.areas) {
       if (a.f === 1 || a.x > b.x1 || a.x + a.w < b.x0 || a.y > b.y1 || a.y + a.h < b.y0) continue;

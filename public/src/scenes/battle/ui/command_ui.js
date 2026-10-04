@@ -488,7 +488,7 @@ export class CommandUI {
       return !!([...this.hits].reverse().find(r => inside(p, r)) || (this.barRect && inside(p, this.barRect)));
     }
     const h = [...this.hits].reverse().find(r => inside(p, r));
-    if (p.shiftKey && p.button === 0 && !h && !(this.barRect && inside(p, this.barRect)) && !this.strips.some(r => inside(p, r)) && !this.banners.some(r => inside(p, r))) {
+    if ((p.shiftKey || (platform.isTouch && this.touchBoxSelect)) && p.button === 0 && !h && !(this.barRect && inside(p, this.barRect)) && !this.strips.some(r => inside(p, r)) && !this.banners.some(r => inside(p, r))) {
       const hit = this.battle.units.hitBox(p);
       const area = hit && this.game.stage.st(hit.id);
       const unit = area?.country === this.country && area.armies.find(a => a.id === hit.armyId && a.hp > 0);
@@ -524,6 +524,7 @@ export class CommandUI {
     return !!(this.press || this.drag);
   }
   pointerCancel() {
+    this.touchBoxSelect = false;
     this.box = null;
     this.press = null;
     this.drag = null;
@@ -701,9 +702,20 @@ export class CommandUI {
       E.playSfx('cancel.wav');
     }
   }
+  toggleTouchSelection() {
+    this.touchBoxSelect = !this.touchBoxSelect;
+    this.battle.drag = null; this.battle.press = null; this.battle.isDragging = false;
+    this.battle.touchPan = null;
+    this.battle.cam.bouncing = false;
+    this.say(this.touchBoxSelect ? '\u6846\u9009\u6a21\u5f0f\uff1a\u70b9\u9009\u6216\u62d6\u52a8\u9009\u62e9\u6211\u65b9\u90e8\u961f\uff1b\u518d\u70b9\u5934\u50cf\u9000\u51fa' : '\u5df2\u9000\u51fa\u6846\u9009\u6a21\u5f0f');
+  }
   click(h, p) {
     const now = performance.now();
     switch (h.act) {
+      case 'touchBoxSelect':
+        this.touchBoxSelect = !this.touchBoxSelect;
+        if (this.touchBoxSelect) this.say('拖动画框选择我方部队；松手后恢复地图拖动');
+        break;
       case 'toggleStack':
         this.stackHidden = !this.stackHidden; this.macroOpen = false;
         this.stackTotalH = (this.stackHidden ? 32 : 80) * this.s;
@@ -746,6 +758,7 @@ export class CommandUI {
       }
       case 'fold': if (this.folds.has(h.id)) this.folds.delete(h.id); else this.folds.add(h.id); break;
       case 'marker': case 'banner':
+        if (platform.isTouch) { this.setFocus('group', h.id); this.toggleTouchSelection(); break; }
         if (p.shiftKey) {
           if (this.selectedGroups.has(h.id)) this.selectedGroups.delete(h.id); else this.selectedGroups.add(h.id);
           const first = this.selectedGroups.values().next().value;
@@ -755,8 +768,8 @@ export class CommandUI {
         } else if (this.focus?.kind === 'group' && this.focus.id === h.id && !this.selectedGroups.size) this.setFocus(null);
         else this.setFocus('group', h.id);
         break;
-      case 'marshal': this.chooseMarshal(this.theatres().find(t => t.id === h.id) || this.targetObj()); break;
-      case 'commander': this.chooseCommander(this.targetObj()); break;
+      case 'marshal': if (platform.isTouch) { this.toggleTouchSelection(); break; } this.chooseMarshal(this.theatres().find(t => t.id === h.id) || this.targetObj()); break;
+      case 'commander': if (platform.isTouch) { this.toggleTouchSelection(); break; } this.chooseCommander(this.targetObj()); break;
       case 'verb': { const targets = this.orderTargets(); if (targets.length) {
         if (h.verb === 'allout') this.battle.startAlloutOrder({ ...targets[0], ids: targets.map(t => t.id) });
         else this.battle.startOrderDrawing({ ...targets[0], ids: targets.map(t => t.id), verb: h.verb });
