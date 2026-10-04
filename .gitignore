@@ -24,3 +24,4 @@ data/multiplayer*
 data/settings.json
 data/game_logs.json
 data/perf_report.json
+data/updates/

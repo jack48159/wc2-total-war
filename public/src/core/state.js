@@ -3,7 +3,7 @@ import { E } from './kernel.js';
 import { authFetch } from './auth.js';
 
 const KEY = 'wc2.remake.state.v1';
-const DEFAULT_STATE = { music: 0.6, sfx: 0.7, battleAnimation: true, gameSpeed: 3, hudStyle: 'old', hudArt: 'original', medals: 50, unlocked: { axis: 99, allies: 99, wto: 99, nato: 99 }, medalLevels: {}, rank: 1, victories: 0, moveSpeed: 1, smoke: 0.4, fire: 1, selectionTransparency: 0.5, fatigueMultiplier: 1, activeGlowEffect: 1, groupGlowIntensity: 0.85, logEnabled: true };
+const DEFAULT_STATE = { allFlags: false, music: 0.6, sfx: 0.7, battleAnimation: true, gameSpeed: 3, hudStyle: 'old', hudArt: 'original', medals: 50, unlocked: { axis: 99, allies: 99, wto: 99, nato: 99 }, medalLevels: {}, rank: 1, victories: 0, moveSpeed: 1, smoke: 0.4, fire: 1, selectionTransparency: 0.5, fatigueMultiplier: 1, activeGlowEffect: 1, groupGlowIntensity: 0.85, logEnabled: true };
 
 // Profile is stored in device-local IndexedDB through the local data adapter.
 const normalise = () => {

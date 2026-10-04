@@ -195,6 +195,8 @@ export function applyAction(game, action) {
     if (action.first && action.second && game.proposeDiplomacy) {
       game.proposeDiplomacy(action.first, action.second, action.pact || 'nap', action.reason || 'event_action');
     }
+  } else if (action.type === 'respondWarInvitation') {
+    game.apply(action);
   } else if (action.type === 'rejectPeaceOffer') {
     // 拒绝是被提议方(second)的表态，归属到它名下(否则会被记成人类玩家的命令，桥接提交校验会判越权)
     game.apply({ country: action.second, ...action });
@@ -241,6 +243,7 @@ register('resolveEventDecision', {
     const se = game.scenarioEvents;
     const ev = se?.pending?.find(p => p.id === cmd.eventId);
     if (!ev) return 'event-not-pending';
+    if (ev.targetCountry && ev.targetCountry !== (cmd.country || game.activeCountry)) return 'not-event-recipient';
     if (!ev.choices || !ev.choices.some(c => c.id === cmd.choiceId)) return 'invalid-choice';
     return null;
   },

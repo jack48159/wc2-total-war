@@ -311,6 +311,7 @@ export class Battle extends Page {
       save: () => { close(); this.goSave(); },
       options: () => { close(); this.goOptions(); },
       mode: () => this.toggleMode(),
+      allFlags: () => { E.state.allFlags = !E.state.allFlags; E.saveState(); close(); },
       decorate: () => this.openDecorate(),
       photo: () => { close(); this.setPhoto(true); },
       replay: () => { close(); this.replayView = new ReplayControls(this); },
@@ -321,6 +322,7 @@ export class Battle extends Page {
     }, {
       // the 2D / 3D switch names the mode it switches TO; without the 3D layer (three.js failed / ?flat) it is disabled
       label: id => id === 'options' ? '设置' : id === 'mode' ? (this.l3d ? (this.cam.desk3d ? '切换 2D' : '切换 3D') : '3D 不可用')
+        : id === 'allFlags' ? `全旗帜：${E.state.allFlags ? '开' : '关'}`
         : id === 'multiplayerPause' ? (this.mpRoom?.paused ? '继续联机' : '暂停联机') : null,
       enabled: id => id === 'multiplayerPause' ? !this.mpPausePending : id !== 'mode' || !!this.l3d,
       online,

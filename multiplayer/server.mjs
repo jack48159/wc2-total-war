@@ -48,7 +48,7 @@ function json(res, status, body) {
 function cors(req, res) {
   // Bearer tokens are explicitly supplied in headers; no browser cookies are used.
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Headers', 'Authorization, Content-Type, X-Game-Access');
+  res.setHeader('Access-Control-Allow-Headers', 'Authorization, Content-Type, X-Game-Access, X-WC2-Protocol');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE, OPTIONS');
 }
 async function bodyOf(req) {
@@ -183,6 +183,8 @@ const server = http.createServer(async (req, res) => {
   if (req.headers['x-game-access'] !== ACCESS_KEY) return json(res, 404, { error: 'Not found' });
   const url = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
   if (url.pathname === '/api/health') return json(res, 200, { ok: true, rooms: rooms.size });
+  if (url.pathname === '/api/mp/version') return json(res, 200, { protocol: 'wc2-1' });
+  if (url.pathname.startsWith('/api/mp/') && req.headers['x-wc2-protocol'] && req.headers['x-wc2-protocol'] !== 'wc2-1') return json(res, 409, { error: '游戏规则版本不一致，请回到首页更新后再联机。', code: 'version_mismatch' });
   if (auth.handle(req, res, url.pathname)) return;
   const user = auth.userFor(req);
   if (!user) return json(res, 401, { error: '请先登录' });

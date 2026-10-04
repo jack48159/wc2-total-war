@@ -11,6 +11,7 @@ import { requireLogin } from './core/auth.js';
 import { SaveStore } from './game/savestore.js';
 import { LiveGames } from './game/live_games.js';
 import { platform } from './platform/detect.js';
+import { Updates } from './core/updates.js';
 import { installIosControls } from './platform/ios_controls.js';
 
 // Dev / test hook (test/flow.js, test/probe.js, the browser console). Nothing in src/ reads it.
@@ -48,4 +49,5 @@ if (scene === 'battle' && args[2]?.liveGameId) {
   else { scene = 'home'; args = []; history.replaceState(null, '', '#'); }   // 记录不存在或已过期
 }
 await E.start('c', new SCENES[scene](...args));
+void Updates.ready();
 if (q.has('edit')) E.layout.toggle(q.get('edit'));

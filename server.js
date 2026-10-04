@@ -84,7 +84,9 @@ function proxyRemoteUpgrade(req, socket, head) {
   });
   up.on('error', () => socket.destroy()); socket.on('error', () => up.destroy());
 }
+const hotUpdater = require('./tools/hot_update.cjs')(__dirname, MIME);
 const handler = (req, res) => {
+  if (!WEB_BASE && hotUpdater.handle(req, res, req.url.split('?')[0])) return;
   if (!WEB_BASE && req.url.startsWith('/remote/')) return proxyRemote(req, res);
   let urlPath = req.url.split('?')[0];
   if (WEB_BASE) {

@@ -39,7 +39,7 @@ const flagWorthy = (a, s) => {
   // "important location" = the original's circle-in-circle resource point: PLAIN terrain (areaType 0, no city / industry built) whose tax is
   // nonetheless high. City-type terrain (large / normal city, capital, port) is excluded here so a small city's naturally high tax never counts.
   const importantPoint = a.areaType === 0 && s.construction !== 'city' && s.construction !== 'industry' && (a.tax || 0) >= 5;
-  return cityLevel >= 4 || indLevel >= 3 || a.areaType === 1 || importantPoint;
+  return cityLevel >= 4 || indLevel >= 3 || a.areaType === 1 || a.areaType === 2 || importantPoint;
 };
 // Layout measured from an original-game screenshot (source px, relative to the base disc anchor):
 // the soldier stands 36 px above the anchor; the info bar is centred on the disc, 44 px above it.
@@ -408,7 +408,7 @@ export class UnitRenderer {
       m.a, m.b, m.c, m.d, m.e, m.f, this.cam.x, this.cam.y, this.cam.zoom,
       this.game.player, this.game.activeCountry, this.game.diplomacy, this.game.spectating, this.game.bridgeSpectating,
       [...this.stage.countries.values()], E.state.fatigueMultiplier,
-      this.showNationFlags, !!this.flags, this.artVersion || 0, this.hudOccluders,
+      this.showNationFlags, !!E.state.allFlags, !!this.flags, this.artVersion || 0, this.hudOccluders,
       visible.map(a => [a.id, this.stage.st(a.id)])]);
     const cv = this.staticCanvas || (this.staticCanvas = document.createElement('canvas'));
     if (this.staticKey !== key) {
@@ -433,7 +433,7 @@ export class UnitRenderer {
   drawArtwork(visible) {
     // Replay flags bypass buildings, strategic flagpoles, bases and animated unit copies.
     if (this.replayStyle === 1 || this.replayStyle === 3) { this.drawReplayFlags(visible); return; }
-    if (this.replayStyle === 2) { this.boxes = []; return; }
+    if (this.replayStyle === 2) { this.boxes = []; this.drawTerritoryFlags(visible); return; }
     const Sat = (x, y) => this.cam.scaleAt(x, y) / UNIT_PX * 0.78;      // sprite scale at a map point: uniform when seen from above, perspective in the tilt view
     const A = this.army, st = this.stage, armies = [], under = [];
     const visibleIds = new Set(visible.map(area => area.id));
@@ -459,7 +459,7 @@ export class UnitRenderer {
       // a unit AT sea always gets one regardless of the area's own significance (only 4 relative-to-player base colours exist, otherwise ships
       // of different, equally "red" nations are impossible to tell apart), same as a land area significant enough on its own (flagWorthy)
       const atSea = World.areas[a.id]?.f === 1;
-      const fl = (flagWorthy(a, s) || (atSea && army)) ? A['flag_' + cinfo.flag] : null;
+      const fl = (E.state.allFlags || flagWorthy(a, s) || (atSea && army)) ? A['flag_' + cinfo.flag] : null;
       const flag = () => { if (fl) E.drawFrame(fl, s2.x, s2.y, { scale: S }); };
       const behind = p2[1] <= p1[1];                                    // flag is drawn before the army when its anchor is not below it
       armies.push({ y: p1[1], fn: () => {
@@ -537,10 +537,24 @@ export class UnitRenderer {
     return frame;
   }
 
+  drawTerritoryFlags(visible) {
+    for (const area of visible) {
+      if (!E.state.allFlags && area.areaType !== 2) continue;
+      const state = this.stage.st(area.id);
+      const country = state && this.stage.countries.get(state.country);
+      const flag = this.flagFrame(country?.flag || country?.id);
+      if (!flag) continue;
+      const [x, y] = area.pts[1], point = this.cam.toScreen(x, y);
+      const width = 24 * this.cam.scaleAt(x, y);
+      E.drawFrame(flag, point.x - width / 2, point.y - width / flag.w * flag.h, { scale: width / flag.w, noRef: true });
+    }
+  }
+
   drawReplayFlags(visible) {
     this.boxes = []; this.infoQueue = null;
     if (this.l3d) this.l3d.begin();
     const c = E.ctx;
+    this.drawTerritoryFlags(visible);
     const militaryFlags = this.replayStyle === 3;
     const groupNumbers = new Map(), countryCounts = new Map();
     for (const group of this.game.armyGroups) {

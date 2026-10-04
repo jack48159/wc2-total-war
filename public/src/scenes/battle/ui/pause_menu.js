@@ -12,6 +12,7 @@ const DEFS = {
   save: { board: 'longgreen_normal', text: 'buttontext_save' },
   options: { board: 'longgreen_normal', text: 'buttontext_options' },
   mode: { board: 'longgreen_normal', label: '切换 2D / 3D' },
+  allFlags: { board: 'longgreen_normal', label: '全旗帜' },
   decorate: { board: 'longgreen_normal', label: '摆件' },
   photo: { board: 'longgreen_normal', label: '摄影模式' },
   replay: { board: 'longgreen_normal', label: '看海模式' },

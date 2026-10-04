@@ -2,6 +2,7 @@
 import { E } from '../core/index.js';
 import { Page } from '../ui/ui.js';
 import { requireLogin } from '../core/auth.js';
+import { Updates } from '../core/updates.js';
 
 class Home extends Page {
   constructor() { super(); this.showBack = false; this.route = 'home'; }
@@ -24,7 +25,8 @@ class Home extends Page {
     E.playSfx('main_interface.wav');
   }
   onBack() {}
-  dispose() { this.account?.remove(); this.account = null; }
+  onShow() { void Updates.check(); }
+  dispose() { Updates.hide(); this.account?.remove(); this.account = null; }
   exitGame() {
     try { window.close(); } catch (e) {}
     if (!window.closed) this.notice('浏览器阻止了自动关闭窗口，请手动关闭此标签页。');

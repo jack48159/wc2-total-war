@@ -311,7 +311,7 @@ export class ZhengwuDialog {
 
     // 1. If confirm dialog is active, handle confirm modal clicks
     if (this.confirmDialog) {
-      const cw = 700 * (g.scale / 1.21), ch = 430 * (g.scale / 1.21);
+      const cw = 700 * (g.scale / 1.21), ch = (this.confirmDialog.inviteAllies !== undefined ? 480 : 430) * (g.scale / 1.21);
       const cx = (g.W - cw) / 2, cy = (g.H - ch) / 2;
       const btnW = 120 * (g.scale / 1.21), btnH = 46 * (g.scale / 1.21);
       const btnY = cy + ch - 82 * (g.scale / 1.21);
@@ -319,6 +319,11 @@ export class ZhengwuDialog {
       const cancelX = cx + cw * 0.28 - btnW / 2;
       const okX = ackOnly ? cx + cw * 0.5 - btnW / 2 : cx + cw * 0.72 - btnW / 2;
 
+      if (this.confirmDialog.inviteAllies !== undefined && p.x >= cx + 80 * (g.scale / 1.21) && p.x <= cx + cw - 80 * (g.scale / 1.21)
+        && p.y >= cy + ch - 135 * (g.scale / 1.21) && p.y <= cy + ch - 95 * (g.scale / 1.21)) {
+        this.confirmDialog.inviteAllies = !this.confirmDialog.inviteAllies;
+        return;
+      }
       // Cancel button (hidden on ack-only notices)
       if (!ackOnly && p.x >= cancelX && p.x <= cancelX + btnW && p.y >= btnY && p.y <= btnY + btnH) {
         E.playSfx('cancel.wav');
@@ -329,8 +334,9 @@ export class ZhengwuDialog {
       if (p.x >= okX && p.x <= okX + btnW && p.y >= btnY && p.y <= btnY + btnH) {
         E.playSfx('btn.wav');
         const action = this.confirmDialog.onConfirm;
+        const inviteAllies = this.confirmDialog.inviteAllies;
         this.confirmDialog = null;
-        if (action) action();
+        if (action) action(inviteAllies);
         return;
       }
       // Click outside confirm modal dismisses it
@@ -428,8 +434,9 @@ export class ZhengwuDialog {
               title: `向盟国 ${cName} 宣战？`,
               content: `退出同盟并宣战将扣除国家稳定度 20 点。\n确认宣战？`,
               cascadedCountries,
-              onConfirm: () => {
-                this.game.apply({ type: 'setDiplomacy', first: player, second: c.id, state: 'war', reason: 'player_action' });
+              inviteAllies: true,
+              onConfirm: (inviteAllies) => {
+                this.game.apply({ type: 'setDiplomacy', first: player, second: c.id, state: 'war', reason: 'player_action', inviteAllies });
               }
             };
             return;
@@ -451,15 +458,17 @@ export class ZhengwuDialog {
               content: `稳定度 −20\n确认宣战？`,
               warning: '撕毁互不侵犯条约',
               cascadedCountries,
-              onConfirm: () => {
-                this.game.apply({ type: 'setDiplomacy', first: player, second: c.id, state: 'war', reason: 'player_action' });
+              inviteAllies: true,
+              onConfirm: (inviteAllies) => {
+                this.game.apply({ type: 'setDiplomacy', first: player, second: c.id, state: 'war', reason: 'player_action', inviteAllies });
               }
             } : {
               title: `向 ${cName} 宣战？`,
               content: `宣战将扣除国家稳定度 12 点，并立即进入交战状态。\n确认宣战？`,
               cascadedCountries,
-              onConfirm: () => {
-                this.game.apply({ type: 'setDiplomacy', first: player, second: c.id, state: 'war', reason: 'player_action' });
+              inviteAllies: true,
+              onConfirm: (inviteAllies) => {
+                this.game.apply({ type: 'setDiplomacy', first: player, second: c.id, state: 'war', reason: 'player_action', inviteAllies });
               }
             };
             return;
@@ -1587,7 +1596,7 @@ export class ZhengwuDialog {
     E.layout.canvas(c, 'scenes/battle/ui/chain_menu.js:1294').fillRect(0, 0, g.W, g.H);
 
     const mw = 700 * (s / 1.21);
-    const mh = 430 * (s / 1.21);
+    const mh = (this.confirmDialog.inviteAllies !== undefined ? 480 : 430) * (s / 1.21);
     const mx = (g.W - mw) / 2;
     const my = (g.H - mh) / 2;
 
@@ -1699,6 +1708,10 @@ export class ZhengwuDialog {
       }
     }
 
+    if (this.confirmDialog.inviteAllies !== undefined) {
+      E.text(`${this.confirmDialog.inviteAllies ? '☑' : '☐'} 邀请盟友参战（盟友可拒绝）`, mx + mw / 2, my + mh - 115 * (s / 1.21), {
+        size: Math.round(18 * s), font: SERIF, align: 'center', base: 'middle', color: '#3a2410' });
+    }
     // Cancel Button ✗ (Left) and OK Button ✓ (Right) - safely inside parchment paper surface
     const btnW = 120 * (s / 1.21), btnH = 46 * (s / 1.21);
     const btnY = my + mh - 82 * (s / 1.21);

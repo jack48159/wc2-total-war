@@ -1,7 +1,7 @@
 import { apiUrl, authFetch, authToken, GAME_ACCESS_KEY } from '../core/auth.js';
 
 export async function multiplayerRequest(path, method = 'GET', body = null) {
-  const response = await authFetch(`/api/mp/${path}`, { method, ...(body == null ? {} : { body: JSON.stringify(body) }) });
+  const response = await authFetch(`/api/mp/${path}`, { method, headers: { 'X-WC2-Protocol': window.WC2_CONFIG?.protocol || 'wc2-1' }, ...(body == null ? {} : { body: JSON.stringify(body) }) });
   const data = await response.json();
   if (!response.ok) {
     const error = new Error(data.error || `联机服务返回 ${response.status}`);
