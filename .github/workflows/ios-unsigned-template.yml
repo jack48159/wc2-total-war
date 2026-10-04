@@ -24,7 +24,3 @@ jobs:
         with:
           name: wc2-unsigned-ipa
           path: mobile/ios/wc2-unsigned.ipa
-      - name: Upload IPA to release
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh release upload v1.0.3 wc2-unsigned.ipa --clobber --repo "$GITHUB_REPOSITORY"
