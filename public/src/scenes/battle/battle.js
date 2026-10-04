@@ -587,10 +587,11 @@ export class Battle extends Page {
       const country = stage.countries.get(incoming.id);
       if (country) Object.assign(country, incoming);
     }
-    for (const key of ['player','fogOfWar','round','activeCountry','phase','result','money','industry','tech','stability','hand','cardCooldowns','techTurn','ownedCommanders','medalLevels','armyGroups','theatres','orders','coordination','diplomacy','scenarioEvents','visibilityMemory','nextArmyId','nextArmyGroupId','nextTheaterId','nextOrderId','reportLog','nextReportId','reportRevision']) {
+    // Game.player is derived from Stage; never assign to its getter.
+    if ('player' in snap) stage.data.player = snap.player;
+    for (const key of ['fogOfWar','round','activeCountry','phase','result','money','industry','tech','stability','hand','cardCooldowns','techTurn','ownedCommanders','medalLevels','armyGroups','theatres','orders','coordination','diplomacy','scenarioEvents','visibilityMemory','nextArmyId','nextArmyGroupId','nextTheaterId','nextOrderId','reportLog','nextReportId','reportRevision']) {
       if (key in snap) game[key] = snap[key];
     }
-    if('player'in snap)game.stage.data.player=snap.player;
     if(this.multiplayerSpectator){game.spectating=true;const select=this.mpSpectatorBar?.querySelector('select');if(select)select.value=snap.spectator?.viewCountry||'';}
     if (snap.rng) game.rng = Rng.restore(snap.rng);
     this.map.invalidate();
