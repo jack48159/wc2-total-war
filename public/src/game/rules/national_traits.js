@@ -5,7 +5,7 @@ let cache = null;
 
 export async function loadNationalTraits() {
   if (cache) return cache;
-  const fileUrl = new URL('../../../data/national_traits.json', import.meta.url);
+  const fileUrl = typeof document !== 'undefined' ? new URL('data/national_traits.json', document.baseURI) : new URL('../../../data/national_traits.json', import.meta.url);
   if (fileUrl.protocol === 'file:') {
     const fs = await import('node:fs');
     cache = JSON.parse(fs.readFileSync(fileUrl, 'utf8'));
@@ -62,10 +62,10 @@ export function declareTuning(catalog, country) {
     neverDeclare: !!(neutral && neutral.neverDeclare !== false),
     expansionist: !!exp,
     warWeary: !!weary,
-    powerRatio: 2,
-    directionRatio: 1.4,
-    relaxedPowerRatio: 2,
-    relaxedDirectionRatio: 1.4,
+    powerRatio: 1.35,
+    directionRatio: 1.0,
+    relaxedPowerRatio: 1.35,
+    relaxedDirectionRatio: 1.0,
     cooldownDelta: 0,
     minStabilityDelta: 0,
     maxMajorBonus: 0,
@@ -77,8 +77,8 @@ export function declareTuning(catalog, country) {
     neverDeclare: false,
     expansionist: !!exp,
     warWeary: !!weary,
-    powerRatio: src.powerRatio ?? base.powerRatio,
-    directionRatio: src.directionRatio ?? base.directionRatio,
+    powerRatio: src.powerRatio != null ? Math.max(1.1, src.powerRatio * 0.8) : base.powerRatio,
+    directionRatio: src.directionRatio != null ? Math.max(0.9, src.directionRatio * 0.85) : base.directionRatio,
     relaxedPowerRatio: src.relaxedPowerRatio ?? base.relaxedPowerRatio,
     relaxedDirectionRatio: src.relaxedDirectionRatio ?? base.relaxedDirectionRatio,
     cooldownDelta: src.cooldownDelta || 0,
@@ -124,4 +124,3 @@ export function peaceTuning(catalog, country) {
   }
   return { lossThreshold, powerRatioThreshold, regime, traits };
 }
-

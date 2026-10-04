@@ -195,7 +195,7 @@ export function applyAction(game, action) {
     if (action.first && action.second && game.proposeDiplomacy) {
       game.proposeDiplomacy(action.first, action.second, action.pact || 'nap', action.reason || 'event_action');
     }
-  } else if (action.type === 'respondWarInvitation') {
+  } else if (action.type === 'respondWarInvitation' || action.type === 'respondCoalitionPeace') {
     game.apply(action);
   } else if (action.type === 'rejectPeaceOffer') {
     // 拒绝是被提议方(second)的表态，归属到它名下(否则会被记成人类玩家的命令，桥接提交校验会判越权)

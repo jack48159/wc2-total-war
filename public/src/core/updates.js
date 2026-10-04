@@ -1,12 +1,12 @@
 import { E } from './kernel.js';
 import { platform } from '../platform/detect.js';
-const URL = 'https://208.87.207.49/updates/stable.json';
+const URL = 'https://wc2-1324086514.cos.ap-guangzhou.myqcloud.com/updates/stable.json';
 const SPKI = 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtwfLjT9ZSRBF0haS4Kl6H8VsYtecwjFp6xC1WkpHYxBRiPCWWOBATugSDK6Y/nIMb+6wdt60i2xkYbN8E6I7MOBGzvTquoqMLwQ7vTgTRktMU3MaDq4zeSWfXGqkJiVuvBMJjQ0R5x/6SknPsIwW/HolFAkiRgRyLx4LF5e9JpRlQg9pTw3pfLOMtnAFq6X4zfN4b9Ut+crd+wCz72VZwZ4kDEa+SVbkY/mj05hPJR5WxVzQKY9Py/vUvIKIwxLQGpHBkwqOWp/7ON2r4GM2HUspULeTw/ItQqCalKFt8MSAu2Lww/wVhL2zKbQZNKZq3DOVx0hgJ7cRRU+MgddTWQIDAQAB';
 const bytes = value => Uint8Array.from(atob(value), char => char.charCodeAt(0));
 const home = () => E.scene?.constructor?.name === 'Home' && !E.busy;
 let banner, checkAt = 0, checking = false;
 function adapter() {
-  if (platform.id === 'ios' || !window.WC2_CONFIG?.updateSupport) return null;
+  if (!window.WC2_CONFIG?.updateSupport || (platform.id === 'ios' && platform.isPackaged && !window.WC2_CONFIG?.iosUpdateSupport)) return null;
   if (platform.isPackaged) return window.Capacitor?.registerPlugin?.('Wc2Updater') || window.Capacitor?.Plugins?.Wc2Updater || null;
   if (location.hostname !== '127.0.0.1' && location.hostname !== 'localhost') return null;
   const call = async (name, method = 'POST') => {
@@ -20,7 +20,7 @@ export const Updates = {
   hide() { banner?.remove(); banner = null; },
   async ready() { try { await adapter()?.ready(); } catch {} },
   async check() {
-    if (platform.id === 'ios' || !window.WC2_CONFIG?.updateSupport || checking || Date.now() - checkAt < 60000) return;
+    if (!window.WC2_CONFIG?.updateSupport || (platform.id === 'ios' && platform.isPackaged && !window.WC2_CONFIG?.iosUpdateSupport) || checking || Date.now() - checkAt < 60000) return;
     checking = true; checkAt = Date.now();
     try {
       const response = await fetch(URL, { cache: 'no-store', signal: AbortSignal.timeout(15000) });

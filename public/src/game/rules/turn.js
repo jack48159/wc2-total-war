@@ -18,7 +18,7 @@ import { evaluateAiDiplomacy, tickCountryStability, DIPLOMACY_STATE } from './di
  * 
  * 切换方式：修改默认值或调用 setNeutralWakeEnabled(true/false)。
  */
-export let NEUTRAL_WAKE_ENABLED = false;
+export let NEUTRAL_WAKE_ENABLED = true;
 
 export function setNeutralWakeEnabled(enabled) {
   NEUTRAL_WAKE_ENABLED = !!enabled;

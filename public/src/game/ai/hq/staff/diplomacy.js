@@ -17,7 +17,7 @@ import {
   areDiplomaticAllies,
 } from '../../../rules/diplomacy.js';
 import { evaluateAiDeclareWar } from '../../strong.js';
-import { peaceTuning } from '../../../rules/national_traits.js';
+import { peaceTuning, declareTuning } from '../../../rules/national_traits.js';
 import { loadStaffOverrides, STAFF_P } from './params_staff.js';
 import { identifyCountryProfile } from './profile.js';
 
@@ -269,6 +269,15 @@ export function rankDeclareWarTargets(game, model, myCountry) {
     if (rel === DIPLOMACY_STATE.WAR) continue;
 
     const aiRules = stage.data?.ai_rules || game.diplomacy?.ai_rules || {};
+    const tuning = declareTuning(stage.data?.traitCatalog, stage.countries.get(myId));
+    if (tuning.neverDeclare || game.round < (aiRules.min_war_round ?? 1)) continue;
+    if ((aiRules.special_restraints || []).some(r =>
+      (r.attacker === myId || r.attacker === '*') && (r.target === cid || r.target === '*') &&
+      (r.never_declare || (game.round < (r.min_round ?? 1) &&
+        countryPower(game, myId).power <
+          [cid, ...warCascade(game, myId, cid)].reduce((sum, id) => sum + countryPower(game, id).power, 0) *
+          (r.overwhelming_power_ratio ?? 4))))) continue;
+    if ((game.diplomacy?.truceUntil?.[relationKey(myId, cid)] || 0) > game.round) continue;
     const permanentNeutrals = new Set(aiRules.permanent_neutrals || game.diplomacy?.permanent_neutrals || []);
     if (permanentNeutrals.has(cid)) {
       const atWarWithAny = Array.from(stage.countries.values()).some(
@@ -333,6 +342,63 @@ export function rankDeclareWarTargets(game, model, myCountry) {
   });
 
   return candidates;
+}
+
+// A second front has value even before it yields territory. Count only public
+// diplomacy and power from the supplied visible model, never hidden formations.
+function coalitionWarCandidate(game, model, ranked, capitalThreat) {
+  if (capitalThreat) return null;
+  const me = model.me, stage = model.st;
+  const rules = stage.data?.ai_rules || game.diplomacy?.ai_rules || {};
+  const tuning = declareTuning(stage.data?.traitCatalog, stage.countries.get(me));
+  const stability = game.getStability?.(me) ?? 100;
+  if (stability < Math.max(55, (rules.min_stability ?? 55) + tuning.minStabilityDelta)) return null;
+  const lastWar = game.diplomacy?.lastWarDeclaredRound?.[me];
+  if (lastWar != null && game.round - lastWar < Math.max(1, (rules.war_cooldown ?? 4) + tuning.cooldownDelta)) return null;
+  const ownPower = countryPower(game, me).power;
+  let currentEnemyPower = 0, majorEnemies = 0;
+  for (const c of stage.countries.values()) {
+    if (!c.eliminated && model.rel(c.id) === 'enemy') {
+      const power = countryPower(game, c.id).power;
+      currentEnemyPower += power;
+      if (power >= 60) majorEnemies++;
+    }
+  }
+  if (majorEnemies >= (rules.max_active_major_enemies ?? 2) + tuning.maxMajorBonus) return null;
+  if (currentEnemyPower > ownPower * 0.65) return null;
+  for (const candidate of ranked) {
+    if (!candidate.hasBorder || !candidate.isReachable) continue;
+    const border = model.mine.filter(a => a.land && a.adj.some(id => model.area(id)?.owner === candidate.country));
+    const assembled = model.units.mine.filter(u => border.some(a => model.dist(u.area, a.id) <= 2))
+      .reduce((sum, u) => sum + u.hp, 0);
+    // The candidate is still neutral, so its troops are not in units.enemy.
+    const opposing = stage.areas.filter(a => a.country === candidate.country && !a.sea &&
+      border.some(b => model.dist(a.id, b.id) <= 2))
+      .reduce((sum, a) => sum + (a.armies || []).reduce((hp, u) => hp + (u.hp || 0), 0), 0);
+    // A diplomatic opportunity still needs troops ready on the actual frontier.
+    if (!assembled || assembled < opposing * 0.75) continue;
+    let engagedPower = 0, opponents = 0, alliedOpponent = false;
+    for (const c of stage.countries.values()) {
+      if (c.eliminated || c.id === me || c.id === candidate.country) continue;
+      if (getDiplomaticRelation(game, c.id, candidate.country) !== DIPLOMACY_STATE.WAR) continue;
+      const power = countryPower(game, c.id).power;
+      if (power <= 0) continue;
+      opponents++;
+      engagedPower += power;
+      alliedOpponent ||= areDiplomaticAllies(game, me, c.id);
+    }
+    const industrialThreat = candidate.threatEval.details.industrialPotential >= 20;
+    if (!alliedOpponent && !(opponents >= 2 && industrialThreat)) continue;
+    if (ownPower < candidate.tPower * 0.65) continue;
+    const extraEnemies = warCascade(game, me, candidate.country)
+      .filter(id => id !== candidate.country && model.rel(id) !== 'enemy')
+      .reduce((sum, id) => sum + countryPower(game, id).power, 0);
+    const distraction = Math.min(candidate.tPower * 0.6, engagedPower * 0.5);
+    if (ownPower + distraction < candidate.tPower + extraEnemies * 0.5) continue;
+    if (stability - declareWarStabilityCost(game, me, candidate.country) < 35) continue;
+    return { ...candidate, alliedOpponent };
+  }
+  return null;
 }
 
 /**
@@ -445,8 +511,8 @@ export function planWarSequence(model, fronts = [], doctrine = {}) {
     } else if (!multiFrontCrisis && majorEnemies.length < 2) {
       // 当前只有1个主要敌人，且主战场占据绝对优势 (R >= 1.5) 或候选目标为易灭亡的脆弱小国(Tier A/S, tPower < 35)
       const primaryFrontR = fronts[0]?.R || 1.0;
-      const isQuickHarvestTarget = topCandidate.priorityTier === 'A' && topCandidate.tPower < 35;
-      const isSuperDominant = primaryFrontR >= 1.5 && topCandidate.priorityTier === 'S' && topThreat.alliesCost <= 25;
+      const isQuickHarvestTarget = ['S', 'A'].includes(topCandidate.priorityTier) && topCandidate.tPower < myPower * 0.65;
+      const isSuperDominant = primaryFrontR >= 1.15 && topCandidate.priorityTier === 'S' && topThreat.alliesCost <= 25;
 
       if ((isQuickHarvestTarget || isSuperDominant) && topThreat?.recommendation !== 'delay_avoid') {
         allowNewWarDeclaration = true;
@@ -671,14 +737,21 @@ export function decideDiplomacy(model, staffState = {}) {
   // -------------------------------------------------------------
 
   // 若战役规划明确指示避免同时对多个强敌开战，则压制新宣战
+  const freshRanked = rankDeclareWarTargets(game, model, me);
+  const coalitionTarget = coalitionWarCandidate(game, model, freshRanked, capitalThreat);
+  if (coalitionTarget) {
+    commands.push({ type: 'setDiplomacy', first: me, second: coalitionTarget.country, state: 'war',
+      reason: coalitionTarget.alliedOpponent
+        ? '敌军正与盟友交战，我军战备足够，主动开辟第二战场分担压力。'
+        : '邻国工业强敌已卷入多国战争，趁其兵力分散主动开辟战线。' });
+    return commands;
+  }
   if (warSeq && !warSeq.allowNewWarDeclaration) {
     return commands;
   }
 
   // 获取多维度宣战目标优先级排序 (S > A > B > C)
-  const ranked = warSeq?.rankedTargets?.length > 0
-    ? warSeq.rankedTargets
-    : rankDeclareWarTargets(game, model, me);
+  const ranked = freshRanked;
 
   if (ranked.length === 0) return commands;
 
@@ -734,7 +807,7 @@ export function decideDiplomacy(model, staffState = {}) {
   if (bestCandidate.priorityTier === 'S') ratioReq *= 0.75;
   else if (bestCandidate.priorityTier === 'A') ratioReq *= 0.80;
   else if (bestCandidate.priorityTier === 'B') ratioReq *= 1.20;
-  else if (bestCandidate.priorityTier === 'C') return commands;
+  else if (bestCandidate.priorityTier === 'C') { if (!bestCandidate.hasBorder || myPower < bestCandidate.tPower * 1.35) return commands; ratioReq *= 1.05; }
 
   if (threatEval.recommendation === 'strike_early') {
     ratioReq *= 0.85; // 威胁低但会长大 -> 提前宣战先发制人

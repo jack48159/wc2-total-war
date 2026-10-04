@@ -39,7 +39,7 @@ module.exports = function createUpdater(root, mime) {
     busy = true; progress = { running: true, done: 0, total: 0, downloaded: 0 };
     let staging;
     try {
-      const response = await fetch(ORIGIN + '/updates/stable.json', { signal: AbortSignal.timeout(15000), redirect: 'error', cache: 'no-store' });
+      const response = await fetch(BUCKET + '/updates/stable.json', { signal: AbortSignal.timeout(15000), redirect: 'error', cache: 'no-store' });
       if (!response.ok) throw Error('更新服务暂不可用');
       const m = verify(await response.json());
       if (m.release === state.active) { progress = { running: false, ready: m.release }; return; }

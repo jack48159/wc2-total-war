@@ -87,6 +87,7 @@ export function relationKey(a, b) {
 
 export function initDiplomacy(config = null) {
   const dip = {
+    coalitionPeaceRequests: config?.coalitionPeaceRequests ? JSON.parse(JSON.stringify(config.coalitionPeaceRequests)) : {},
     enabled: !!(config && config.enabled),
     allowAlliedAttack: !!(config && config.allowAlliedAttack),
     betrayalPolicy: (config && config.betrayalPolicy) === 'none' ? 'none' : 'war',
@@ -799,6 +800,11 @@ export function setDiplomaticRelation(game, first, second, state, reason = 'manu
     if (truceUntil > (game.round || 1) && reason !== 'war_cascade') {
       return true;
     }
+  }
+
+  if (stVal === DIPLOMACY_STATE.PEACE && prevRelation === DIPLOMACY_STATE.WAR && !coalitionPeaceAuthorized(game, first, second)) {
+    requestCoalitionPeace(game, first, second, reason);
+    return true;
   }
 
   // Calculate cascade before state mutation if this is a primary war declaration
@@ -1585,6 +1591,82 @@ export function inviteWarAllies(game, inviter, enemy, selected = true) {
     }
   }
 }
+
+function peaceCoalition(game, first, second) {
+  const required = new Map();
+  for (const c of livingCountries(game)) {
+    if (c.id === first || c.id === second) continue;
+    if (areDiplomaticAllies(game, first, c.id) && getDiplomaticRelation(game, c.id, second) === DIPLOMACY_STATE.WAR) required.set(c.id, second);
+    if (areDiplomaticAllies(game, second, c.id) && getDiplomaticRelation(game, c.id, first) === DIPLOMACY_STATE.WAR) required.set(c.id, first);
+  }
+  return required;
+}
+function coalitionPeaceAuthorized(game, first, second) {
+  const required = peaceCoalition(game, first, second);
+  if (!required.size) return true;
+  const request = game.diplomacy?.coalitionPeaceRequests?.[game._approvedCoalitionPeace];
+  return !!request && request.status === 'approved' && relationKey(request.first, request.second) === relationKey(first, second)
+    && [...required.keys()].every(country => request.approvals[country] === true);
+}
+function peaceApprovalReport(game, request, text, status) {
+  game.addReport?.({ category: 'diplomacy', kind: 'coalitionPeace', actors: [request.first, request.second, ...Object.keys(request.approvals)],
+    detail: { requestId: request.id, status }, factKey: request.id + '_' + status, importance: 2, text });
+}
+function advanceCoalitionPeace(game, request) {
+  if (request.status !== 'pending') return;
+  if (getDiplomaticRelation(game, request.first, request.second) !== DIPLOMACY_STATE.WAR
+    || !countryAlive(game.stage.countries.get(request.first)) || !countryAlive(game.stage.countries.get(request.second))) { request.status = 'expired'; return; }
+  const required = peaceCoalition(game, request.first, request.second);
+  for (const [country, enemy] of required) {
+    if (request.approvals[country] !== undefined) continue;
+    if (isPlayerCountry(game, country)) {
+      request.approvals[country] = null;
+      queuePlayerDecision(game, { id: `${request.id}_approval_${country}`, type: 'decision', category: 'diplomacy', targetCountry: country,
+        title: '盟友请求批准停战',
+        body: `${countryName(game, request.first)}与${countryName(game, request.second)}准备停战。你仍在与${countryName(game, enemy)}交战；所有相关盟友同意后和约才生效。批准不会让你自动停战。`,
+        choices: [{ id: 'accept', text: '同意和约', actions: [{ type: 'respondCoalitionPeace', requestId: request.id, country, accepted: true }] },
+          { id: 'reject', text: '反对单独停战', actions: [{ type: 'respondCoalitionPeace', requestId: request.id, country, accepted: false }] }] });
+    } else { request.approvals[country] = evaluatePeaceAcceptance(game, enemy, country).accept; }
+  }
+  if ([...required.keys()].some(country => request.approvals[country] === false)) {
+    request.status = 'rejected'; peaceApprovalReport(game, request, '相关盟友未全部同意，和约未生效，原有战争状态保持。', 'rejected'); return;
+  }
+  if (![...required.keys()].every(country => request.approvals[country] === true)) return;
+  request.status = 'approved';
+  const previous = game._approvedCoalitionPeace;
+  game._approvedCoalitionPeace = request.id;
+  try {
+    setDiplomaticRelation(game, request.first, request.second, 'peace', request.reason);
+    request.status = getDiplomaticRelation(game, request.first, request.second) === DIPLOMACY_STATE.PEACE ? 'completed' : 'expired';
+    if (request.status === 'completed') peaceApprovalReport(game, request, '所有相关交战盟友已批准，和约正式生效。', 'completed');
+  } finally { game._approvedCoalitionPeace = previous; }
+}
+function requestCoalitionPeace(game, first, second, reason) {
+  const requests = game.diplomacy.coalitionPeaceRequests ||= {};
+  const pair = relationKey(first, second), round = game.round || 1;
+  const existing = Object.values(requests).find(request => relationKey(request.first, request.second) === pair
+    && (request.status === 'pending' || (request.status === 'rejected' && round - request.round < 3)));
+  if (existing) { advanceCoalitionPeace(game, existing); return; }
+  const id = `coalition_peace_${first}_${second}_r${round}`;
+  const request = requests[id] = { id, first, second, reason, round, status: 'pending', approvals: {} };
+  peaceApprovalReport(game, request, `${countryName(game, first)}与${countryName(game, second)}的和约等待所有相关交战盟友批准。`, 'pending');
+  advanceCoalitionPeace(game, request);
+}
+register('respondCoalitionPeace', {
+  validate(game, cmd) {
+    const request = game.diplomacy?.coalitionPeaceRequests?.[cmd.requestId];
+    if (!game._inScenarioEvent) return 'consent-required';
+    if (!request || request.status !== 'pending') return 'peace-request-not-pending';
+    if (request.approvals[cmd.country || game.activeCountry] !== null) return 'not-approval-recipient';
+    if (typeof cmd.accepted !== 'boolean') return 'invalid-response';
+    return null;
+  },
+  execute(game, cmd) {
+    const request = game.diplomacy.coalitionPeaceRequests[cmd.requestId];
+    request.approvals[cmd.country || game.activeCountry] = cmd.accepted;
+    advanceCoalitionPeace(game, request);
+  },
+});
 
 register('respondWarInvitation', {
   validate(game, cmd) {

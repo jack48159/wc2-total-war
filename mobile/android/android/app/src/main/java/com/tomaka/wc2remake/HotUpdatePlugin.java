@@ -55,7 +55,7 @@ public class HotUpdatePlugin extends Plugin {
         new Thread(() -> {
             File staging=null;
             try {
-                JSONObject envelope=new JSONObject(new String(readSmall(ORIGIN + "/updates/stable.json"),"UTF-8"));
+                JSONObject envelope=new JSONObject(new String(readSmall(BUCKET + "/updates/stable.json"),"UTF-8"));
                 byte[] payload=Base64.decode(envelope.getString("payload"),Base64.DEFAULT);
                 Signature signature=Signature.getInstance("SHA256withRSA");signature.initVerify(KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(Base64.decode(KEY,Base64.DEFAULT))));signature.update(payload);
                 if(!signature.verify(Base64.decode(envelope.getString("signature"),Base64.DEFAULT)))throw new IOException("更新签名无效");

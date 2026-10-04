@@ -16,8 +16,8 @@ export const STAFF_P = {
   concentrateScore: 20,             // Fallback concentrate order base utility score
 
   // --- Strategic Posture & Front Analysis (strategy.js) ---
-  postureAttackRatio: 1.25,         // Power ratio threshold defaulting to offensive posture
-  postureDefendRatio: 0.75,         // Power ratio threshold defaulting to defensive posture
+  postureAttackRatio: 1.1,         // Power ratio threshold defaulting to offensive posture
+  postureDefendRatio: 0.6,         // Power ratio threshold defaulting to defensive posture
   minFrontPower: 1.0,               // Minimum front combat power floor to avoid division by zero
   captureProbabilityScale: 0.5,     // Scaling factor converting power ratio to capture probability
   captureProbabilityFloor: 0.2,     // Minimum floor for capture probability estimate
@@ -85,7 +85,7 @@ export const STAFF_P = {
 
   // --- Diplomacy (diplomacy.js) ---
   stabilityCreditValue: 16.0,       // Weight converting 1 stability point into economy/credit value
-  warDeclarationGainCostRatio: 1.25,// Minimum gain-to-cost ratio to sanction war declaration
+  warDeclarationGainCostRatio: 0.9,// Minimum gain-to-cost ratio to sanction war declaration
 
   // --- Casualty Rest & Evacuation (br_rest) ---
   restEnableInfantry: 1,

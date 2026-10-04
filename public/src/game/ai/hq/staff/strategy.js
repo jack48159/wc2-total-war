@@ -312,9 +312,9 @@ export function pickMainEffort(fronts, doctrine = {}, model = null) {
 
     // Estimate expected investment return = expected gain - expected defensive risk
     const pCapture = Math.min(1, Math.max(p.captureProbabilityFloor, f.R * p.captureProbabilityScale));
-    const expGain = f.V_gain * pCapture;
+    const expGain = f.V_gain * pCapture * 1.35;
     const riskFactor = Math.max(0, 1 - f.R);
-    const expRisk = f.V_hold * riskFactor;
+    const expRisk = f.V_hold * riskFactor * 0.8;
     let invVal = expGain - expRisk;
 
     // 针对性投资价值调整：
