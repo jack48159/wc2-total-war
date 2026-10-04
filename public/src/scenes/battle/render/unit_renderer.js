@@ -426,7 +426,7 @@ export class UnitRenderer {
 
   drawLive(visible) {
     const c = E.ctx, quality = c.imageSmoothingQuality;
-    c.imageSmoothingQuality = 'high';
+    c.imageSmoothingQuality = 'low';
     try { this.drawArtwork(visible); } finally { c.imageSmoothingQuality = quality; }
   }
 
@@ -748,9 +748,9 @@ export class UnitRenderer {
 
   // info block (movement badge, hp bar, level, cards), laid out from the bar's top-left corner (tx, ty)
   drawInfoBlock(ar, tx, ty, S, controlled = true, cc = null, country = null) {
-    const A = this.army, c = E.ctx, hb = A.hpbar, at = (f, dx, dy) => E.drawFrame(f, tx + dx * S, ty + dy * S, { scale: S, noRef: true, noLayout: true });
+    const A = this.army, c = E.ctx, hb = A.hpbar, at = (f, dx, dy) => E.drawFrame(f, tx + dx * S, ty + dy * S, { scale: S, noRef: true, noLayout: true, sharp: S < 1 });
     if (this.showNationFlags) this.drawNationFlag(cc, tx, ty, S, hb);   // off: the user rejected flags beside units (the legend + base colours carry the relation)
-    const atTactic = (f, dx, dy) => E.drawFrame(f, tx + dx * S, ty + dy * S, { scale: S, noRef: true, layoutGroup: `unit-tactic:${f.atlas}/${f.name}` });
+    const atTactic = (f, dx, dy) => E.drawFrame(f, tx + dx * S, ty + dy * S, { scale: S, noRef: true, sharp: S < 1, layoutGroup: `unit-tactic:${f.atlas}/${f.name}` });
     at(hb, 0, 0);
     const ratio = ar.maxHp ? E.clamp(ar.hp / ar.maxHp, 0, 1) : 1, fatigued = fatigueLevel(ar) > 0;                      // hit-point bar
     c.fillStyle = fatigued
