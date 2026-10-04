@@ -80,7 +80,7 @@ export class Stage {
     if (data.mapPatch) World.applyPatch(data.mapPatch, data.mirror);
     if (areasOverride) data.areas = JSON.parse(JSON.stringify(areasOverride));
     let scenarioOverride = null;
-    if (opts.historicalDiplomacy !== false && name.startsWith('conquest_')) {
+    if (opts.historicalDiplomacy !== false && !opts.freeDiplomacy && name.startsWith('conquest_')) {
       try {
         const scenario = await getJson(`scenarios/${name}.json`);
         if (scenario) {
@@ -112,6 +112,14 @@ export class Stage {
       }
     }
     if (opts.countries) data.countries = JSON.parse(JSON.stringify(opts.countries));
+    if (opts.freeDiplomacy && name.startsWith('conquest_') && !areasOverride && !opts.countries) {
+      data.diplomacy = { enabled: true, relations: {}, pacts: {} };
+      // Each country starts independently; legacy coalition IDs must not imply alliances.
+      for (const country of data.countries) country.alliance = country.id;
+      delete data.scenarioEvents;
+      delete data.events;
+      delete data.ai_rules;
+    }
     if (opts.player) {
       data.player = opts.player;
       for (const c of data.countries) c.ai = c.id !== opts.player;

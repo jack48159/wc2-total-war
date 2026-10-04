@@ -151,7 +151,16 @@ export class Battle extends Page {
       repaints: this.l3d ? this.l3d.repaints || 0 : 0, zoneRebuilds: this.map?.zoneRebuilds || 0, glRenders: this.l3d ? this.l3d.glRenders || 0 : 0, region: this.l3d && this.l3d.region ? `${this.l3d.region.cw}x${this.l3d.region.ch}@${this.l3d.region.ppu.toFixed(2)}` : '', gpu: this.l3d ? this.l3d.glInfo() : '' });
     Perf.extra = this.perfExtra;
     this.effects = new Effects(game, this.cam, { onCaptured: () => this.map.invalidate() });
-    this.panel = new ArmyPanel(game, this.ui1, this.units, { front: (area, armyId) => { if (this.game.apply({ type: 'frontArmy', from: area, armyId }).ok) { this.panel.resetOrder(area); E.playSfx('select.wav'); this.select(area); } } });
+    this.panel = new ArmyPanel(game, this.ui1, this.units, { front: (area, armyId) => {
+      const shop = this.dialog instanceof CardShop ? this.dialog : null;
+      const cardId = shop ? shop.card?.id : this.cardTarget;
+      if ([22, 23, 24].includes(cardId)) {
+        this.applyUnitCard(area, armyId, cardId, shop ? true : this.cardPending);
+        return;
+      }
+      if (this.cardTarget != null) return;
+      if (this.game.apply({ type: 'frontArmy', from: area, armyId }).ok) { this.panel.resetOrder(area); E.playSfx('select.wav'); this.select(area); }
+    } });
     this.talks = [];                                                     // dialogues waiting for their turn: { wait, lines, portraits }
     game.on('orderCommandStarting', ev => this.aiTurnRunner.announce(ev.command, ev.country, ++this.autoBannerStep));
     game.on(EV.COMMANDER_COMPLAINT, ev => this.queueComplaint(ev));
@@ -408,6 +417,7 @@ export class Battle extends Page {
     };
     shop = new CardShop(g, { ui1: this.ui1, ui2: this.ui2 }, shopCards(g.cardData, g.playerInfo.flag), {
       close,
+      armyPanelWidth: () => this.panel.area(this.sel) ? 180 : 0,
       purchased: (card, opts) => {
         close();
         if (TARGETED_CARDS.has(card.id)) this.enterCardMode(card.id, opts?.pending);
@@ -422,7 +432,8 @@ export class Battle extends Page {
     const card = this.game.findCard(cardId), handler = handlerFor('useCard'), targets = [];
     if (!card || !handler?.validate) return targets;
     for (const id of this.game.stage.enabled) {
-      if (!handler.validate(this.game, { type: 'useCard', card, target: id, pendingPurchase: isPending })) {
+      const armies = [22, 23, 24].includes(cardId) ? this.game.stage.st(id)?.armies || [] : [null];
+      if (armies.some(army => !handler.validate(this.game, { type: 'useCard', card, target: id, ...(army ? { armyId: army.id } : {}), pendingPurchase: isPending }))) {
         targets.push(id);
       }
     }
@@ -431,7 +442,7 @@ export class Battle extends Page {
   enterCardMode(cardId, isPending = false) {
     this.cardTarget = cardId;
     this.cardPending = isPending;
-    this.select(-1);
+    if (![22, 23, 24].includes(cardId)) this.select(-1);
     this.map.setCardTargets(this.cardTargetsFor(cardId, isPending));
     this.hud.setCardMode(true);
   }
@@ -440,6 +451,21 @@ export class Battle extends Page {
     this.cardPending = false;
     this.map.setCardTargets([]);
     this.hud.setCardMode(false);
+  }
+
+  applyUnitCard(area, armyId, cardId, pendingPurchase) {
+    const card = this.game.findCard(cardId);
+    const result = this.game.apply({ type: 'useCard', card, target: area, armyId, pendingPurchase: !!pendingPurchase });
+    if (!result.ok) {
+      this.notice({ money: '资金不足。', industry: '工业值不足。', tech: '科技等级不足。', cooldown: '该卡片仍在冷却中。', 'no-card': '没有可用的卡片。', 'illegal-target': '该部队不能使用这张卡片，或已拥有该效果。' }[result.reason] || '无法使用这张卡片。');
+      return;
+    }
+    E.playSfx(pendingPurchase ? 'buy.wav' : 'select.wav');
+    this.select(area);
+    if (!(this.dialog instanceof CardShop)) {
+      if (pendingPurchase ? !this.game.whyNot(card) && this.cardTargetsFor(cardId, true).length : (this.game.hand[cardId] || 0) > 0 && !(this.game.cardCooldowns[cardId] || 0)) this.enterCardMode(cardId, pendingPurchase);
+      else this.cancelCardMode();
+    }
   }
 
   // ---- input (real coordinates; the world ignores the design-canvas centring) ----
@@ -684,6 +710,7 @@ export class Battle extends Page {
     if (!this.dialog && !this.replayView && !this.opening && !this.photo && !this.aiTurnRunner?.blocksInput && !this.orderDrawing && this.cardTarget == null && p.button!==2) this.selectedOrderTarget=null;
     if (this.replayView) { this.replayView.pointerDown(p); return; }
     this.disarmHud();
+    if (this.dialog instanceof CardShop && this.panel.contains(p, this.sel)) { this.shopPanelPointer = true; this.panel.down(p, this.sel); return; }
     if (this.dialog) { this.dialog.down(p); return; }
     const now = performance.now();
     this.press = { x: p.x, y: p.y, moved: false, time: now };
@@ -747,6 +774,7 @@ export class Battle extends Page {
       return;
     }
     if (this.replayView) { this.replayView.pointerMove(p); return; }
+    if (this.shopPanelPointer) { if (!this.panel.contains(p, this.sel)) this.panel.pressed = -1; return; }
     if (this.dialog) { if (this.dialog.move) this.dialog.move(p); return; }
     const h = this.accHold;
     if (h) {
@@ -802,6 +830,7 @@ export class Battle extends Page {
     }
     if (this.replayView) { this.replayView.pointerUp(p); return; }
     const pr = this.press; this.press = null;
+    if (this.shopPanelPointer) { this.shopPanelPointer = false; this.panel.up(p, this.sel); return; }
     if (this.dialog) { this.disarmHud(); this.dialog.up(p); return; }
     if (this.accHold) {
       const h = this.accHold; this.accHold = null;
@@ -1508,6 +1537,7 @@ export class Battle extends Page {
     if (id < 0 || !this.game.stage.enabled.has(id)) { this.select(-1); return; }
     if (this.replayView||this.multiplayerSpectator||this.game.bridgeSpectating) { this.select(id === this.sel ? -1 : id); return; }
     if (this.cardTarget != null) {
+      if ([22, 23, 24].includes(this.cardTarget) && this.panel.area(id)) { this.select(id); return; }
       const card = this.game.findCard(this.cardTarget);
       const isPending = !!this.cardPending;
       const result = this.game.apply({ type: 'useCard', card, target: id, pendingPurchase: isPending });
@@ -1736,6 +1766,7 @@ export class Battle extends Page {
     if (this.portraitMenu?.menu && !this.dialog) { this.portraitMenu.hits=[]; this.portraitMenu.drawMenu(this.portraitMenu.menu,{scale:1}); }
     if (this.dialog) this.dialog.draw();
     else if (this.shopPreview) this.shopPreview.draw();
+    if (this.dialog instanceof CardShop && !this.replayView) this.panel.draw(this.sel);
     if (!this.dialog && !this.opening && !this.photo && this.aiTurnRunner?.active) this.aiTurnRunner.draw(c);
     if (this.game.bridgeSpectating && !this.photo) E.text('Agent 对战 · 全局观战', E.W / 2, E.H - 24, { size: 20, color: '#f4ecd6', stroke: '#2a1d12', strokeW: 4, align: 'center' });
     if (!this.dialog && !this.photo) this.drawOrderHint(c);                        // draw above units, effects and the HUD

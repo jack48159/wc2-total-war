@@ -99,8 +99,9 @@ register('useCard', {
           if (area.construction !== 'none' && (area.construction !== development || area.level >= cap)) return 'illegal-target';
         } else if (area.installation !== 'none') return 'illegal-target';
       }
-      if (tactic && (!area.armies.length || (area.armies[0].cards & tactic) ||
-          (tactic === 4 && NAVY_TYPES.has(area.armies[0].type)))) return 'illegal-target';
+      const targetArmy = cmd.armyId == null ? area.armies[0] : area.armies.find(army => army.id === cmd.armyId);
+      if (tactic && (!targetArmy || (targetArmy.cards & tactic) ||
+          (tactic === 4 && NAVY_TYPES.has(targetArmy.type)))) return 'illegal-target';
       if (tactic === 8) {
         const info = game.stage.countries.get(country);
         if (info?.commanderAlive || (info?.commanderTurn || 0) > 0) return 'commander-unavailable';
@@ -146,7 +147,7 @@ register('useCard', {
         const wallet = country === game.player ? game : game.stage.countries.get(country);
         game.emit(EV.RESOURCES_CHANGED, { country, money: wallet.money, industry: wallet.industry });
       } else if (tactic) {
-        const army = area.armies[0];
+        const army = cmd.armyId == null ? area.armies[0] : area.armies.find(army => army.id === cmd.armyId);
         army.cards = (army.cards || 0) | tactic;
         if (tactic === 8) {
           const info = game.stage.countries.get(country), oldMaxHp = army.maxHp;

@@ -41,10 +41,12 @@ export class CardShop {
   canBuy(card) { return !!card && !this.game.whyNot(card); }
   layout() {
     // 触屏：内容区按“屏幕高度减去底部横条(21pt)”来缩放，说明纸不压在横条上；桌面不变
-    const B = E.platform?.isTouch ? pt(21) : 0, scale = Math.min(E.W / 1136, (E.H - B) / 640);
-    this.geometry = { scale, x: (E.W - 1136 * scale) / 2, y: (E.H - B - 640 * scale) / 2 };
+    const reserved = this.hooks.armyPanelWidth?.() || 0;
+    const width = Math.max(1, E.W - reserved);
+    const B = E.platform?.isTouch ? pt(21) : 0, scale = Math.min(width / 1136, (E.H - B) / 640);
+    this.geometry = { scale, x: (width - 1136 * scale) / 2, y: (E.H - B - 640 * scale) / 2 };
     // 触屏：卡片纸板和卡片带向两侧延伸到屏幕边(ext = 每侧多出的内容单位)，卡片铺满屏幕宽度；桌面 ext=0 不变
-    this.ext = E.platform?.isTouch ? Math.max(0, this.geometry.x / scale) : 0;
+    this.ext = E.platform?.isTouch && !reserved ? Math.max(0, this.geometry.x / scale) : 0;
   }
   get stripW() { return 1136 + 2 * (this.ext || 0); }
   // 第一张卡片离卡片带左端的距离：桌面 38；触屏要避开左侧灵动岛/圆角(62pt)

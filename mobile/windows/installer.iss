@@ -5,7 +5,7 @@
 [Setup]
 AppId={{DA938086-9AB5-451C-A540-46EA627AAD7C}
 AppName=世界征服者:总体战
-AppVersion=1.0.2
+AppVersion=1.0.3
 AppPublisher=TOM-AKA
 DefaultDirName={localappdata}\Programs\WC2TotalWar
 DefaultGroupName=世界征服者 总体战
@@ -14,7 +14,7 @@ PrivilegesRequired=lowest
 ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
 OutputDir={#Root}\dist
-OutputBaseFilename=wc2-total-war-windows-setup-1.0.2
+OutputBaseFilename=wc2-total-war-windows-setup-1.0.3
 SetupIconFile={#Root}\public\game-icon.ico
 UninstallDisplayIcon={app}\public\game-icon.ico
 Compression=zip/1
