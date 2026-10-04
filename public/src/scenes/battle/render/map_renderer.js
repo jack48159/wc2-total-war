@@ -122,7 +122,14 @@ export class MapRenderer {
         c.drawImage(img, Math.floor(s.x), Math.floor(s.y), Math.ceil(n) + 1, Math.ceil(n) + 1);
       }
     c.save(); cam.apply(c);
-    const L = this.zoneLayers(), put = (l, alpha) => { c.globalAlpha = alpha; c.drawImage(l.cv, l.x, l.y, l.w, l.h); c.globalAlpha = 1; };
+    const L = this.zoneLayers(), view = cam.view(), put = (layer, alpha) => {
+      c.globalAlpha = alpha;
+      for (const l of layer.tiles) {
+        if (!l.cv || !l.painted || l.x > view.x1 || l.x + l.w < view.x0 || l.y > view.y1 || l.y + l.h < view.y0) continue;
+        c.drawImage(l.cv, 1, 1, l.w, l.h, l.x, l.y, l.w, l.h);
+      }
+      c.globalAlpha = 1;
+    };
     put(L.closed, CLOSED_ALPHA); put(L.owned, OWN_ALPHA);
     if (part === 'all') { c.globalAlpha = this.flashAlpha(); for (const d of this.flashList(sel, flashing)) c.drawImage(d.cv, d.x, d.y); c.globalAlpha = 1; }
     c.restore();
@@ -143,9 +150,8 @@ export class MapRenderer {
     this._fl = { key, list }; return list;
   }
 
-  // Zones are composited into ONE canvas per group at native resolution (1 px = 1 map unit) and that canvas is scaled
-  // once. The selection/flash is separate so changing selection never reallocates a world-size canvas.
-  // Memory: a world-size stage needs 8000x3500 canvases (112 MB each), so only two are kept - closed areas and owned areas.
+  // Native-resolution tiles keep ownership changes from rewriting a world-size
+  // texture. Selection/flash stays separate, and offscreen tiles are not blitted.
   zoneLayers() {
     // ownership is part of the key: captures that play no capture effect (skipped / fast AI turns, capitulation, peace transfers) must repaint too
     const loaded = this.zoneImgs.size + [...this.zoneImgs.values()].filter(Boolean).length;
@@ -154,33 +160,49 @@ export class MapRenderer {
     const key = loaded + '|' + this.ownerSig() + '|' + visionSig;
     if (this._layerKey === key && this._layers) return this._layers;
     this.zoneRebuilds++;
-    const st = this.stage, b = st.bounds, W = Math.ceil(b.x1 - b.x0), H = Math.ceil(b.y1 - b.y0);
-    // Reuse native-resolution backing stores when ownership or visibility changes.
-    const mk = previous => {
-      const cv = previous?.cv || document.createElement('canvas');
-      if (cv.width !== W || cv.height !== H) { cv.width = W; cv.height = H; }
-      const g = cv.getContext('2d');
-      g.clearRect(0, 0, W, H);
-      return { cv, g, x: b.x0, y: b.y0, w: W, h: H };
-    };
-    const closed = mk(this._layers?.closed), owned = mk(this._layers?.owned);
+    const st = this.stage, b = st.bounds, W = Math.ceil(b.x1 - b.x0), H = Math.ceil(b.y1 - b.y0), SIZE = 1024;
+    if (!this._layers?.owned.tiles) {
+      if (this._layers) for (const l of Object.values(this._layers)) if (l.cv) l.cv.width = l.cv.height = 0;
+      const mk = () => ({ tiles: [] });
+      this._layers = { closed: mk(), owned: mk() };
+      for (let y = 0; y < H; y += SIZE) for (let x = 0; x < W; x += SIZE) {
+        const tile = { x: b.x0 + x, y: b.y0 + y, w: Math.min(SIZE, W - x), h: Math.min(SIZE, H - y), key: null };
+        this._layers.closed.tiles.push({ ...tile }); this._layers.owned.tiles.push({ ...tile });
+      }
+    }
+    const entries = [];
     for (const a of World.areas) {
       if (a.f === 1 || a.x > b.x1 || a.x + a.w < b.x0 || a.y > b.y1 || a.y + a.h < b.y0) continue;
-      const id = a.id, dx = a.x - b.x0, dy = a.y - b.y0;
-      if (!st.enabled.has(id)) { const sp = this.zoneSprite(id); if (sp) closed.g.drawImage(sp.img, sp.x, sp.y, sp.w, sp.h, dx, dy, sp.w, sp.h); continue; }
-      const fogged = !!intel && !intel.now.has(id);
-      // Territorial ownership remains public on the map; fog hides armies and
-      // facilities, not the national colour of territory behind the front.
-      const own = st.ownerOf(id);
-      if (!own) {
-        if (fogged) { const shade = this.tinted(id, 'rgb(62,56,46)'); if (shade) { closed.g.globalAlpha = 0.58; closed.g.drawImage(shade, dx, dy); closed.g.globalAlpha = 1; } }
-        continue;
-      }
-      const color = st.countries.get(own).color;
-      const cv = this.tinted(id, `rgb(${color[0]},${color[1]},${color[2]})`); if (!cv) continue;
-      owned.g.drawImage(cv, dx, dy);
+      const enabled = st.enabled.has(a.id), own = enabled && st.ownerOf(a.id), fogged = !!intel && !intel.now.has(a.id);
+      const color = own ? st.countries.get(own)?.color : null, sp = this.zoneSprite(a.id);
+      entries.push({ a, enabled, own, color, fogged, sp,
+        key: [a.id, enabled, own, color?.join(','), !own && fogged, !!sp].join(':') });
     }
-    this._layerKey = key; this._layers = { closed, owned };
+    for (let i = 0; i < this._layers.owned.tiles.length; i++) {
+      const owned = this._layers.owned.tiles[i], closed = this._layers.closed.tiles[i];
+      // One-pixel gutters retain neighbouring texels during smooth downsampling.
+      const nearby = entries.filter(({ a }) => a.x < owned.x + owned.w + 1 && a.x + a.w > owned.x - 1 && a.y < owned.y + owned.h + 1 && a.y + a.h > owned.y - 1);
+      const tileKey = nearby.map(e => e.key).join('|');
+      if (owned.key === tileKey) continue;
+      this.zoneTileRebuilds = (this.zoneTileRebuilds || 0) + 1;
+      for (const t of [owned, closed]) {
+        if (!t.cv) { t.cv = document.createElement('canvas'); t.cv.width = t.w + 2; t.cv.height = t.h + 2; t.g = t.cv.getContext('2d'); }
+        t.g.clearRect(0, 0, t.cv.width, t.cv.height); t.painted = false;
+      }
+      for (const e of nearby) {
+        const { a, sp, own, color, enabled, fogged } = e, dx = a.x - owned.x + 1, dy = a.y - owned.y + 1;
+        if (!sp) continue;
+        if (!enabled) { closed.g.drawImage(sp.img, sp.x, sp.y, sp.w, sp.h, dx, dy, sp.w, sp.h); closed.painted = true; continue; }
+        if (!own) {
+          if (fogged) { const shade = this.tinted(a.id, 'rgb(62,56,46)'); if (shade) { closed.g.globalAlpha = 0.58; closed.g.drawImage(shade, dx, dy); closed.g.globalAlpha = 1; closed.painted = true; } }
+          continue;
+        }
+        const cv = this.tinted(a.id, `rgb(${color[0]},${color[1]},${color[2]})`);
+        if (cv) { owned.g.drawImage(cv, dx, dy); owned.painted = true; }
+      }
+      owned.key = closed.key = tileKey;
+    }
+    this._layerKey = key;
     return this._layers;
   }
   ownerSig() {

@@ -229,6 +229,7 @@ export class UnitRenderer {
     E.json('unitbase_extra/manifest.json').then(man => {
       for (const f of man.frames || []) {
         E.image('unitbase_extra/' + f.file).then(img => {
+          this.artVersion = (this.artVersion || 0) + 1;
           A[f.name] = { img, x: 0, y: 0, w: img.width, h: img.height, rx: f.rx, ry: f.ry, name: f.name, atlas: 'unitbase_extra' };
         }).catch(() => {});
       }
@@ -247,6 +248,7 @@ export class UnitRenderer {
         try {
           const img = await E.image('units_hd/' + f.file);
           if (img.width !== f.w || img.height !== f.h) return;
+          this.artVersion = (this.artVersion || 0) + 1;
           this.unitSpriteOverrides.set(f.name, { img, x: 0, y: 0, w: f.w, h: f.h, rx: f.rx, ry: f.ry, name: f.name, atlas: 'units_hd' });
         } catch (_) { /* An unfinished/missing candidate must not hide a unit. */ }
       }));
@@ -393,6 +395,42 @@ export class UnitRenderer {
   spriteFor(type, cc) { return this.facingSprite(type, cc).frame; }
 
   draw(visible) {
+    const animated = this.moving.size || this.deploying.size || this.frontSwitches.size
+      || [...this.colorState.values()].some(r => r.color !== r.prev && this.colorClock - r.t0 < COLOR_FADE_SEC);
+    // Cache only static flat-map artwork. Animated units, group additive glows,
+    // perspective and the layout editor retain their original rendering path.
+    const eligible = !animated && !this.cam.tilt && !this.l3d && !E.layout.on
+      && E.ctx.globalAlpha === 1 && E.ctx.filter === 'none' && E.ctx.globalCompositeOperation === 'source-over'
+      && !this.replayStyle && !this.game.armyGroups?.length && !this.selectedUnitIds?.size;
+    if (!eligible) { this.staticKey = null; this.drawLive(visible); return; }
+    const c = E.ctx, m = c.getTransform();
+    const key = JSON.stringify([E.cv.width, E.cv.height, E.W, E.H,
+      m.a, m.b, m.c, m.d, m.e, m.f, this.cam.x, this.cam.y, this.cam.zoom,
+      this.game.player, this.game.activeCountry, this.game.diplomacy, this.game.spectating, this.game.bridgeSpectating,
+      [...this.stage.countries.values()], E.state.fatigueMultiplier,
+      this.showNationFlags, !!this.flags, this.artVersion || 0, this.hudOccluders,
+      visible.map(a => [a.id, this.stage.st(a.id)])]);
+    const cv = this.staticCanvas || (this.staticCanvas = document.createElement('canvas'));
+    if (this.staticKey !== key) {
+      if (cv.width !== E.cv.width || cv.height !== E.cv.height) { cv.width = E.cv.width; cv.height = E.cv.height; }
+      const g = cv.getContext('2d'); g.setTransform(1, 0, 0, 1, 0, 0); g.clearRect(0, 0, cv.width, cv.height);
+      g.setTransform(m); g.imageSmoothingEnabled = c.imageSmoothingEnabled;
+      g.imageSmoothingQuality = c.imageSmoothingQuality;
+      E.ctx = g;
+      try { this.drawLive(visible); } finally { E.ctx = c; }
+      // Colour transitions can begin during drawing after diplomacy changes.
+      this.staticKey = [...this.colorState.values()].some(r => r.color !== r.prev && this.colorClock - r.t0 < COLOR_FADE_SEC) ? null : key;
+    }
+    c.save(); c.setTransform(1, 0, 0, 1, 0, 0); c.drawImage(cv, 0, 0); c.restore();
+  }
+
+  drawLive(visible) {
+    const c = E.ctx, quality = c.imageSmoothingQuality;
+    c.imageSmoothingQuality = 'high';
+    try { this.drawArtwork(visible); } finally { c.imageSmoothingQuality = quality; }
+  }
+
+  drawArtwork(visible) {
     // Replay flags bypass buildings, strategic flagpoles, bases and animated unit copies.
     if (this.replayStyle === 1 || this.replayStyle === 3) { this.drawReplayFlags(visible); return; }
     if (this.replayStyle === 2) { this.boxes = []; return; }
