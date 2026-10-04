@@ -1,0 +1,14 @@
+<Texture name="text_cn_iPad.png"/>
+<Images>
+	<Image name="text_animation.png" x="135" y="194" w="195" h="40" refx="97" refy="20"/>
+	<Image name="text_bank.png" x="126" y="29" w="95" h="39" refx="51" refy="20"/>
+	<Image name="text_conditon.png" x="142" y="1" w="93" h="27" refx="48" refy="14"/>
+	<Image name="text_destroyed.png" x="132" y="150" w="178" h="43" refx="87" refy="18"/>
+	<Image name="text_medals.png" x="222" y="42" w="177" h="44" refx="0" refy="20"/>
+	<Image name="text_music.png" x="126" y="110" w="143" h="39" refx="70" refy="18"/>
+	<Image name="text_rating.png" x="1" y="110" w="124" h="39" refx="63" refy="16"/>
+	<Image name="text_round.png" x="1" y="150" w="130" h="43" refx="0" refy="19"/>
+	<Image name="text_select.png" x="1" y="235" w="284" h="39" refx="142" refy="18"/>
+	<Image name="text_sfx.png" x="236" y="1" w="142" h="40" refx="70" refy="19"/>
+	<Image name="text_speed.png" x="1" y="194" w="133" h="40" refx="66" refy="19"/>
+</Images>

@@ -1,0 +1,1763 @@
+[
+ {
+  "id": 1,
+  "key": "conquest-1",
+  "name": "欧洲 1939",
+  "region": "EUROPE",
+  "year": "1939",
+  "theme": "black",
+  "card": "button_conquest1",
+  "atlas": "mui_hd",
+  "center": [
+   261.0,
+   236.0
+  ],
+  "flags": [
+   {
+    "id": "de",
+    "x": 283.0,
+    "y": 170.0,
+    "scale": 1.0
+   },
+   {
+    "id": "pl",
+    "x": 371.0,
+    "y": 175.0,
+    "scale": 0.8
+   },
+   {
+    "id": "no",
+    "x": 213.0,
+    "y": 83.0,
+    "scale": 0.6
+   },
+   {
+    "id": "fl",
+    "x": 318.0,
+    "y": 79.0,
+    "scale": 0.7
+   },
+   {
+    "id": "dk",
+    "x": 224.0,
+    "y": 119.0,
+    "scale": 0.5
+   },
+   {
+    "id": "nl",
+    "x": 189.0,
+    "y": 163.0,
+    "scale": 0.5
+   },
+   {
+    "id": "be",
+    "x": 165.0,
+    "y": 177.0,
+    "scale": 0.5
+   },
+   {
+    "id": "fr",
+    "x": 193.0,
+    "y": 221.0,
+    "scale": 0.9
+   },
+   {
+    "id": "gb",
+    "x": 132.0,
+    "y": 121.0,
+    "scale": 0.9
+   },
+   {
+    "id": "ru",
+    "x": 373.0,
+    "y": 129.0,
+    "scale": 1.0
+   },
+   {
+    "id": "es",
+    "x": 105.0,
+    "y": 351.0,
+    "scale": 0.8
+   },
+   {
+    "id": "it",
+    "x": 256.0,
+    "y": 340.0,
+    "scale": 0.9
+   },
+   {
+    "id": "hu",
+    "x": 296.0,
+    "y": 279.0,
+    "scale": 0.6
+   },
+   {
+    "id": "yu",
+    "x": 290.0,
+    "y": 314.0,
+    "scale": 0.6
+   },
+   {
+    "id": "bg",
+    "x": 334.0,
+    "y": 347.0,
+    "scale": 0.6
+   },
+   {
+    "id": "gr",
+    "x": 329.0,
+    "y": 375.0,
+    "scale": 0.6
+   },
+   {
+    "id": "ro",
+    "x": 327.0,
+    "y": 295.0,
+    "scale": 0.7
+   }
+  ],
+  "countries": [
+   {
+    "id": "de",
+    "commander": "Guderian",
+    "alliance": "a",
+    "money": 300,
+    "industry": 200,
+    "techLevel": 3
+   },
+   {
+    "id": "ru",
+    "commander": "Rokossovsky",
+    "alliance": "b",
+    "money": 200,
+    "industry": 120,
+    "techLevel": 3
+   },
+   {
+    "id": "gb",
+    "commander": "Montgomery",
+    "alliance": "b",
+    "money": 300,
+    "industry": 180,
+    "techLevel": 3
+   },
+   {
+    "id": "fr",
+    "commander": "de Gaulle",
+    "alliance": "b",
+    "money": 280,
+    "industry": 180,
+    "techLevel": 3
+   },
+   {
+    "id": "it",
+    "commander": "Graziani",
+    "alliance": "a",
+    "money": 280,
+    "industry": 160,
+    "techLevel": 3
+   },
+   {
+    "id": "pl",
+    "commander": "common1",
+    "alliance": "b",
+    "money": 200,
+    "industry": 100,
+    "techLevel": 3
+   },
+   {
+    "id": "es",
+    "commander": "common1",
+    "alliance": "a",
+    "money": 200,
+    "industry": 120,
+    "techLevel": 3
+   },
+   {
+    "id": "yu",
+    "commander": "common2",
+    "alliance": "b",
+    "money": 160,
+    "industry": 80,
+    "techLevel": 3
+   },
+   {
+    "id": "ro",
+    "commander": "common2",
+    "alliance": "a",
+    "money": 200,
+    "industry": 120,
+    "techLevel": 3
+   },
+   {
+    "id": "gr",
+    "commander": "common2",
+    "alliance": "b",
+    "money": 200,
+    "industry": 100,
+    "techLevel": 3
+   },
+   {
+    "id": "bg",
+    "commander": "common2",
+    "alliance": "a",
+    "money": 200,
+    "industry": 100,
+    "techLevel": 3
+   },
+   {
+    "id": "hu",
+    "commander": "common2",
+    "alliance": "a",
+    "money": 200,
+    "industry": 110,
+    "techLevel": 3
+   },
+   {
+    "id": "fl",
+    "commander": "common2",
+    "alliance": "a",
+    "money": 200,
+    "industry": 120,
+    "techLevel": 3
+   },
+   {
+    "id": "dk",
+    "commander": "common3",
+    "alliance": "b",
+    "money": 180,
+    "industry": 80,
+    "techLevel": 3
+   },
+   {
+    "id": "nl",
+    "commander": "common3",
+    "alliance": "b",
+    "money": 160,
+    "industry": 80,
+    "techLevel": 3
+   },
+   {
+    "id": "be",
+    "commander": "common3",
+    "alliance": "b",
+    "money": 160,
+    "industry": 80,
+    "techLevel": 3
+   },
+   {
+    "id": "no",
+    "commander": "common2",
+    "alliance": "b",
+    "money": 190,
+    "industry": 90,
+    "techLevel": 3
+   },
+   {
+    "id": "tr",
+    "commander": "common1",
+    "alliance": "d",
+    "money": 0,
+    "industry": 0,
+    "techLevel": 3
+   },
+   {
+    "id": "pt",
+    "commander": "common3",
+    "alliance": "d",
+    "money": 0,
+    "industry": 0,
+    "techLevel": 3
+   },
+   {
+    "id": "se",
+    "commander": "common3",
+    "alliance": "d",
+    "money": 0,
+    "industry": 0,
+    "techLevel": 3
+   },
+   {
+    "id": "ch",
+    "commander": "common3",
+    "alliance": "d",
+    "money": 0,
+    "industry": 0,
+    "techLevel": 3
+   }
+  ]
+ },
+ {
+  "id": 2,
+  "key": "conquest-2",
+  "name": "太平洋 1942",
+  "region": "PACIFIC",
+  "year": "1942",
+  "theme": "blue",
+  "card": "button_conquest2",
+  "atlas": "mui_hd",
+  "center": [
+   1062.0,
+   497.0
+  ],
+  "flags": [
+   {
+    "id": "ru",
+    "x": 892.0,
+    "y": 343.0,
+    "scale": 1.0
+   },
+   {
+    "id": "ja",
+    "x": 932.0,
+    "y": 343.0,
+    "scale": 0.7
+   },
+   {
+    "id": "tw",
+    "x": 880.0,
+    "y": 373.0,
+    "scale": 0.9
+   },
+   {
+    "id": "ja",
+    "x": 981.0,
+    "y": 346.0,
+    "scale": 1.0
+   },
+   {
+    "id": "ca",
+    "x": 1183.0,
+    "y": 340.0,
+    "scale": 0.8
+   },
+   {
+    "id": "am",
+    "x": 1095.0,
+    "y": 396.0,
+    "scale": 0.7
+   },
+   {
+    "id": "am",
+    "x": 1150.0,
+    "y": 514.0,
+    "scale": 1.0
+   },
+   {
+    "id": "am",
+    "x": 929.0,
+    "y": 523.0,
+    "scale": 0.8
+   },
+   {
+    "id": "gb",
+    "x": 929.0,
+    "y": 597.0,
+    "scale": 1.0
+   },
+   {
+    "id": "au",
+    "x": 1046.0,
+    "y": 639.0,
+    "scale": 0.8
+   }
+  ],
+  "countries": [
+   {
+    "id": "am",
+    "commander": "MacArthur",
+    "alliance": "b",
+    "money": 300,
+    "industry": 150,
+    "techLevel": 5
+   },
+   {
+    "id": "ja",
+    "commander": "Yamamoto",
+    "alliance": "a",
+    "money": 300,
+    "industry": 200,
+    "techLevel": 4
+   },
+   {
+    "id": "ru",
+    "commander": "Rokossovsky",
+    "alliance": "b",
+    "money": 300,
+    "industry": 200,
+    "techLevel": 4
+   },
+   {
+    "id": "gb",
+    "commander": "Montgomery",
+    "alliance": "b",
+    "money": 300,
+    "industry": 150,
+    "techLevel": 4
+   },
+   {
+    "id": "tw",
+    "commander": "Zhang",
+    "alliance": "b",
+    "money": 200,
+    "industry": 100,
+    "techLevel": 3
+   },
+   {
+    "id": "au",
+    "commander": "common2",
+    "alliance": "b",
+    "money": 300,
+    "industry": 150,
+    "techLevel": 3
+   },
+   {
+    "id": "ca",
+    "commander": "common1",
+    "alliance": "b",
+    "money": 300,
+    "industry": 150,
+    "techLevel": 4
+   }
+  ]
+ },
+ {
+  "id": 3,
+  "key": "conquest-3",
+  "name": "欧洲 1943",
+  "region": "EUROPE",
+  "year": "1943",
+  "theme": "green",
+  "card": "button_conquest3",
+  "atlas": "mui_hd",
+  "center": [
+   261.0,
+   236.0
+  ],
+  "flags": [
+   {
+    "id": "de",
+    "x": 283.0,
+    "y": 170.0,
+    "scale": 1.0
+   },
+   {
+    "id": "de",
+    "x": 213.0,
+    "y": 83.0,
+    "scale": 0.7
+   },
+   {
+    "id": "ca",
+    "x": 169.0,
+    "y": 139.0,
+    "scale": 0.7
+   },
+   {
+    "id": "fr",
+    "x": 166.0,
+    "y": 160.0,
+    "scale": 0.7
+   },
+   {
+    "id": "fl",
+    "x": 318.0,
+    "y": 79.0,
+    "scale": 0.8
+   },
+   {
+    "id": "de",
+    "x": 193.0,
+    "y": 221.0,
+    "scale": 0.9
+   },
+   {
+    "id": "gb",
+    "x": 132.0,
+    "y": 121.0,
+    "scale": 0.9
+   },
+   {
+    "id": "ru",
+    "x": 373.0,
+    "y": 129.0,
+    "scale": 1.0
+   },
+   {
+    "id": "ru",
+    "x": 373.0,
+    "y": 274.0,
+    "scale": 1.0
+   },
+   {
+    "id": "es",
+    "x": 105.0,
+    "y": 351.0,
+    "scale": 0.8
+   },
+   {
+    "id": "am",
+    "x": 70.0,
+    "y": 181.0,
+    "scale": 0.8
+   },
+   {
+    "id": "it",
+    "x": 256.0,
+    "y": 340.0,
+    "scale": 0.9
+   },
+   {
+    "id": "hu",
+    "x": 296.0,
+    "y": 279.0,
+    "scale": 0.6
+   },
+   {
+    "id": "de",
+    "x": 290.0,
+    "y": 314.0,
+    "scale": 0.6
+   },
+   {
+    "id": "bg",
+    "x": 334.0,
+    "y": 347.0,
+    "scale": 0.6
+   },
+   {
+    "id": "gr",
+    "x": 329.0,
+    "y": 375.0,
+    "scale": 0.6
+   },
+   {
+    "id": "am",
+    "x": 282.0,
+    "y": 375.0,
+    "scale": 0.7
+   },
+   {
+    "id": "ro",
+    "x": 327.0,
+    "y": 295.0,
+    "scale": 0.7
+   }
+  ],
+  "countries": [
+   {
+    "id": "am",
+    "commander": "Patton",
+    "alliance": "b",
+    "money": 500,
+    "industry": 260,
+    "techLevel": 4
+   },
+   {
+    "id": "gb",
+    "commander": "Montgomery",
+    "alliance": "b",
+    "money": 300,
+    "industry": 180,
+    "techLevel": 4
+   },
+   {
+    "id": "fr",
+    "commander": "de Gaulle",
+    "alliance": "b",
+    "money": 400,
+    "industry": 200,
+    "techLevel": 4
+   },
+   {
+    "id": "ca",
+    "commander": "common1",
+    "alliance": "b",
+    "money": 300,
+    "industry": 150,
+    "techLevel": 4
+   },
+   {
+    "id": "de",
+    "commander": "Rommel",
+    "alliance": "a",
+    "money": 300,
+    "industry": 200,
+    "techLevel": 4
+   },
+   {
+    "id": "it",
+    "commander": "Graziani",
+    "alliance": "a",
+    "money": 280,
+    "industry": 160,
+    "techLevel": 4
+   },
+   {
+    "id": "ru",
+    "commander": "Zhukov",
+    "alliance": "b",
+    "money": 260,
+    "industry": 140,
+    "techLevel": 4
+   },
+   {
+    "id": "ro",
+    "commander": "common2",
+    "alliance": "a",
+    "money": 200,
+    "industry": 120,
+    "techLevel": 3
+   },
+   {
+    "id": "bg",
+    "commander": "common2",
+    "alliance": "a",
+    "money": 200,
+    "industry": 100,
+    "techLevel": 3
+   },
+   {
+    "id": "hu",
+    "commander": "common2",
+    "alliance": "a",
+    "money": 200,
+    "industry": 110,
+    "techLevel": 3
+   },
+   {
+    "id": "fl",
+    "commander": "common2",
+    "alliance": "a",
+    "money": 200,
+    "industry": 120,
+    "techLevel": 3
+   },
+   {
+    "id": "tr",
+    "commander": "common1",
+    "alliance": "b",
+    "money": 200,
+    "industry": 120,
+    "techLevel": 3
+   },
+   {
+    "id": "es",
+    "commander": "common1",
+    "alliance": "a",
+    "money": 200,
+    "industry": 120,
+    "techLevel": 3
+   },
+   {
+    "id": "pt",
+    "commander": "common3",
+    "alliance": "n",
+    "money": 0,
+    "industry": 0,
+    "techLevel": 3
+   },
+   {
+    "id": "se",
+    "commander": "common3",
+    "alliance": "n",
+    "money": 0,
+    "industry": 0,
+    "techLevel": 3
+   },
+   {
+    "id": "ch",
+    "commander": "common3",
+    "alliance": "n",
+    "money": 0,
+    "industry": 0,
+    "techLevel": 3
+   }
+  ]
+ },
+ {
+  "id": 4,
+  "key": "conquest-4",
+  "name": "非洲 1942",
+  "region": "AFRICA",
+  "year": "1942",
+  "theme": "gold",
+  "card": "button_conquest4",
+  "atlas": "mui_hd",
+  "center": [
+   265.0,
+   545.0
+  ],
+  "flags": [
+   {
+    "id": "gr",
+    "x": 363.0,
+    "y": 685.0,
+    "scale": 0.6
+   },
+   {
+    "id": "gb",
+    "x": 327.0,
+    "y": 614.0,
+    "scale": 0.9
+   },
+   {
+    "id": "it",
+    "x": 246.0,
+    "y": 636.0,
+    "scale": 0.8
+   },
+   {
+    "id": "it",
+    "x": 258.0,
+    "y": 407.0,
+    "scale": 0.6
+   },
+   {
+    "id": "au",
+    "x": 278.0,
+    "y": 582.0,
+    "scale": 0.6
+   },
+   {
+    "id": "de",
+    "x": 211.0,
+    "y": 510.0,
+    "scale": 1.0
+   },
+   {
+    "id": "de",
+    "x": 325.0,
+    "y": 397.0,
+    "scale": 0.6
+   },
+   {
+    "id": "fr",
+    "x": 322.0,
+    "y": 573.0,
+    "scale": 0.9
+   },
+   {
+    "id": "gb",
+    "x": 327.0,
+    "y": 496.0,
+    "scale": 0.9
+   },
+   {
+    "id": "es",
+    "x": 71.0,
+    "y": 391.0,
+    "scale": 0.8
+   },
+   {
+    "id": "tr",
+    "x": 360.0,
+    "y": 400.0,
+    "scale": 0.5
+   }
+  ],
+  "countries": [
+   {
+    "id": "de",
+    "commander": "Rommel",
+    "alliance": "a",
+    "money": 300,
+    "industry": 200,
+    "techLevel": 4
+   },
+   {
+    "id": "gb",
+    "commander": "Montgomery",
+    "alliance": "b",
+    "money": 300,
+    "industry": 150,
+    "techLevel": 4
+   },
+   {
+    "id": "fr",
+    "commander": "de Gaulle",
+    "alliance": "b",
+    "money": 300,
+    "industry": 150,
+    "techLevel": 4
+   },
+   {
+    "id": "it",
+    "commander": "Graziani",
+    "alliance": "a",
+    "money": 300,
+    "industry": 150,
+    "techLevel": 4
+   },
+   {
+    "id": "es",
+    "commander": "common1",
+    "alliance": "a",
+    "money": 200,
+    "industry": 100,
+    "techLevel": 3
+   },
+   {
+    "id": "au",
+    "commander": "common2",
+    "alliance": "b",
+    "money": 200,
+    "industry": 100,
+    "techLevel": 3
+   },
+   {
+    "id": "gr",
+    "commander": "common2",
+    "alliance": "b",
+    "money": 200,
+    "industry": 100,
+    "techLevel": 3
+   },
+   {
+    "id": "tr",
+    "commander": "common1",
+    "alliance": "b",
+    "money": 200,
+    "industry": 100,
+    "techLevel": 3
+   },
+   {
+    "id": "pt",
+    "commander": "common2",
+    "alliance": "n",
+    "money": 200,
+    "industry": 100,
+    "techLevel": 3
+   }
+  ]
+ },
+ {
+  "id": 5,
+  "key": "conquest-5",
+  "name": "北美洲 1945",
+  "region": "NORTH AMERICA",
+  "year": "1945",
+  "theme": "teal",
+  "card": "button_conquest5",
+  "atlas": "mui_hd",
+  "center": [
+   1477.0,
+   210.0
+  ],
+  "flags": [
+   {
+    "id": "ja",
+    "x": 1238.0,
+    "y": 51.0,
+    "scale": 0.7
+   },
+   {
+    "id": "ja",
+    "x": 1240.0,
+    "y": 233.0,
+    "scale": 0.9
+   },
+   {
+    "id": "am",
+    "x": 1240.0,
+    "y": 103.0,
+    "scale": 0.7
+   },
+   {
+    "id": "ca",
+    "x": 1346.0,
+    "y": 114.0,
+    "scale": 0.9
+   },
+   {
+    "id": "am",
+    "x": 1427.0,
+    "y": 297.0,
+    "scale": 1.0
+   },
+   {
+    "id": "mx",
+    "x": 1379.0,
+    "y": 353.0,
+    "scale": 0.7
+   },
+   {
+    "id": "it",
+    "x": 1614.0,
+    "y": 297.0,
+    "scale": 0.7
+   },
+   {
+    "id": "de",
+    "x": 1581.0,
+    "y": 185.0,
+    "scale": 0.9
+   },
+   {
+    "id": "de",
+    "x": 1559.0,
+    "y": 54.0,
+    "scale": 0.7
+   }
+  ],
+  "countries": [
+   {
+    "id": "de",
+    "commander": "Goering",
+    "alliance": "a",
+    "money": 500,
+    "industry": 300,
+    "techLevel": 4
+   },
+   {
+    "id": "ja",
+    "commander": "Yamamoto",
+    "alliance": "a",
+    "money": 500,
+    "industry": 300,
+    "techLevel": 4
+   },
+   {
+    "id": "it",
+    "commander": "Graziani",
+    "alliance": "a",
+    "money": 500,
+    "industry": 300,
+    "techLevel": 4
+   },
+   {
+    "id": "am",
+    "commander": "MacArthur",
+    "alliance": "b",
+    "money": 500,
+    "industry": 300,
+    "techLevel": 5
+   },
+   {
+    "id": "ca",
+    "commander": "common1",
+    "alliance": "b",
+    "money": 500,
+    "industry": 300,
+    "techLevel": 4
+   },
+   {
+    "id": "mx",
+    "commander": "common2",
+    "alliance": "b",
+    "money": 500,
+    "industry": 300,
+    "techLevel": 4
+   }
+  ]
+ },
+ {
+  "id": 6,
+  "key": "conquest-6",
+  "name": "亚洲 1950",
+  "region": "ASIA",
+  "year": "1950",
+  "theme": "red",
+  "card": "button_conquest6",
+  "atlas": "mui_hd",
+  "center": [
+   891.0,
+   423.0
+  ],
+  "flags": [
+   {
+    "id": "ru",
+    "x": 816.0,
+    "y": 273.0,
+    "scale": 1.0
+   },
+   {
+    "id": "cn",
+    "x": 840.0,
+    "y": 331.0,
+    "scale": 1.0
+   },
+   {
+    "id": "rk",
+    "x": 933.0,
+    "y": 324.0,
+    "scale": 0.6
+   },
+   {
+    "id": "nk",
+    "x": 931.0,
+    "y": 282.0,
+    "scale": 0.6
+   },
+   {
+    "id": "am",
+    "x": 961.0,
+    "y": 378.0,
+    "scale": 0.9
+   },
+   {
+    "id": "ja",
+    "x": 1021.0,
+    "y": 335.0,
+    "scale": 0.8
+   },
+   {
+    "id": "tw",
+    "x": 757.0,
+    "y": 398.0,
+    "scale": 0.8
+   },
+   {
+    "id": "in",
+    "x": 674.0,
+    "y": 420.0,
+    "scale": 0.8
+   },
+   {
+    "id": "gb",
+    "x": 762.0,
+    "y": 506.0,
+    "scale": 0.9
+   },
+   {
+    "id": "ca",
+    "x": 823.0,
+    "y": 567.0,
+    "scale": 0.7
+   },
+   {
+    "id": "au",
+    "x": 984.0,
+    "y": 567.0,
+    "scale": 0.7
+   },
+   {
+    "id": "am",
+    "x": 921.0,
+    "y": 562.0,
+    "scale": 0.8
+   }
+  ],
+  "countries": [
+   {
+    "id": "am",
+    "commander": "MacArthur",
+    "alliance": "b",
+    "money": 400,
+    "industry": 200,
+    "techLevel": 5
+   },
+   {
+    "id": "ru",
+    "commander": "Rokossovsky",
+    "alliance": "c",
+    "money": 200,
+    "industry": 100,
+    "techLevel": 4
+   },
+   {
+    "id": "cn",
+    "commander": "Peng",
+    "alliance": "c",
+    "money": 300,
+    "industry": 150,
+    "techLevel": 2
+   },
+   {
+    "id": "tw",
+    "commander": "Zhang",
+    "alliance": "b",
+    "money": 200,
+    "industry": 100,
+    "techLevel": 3
+   },
+   {
+    "id": "nk",
+    "commander": "common1",
+    "alliance": "c",
+    "money": 100,
+    "industry": 50,
+    "techLevel": 2
+   },
+   {
+    "id": "rk",
+    "commander": "common2",
+    "alliance": "b",
+    "money": 100,
+    "industry": 50,
+    "techLevel": 2
+   },
+   {
+    "id": "gb",
+    "commander": "Montgomery",
+    "alliance": "b",
+    "money": 200,
+    "industry": 100,
+    "techLevel": 4
+   },
+   {
+    "id": "in",
+    "commander": "common1",
+    "alliance": "b",
+    "money": 200,
+    "industry": 100,
+    "techLevel": 3
+   },
+   {
+    "id": "ja",
+    "commander": "Yamamoto",
+    "alliance": "b",
+    "money": 50,
+    "industry": 50,
+    "techLevel": 4
+   },
+   {
+    "id": "au",
+    "commander": "common1",
+    "alliance": "b",
+    "money": 200,
+    "industry": 100,
+    "techLevel": 4
+   },
+   {
+    "id": "ca",
+    "commander": "common1",
+    "alliance": "b",
+    "money": 200,
+    "industry": 100,
+    "techLevel": 4
+   }
+  ]
+ },
+ {
+  "id": 7,
+  "key": "conquest-7",
+  "name": "欧洲 1955",
+  "region": "EUROPE",
+  "year": "1955",
+  "theme": "purple",
+  "card": "button_conquest7",
+  "atlas": "mui2_hd",
+  "center": [
+   261.0,
+   236.0
+  ],
+  "flags": [
+   {
+    "id": "ru",
+    "x": 273.0,
+    "y": 143.0,
+    "scale": 1.0
+   },
+   {
+    "id": "am",
+    "x": 259.0,
+    "y": 219.0,
+    "scale": 1.0
+   },
+   {
+    "id": "gb",
+    "x": 132.0,
+    "y": 121.0,
+    "scale": 1.0
+   },
+   {
+    "id": "gb",
+    "x": 226.0,
+    "y": 138.0,
+    "scale": 0.7
+   },
+   {
+    "id": "fr",
+    "x": 214.0,
+    "y": 192.0,
+    "scale": 1.0
+   },
+   {
+    "id": "it",
+    "x": 256.0,
+    "y": 340.0,
+    "scale": 0.9
+   },
+   {
+    "id": "pl",
+    "x": 307.0,
+    "y": 187.0,
+    "scale": 0.8
+   },
+   {
+    "id": "yu",
+    "x": 290.0,
+    "y": 314.0,
+    "scale": 0.6
+   },
+   {
+    "id": "ro",
+    "x": 327.0,
+    "y": 295.0,
+    "scale": 0.7
+   },
+   {
+    "id": "gr",
+    "x": 329.0,
+    "y": 375.0,
+    "scale": 0.6
+   },
+   {
+    "id": "bg",
+    "x": 334.0,
+    "y": 347.0,
+    "scale": 0.6
+   },
+   {
+    "id": "hu",
+    "x": 296.0,
+    "y": 279.0,
+    "scale": 0.6
+   },
+   {
+    "id": "dk",
+    "x": 224.0,
+    "y": 119.0,
+    "scale": 0.5
+   },
+   {
+    "id": "tr",
+    "x": 392.0,
+    "y": 375.0,
+    "scale": 0.7
+   },
+   {
+    "id": "no",
+    "x": 213.0,
+    "y": 83.0,
+    "scale": 0.6
+   },
+   {
+    "id": "nl",
+    "x": 189.0,
+    "y": 163.0,
+    "scale": 0.5
+   },
+   {
+    "id": "be",
+    "x": 165.0,
+    "y": 177.0,
+    "scale": 0.5
+   }
+  ],
+  "countries": [
+   {
+    "id": "ru",
+    "commander": "Zhukov",
+    "alliance": "c",
+    "money": 200,
+    "industry": 130,
+    "techLevel": 5
+   },
+   {
+    "id": "am",
+    "commander": "Nimitz",
+    "alliance": "a",
+    "money": 220,
+    "industry": 130,
+    "techLevel": 5
+   },
+   {
+    "id": "gb",
+    "commander": "Montgomery",
+    "alliance": "a",
+    "money": 220,
+    "industry": 130,
+    "techLevel": 4
+   },
+   {
+    "id": "fr",
+    "commander": "de Gaulle",
+    "alliance": "a",
+    "money": 220,
+    "industry": 130,
+    "techLevel": 4
+   },
+   {
+    "id": "it",
+    "commander": "Graziani",
+    "alliance": "a",
+    "money": 220,
+    "industry": 130,
+    "techLevel": 4
+   },
+   {
+    "id": "pl",
+    "commander": "common1",
+    "alliance": "c",
+    "money": 210,
+    "industry": 130,
+    "techLevel": 4
+   },
+   {
+    "id": "yu",
+    "commander": "common2",
+    "alliance": "c",
+    "money": 200,
+    "industry": 100,
+    "techLevel": 4
+   },
+   {
+    "id": "ro",
+    "commander": "common2",
+    "alliance": "c",
+    "money": 200,
+    "industry": 120,
+    "techLevel": 4
+   },
+   {
+    "id": "gr",
+    "commander": "common2",
+    "alliance": "a",
+    "money": 200,
+    "industry": 100,
+    "techLevel": 4
+   },
+   {
+    "id": "bg",
+    "commander": "common2",
+    "alliance": "c",
+    "money": 200,
+    "industry": 100,
+    "techLevel": 4
+   },
+   {
+    "id": "hu",
+    "commander": "common2",
+    "alliance": "c",
+    "money": 200,
+    "industry": 110,
+    "techLevel": 4
+   },
+   {
+    "id": "dk",
+    "commander": "common3",
+    "alliance": "a",
+    "money": 180,
+    "industry": 80,
+    "techLevel": 4
+   },
+   {
+    "id": "tr",
+    "commander": "common1",
+    "alliance": "a",
+    "money": 160,
+    "industry": 80,
+    "techLevel": 4
+   },
+   {
+    "id": "no",
+    "commander": "common2",
+    "alliance": "a",
+    "money": 190,
+    "industry": 90,
+    "techLevel": 4
+   },
+   {
+    "id": "nl",
+    "commander": "common3",
+    "alliance": "a",
+    "money": 160,
+    "industry": 80,
+    "techLevel": 4
+   },
+   {
+    "id": "be",
+    "commander": "common3",
+    "alliance": "a",
+    "money": 160,
+    "industry": 80,
+    "techLevel": 4
+   },
+   {
+    "id": "se",
+    "commander": "common3",
+    "alliance": "n",
+    "money": 0,
+    "industry": 0,
+    "techLevel": 4
+   },
+   {
+    "id": "ch",
+    "commander": "common3",
+    "alliance": "n",
+    "money": 0,
+    "industry": 0,
+    "techLevel": 4
+   },
+   {
+    "id": "fl",
+    "commander": "common2",
+    "alliance": "n",
+    "money": 0,
+    "industry": 0,
+    "techLevel": 4
+   }
+  ]
+ },
+ {
+  "id": 8,
+  "key": "conquest-8",
+  "name": "能源危机",
+  "region": "ENERGY CRISIS",
+  "year": "",
+  "theme": "orange",
+  "card": "button_conquest8",
+  "atlas": "mui2_hd",
+  "center": [
+   427.0,
+   496.0
+  ],
+  "flags": [
+   {
+    "id": "ru",
+    "x": 456.0,
+    "y": 346.0,
+    "scale": 1.0
+   },
+   {
+    "id": "cn",
+    "x": 546.0,
+    "y": 375.0,
+    "scale": 1.0
+   },
+   {
+    "id": "am",
+    "x": 262.0,
+    "y": 588.0,
+    "scale": 1.0
+   },
+   {
+    "id": "gb",
+    "x": 316.0,
+    "y": 487.0,
+    "scale": 1.0
+   },
+   {
+    "id": "fr",
+    "x": 191.0,
+    "y": 341.0,
+    "scale": 0.9
+   },
+   {
+    "id": "fr",
+    "x": 190.0,
+    "y": 429.0,
+    "scale": 0.7
+   },
+   {
+    "id": "it",
+    "x": 259.0,
+    "y": 369.0,
+    "scale": 0.9
+   },
+   {
+    "id": "it",
+    "x": 424.0,
+    "y": 523.0,
+    "scale": 0.7
+   },
+   {
+    "id": "it",
+    "x": 207.0,
+    "y": 458.0,
+    "scale": 0.7
+   },
+   {
+    "id": "pl",
+    "x": 463.0,
+    "y": 403.0,
+    "scale": 0.8
+   },
+   {
+    "id": "tr",
+    "x": 374.0,
+    "y": 382.0,
+    "scale": 0.8
+   },
+   {
+    "id": "es",
+    "x": 320.0,
+    "y": 551.0,
+    "scale": 0.9
+   },
+   {
+    "id": "in",
+    "x": 544.0,
+    "y": 426.0,
+    "scale": 0.8
+   },
+   {
+    "id": "au",
+    "x": 404.0,
+    "y": 617.0,
+    "scale": 0.8
+   },
+   {
+    "id": "ca",
+    "x": 239.0,
+    "y": 486.0,
+    "scale": 0.8
+   },
+   {
+    "id": "yu",
+    "x": 307.0,
+    "y": 347.0,
+    "scale": 0.7
+   },
+   {
+    "id": "yu",
+    "x": 430.0,
+    "y": 480.0,
+    "scale": 0.7
+   },
+   {
+    "id": "bg",
+    "x": 334.0,
+    "y": 347.0,
+    "scale": 0.7
+   },
+   {
+    "id": "bg",
+    "x": 452.0,
+    "y": 505.0,
+    "scale": 0.7
+   },
+   {
+    "id": "ro",
+    "x": 359.0,
+    "y": 339.0,
+    "scale": 0.7
+   },
+   {
+    "id": "hu",
+    "x": 280.0,
+    "y": 339.0,
+    "scale": 0.7
+   },
+   {
+    "id": "gr",
+    "x": 329.0,
+    "y": 375.0,
+    "scale": 0.7
+   },
+   {
+    "id": "gr",
+    "x": 459.0,
+    "y": 574.0,
+    "scale": 0.7
+   },
+   {
+    "id": "nk",
+    "x": 517.0,
+    "y": 505.0,
+    "scale": 0.8
+   }
+  ],
+  "countries": [
+   {
+    "id": "ru",
+    "commander": "Zhukov",
+    "alliance": "c",
+    "money": 110,
+    "industry": 55,
+    "techLevel": 5
+   },
+   {
+    "id": "am",
+    "commander": "Nimitz",
+    "alliance": "a",
+    "money": 110,
+    "industry": 55,
+    "techLevel": 5
+   },
+   {
+    "id": "gb",
+    "commander": "Montgomery",
+    "alliance": "a",
+    "money": 110,
+    "industry": 55,
+    "techLevel": 4
+   },
+   {
+    "id": "fr",
+    "commander": "de Gaulle",
+    "alliance": "a",
+    "money": 110,
+    "industry": 55,
+    "techLevel": 4
+   },
+   {
+    "id": "it",
+    "commander": "Graziani",
+    "alliance": "a",
+    "money": 110,
+    "industry": 55,
+    "techLevel": 4
+   },
+   {
+    "id": "cn",
+    "commander": "Peng",
+    "alliance": "c",
+    "money": 110,
+    "industry": 55,
+    "techLevel": 4
+   },
+   {
+    "id": "pl",
+    "commander": "common1",
+    "alliance": "c",
+    "money": 110,
+    "industry": 55,
+    "techLevel": 4
+   },
+   {
+    "id": "tr",
+    "commander": "common1",
+    "alliance": "c",
+    "money": 110,
+    "industry": 55,
+    "techLevel": 4
+   },
+   {
+    "id": "es",
+    "commander": "common1",
+    "alliance": "a",
+    "money": 110,
+    "industry": 55,
+    "techLevel": 4
+   },
+   {
+    "id": "in",
+    "commander": "common1",
+    "alliance": "c",
+    "money": 110,
+    "industry": 55,
+    "techLevel": 4
+   },
+   {
+    "id": "au",
+    "commander": "common1",
+    "alliance": "a",
+    "money": 110,
+    "industry": 55,
+    "techLevel": 4
+   },
+   {
+    "id": "ca",
+    "commander": "common1",
+    "alliance": "a",
+    "money": 110,
+    "industry": 55,
+    "techLevel": 4
+   },
+   {
+    "id": "yu",
+    "commander": "common2",
+    "alliance": "c",
+    "money": 110,
+    "industry": 55,
+    "techLevel": 4
+   },
+   {
+    "id": "ro",
+    "commander": "common2",
+    "alliance": "c",
+    "money": 110,
+    "industry": 55,
+    "techLevel": 4
+   },
+   {
+    "id": "gr",
+    "commander": "common2",
+    "alliance": "a",
+    "money": 110,
+    "industry": 55,
+    "techLevel": 4
+   },
+   {
+    "id": "bg",
+    "commander": "common2",
+    "alliance": "c",
+    "money": 110,
+    "industry": 55,
+    "techLevel": 4
+   },
+   {
+    "id": "hu",
+    "commander": "common2",
+    "alliance": "c",
+    "money": 110,
+    "industry": 55,
+    "techLevel": 4
+   },
+   {
+    "id": "nk",
+    "commander": "common1",
+    "alliance": "c",
+    "money": 110,
+    "industry": 55,
+    "techLevel": 4
+   }
+  ]
+ },
+ {
+  "id": "axis_de",
+  "stage": "battle_axis1_de",
+  "key": "conquest-axis-de",
+  "name": "德国内战（闪击波兰·德国对德国）",
+  "subtitle": "德国A 对 德国B，兵力完全相同（测试地图）",
+  "test": true,
+  "region": "EUROPE",
+  "year": "1939",
+  "theme": "black",
+  "card": "button_conquest1",
+  "atlas": "mui_hd",
+  "center": [
+   261.0,
+   236.0
+  ],
+  "flags": [
+   {
+    "id": "de1",
+    "frame": "de",
+    "x": 240.0,
+    "y": 170.0,
+    "scale": 1.0
+   },
+   {
+    "id": "de2",
+    "frame": "de",
+    "x": 300.0,
+    "y": 205.0,
+    "scale": 1.0
+   }
+  ],
+  "countries": [
+   {
+    "id": "de1",
+    "frame": "de",
+    "commander": "Guderian",
+    "alliance": "a",
+    "money": 500,
+    "industry": 300,
+    "techLevel": 3
+   },
+   {
+    "id": "de2",
+    "frame": "de",
+    "commander": "Guderian",
+    "alliance": "b",
+    "money": 500,
+    "industry": 300,
+    "techLevel": 3
+   }
+  ]
+ }
+]

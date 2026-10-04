@@ -1,0 +1,201 @@
+{
+  "regimes": {
+    "totalitarian": { "label": "极权", "blurb": "权力集中，国内反对声音被压住。" },
+    "authoritarian": { "label": "威权", "blurb": "强人执政，议会或选举不起决定作用。" },
+    "democracy": { "label": "民主", "blurb": "政府靠议会和选票维持，主动开战要付国内代价。" },
+    "monarchy": { "label": "君主", "blurb": "王室仍是政权中心。" },
+    "neutral": { "label": "中立", "blurb": "长期把不卷入大国战争当作国策。" }
+  },
+  "occupation": { "capitalPenalty": 35, "drain": 5, "drainEvery": 1, "surrenderBelow": 30 },
+  "peaceTuning": {
+    "proposeStabilityCost": 6,
+    "cooldownRounds": 3,
+    "regimeScale": {
+      "democracy": 0.6,
+      "monarchy": 1.0,
+      "neutral": 0.8,
+      "authoritarian": 1.0,
+      "totalitarian": 1.5
+    },
+    "traitScale": {
+      "war_weary": 0.6,
+      "rally": 0.8,
+      "iron_fist": 1.2,
+      "expansionist": 1.5
+    }
+  },
+  "traits": {
+    "expansionist": {
+      "label": "扩张",
+      "desc": "兵力优势门槛降到 1.65 倍，方向兵力 1.22 倍即可，开战冷却少 1 回合，同时应付的强国上限多 2 个。普通宣战扣的稳定度减半。",
+      "powerRatio": 1.65,
+      "directionRatio": 1.22,
+      "cooldownDelta": -1,
+      "minStabilityDelta": -12,
+      "maxMajorBonus": 2,
+      "declareStabilityMul": 0.5
+    },
+    "rally": {
+      "label": "众志",
+      "desc": "被宣战时稳定度 +20，之后 4 回合收入和工业 +8%。",
+      "stabilityOnAttacked": 20,
+      "incomeBonus": 0.08,
+      "incomeTurns": 4
+    },
+    "war_weary": {
+      "label": "厌战",
+      "desc": "主动宣战扣双倍稳定度。兵力不到 3 倍、方向兵力不到 2.2 倍时不开战；盟友已经在打同一国时，按 2 倍和 1.4 倍。开战满 8 回合后，每 3 回合稳定度 -1。",
+      "declareStabilityMul": 2,
+      "powerRatio": 3,
+      "directionRatio": 2.2,
+      "relaxedPowerRatio": 2,
+      "relaxedDirectionRatio": 1.4,
+      "cooldownDelta": 2,
+      "minStabilityDelta": 12,
+      "drainAfter": 8,
+      "drainEvery": 3,
+      "drainPerTurn": 1
+    },
+    "iron_fist": {
+      "label": "铁腕",
+      "desc": "稳定度造成的收入损失只按 40% 计算，动荡漏税按 35% 计算，边地脱离要降到 8 以下才发生。",
+      "incomePenaltyScale": 0.4,
+      "unrestLeakScale": 0.35,
+      "defectBelow": 8
+    },
+    "permanent_neutral": {
+      "label": "永中",
+      "desc": "不会主动宣战。被侵略时稳定度 +20，之后 4 回合收入和工业 +8%。",
+      "neverDeclare": true,
+      "stabilityOnAttacked": 20,
+      "incomeBonus": 0.08,
+      "incomeTurns": 4
+    },
+    "depth": {
+      "label": "纵深",
+      "desc": "首都沦陷只扣普通国家 40% 的稳定度；占领期间每回合再掉 3 点，普通国家每回合掉 5 点。",
+      "capitalPenaltyScale": 0.4,
+      "occupyDrain": 3,
+      "occupyDrainEvery": 1
+    },
+    "population": {
+      "label": "人口",
+      "desc": "步兵和精锐步兵的金钱、工业消耗为 75%。",
+      "infantryPriceScale": 0.75,
+      "infantryCardIds": [0, 28]
+    }
+  },
+  "defaults": {
+    "regime": "authoritarian",
+    "baseStability": 72,
+    "traits": [],
+    "note": "这场战役没有单列该国，按同时代威权政体的中等水平估算。"
+  },
+  "countries": {
+    "de": { "regime": "totalitarian", "baseStability": 92, "traits": ["expansionist", "iron_fist"], "note": "纳粹政权完成一体化，宣传和警察把国内反对压得很低，对外就是要重划欧洲。" },
+    "ru": { "regime": "totalitarian", "baseStability": 90, "traits": ["expansionist", "iron_fist", "depth"], "note": "大清洗之后控制严密，对邻国有领土要求，丢了城也可以往内地撤。" },
+    "ja": { "regime": "totalitarian", "baseStability": 90, "traits": ["expansionist", "iron_fist"], "note": "军部主导，中国战场已经打开，南进是国策。" },
+    "it": { "regime": "authoritarian", "baseStability": 76, "traits": ["expansionist"], "note": "法西斯政权比纳粹松，但埃塞俄比亚和阿尔巴尼亚说明它会主动动手。" },
+    "es": { "regime": "authoritarian", "baseStability": 76, "traits": ["war_weary"], "note": "佛朗哥刚打完内战，政权靠镇压维持，没有再打一场欧洲战争的余力。" },
+    "ro": { "regime": "authoritarian", "baseStability": 74, "traits": [], "note": "卡罗尔二世的王室独裁控得住国内，1939 年还在两边观望。" },
+    "hu": { "regime": "authoritarian", "baseStability": 74, "traits": ["expansionist"], "note": "霍尔蒂政权靠维也纳仲裁改边界，修订主义很明确。" },
+    "pl": { "regime": "authoritarian", "baseStability": 72, "traits": [], "note": "萨纳齐亚政权架空了议会，自己是被打的一方，不主动开新战场。" },
+    "bg": { "regime": "monarchy", "baseStability": 74, "traits": [], "note": "鲍里斯三世把王权握在手里，尽量拖着不把国家送进大战。" },
+    "gr": { "regime": "authoritarian", "baseStability": 74, "traits": [], "note": "梅塔克萨斯独裁对内紧，对外主要是防意大利。" },
+    "yu": { "regime": "monarchy", "baseStability": 70, "traits": [], "note": "保罗亲王摄政，民族矛盾大，稳定只是中等。" },
+    "tr": { "regime": "neutral", "baseStability": 80, "traits": ["war_weary"], "note": "伊诺努坚持武装中立，不到最后不站队。" },
+    "pt": { "regime": "authoritarian", "baseStability": 78, "traits": ["war_weary"], "note": "萨拉查的新国家把中立维持到大战结束。" },
+    "fl": { "regime": "democracy", "baseStability": 62, "traits": ["rally", "war_weary"], "note": "议会民主，不会先动手，一旦被打就会全国动员。" },
+    "gb": { "regime": "democracy", "baseStability": 62, "traits": ["rally", "war_weary"], "note": "议会民主，主动开战要过国内这一关。" },
+    "fr": { "regime": "democracy", "baseStability": 58, "traits": ["rally", "war_weary"], "note": "第三共和国内阁不稳，开战决心比英国更弱。" },
+    "am": { "regime": "democracy", "baseStability": 60, "traits": ["rally", "war_weary"], "note": "孤立主义还在，国会不会轻易投票投入一场没把握的战争。" },
+    "be": { "regime": "democracy", "baseStability": 60, "traits": ["rally", "war_weary"], "note": "中立政策下的议会民主，被入侵才会拧成一股。" },
+    "nl": { "regime": "democracy", "baseStability": 62, "traits": ["rally", "war_weary"], "note": "长期中立的议会民主，不想主动选边。" },
+    "dk": { "regime": "democracy", "baseStability": 64, "traits": ["rally", "war_weary"], "note": "小国民主，国内稳，没有对外用兵的政治基础。" },
+    "no": { "regime": "democracy", "baseStability": 63, "traits": ["rally", "war_weary"], "note": "工党政府维持中立，被打才会动员。" },
+    "se": { "regime": "neutral", "baseStability": 88, "traits": ["permanent_neutral"], "note": "武装中立是国策，给交战双方卖矿砂，自己不开战。" },
+    "ch": { "regime": "neutral", "baseStability": 90, "traits": ["permanent_neutral"], "note": "永久中立加上全民皆兵，只防守，不主动宣战。" },
+    "ca": { "regime": "democracy", "baseStability": 62, "traits": ["rally", "war_weary"], "note": "自治领议会决定参战范围，不会单独挑起战争。" },
+    "au": { "regime": "democracy", "baseStability": 61, "traits": ["rally", "war_weary"], "note": "自治领跟着英联邦走，国内对远征并不热心。" },
+    "mx": { "regime": "authoritarian", "baseStability": 73, "traits": [], "note": "革命制度党一党执政，对内稳，没有向外扩张的打算。" },
+    "cn": { "regime": "totalitarian", "baseStability": 48, "traits": ["iron_fist", "population"], "note": "政权能压住反对派，但内战和外敌还没完，社会并不安稳。人口多，步兵便宜。" },
+    "tw": { "regime": "authoritarian", "baseStability": 46, "traits": ["population"], "note": "国民政府同时对付内战和外敌，财政和地盘都不稳。兵员多，步兵便宜。" },
+    "nk": { "regime": "totalitarian", "baseStability": 88, "traits": ["expansionist", "iron_fist"], "note": "金日成把党、军队和警察握在一起，1950 年是它先越过三八线。" },
+    "rk": { "regime": "authoritarian", "baseStability": 52, "traits": ["rally"], "note": "李承晚的政权不稳，一遭到入侵就只能靠动员硬扛。" },
+    "in": { "regime": "democracy", "baseStability": 60, "traits": ["rally", "war_weary"], "note": "尼赫鲁的议会民主和不结盟，不主动打一场大国战争。" }
+  },
+  "scenarios": {
+    "conquest_2": {
+      "ja": { "baseStability": 91, "note": "珍珠港之后军部威望正高，国内总动员已经转起来。" },
+      "am": { "baseStability": 66, "note": "珍珠港把孤立主义压了下去，国内罕见地一致，但开战权仍在国会。" },
+      "tw": { "baseStability": 48, "note": "抗战第五年，国民政府还在，豫湘桂之前，靠外援和征兵撑着。" },
+      "gb": { "baseStability": 64, "note": "丘吉尔的战时内阁已经稳住议会，不列颠之战也过去了。" },
+      "ru": { "baseStability": 88, "note": "卫国战争第二年，莫斯科保住了，大后方还在往东迁。" },
+      "ca": { "baseStability": 63 },
+      "au": { "baseStability": 63, "note": "本土受到日本威胁之后，征兵和战时内阁把国内收紧了。" }
+    },
+    "conquest_3": {
+      "de": { "baseStability": 82, "note": "斯大林格勒之后宣传机器还在，士气已经不是 1939 年。" },
+      "it": { "regime": "authoritarian", "baseStability": 58, "traits": ["war_weary"], "note": "北非和西西里把法西斯拖垮了，王室正准备甩掉墨索里尼。" },
+      "fr": { "baseStability": 56, "note": "战斗法国比 1940 年齐一点，流亡政府和内地抵抗还没有合成一个稳定政权。" },
+      "gb": { "baseStability": 64 },
+      "am": { "baseStability": 65 },
+      "ru": { "baseStability": 90, "note": "转折之后红军在反攻，后方管制仍然极严。" }
+    },
+    "conquest_4": {
+      "de": { "baseStability": 90 },
+      "it": { "baseStability": 68, "note": "北非补给线已经很差，政权还在催着往前打。" },
+      "fr": { "baseStability": 48, "note": "维希和自由法国把这个国家拆成两半，国内谈不上稳定。" },
+      "gb": { "baseStability": 63 },
+      "es": { "baseStability": 76 }
+    },
+    "conquest_5": {
+      "de": { "baseStability": 70, "note": "这是轴心打到北美的假设局面，本土被炸、战线过长，政权还在硬撑。" },
+      "ja": { "baseStability": 74, "note": "1945 年的日本已经在抽老幼兵，对外扩张停不下来，国内也快绷不住。" },
+      "it": { "regime": "authoritarian", "baseStability": 55, "traits": ["war_weary"], "note": "法西斯政权到了这一步只想脱身。" },
+      "am": { "baseStability": 68, "note": "本土受到直接威胁，民主国家这时会先团结起来。" },
+      "ca": { "baseStability": 64 }
+    },
+    "conquest_6": {
+      "cn": { "baseStability": 52, "note": "建国第一年，土改和残余战争还没结束，接着就是朝鲜。" },
+      "tw": { "baseStability": 44, "note": "刚退到台湾，动员和戒严压得住局面，社会并没有安下来。" },
+      "nk": { "baseStability": 88 },
+      "rk": { "baseStability": 50, "note": "南朝鲜政权刚建立，军队没准备好，一开打就靠外援。" },
+      "ja": { "regime": "democracy", "baseStability": 58, "traits": ["rally", "war_weary"], "note": "占领当局和新宪法把日本从军部体制里拉出来，不再对外用兵。" },
+      "ru": { "baseStability": 90, "note": "斯大林还在，国内控制没有松。" },
+      "am": { "baseStability": 62, "note": "战后复员刚结束，杜鲁门要为朝鲜战争重新做国内动员。" },
+      "in": { "baseStability": 58, "note": "独立第三年，尼赫鲁政府还在处理土邦和粮食。" },
+      "gb": { "baseStability": 60, "note": "战后紧缩和殖民地收缩，艾德礼政府的支持度在掉。" }
+    },
+    "conquest_7": {
+      "ru": { "regime": "authoritarian", "baseStability": 82, "traits": ["iron_fist"], "note": "斯大林死后集体领导还没站稳，一党制还在，但没有 1939 年那种向外吞地的冲劲。" },
+      "de": { "regime": "democracy", "baseStability": 64, "traits": ["rally", "war_weary"], "note": "阿登纳的联邦德国重新武装，宪法限制它主动对外用兵。" },
+      "fr": { "baseStability": 52, "note": "第四共和国内阁几个月一换，印度支那刚丢，阿尔及利亚已经在发酵。" },
+      "it": { "regime": "democracy", "baseStability": 60, "traits": ["rally", "war_weary"], "note": "共和国政府短命，但已经不是法西斯。" },
+      "pl": { "regime": "authoritarian", "baseStability": 76, "traits": ["iron_fist"], "note": "统一工人党还压得住，波兹南要到次年才爆发。" },
+      "hu": { "regime": "authoritarian", "baseStability": 74, "traits": ["iron_fist"], "note": "拉科西的控制很紧，社会不满要到 1956 年才爆发。" },
+      "ro": { "regime": "authoritarian", "baseStability": 76, "traits": ["iron_fist"], "note": "乔治乌-德治把党务和保安系统握得很死。" },
+      "bg": { "regime": "authoritarian", "baseStability": 75, "traits": ["iron_fist"], "note": "契尔文科夫下台后，党的控制还在。" },
+      "yu": { "regime": "authoritarian", "baseStability": 72, "traits": [], "note": "铁托不结盟，对内是一党制，不跟着华约向外打。" },
+      "gb": { "baseStability": 62 },
+      "am": { "baseStability": 63 },
+      "gr": { "regime": "democracy", "baseStability": 58, "traits": ["rally", "war_weary"], "note": "内战结束后的王国，右派掌权，社会裂痕还在。" },
+      "fl": { "regime": "neutral", "baseStability": 70, "traits": ["permanent_neutral"], "note": "巴锡基维路线把不站队写成国策，自己不宣战。" },
+      "es": { "baseStability": 76, "note": "佛朗哥政权仍在，欧洲已经把它隔在民主国家外面。" }
+    },
+    "conquest_8": {
+      "am": { "baseStability": 56, "note": "越战、水门和石油危机叠在一起，国内厌战。" },
+      "gb": { "baseStability": 54, "note": "三天工作周和工会对抗，希思政府快撑不住。" },
+      "fr": { "regime": "democracy", "baseStability": 62, "traits": ["rally", "war_weary"], "note": "第五共和国比第四共和国稳，蓬皮杜还握着总统制。" },
+      "de": { "regime": "democracy", "baseStability": 66, "traits": ["rally", "war_weary"], "note": "勃兰特时期社会民主运转正常，没有对外扩张的政治基础。" },
+      "it": { "regime": "democracy", "baseStability": 52, "traits": ["rally", "war_weary"], "note": "铅弹年代，内阁短命，极端组织和罢工把稳定度压得很低。" },
+      "ru": { "regime": "authoritarian", "baseStability": 80, "traits": ["iron_fist"], "note": "勃列日涅夫时期控制还在，经济停滞，没有三十年代那种向外吞并的势头。" },
+      "cn": { "baseStability": 58, "note": "文革后期，社会乱过一阵，政权还在，对外已经不再输出革命战争。" },
+      "pl": { "regime": "authoritarian", "baseStability": 64, "traits": [], "note": "盖莱克靠借债把生活水平抬上去，1970 年的骚乱没有真正过去。" },
+      "es": { "baseStability": 70, "note": "佛朗哥晚年，政权还在，接班问题已经摆上台面。" },
+      "in": { "baseStability": 58, "note": "英迪拉·甘地的政府争议很大，紧急状态还没宣布。" },
+      "tr": { "regime": "authoritarian", "baseStability": 60, "traits": ["war_weary"], "note": "1971 年军方备忘录之后，文官政府是被看着走的。" },
+      "nk": { "baseStability": 86, "traits": ["iron_fist"], "note": "金日成的个人统治已经定型，这时没有再发动一场半岛战争的动作。" }
+    }
+  }
+}

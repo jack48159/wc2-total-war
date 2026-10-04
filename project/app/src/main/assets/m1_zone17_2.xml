@@ -1,0 +1,31 @@
+<Texture name="m1_zone17_2.webp"/>
+<Images>
+    <Image name="1195.png" x="1" y="707" w="119" h="111" refx="0" refy="0"/>
+    <Image name="1196.png" x="348" y="316" w="166" h="119" refx="0" refy="0"/>
+    <Image name="1198.png" x="316" y="592" w="124" h="143" refx="0" refy="0"/>
+    <Image name="1208.png" x="1" y="158" w="175" h="164" refx="0" refy="0"/>
+    <Image name="1209.png" x="707" y="1" w="174" h="116" refx="0" refy="0"/>
+    <Image name="1210.png" x="1" y="563" w="152" h="142" refx="0" refy="0"/>
+    <Image name="1211.png" x="1" y="440" w="165" h="121" refx="0" refy="0"/>
+    <Image name="1213.png" x="155" y="632" w="136" h="134" refx="0" refy="0"/>
+    <Image name="1214.png" x="168" y="478" w="146" h="152" refx="0" refy="0"/>
+    <Image name="1216.png" x="882" y="170" w="130" h="166" refx="0" refy="0"/>
+    <Image name="1217.png" x="707" y="119" w="173" h="165" refx="0" refy="0"/>
+    <Image name="1218.png" x="696" y="286" w="159" h="154" refx="0" refy="0"/>
+    <Image name="1219.png" x="1" y="324" w="167" h="114" refx="0" refy="0"/>
+    <Image name="1220.png" x="857" y="338" w="157" h="123" refx="0" refy="0"/>
+    <Image name="1221.png" x="337" y="437" w="130" h="153" refx="0" refy="0"/>
+    <Image name="1224.png" x="178" y="178" w="168" h="151" refx="0" refy="0"/>
+    <Image name="1226.png" x="883" y="1" w="138" h="167" refx="0" refy="0"/>
+    <Image name="1227.png" x="528" y="241" w="166" h="164" refx="0" refy="0"/>
+    <Image name="1228.png" x="170" y="331" w="165" h="145" refx="0" refy="0"/>
+    <Image name="1229.png" x="516" y="407" w="115" h="157" refx="0" refy="0"/>
+    <Image name="1230.png" x="633" y="442" w="151" h="145" refx="0" refy="0"/>
+    <Image name="1235.png" x="354" y="1" w="175" h="161" refx="0" refy="0"/>
+    <Image name="1236.png" x="1" y="1" w="178" h="155" refx="0" refy="0"/>
+    <Image name="1237.png" x="181" y="1" w="171" h="175" refx="0" refy="0"/>
+    <Image name="1238.png" x="531" y="1" w="174" h="130" refx="0" refy="0"/>
+    <Image name="1241.png" x="531" y="133" w="173" h="106" refx="0" refy="0"/>
+    <Image name="1245.png" x="354" y="164" w="172" h="150" refx="0" refy="0"/>
+    <Image name="1250.png" x="469" y="566" w="142" h="148" refx="0" refy="0"/>
+</Images>

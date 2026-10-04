@@ -1,0 +1,6 @@
+﻿<Texture name="aircraftcarrier.png" />
+<Images>
+    <Image name="炮台.png" x="1" y="1" w="58" h="34" refx="0" refy="0" />
+    <Image name="摧毁.png" x="60" y="1" w="59" h="33" refx="0" refy="0" />
+    <Image name="炮管.png" x="1" y="36" w="20" h="5" refx="0" refy="0" />
+</Images>

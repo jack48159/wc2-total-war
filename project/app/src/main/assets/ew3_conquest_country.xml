@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ew3_conquest_country>
+    <!--
+    conquest id is 1-based, matching conquest_1.xml, conquest_2.xml, ...
+    country id matches the country id in that conquest XML and takes priority.
+    country name is the display name shown on the paper board.
+    match_name can be used as a fallback matcher for the country name in conquest XML.
+    Countries without a matching entry are generated from conquest_N.xml: the normalized flag,
+    localized default name and money/industry/tech-level summary are used, while the global
+    page star setting remains active. This file only overrides those generated values.
+
+    Example:
+    <conquest id="10">
+        <country id="ru" name="Russia" flag="ru" photo="ru" stars="5"
+                 intro="Custom intro text for this exact conquest/country id." />
+        <country match_name="ru" name="Russia" flag="ru" photo="ru" stars="5"
+                 intro_key="some stringtable key" />
+    </conquest>
+    -->
+    <conquest id="1">
+        <country id="de" name="德意志帝国" flag="de" photo="de"
+                 intro="德意志帝国在完成统一后经济得到迅速\n发展，在工业革命后成为新兴的欧洲强国。" />
+        <country id="ru" name="苏联" flag="ru" photo="ru"
+                 intro="苏联拥有广阔的疆域和强大的工业基础，\n在东线战场承担着主要的陆军压力。" />
+        <country id="gb" name="大英帝国" flag="gb" photo="gb"
+                 intro="大英帝国控制着重要的海上航线，\n并依靠联盟与工业维持全球影响力。" />
+        <country id="fr" name="法兰西" flag="fr" photo="fr"
+                 intro="法兰西拥有成熟的工业与防线，\n需要在大陆危机中寻找新的盟友。" />
+        <country id="it" name="意大利" flag="it" photo="it"
+                 intro="意大利位于地中海核心位置，\n海陆军协同将决定它的扩张速度。" />
+        <country id="pl" name="波兰" flag="pl" photo="pl"
+                 intro="波兰处在东西方力量交汇处，\n必须迅速建立可靠的防御纵深。" />
+        <country id="es" name="西班牙" flag="es" photo="es"
+                 intro="西班牙拥有连接大西洋与地中海的港口，\n可以在局势变化中保持灵活。" />
+        <country id="cn" name="中华民国" flag="cn" photo="qi"
+                 intro="中华民国拥有丰富的人力与资源，\n长期战争将考验工业化和后勤能力。" />
+    </conquest>
+</ew3_conquest_country>

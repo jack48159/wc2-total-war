@@ -1,0 +1,28 @@
+<Texture name="m1_zone32_1.webp"/>
+<Images>
+    <Image name="1922.png" x="778" y="255" w="222" h="184" refx="0" refy="0"/>
+    <Image name="1923.png" x="875" y="441" w="119" h="121" refx="0" refy="0"/>
+    <Image name="1924.png" x="306" y="1" w="278" h="161" refx="0" refy="0"/>
+    <Image name="1925.png" x="586" y="1" w="259" h="156" refx="0" refy="0"/>
+    <Image name="1926.png" x="378" y="713" w="184" h="160" refx="0" refy="0"/>
+    <Image name="1927.png" x="1" y="664" w="194" h="116" refx="0" refy="0"/>
+    <Image name="1928.png" x="586" y="159" w="250" h="94" refx="0" refy="0"/>
+    <Image name="1929.png" x="219" y="430" w="208" h="157" refx="0" refy="0"/>
+    <Image name="1930.png" x="847" y="110" w="153" h="137" refx="0" refy="0"/>
+    <Image name="1931.png" x="1" y="177" w="237" h="124" refx="0" refy="0"/>
+    <Image name="1932.png" x="460" y="428" w="212" h="129" refx="0" refy="0"/>
+    <Image name="1933.png" x="674" y="441" w="199" h="152" refx="0" refy="0"/>
+    <Image name="1934.png" x="1" y="870" w="188" h="124" refx="0" refy="0"/>
+    <Image name="1935.png" x="549" y="255" w="227" h="171" refx="0" refy="0"/>
+    <Image name="1936.png" x="1" y="303" w="216" h="163" refx="0" refy="0"/>
+    <Image name="1937.png" x="240" y="291" w="218" h="137" refx="0" refy="0"/>
+    <Image name="1938.png" x="1" y="468" w="206" h="194" refx="0" refy="0"/>
+    <Image name="1939.png" x="429" y="559" w="199" h="124" refx="0" refy="0"/>
+    <Image name="1940.png" x="1" y="1" w="303" h="174" refx="0" refy="0"/>
+    <Image name="1941.png" x="306" y="164" w="241" h="125" refx="0" refy="0"/>
+    <Image name="1942.png" x="209" y="589" w="199" h="122" refx="0" refy="0"/>
+    <Image name="1943.png" x="191" y="870" w="185" h="133" refx="0" refy="0"/>
+    <Image name="1944.png" x="847" y="1" w="159" h="107" refx="0" refy="0"/>
+    <Image name="1945.png" x="378" y="875" w="184" h="116" refx="0" refy="0"/>
+    <Image name="1946.png" x="1" y="782" w="191" h="86" refx="0" refy="0"/>
+</Images>

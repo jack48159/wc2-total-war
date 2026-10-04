@@ -1,0 +1,15 @@
+<Texture name="battlebg1_hd.pkm" />
+<Images>
+    <Image name="airport.png" x="1" y="1" w="480" h="640" refx="0" refy="0" />
+    <Image name="capital.png" x="482" y="1" w="480" h="640" refx="0" refy="0" />
+    <Image name="city1.png" x="1" y="642" w="480" h="640" refx="0" refy="0" />
+    <Image name="city2.png" x="482" y="642" w="480" h="640" refx="0" refy="0" />
+    <Image name="city3.png" x="1" y="1283" w="480" h="640" refx="0" refy="0" />
+    <Image name="industry.png" x="482" y="1283" w="480" h="640" refx="0" refy="0" />
+    <Image name="normal1.png" x="963" y="1" w="480" h="640" refx="0" refy="0" />
+    <Image name="normal2.png" x="963" y="642" w="480" h="640" refx="0" refy="0" />
+    <Image name="port_aircraft.png" x="1444" y="1" w="480" h="640" refx="0" refy="0" />
+    <Image name="port_battleship.png" x="1444" y="642" w="480" h="640" refx="0" refy="0" />
+    <Image name="port_carrier.png" x="963" y="1283" w="480" h="640" refx="0" refy="0" />
+    <Image name="port_cruiser.png" x="1444" y="1283" w="480" h="640" refx="0" refy="0" />
+</Images>

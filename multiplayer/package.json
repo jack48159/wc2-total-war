@@ -1,0 +1,8 @@
+{
+  "name": "wc2-multiplayer",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "ws": "^8.18.3"
+  }
+}

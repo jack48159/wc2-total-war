@@ -1,0 +1,30 @@
+{
+  "protocol": "conquering-editor-asset-library-v1",
+  "groups": [],
+  "items": [
+    {
+      "id": "asset-16c8bb3989408510",
+      "name": "board_options_background_empty (2).png",
+      "groupId": null,
+      "kind": "image",
+      "path": "conquering_editor_library/files/asset-16c8bb3989408510.png",
+      "mimeType": "image/png",
+      "byteLength": 731484,
+      "sha256": "16c8bb398940851016033199f77b81597155c2b3396d4f36d7ebc7810afb7b20",
+      "width": 926,
+      "height": 523
+    },
+    {
+      "id": "asset-ecd379a74ed777b3",
+      "name": "board_options_background_empty.png",
+      "groupId": null,
+      "kind": "image",
+      "path": "conquering_editor_library/files/asset-ecd379a74ed777b3.png",
+      "mimeType": "image/png",
+      "byteLength": 752070,
+      "sha256": "ecd379a74ed777b32ce8af5e8922e423ac56184b3234ac94e0bca947c75a0d00",
+      "width": 935,
+      "height": 548
+    }
+  ]
+}

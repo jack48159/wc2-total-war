@@ -1,0 +1,335 @@
+{
+  "diplomacy": {
+    "enabled": true,
+    "allowAlliedAttack": false,
+    "betrayalPolicy": "war",
+    "pacts": {
+      "cn_ru": {
+        "type": "nap",
+        "sinceRound": 1,
+        "reason": "sino_soviet_treaty"
+      },
+      "in_cn": {
+        "type": "nap",
+        "sinceRound": 1,
+        "reason": "five_principles_peace"
+      }
+    },
+    "relations": {
+      "am_rk": "alliance",
+      "am_gb": "alliance",
+      "am_au": "alliance",
+      "am_ca": "alliance",
+      "am_nk": "war",
+      "am_cn": "peace",
+      "am_ru": "peace",
+      "am_tw": "peace",
+      "am_in": "peace",
+      "am_ja": "peace",
+      "gb_rk": "alliance",
+      "au_rk": "alliance",
+      "ca_rk": "alliance",
+      "nk_rk": "war",
+      "cn_rk": "peace",
+      "rk_ru": "peace",
+      "rk_tw": "peace",
+      "in_rk": "peace",
+      "ja_rk": "peace",
+      "au_gb": "alliance",
+      "ca_gb": "alliance",
+      "gb_nk": "war",
+      "cn_gb": "peace",
+      "gb_ru": "peace",
+      "gb_tw": "peace",
+      "gb_in": "peace",
+      "gb_ja": "peace",
+      "au_ca": "alliance",
+      "au_nk": "war",
+      "au_cn": "peace",
+      "au_ru": "peace",
+      "au_tw": "peace",
+      "au_in": "peace",
+      "au_ja": "peace",
+      "ca_nk": "war",
+      "ca_cn": "peace",
+      "ca_ru": "peace",
+      "ca_tw": "peace",
+      "ca_in": "peace",
+      "ca_ja": "peace",
+      "cn_nk": "alliance",
+      "nk_ru": "alliance",
+      "nk_tw": "peace",
+      "in_nk": "peace",
+      "ja_nk": "peace",
+      "cn_ru": "alliance",
+      "cn_tw": "peace",
+      "cn_in": "peace",
+      "cn_ja": "peace",
+      "ru_tw": "peace",
+      "in_ru": "peace",
+      "ja_ru": "peace",
+      "in_tw": "peace",
+      "ja_tw": "peace",
+      "in_ja": "peace"
+    }
+  },
+  "scenarioEvents": {
+    "definitions": [
+      {
+        "id": "incheon_landing",
+        "type": "notice",
+        "trigger": "roundBegin",
+        "conditions": [
+          {
+            "type": "round",
+            "value": 3,
+            "op": "gte"
+          }
+        ],
+        "title": "仁川登陆战役",
+        "body": "联合国军在仁川实施两栖登陆，切断朝鲜人民军后方补给线，战局发生剧烈逆转！",
+        "actions": [
+          {
+            "type": "captureArea",
+            "area": 808,
+            "country": "am"
+          },
+          {
+            "type": "spawnArmy",
+            "area": 808,
+            "armyType": "tank",
+            "level": 2
+          },
+          {
+            "type": "spawnArmy",
+            "area": 808,
+            "armyType": "eliteinfantry",
+            "level": 2
+          },
+          {
+            "type": "spawnArmy",
+            "area": 833,
+            "armyType": "infantry",
+            "level": 2
+          },
+          {
+            "type": "spawnArmy",
+            "area": 833,
+            "armyType": "artillery",
+            "level": 1
+          },
+          {
+            "type": "changeMoney",
+            "country": "am",
+            "amount": 300
+          },
+          {
+            "type": "changeMoney",
+            "country": "rk",
+            "amount": 200
+          },
+          {
+            "type": "changeIndustry",
+            "country": "rk",
+            "amount": 80
+          },
+          {
+            "type": "changeStability",
+            "country": "am",
+            "amount": 15,
+            "reason": "incheon_success"
+          },
+          {
+            "type": "changeStability",
+            "country": "rk",
+            "amount": 20,
+            "reason": "incheon_success"
+          },
+          {
+            "type": "changeStability",
+            "country": "nk",
+            "amount": -25,
+            "reason": "incheon_crisis"
+          }
+        ]
+      },
+      {
+        "id": "chinese_volunteers_entry",
+        "type": "notice",
+        "trigger": "roundBegin",
+        "conditions": [
+          {
+            "type": "any",
+            "conditions": [
+              {
+                "type": "round",
+                "value": 6,
+                "op": "gte"
+              },
+              {
+                "type": "countryDefeated",
+                "country": "nk"
+              }
+            ]
+          },
+          {
+            "type": "diplomaticRelation",
+            "first": "cn",
+            "second": "am",
+            "state": "peace"
+          }
+        ],
+        "title": "中国人民志愿军跨过鸭绿江参战",
+        "body": "雄赳赳，气昂昂，跨过鸭绿江！中国人民志愿军发起抗美援朝战役，出兵保家卫国，向联合国军开战！",
+        "actions": [
+          {
+            "type": "setDiplomacy",
+            "first": "cn",
+            "second": "am",
+            "state": "war",
+            "reason": "volunteers_entry"
+          },
+          {
+            "type": "setDiplomacy",
+            "first": "cn",
+            "second": "rk",
+            "state": "war",
+            "reason": "volunteers_entry"
+          },
+          {
+            "type": "setDiplomacy",
+            "first": "cn",
+            "second": "gb",
+            "state": "war",
+            "reason": "volunteers_entry"
+          },
+          {
+            "type": "setDiplomacy",
+            "first": "cn",
+            "second": "au",
+            "state": "war",
+            "reason": "volunteers_entry"
+          },
+          {
+            "type": "setDiplomacy",
+            "first": "cn",
+            "second": "ca",
+            "state": "war",
+            "reason": "volunteers_entry"
+          },
+          {
+            "type": "setDiplomacy",
+            "first": "cn",
+            "second": "nk",
+            "state": "alliance",
+            "reason": "volunteers_entry"
+          },
+          {
+            "type": "spawnArmy",
+            "area": 795,
+            "armyType": "artillery",
+            "level": 2
+          },
+          {
+            "type": "spawnArmy",
+            "area": 795,
+            "armyType": "infantry",
+            "level": 2
+          },
+          {
+            "type": "changeMoney",
+            "country": "cn",
+            "amount": 450
+          },
+          {
+            "type": "changeIndustry",
+            "country": "cn",
+            "amount": 200
+          },
+          {
+            "type": "changeMoney",
+            "country": "nk",
+            "amount": 150
+          },
+          {
+            "type": "changeStability",
+            "country": "cn",
+            "amount": 20,
+            "reason": "defend_motherland"
+          },
+          {
+            "type": "changeStability",
+            "country": "nk",
+            "amount": 25,
+            "reason": "brother_reinforcement"
+          },
+          {
+            "type": "changeStability",
+            "country": "am",
+            "amount": -15,
+            "reason": "new_opponent"
+          }
+        ]
+      },
+      {
+        "id": "soviet_air_support_mig_alley",
+        "type": "notice",
+        "trigger": "roundBegin",
+        "conditions": [
+          {
+            "type": "round",
+            "value": 10,
+            "op": "gte"
+          }
+        ],
+        "title": "米格走廊：苏联航空兵团秘密参战",
+        "body": "苏联红军别洛夫航空兵师装备米格-15战机进驻清川江以北，夺取空中制空权，打破敌军空中绝对优势！",
+        "actions": [
+          {
+            "type": "changeIndustry",
+            "country": "cn",
+            "amount": 150
+          },
+          {
+            "type": "changeIndustry",
+            "country": "nk",
+            "amount": 100
+          },
+          {
+            "type": "changeStability",
+            "country": "cn",
+            "amount": 10,
+            "reason": "mig_alley"
+          },
+          {
+            "type": "changeStability",
+            "country": "nk",
+            "amount": 10,
+            "reason": "mig_alley"
+          },
+          {
+            "type": "changeStability",
+            "country": "am",
+            "amount": -10,
+            "reason": "jet_clash"
+          }
+        ]
+      }
+    ],
+    "variables": {}
+  },
+  "ai_rules": {
+    "war_cooldown": 4,
+    "min_stability": 55,
+    "max_active_major_enemies": 2,
+    "permanent_neutrals": ["in", "tw", "ja"],
+    "special_restraints": [
+      {
+        "attacker": "ru",
+        "target": "am",
+        "min_round": 30,
+        "overwhelming_power_ratio": 5
+      }
+    ]
+  }
+}

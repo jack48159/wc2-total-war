@@ -1,0 +1,23 @@
+<Texture name="text_kr_iPad.png"/>
+<Images>
+	<Image name="buttontext_options.png" x="82" y="63" w="91" h="22" refx="-3 " refy="-6 "/>
+	<Image name="buttontext_options_press.png" x="78" y="44" w="86" h="18" refx="-5 " refy="-8 "/>
+	<Image name="buttontext_quit.png" x="1" y="23" w="43" h="23" refx="-27 " refy="-6 "/>
+	<Image name="buttontext_quit_press.png" x="1" y="1" w="40" h="21" refx="-27 " refy="-7 "/>
+	<Image name="buttontext_restart.png" x="93" y="1" w="84" h="22" refx="-6 " refy="-5 "/>
+	<Image name="buttontext_restart_press.png" x="1" y="47" w="76" h="22" refx="-10 " refy="-7 "/>
+	<Image name="buttontext_resume.png" x="82" y="86" w="94" h="20" refx="-3 " refy="-6 "/>
+	<Image name="buttontext_resume_press.png" x="1" y="109" w="84" h="18" refx="-5 " refy="-7 "/>
+	<Image name="buttontext_save.png" x="45" y="22" w="47" h="21" refx="-23 " refy="-6 "/>
+	<Image name="buttontext_save_press.png" x="42" y="1" w="43" h="20" refx="-27 " refy="-7 "/>
+	<Image name="text_animation.png" x="134" y="166" w="229" h="41" refx="-28" refy="24"/>
+	<Image name="text_bank.png" x="1" y="70" w="80" h="38" refx="42" refy="20"/>
+	<Image name="text_conditon.png" x="1" y="128" w="97" h="27" refx="47" refy="14"/>
+	<Image name="text_medals.png" x="177" y="83" w="174" h="40" refx="0" refy="26"/>
+	<Image name="text_music.png" x="178" y="1" w="141" h="39" refx="72" refy="-9"/>
+	<Image name="text_rating.png" x="1" y="196" w="132" h="40" refx="71" refy="28"/>
+	<Image name="text_round.png" x="1" y="156" w="131" h="39" refx="0" refy="16"/>
+	<Image name="text_select.png" x="324" y="1" w="563" h="40" refx="278" refy="16"/>
+	<Image name="text_sfx.png" x="134" y="124" w="194" h="41" refx="100" refy="-11"/>
+	<Image name="text_speed.png" x="174" y="41" w="149" h="41" refx="-55" refy="23"/>
+</Images>

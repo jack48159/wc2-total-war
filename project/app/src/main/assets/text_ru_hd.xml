@@ -1,0 +1,24 @@
+<Texture name="text_ru_hd.png" />
+<Images>
+    <Image name="buttontext_options.png" x="208" y="32" w="147" h="30" refx="-22" refy="-17" />
+    <Image name="buttontext_options_press.png" x="87" y="95" w="133" h="28" refx="-28" refy="-18" />
+    <Image name="buttontext_quit.png" x="1" y="128" w="85" h="35" refx="-53" refy="-16" />
+    <Image name="buttontext_quit_press.png" x="1" y="64" w="77" h="32" refx="-56" refy="-18" />
+    <Image name="buttontext_restart.png" x="193" y="1" w="145" h="30" refx="-28" refy="-17" />
+    <Image name="buttontext_restart_press.png" x="84" y="66" w="131" h="28" refx="-35" refy="-18" />
+    <Image name="buttontext_resume.png" x="79" y="35" w="128" h="30" refx="-40" refy="-17" />
+    <Image name="buttontext_resume_press.png" x="1" y="196" w="116" h="29" refx="-47" refy="-17" />
+    <Image name="buttontext_save.png" x="1" y="97" w="82" h="30" refx="-57" refy="-16" />
+    <Image name="buttontext_save_press.png" x="1" y="35" w="75" h="28" refx="-61" refy="-17" />
+    <Image name="text_animation.png" x="1" y="271" w="314" h="33" refx="156" refy="15" />
+    <Image name="text_bank.png" x="1" y="164" w="112" h="31" refx="57" refy="16" />
+    <Image name="text_conditon.png" x="216" y="63" w="195" h="24" refx="98" refy="14" />
+    <Image name="text_destroyed.png" x="118" y="195" w="183" h="37" refx="88" refy="16" />
+    <Image name="text_medals.png" x="1" y="233" w="281" h="37" refx="0" refy="17" />
+    <Image name="text_music.png" x="72" y="1" w="120" h="33" refx="62" refy="16" />
+    <Image name="text_rating.png" x="87" y="124" w="135" h="32" refx="67" refy="14" />
+    <Image name="text_round.png" x="118" y="157" w="141" h="37" refx="0" refy="16" />
+    <Image name="text_select.png" x="1" y="305" w="448" h="38" refx="221" refy="14" />
+    <Image name="text_sfx.png" x="1" y="1" w="70" h="33" refx="33" refy="15" />
+    <Image name="text_speed.png" x="260" y="88" w="209" h="33" refx="103" refy="16" />
+</Images>

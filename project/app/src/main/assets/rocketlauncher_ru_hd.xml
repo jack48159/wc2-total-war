@@ -1,0 +1,6 @@
+﻿<Texture name="rocketlauncher_ru_hd.png" />
+<Images>
+    <Image name="补间 20.png" x="1" y="1" w="304" h="209" refx="0" refy="0" />
+    <Image name="smoke.png" x="1" y="211" w="101" h="35" refx="0" refy="0" />
+    <Image name="元件 2.png" x="306" y="1" w="125" h="19" refx="0" refy="0" />
+</Images>

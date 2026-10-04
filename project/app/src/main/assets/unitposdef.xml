@@ -1,0 +1,92 @@
+﻿<Units>
+	<Unit name="infantry">
+		<Positions>
+			<Position idx="0" x="108" y="293" scale="1.0" />
+			<Position idx="1" x="75" y="260" scale="0.93" />
+			<Position idx="2" x="140" y="238" scale="0.87" />
+			<Position idx="3" x="107" y="210" scale="0.81" />
+			<Position idx="4" x="162" y="198" scale="0.75" />
+		</Positions>
+	</Unit>
+	<Unit name="panzer">
+		<Positions>
+			<Position idx="0" x="79" y="284" scale="1.0" />
+			<Position idx="1" x="99" y="252" scale="0.9" />
+			<Position idx="2" x="122" y="224" scale="0.8" />
+			<Position idx="3" x="141" y="203" scale="0.7" />
+			<Position idx="4" x="160" y="182" scale="0.6" />
+		</Positions>
+	</Unit>
+	<Unit name="artillery">
+		<Positions>
+			<Position idx="0" x="81" y="289" scale="1.0" />
+			<Position idx="1" x="102" y="254" scale="0.9" />
+			<Position idx="2" x="122" y="224" scale="0.8" />
+			<Position idx="3" x="144" y="199" scale="0.7" />
+			<Position idx="4" x="163" y="179" scale="0.6" />
+		</Positions>
+	</Unit>
+	<Unit name="rocket">
+		<Positions>
+			<Position idx="0" x="72" y="287" scale="1.0" />
+			<Position idx="1" x="94" y="255" scale="0.9" />
+			<Position idx="2" x="119" y="227" scale="0.8" />
+			<Position idx="3" x="139" y="206" scale="0.7" />
+			<Position idx="4" x="159" y="185" scale="0.6" />
+		</Positions>
+	</Unit>
+	<Unit name="tank">
+		<Positions>
+			<Position idx="0" x="79" y="280" scale="1.0" />
+			<Position idx="1" x="99" y="250" scale="0.9" />
+			<Position idx="2" x="122" y="224" scale="0.8" />
+			<Position idx="3" x="141" y="205" scale="0.7" />
+			<Position idx="4" x="160" y="185" scale="0.6" />
+		</Positions>
+	</Unit>
+	<Unit name="heavytank">
+		<Positions>
+			<Position idx="0" x="69" y="290" scale="0.95" />
+			<Position idx="1" x="90" y="257" scale="0.85" />
+			<Position idx="2" x="114" y="235" scale="0.75" />
+			<Position idx="3" x="134" y="210" scale="0.7" />
+			<Position idx="4" x="154" y="185" scale="0.6" />
+		</Positions>
+	</Unit>
+	<Unit name="destroyer">
+		<Positions>
+			<Position idx="0" x="96" y="293" scale="1.0" />
+			<Position idx="1" x="52" y="229" scale="0.8" />
+			<Position idx="2" x="103" y="254" scale="0.85" />
+			<Position idx="3" x="65" y="207" scale="0.7" />
+			<Position idx="4" x="108" y="222" scale="0.7" />
+		</Positions>
+	</Unit>
+	<Unit name="cruiser">
+		<Positions>
+			<Position idx="0" x="118" y="303" scale="1.0" />
+			<Position idx="1" x="77" y="271"  scale="0.8" />
+			<Position idx="2" x="130" y="260" scale="0.8" />
+			<Position idx="3" x="90" y="233" scale="0.7" />
+			<Position idx="4" x="135" y="222" scale="0.6" />
+		</Positions>
+	</Unit>
+	<Unit name="battleship">
+		<Positions>
+			<Position idx="0" x="133" y="303" scale="1.0" />
+			<Position idx="1" x="79" y="276"  scale="0.8" />
+			<Position idx="2" x="140" y="260" scale="0.8" />
+			<Position idx="3" x="94" y="238" scale="0.7" />
+			<Position idx="4" x="145" y="222" scale="0.6" />
+		</Positions>
+	</Unit>
+	<Unit name="aircraftcarrier">
+		<Positions>
+			<Position idx="0" x="135" y="252" scale="1.0" />
+			<Position idx="1" x="146" y="227" scale="0.9" />
+			<Position idx="2" x="154" y="204" scale="0.8" />
+			<Position idx="3" x="161" y="187" scale="0.7" />
+			<Position idx="4" x="167 " y="173" scale="0.6" />
+		</Positions>
+	</Unit>
+</Units>

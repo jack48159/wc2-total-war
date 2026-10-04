@@ -1,0 +1,14 @@
+<Texture name="iap_extra.png" />
+<Images>
+    <Image name="iap_cmcc.png" x="0" y="38" w="100" h="35" refx="0" refy="0" />
+    <Image name="iap_cmcc_press.png" x="124" y="38" w="100" h="35" refx="0" refy="0" />
+    <Image name="iap_alipay.png" x="0" y="0" w="100" h="35" refx="0" refy="0" />
+    <Image name="iap_alipay_press.png" x="124" y="0" w="100" h="35" refx="0" refy="0" />
+    <Image name="btn_info.png" x="0" y="80" w="76" h="32" refx="0" refy="0" />
+    <Image name="p_btn_info.png" x="0" y="150" w="76" h="32" refx="0" refy="0" />
+    <Image name="btn_restore.png" x="125" y="80" w="76" h="32" refx="0" refy="0" />
+    <Image name="p_btn_restore.png" x="125" y="150" w="76" h="32" refx="0" refy="0" />
+    <Image name="btn_close.png" x="0" y="115" w="35" h="32" refx="0" refy="0" />
+    <Image name="p_btn_close.png" x="0" y="185" w="35" h="32" refx="0" refy="0" />
+    <Image name="btn_service.png" x="125" y="115" w="100" h="35" refx="0" refy="0" />
+</Images>

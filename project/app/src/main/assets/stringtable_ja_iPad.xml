@@ -1,0 +1,940 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Infantry</key>
+	<string>歩兵</string>
+	<key>Armour</key>
+	<string>装甲車両</string>
+	<key>Artillery</key>
+	<string>大砲</string>
+	<key>Rocket</key>
+	<string>ロケットランチャー</string>
+	<key>Tank</key>
+	<string>戦車</string>
+	<key>Heavy Tank</key>
+	<string>重戦車</string>
+	
+	<key>Destroyer</key>
+	<string>駆逐艦</string>
+	<key>Cruiser</key>
+	<string>巡洋艦</string>
+	<key>BattleShip</key>
+	<string>戦艦</string>
+	<key>Aircraft Carrier</key>
+	<string>航空母艦</string>
+	
+	<key>Airstrike</key>
+	<string>空襲</string>
+	<key>Bomber</key>
+	<string>空爆</string>
+	<key>Airborne Force</key>
+	<string>空挺兵</string>
+	<key>Nuclear Bomb</key>
+	<string>核弾</string>
+	
+	<key>City</key>
+	<string>都市</string>
+	<key>Industry</key>
+	<string>工業</string>
+	<key>Airport</key>
+	<string>空港</string>
+	<key>Land Fort</key>
+	<string>要塞砲</string>
+	<key>Entrenchment</key>
+	<string>塹壕</string>
+	<key>Antiaircraft</key>
+	<string>対空機関銃</string>
+	<key>Radar</key>
+	<string>レーダー</string>
+	
+	<key>Research</key>
+	<string>研究開発</string>
+	<key>Carrier</key>
+	<string>輸送船</string>
+	<key>Assault Art</key>
+	<string>突撃の戦術</string>
+	<key>Defend Art</key>
+	<string>防御の戦術</string>
+	<key>Commander</key>
+	<string>指揮官</string>
+	<key>Supply Line</key>
+	<string>補給線</string>
+	<key>Ace Forces</key>
+	<string>エース部隊</string>
+
+	<key>Infantry Intro</key>
+	<string>もっとも生産しやすく、戦場での主力部隊です。</string>
+	<key>Armour Intro</key>
+	<string>装甲車両は優れた機動力を持つ。大口径の機関銃\nで歩兵を薙ぎ倒せます。</string>
+	<key>Artillery Intro</key>
+	<string>攻撃する時、多くの部隊に反撃させないことがで\nきますが、移動速度は遅い。</string>
+	<key>Rocket Intro</key>
+	<string>巨大な威力を持つロケット装置を装着して敵軍に\n遠距離打撃を与えますが、移動スピードが遅くて\n防護装甲を装備していない。</string>
+	<key>Tank Intro</key>
+	<string>素晴らしい装甲と火力を持つ。塹壕ではこいつの\n進行を食い止められない。敵軍を全滅すると移動\n力は消費しない。</string>
+	<key>Heavy Tank Intro</key>
+	<string>強力な遠距離火力を持ち、大砲から攻撃を受ける\n時にも反撃できる。塹壕ではこいつの進行を食い止\nめられない。敵軍を全滅すると移動力は消費しない。</string>
+	
+	<key>Destroyer Intro</key>
+	<string>もっとも普通の軍艦。普段は海で護衛やパトロー\nルなどの任務を執行する。</string>
+	<key>Cruiser Intro</key>
+	<string>海戦における主力艦。薄くない装甲と高火力を有\nする。</string>
+	<key>BattleShip Intro</key>
+	<string>大口径の艦砲と厚い装甲を装着して強い攻撃力と\n防御力を備えます。</string>
+	<key>Aircraft Carrier Intro</key>
+	<string>航空母艦は海戦の中核であり、艦載機を使って目\n標を爆撃できますが、自身の防御力は高くない。</string>
+	
+	<key>Airstrike Intro</key>
+	<string>戦闘機は大口径の機関銃を装備し、敵エリアを空\nから攻撃します。</string>
+	<key>Bomber Intro</key>
+	<string>敵エリアを爆撃します。爆撃されたエリア内の全\n部隊と都市と工業はダメージを受けます。[1ター\nン毎に1回]</string>
+	<key>Airborne Force Intro</key>
+	<string>指定した陸域に歩兵隊を1つ降下させます。[2ター\nン毎に1回]</string>
+	<key>Nuclear Bomb Intro</key>
+	<string>1つの区域に核弾攻撃を実行して当地域の軍隊と\n施設を徹底的に潰します。[3ターン毎に1回]</string>
+	<key>City Intro</key>
+	
+	<string>都市のレベルをアップすると、生産力と部隊の補\n給を上げられ、ハイレベルの都市では歩兵を作る\nことができます。</string>
+	<key>Industry Intro</key>
+	<string>工業のレベルをアップすると、工業力と部隊の補\n給を上げられ、ハイレベルの工業地域では高レベ\nルの機械化部隊を作ることができます。</string>
+	<key>Airport Intro</key>
+	<string>空から敵を攻撃するには空港が必要です。それに、\nより多くの補給も提供できます。</string>
+	<key>Land Fort Intro</key>
+	<string>部隊の防御力を上げます。大砲の攻撃を防御する\n時に反撃を行えます。軍艦の攻撃を防御する時に\n2倍のダメージを与えられます。</string>
+	<key>Entrenchment Intro</key>
+	<string>我が部隊の防御力を上げます。それに、敵の移動\n力を減少させることができます。</string>
+	<key>Antiaircraft Intro</key>
+	<string>対空兵器は空襲や空爆により受けたダメージを大\n幅に減少できます。</string>
+	<key>Radar Intro</key>
+	<string>レーダーの偵察機能は敵からの遠距離火力と空襲\nのダメージをかなり減らすことができます。</string>
+	
+	<key>Research Intro</key>
+	<string>技術をレベルアップするには3ターンかかります。\nレベルアップが終わると、それなりのレベルのカ\nートを使えます。[3ターン毎に1回]</string>
+	<key>Carrier Intro</key>
+	<string>輸送船を装備すれば陸軍部隊も海を移動できます。</string>
+	<key>Assault Art Intro</key>
+	<string>突撃の戦術は我が部隊の攻撃力を上げます。</string>
+	<key>Defend Art Intro</key>
+	<string>防御の戦術は我が部隊の防御力を上げます。</string>
+	<key>Commander Intro</key>
+	<string>指揮官を使用すると、部隊の能力が増えます。指\n揮官の能力は指揮官の階級レベルによります。 </string>
+	<key>Supply Line Intro</key>
+	<string>1つの我がエリアでダメージを受けた全部隊に全\n補給を行います。[3ターン毎に1回]</string>
+	<key>Ace Forces Intro</key>
+	<string>1つの指定部隊にレベルが1つアップするご褒美を\n与えます。[1ターン毎に1回]</string>
+		
+	<key>axis battle name 1</key>
+	<string>電撃戦</string>
+	<key>axis battle name 2</key>
+	<string>黄計画</string>
+	<key>axis battle name 3</key>
+	<string>アシカ作戦</string>
+	<key>axis battle name 4</key>
+	<string>バルカン半島の戦い</string>
+	<key>axis battle name 5</key>
+	<string>北アフリカ戦線</string>
+	<key>axis battle name 6</key>
+	<string>バルバロッサ作戦</string>
+	<key>axis battle name 7</key>
+	<string>トラ・トラ・トラ!</string>
+	<key>axis battle name 8</key>
+	<string>南アジアの戦い</string>
+	<key>axis battle name 9</key>
+	<string>中国・ビルマ・インド戦線</string>
+	<key>axis battle name 10</key>
+	<string>北アメリカへの侵入</string>
+	
+	<key>allies battle name 1</key>
+	<string>モスクワの戦い</string>
+	<key>allies battle name 2</key>
+	<string>ミッドウェー海戦</string>
+	<key>allies battle name 3</key>
+	<string>エル・アラメインの戦い</string>
+	<key>allies battle name 4</key>
+	<string>クルスクの戦い</string>
+	<key>allies battle name 5</key>
+	<string>ハスキー作戦</string>
+	<key>allies battle name 6</key>
+	<string>インパール作戦</string>
+	<key>allies battle name 7</key>
+	<string>ノルマンディー上陸作戦</string>
+	<key>allies battle name 8</key>
+	<string>ベルリンを目指す</string>
+	<key>allies battle name 9</key>
+	<string>極東の戦い</string>
+	<key>allies battle name 10</key>
+	<string>東京を目指す</string>
+	
+	<key>wto battle name 1</key>
+	<string>レッドストーム</string>
+	<key>wto battle name 2</key>
+	<string>中印戦争</string>
+	<key>wto battle name 3</key>
+	<string>中東戦争</string>
+	<key>wto battle name 4</key>
+	<string>太平洋戦争</string>
+	<key>wto battle name 5</key>
+	<string>トルコを包囲する</string>
+	<key>wto battle name 6</key>
+	<string>反撃</string>
+	<key>wto battle name 7</key>
+	<string>アメリカへの遠征</string>
+	
+	<key>nato battle name 1</key>
+	<string>ミサイル危機</string>
+	<key>nato battle name 2</key>
+	<string>赤い影</string>
+	<key>nato battle name 3</key>
+	<string>アフリカの解放</string>
+	<key>nato battle name 4</key>
+	<string>海の道</string>
+	<key>nato battle name 5</key>
+	<string>インド洋の争覇</string>
+	<key>nato battle name 6</key>
+	<string>南太平洋</string>
+	<key>nato battle name 7</key>
+	<string>栄光と平和</string>
+	
+	<key>axis battle intro 1</key>
+	<string>元首はポーランドへの侵攻作戦を承認した。貴方は帝国の最\n新鋭軍団を率いてポーランドを倒す。グデーリアン将軍は貴\n方と共に戦ってくれる。指揮官閣下！最高司令部は貴方の勝\n報を期待している！</string>
+	<key>axis battle intro 2</key>
+	<string>最高司令部はようやく西への進軍計画を練った。この計画は\n軍集団Aはフランスのマジノ線を迂回してオランダとベルギ\nーに侵入し、最終的にはパリに進撃すると軍集団Bは帝国に\n必要な資源のために北欧諸国のデンマークとノルウェーに進\n軍するという2つの部分に分かれている。グデーリアン将軍\nは貴方と共にこの戦いを指揮する。</string>
+	<key>axis battle intro 3</key>
+	<string>我々の軍隊が凱旋門を通ることは人心を奮い立たせた。この\n事によって元首もとても満足だった。しかし情報によると英\n軍と法軍は反撃を企んでいる。彼らにいかなるチャンスを与\nえないでください！ゲーリング元帥は彼のエース空軍を持っ\nて貴方の作戦に協力する。</string>
+	<key>axis battle intro 4</key>
+	<string>ドイツの幾つかの軍事行動が空前の成功を収めた。このこと\nは総理のバルカン地域への拡張の決心を刺激している。ギリ\nシアにはイギリス人の援助があることを考慮して我々はブル\nガリアとルーマニアを誘って今回の行動に参加してもらった。\nグラツィアーニ将軍は海上から貴方をサポートする！</string>
+	<key>axis battle intro 5</key>
+	<string>イタリア軍は北アフリカで苦境に陥った。元首はもしアフリ\nカがイギリスの手に落ちると地中海での補給線は切断される\nのを心配し、今すぐアフリカに援軍を派遣することを決めた。\n指揮官閣下！ロンメル将軍は休暇から復帰した。彼は精鋭の\n戦車部隊を率い、貴方と共に北アフリカに進軍する。</string>
+	<key>axis battle intro 6</key>
+	<string>ソ連への侵入計画が始まった！ロシア人は不備のため、どん\nどん撤退している。今、グデーリアン将軍の南方軍集団はキ\nエフに駐屯するソ連軍を包囲殲滅しようとしている。元首は\n貴方たちに早くモスクワでランデブーしてほしい。指揮官閣\n下！もし貴方が勝利を収めれば間違いなくこの勝利は最も偉\n大な勝利となるだろう。</string>
+	<key>axis battle intro 7</key>
+	<string>アメリカは我々が必要としているエネルギーを切断し、真珠\n湾に厖大な海軍を駐屯させている。これらのことは最高司令\n部を不安にさせている。真珠湾の米軍を消滅するのは今の我\n々にとって切実な目標である。山本五十六将軍はすでに作戦\n計画を準備した。天皇は貴方たちの吉報を期待している。</string>
+	<key>axis battle intro 8</key>
+	<string>南太平洋島嶼諸国には帝国に必要な資源がたくさんある。こ\nのことはすでにアメリカや英国に気付かれてしまったかもし\nれない。我々の攻撃を食い止めるため、彼らは色んな準備を\nした。しかもオーストラリアも国家総動員を始めている。指\n揮官閣下！彼らに勝つために勇気だけでは足りないです。</string>
+	<key>axis battle intro 9</key>
+	<string>アジア戦線で色んな勝利を収めたが、最初に決めた目標はま\nだ完成していない。今、中国人はビルマで英国と組んで我々\nに反撃を行っている。指揮官閣下！彼らの反撃を食い止めな\nければこれまでの努力は無駄になる。</string>
+	<key>axis battle intro 10</key>
+	<string>我々の情報によってアメリカ人は凄まじい威力をもつスーパ\nーウエポンを制作しようとしている。皆もそうとう驚いてい\nる。元首は北アメリカへの遠征計画を早めることを決定し、\n連携攻撃についてイタリアと日本と検討をもした。指揮官閣\n下！チャンスは今しかない。</string>
+		
+	<key>allies battle intro 1</key>
+	<string>国は最も危険な時に来ている。今、ジューコフ将軍はキエフ\nでグデーリアンの軍団に対抗して、ロコソフスキー将軍は北\n方でフィンランドとロンメルの連合軍に対抗している。モス\nクワを守れるのは貴方しかいない。指揮官閣下！貴方は我々\nの最後の希望です。</string>
+	<key>allies battle intro 2</key>
+	<string>指揮官閣下！日本の連合艦隊が我々のミッドウェー島の海軍\n基地に攻撃を行った。もし日本にミッドウェー島を制圧され\nたら、わが国の西岸は日本海軍に脅かされる。その時、大統\n領閣下に一体どう説明するか…ニミッツ将軍は貴方に協力し\nて我々が確実に勝つことを確保する。</string>
+	<key>allies battle intro 3</key>
+	<string>ロンメルの装甲軍団は北アフリカで我々の一番の強敵となっ\nている。モンゴメリー将軍は彼らを徹底的に潰せる方法を探\nしている。指揮官閣下！貴方の参戦はこの一刻を早めにする\nことができるかもしれない。</string>
+	<key>allies battle intro 4</key>
+	<string>指揮官閣下！最高司令部は大規模な反撃を行ってこれらの死\nに損ない奴を徹底的に家門から追い出すことを決意した。こ\nの計画によっては貴方とジューコフ将軍とロコソフスキー将\n軍は各自の軍集団を率い、3つの方向から敵軍に総攻撃を行\nうことになります。</string>
+	<key>allies battle intro 5</key>
+	<string>北アフリカの戦いを終えた後、盟軍の指揮部は枢軸国の中の\n一番弱いイタリアを徹底的に潰して彼らを強制的に戦争から\n退出させたい。指揮官閣下！この戦の中のイタリア軍は我々\nの唯一の敵ではなくギリシアに駐屯しているドイツ軍こそ我\n々が重視すべき相手です！</string>
+	<key>allies battle intro 6</key>
+	<string>情報から見ると日本はビルマ地域に大量な軍隊を集結させて\nいる。どうやら彼らはインドに攻めようとする。インドは我\nが大英帝国にとってアジアでの最後の拠点であり、早めに部\n隊を配置する必要がある。北にある中国の軍隊は我々の盟友\nで共に戦ってくれる。</string>
+	<key>allies battle intro 7</key>
+	<string>東線で作戦するソ連を支援するために、またドイツ軍を盟軍\nの包囲に陥らせるため、最高司令部はヨーロッパ上陸作戦を\n行うことを決定した。我々はこの目標のために十分な準備を\nした。この戦いは貴方の生涯で最も厖大で苦しい戦いとなる\nだろう。</string>
+	<key>allies battle intro 8</key>
+	<string>我々の前方にあるのはドイツ本国。これからの戦闘もより激\nしくなり、前進とともに巨大な代価を支払わなければならな\nい。東線で作戦するソ連赤軍の死傷人数データに我々は凄く\n驚いた。指揮官閣下！ドイツを打ち破るとヨーロッパ地域で\nの勝利を収めることができる。</string>
+	<key>allies battle intro 9</key>
+	<string>我々は盟軍にとって極東の最も重要な力であり、長期的に侵\n略者と戦って一度も征服されたことはない。指揮官閣下！今\nは我々の反撃の時だ。失った土地を取り戻してください。ソ\n連赤軍は北東で我々をサポートする。</string>
+	<key>allies battle intro 10</key>
+	<string>歴史上で日本上陸作戦に成功する人はいない。たとえチンギ\nス·ハンでもできなかった。でも歴史は我々にチャンスをくれ\nた。我々は成功しなければならない。指揮官閣下！上陸作戦\nをする前にまずは彼らの強い海軍を倒す必要があります。</string>	
+	
+	<key>wto battle intro 1</key>
+	<string>アメリカを始めとする「北大西洋条約機構（NATO）」は\n極東地域が社会主義陣営の一部となることを認めたくない。\nそのために我々の全国統一の戦争を干渉するつもりです。た\nぶん我々は彼らをどうやって撃破するのを少し考える必要が\nある。指揮官閣下！この戦いは決して楽なものではない。彼\nらとの装備差がでかすぎからだ。</string>
+	<key>wto battle intro 2</key>
+	<string>先ほど指揮部はわが国の西部に装備の整ったインド軍隊がた\nくさん出現したという情報を手に入れた。彼らはすでに我が\n国境を越えてしまった。指揮官閣下！状況は非常に緊急なの\nで、貴方はすぐ前線に赴き、戦支度をしなければなりません。</string>
+	<key>wto battle intro 3</key>
+	<string>アメリカや英国より先に中東地域の石油資源を獲得しなけれ\nばならない。明らかに彼らもそう思っている。指揮官閣下！\nもし彼らに中東地域から追い出されたら、彼らと対抗する資\n本を失います。</string>
+	<key>wto battle intro 4</key>
+	<string>他の作戦地域の圧力を緩めるためにアメリカとカナダは1つ\nの連合艦隊を作り、太平洋から我々に攻撃を仕掛けてきた。\n彼らの司令はニミッツ元帥です。指揮官閣下！わが海軍の力\nはとても弱くて海面上で彼らと正面に対抗できません。</string>
+	<key>wto battle intro 5</key>
+	<string>トルコはアメリカの軍事援助を獲得した後で我々の盟友ブル\nガリアに攻撃を仕掛けた。指揮官閣下！貴方に部隊を率い、\nブルガリアに増援して速やかにトルコ、ギリシアやユーゴス\nラビアを撃破してほしい。戦争を早く終らせられないなら、\nアメリカの援軍は来る。その時の我々は不利な状況に陥るだ\nろう。</string>
+	<key>wto battle intro 6</key>
+	<string>わずか数週間でアメリカと英国を始めとする連合軍がドイツ\n全土を支配し、ポーランドの国境さえも超えた。同時にフラ\nンスとイタリア軍団もハンガリーに攻撃を仕掛けた。指揮官\n閣下！最高司令部は貴方に速やかに軍を集結して彼らを援助\nしてほしい。局面が安定になったら敵に必要な反撃を与えて\nください。</string>
+	<key>wto battle intro 7</key>
+	<string>対NATO作戦に幾つの大勝利を収めると、我々の勢力図はす\nでにヨーロッパ、アジアやアフリカまで拡大した。最高司令\n部の次の計画は南アメリカへの突入。あそこでミサイル発射\n基地を建設し、アメリカを平和交渉のテーブルに強制的に座\nらせる。指揮官閣下！アメリカは貴方にそう簡単にゴールを\nさせない。</string>
+
+	<key>nato battle intro 1</key>
+	<string>ミサイルの発射装置はソ連人によってキューバに運ばれて来\nた。今、彼らはいつでもわが国土に核ミサイルを発射できる。\n指揮官閣下！大統領より我々を威嚇している武器を破壊せよ\nと南アメリカに駐屯しているソ連人を南アメリカから追い出\nせよという命令は下された。</string>
+	<key>nato battle intro 2</key>
+	<string>ソ連の西ヨーロッパへの拡張意図がすでに明らかになった。\nそしてポーランド、ブルガリア、ルーマニアやハンガリーは\nソ連の軍事盟友となった。今、彼らは「ベルリンの壁」を越\nえ、ドイツ全土を支配下に収めた。ヨーロッパで彼らと対抗\nできるのは英国とフランスとイタリアだけだ。指揮官閣下！\nこれは最後の防衛線。ヨーロッパの運命は貴方に握られてい\nる。</string>
+	<key>nato battle intro 3</key>
+	<string>今、ソ連とそいつの同盟国はすでにアフリカを支配した。も\nし我々が早くアフリカに増援しないと、彼らは間もなく地中\n海の全域を支配しヨーロッパに侵攻するだろう。指揮官閣下！\nフランスのド·ゴール将軍は我々の盟友として一緒に戦ってく\nれる。</string>
+	<key>nato battle intro 4</key>
+	<string>最高司令部は中東地域の解放という次の作戦計画を決めた。\n我々はトルコから進軍するふりをしてソ連人を惑わす。実は\n本当の作戦内容は貴方がいるアフリカから中東地域に進軍す\nるという事です。この計画のために我々は長い時間をかけて\n準備した。今、出撃の時が来た！</string>
+	<key>nato battle intro 5</key>
+	<string>もし我々はインドを経由してアジアに入るなら何の障害にぶ\nつかることはない。しかしこの計画を実行しようとするとき\nにインドの態度が根本的に変わった。それにソ連人の軍団も\nインドの国土に現れた。指揮官閣下！ソ連人の外交は成功し\nた。目的を達成するには戦争しかない！</string>
+	<key>nato battle intro 6</key>
+	<string>ソ連と中国の関係が悪くなった上で辺境戦争まで勃発した。\n我々にとっては良い知らせです。指揮官閣下！この有利な時\n機を掴んで南太平洋のソ連の補給線を切断できるか？この地\n域での援軍はオーストリアしかいない。</string>
+	<key>nato battle intro 7</key>
+	<string>ソ連を徹底的に潰すには彼らの本土で彼らを倒さないといけ\nない。もちろん貴方はすでにそんな能力を備えている。各方\n面の部隊が指定の位置に付いた後、司令部から総攻撃の命令\nが来た。指揮官閣下！前進の時に気をつけてください。ソ連\n人の戦闘意志は非常に強いです。</string>
+
+	<key>alliance name 1</key>
+	<string>枢軸国</string>
+	<key>alliance name 2</key>
+	<string>連合国</string>
+	<key>alliance name 3</key>
+	<string>WTO</string>
+	<key>alliance name 4</key>
+	<string>NATO</string>
+	
+	<key>conquest name 1</key>
+	<string>EUROPE 1939</string>
+	<key>conquest name 2</key>
+	<string>PACIFIC 1942</string>
+	<key>conquest name 3</key>
+	<string>EUROPE 1943</string>
+	<key>conquest name 4</key>
+	<string>AFRICA 1942</string>
+	<key>conquest name 5</key>
+	<string>AMERICA 1945</string>
+	<key>conquest name 6</key>
+	<string>ASIA 1950</string>
+	<key>conquest name 7</key>
+    <string>EUROPE 1955</string>
+    <key>conquest name 8</key>
+    <string>ENERGY CRISIS</string>
+
+	<key>AutoSave</key>
+	<string>AUTOSAVE</string>
+		
+	<key>rank 1</key>
+	<string>一 般 兵</string>
+	<key>rank 2</key>
+	<string>伍 長</string>
+	<key>rank 3</key>
+	<string>軍 曹</string>
+	<key>rank 4</key>
+	<string>曹 長</string>
+	<key>rank 5</key>
+	<string>少 尉</string>
+	<key>rank 6</key>
+	<string>中 尉</string>
+	<key>rank 7</key>
+	<string>大 尉</string>
+	<key>rank 8</key>
+	<string>少 佐</string>
+	<key>rank 9</key>
+	<string>中 佐</string>
+	<key>rank 10</key>
+	<string>大 佐</string>
+	<key>rank 11</key>
+	<string>准 将</string>
+	<key>rank 12</key>
+	<string>少 将</string>
+	<key>rank 13</key>
+	<string>中 将</string>
+	<key>rank 14</key>
+	<string>大 将</string>
+	<key>rank 15</key>
+	<string>元 帥</string>
+
+	<key>rank 1 intro</key>
+	<string>一般兵 指揮する部隊 耐久力回復10 耐久力上\n限+5% 使用間隔4ターン</string>
+	<key>rank 2 intro</key>
+	<string>伍長 指揮する部隊 耐久力回復15 耐久力上\n限+10% 使用間隔4ターン</string>
+	<key>rank 3 intro</key>
+	<string>軍曹 指揮する部隊 耐久力回復20 耐久力上\n限+15% 使用間隔4ターン</string>
+	<key>rank 4 intro</key>
+	<string>曹長 指揮する部隊 攻撃力+1 耐久力回復25 \n耐久力上限+20% 使用間隔4ターン</string>
+	<key>rank 5 intro</key>
+	<string>少尉 指揮する部隊 攻撃力+1 耐久力回復30 \n耐久力上限+25% 使用間隔4ターン</string>
+	<key>rank 6 intro</key>
+	<string>中尉 指揮する部隊 攻撃力+1 耐久力回復35 \nターン毎に耐久力回復+1  耐久力上限+30% \n使用間隔3ターン</string>
+	<key>rank 7 intro</key>
+	<string>大尉 指揮する部隊 攻撃力+1 防御力+1 \n耐久力回復40 ターン毎に耐久力回復+2  \n耐久力上限+35% 使用間隔3ターン</string>
+	<key>rank 8 intro</key>
+	<string>少佐 指揮する部隊 攻撃力+1 防御力+1 \n耐久力回復45 ターン毎に耐久力回復+3  \n耐久力上限+40% 使用間隔3ターン</string>
+	<key>rank 9 intro</key>
+	<string>中佐 指揮する部隊 攻撃力+1 防御力+1 \n耐久力回復50 ターン毎に耐久力回復+4  \n耐久力上限+45% 使用間隔3ターン</string>
+	<key>rank 10 intro</key>
+	<string>大佐 指揮する部隊 攻撃力+2 防御力+1 \n耐久力回復55 ターン毎に耐久力回復+5  \n耐久力上限+50% 使用間隔3ターン</string>
+	<key>rank 11 intro</key>
+	<string>准将 指揮する部隊 攻撃力+2 防御力+1 \n耐久力回復60 ターン毎に耐久力回復+6  \n耐久力上限+55% 使用間隔2ターン</string>
+	<key>rank 12 intro</key>
+	<string>少将 指揮する部隊 攻撃力+2 防御力+1 \n耐久力回復65 ターン毎に耐久力回復+7  \n耐久力上限+60% 使用間隔2ターン</string>
+	<key>rank 13 intro</key>
+	<string>中将 指揮する部隊 攻撃力+3 防御力+1 \n耐久力回復70 ターン毎に耐久力回復+8  \n耐久力上限+65% 使用間隔2ターン</string>
+	<key>rank 14 intro</key>
+	<string>大将 指揮する部隊 攻撃力+3 防御力+1 \n耐久力回復75 ターン毎に耐久力回復+9  \n耐久力上限+70% 使用間隔2ターン</string>
+	<key>rank 15 intro</key>
+	<string>元帥 指揮する部隊 攻撃力+3 防御力+2 \n耐久力回復80 ターン毎に耐久力回復+10  \n耐久力上限+75% 使用間隔2ターン</string>
+
+	<key>war medal 1 level 1</key>
+	<string>歩兵銅製勲章</string>
+	<key>war medal 1 level 2</key>
+	<string>歩兵銀製勲章</string>
+	<key>war medal 1 level 3</key>
+	<string>歩兵金製勲章</string>
+	
+	<key>war medal 2 level 1</key>
+	<string>空軍銅製勲章</string>
+	<key>war medal 2 level 2</key>
+	<string>空軍銀製勲章</string>
+	<key>war medal 2 level 3</key>
+	<string>空軍金製勲章</string>
+	
+	<key>war medal 3 level 1</key>
+	<string>砲兵銅製勲章</string>
+	<key>war medal 3 level 2</key>
+	<string>砲兵銀製勲章</string>
+	<key>war medal 3 level 3</key>
+	<string>砲兵金製勲章</string>
+	
+	<key>war medal 4 level 1</key>
+	<string>装甲銅製勲章</string>
+	<key>war medal 4 level 2</key>
+	<string>装甲銀製勲章</string>
+	<key>war medal 4 level 3</key>
+	<string>装甲金製勲章</string>
+	
+	<key>war medal 5 level 1</key>
+	<string>海軍銅製勲章</string>
+	<key>war medal 5 level 2</key>
+	<string>海軍銀製勲章</string>
+	<key>war medal 5 level 3</key>
+	<string>海軍金製勲章</string>
+	
+	<key>war medal 6 level 1</key>
+	<string>栄誉銅製勲章</string>
+	<key>war medal 6 level 2</key>
+	<string>栄誉銀製勲章</string>
+	<key>war medal 6 level 3</key>
+	<string>栄誉金製勲章</string>
+	
+	<key>war medal 1 level 1 intro</key>
+	<string>歩兵部隊を作る時にレベルが１つアップし。</string>
+	<key>war medal 1 level 2 intro</key>
+	<string>歩兵部隊を作る時にレベルが２つアップし。</string>
+	<key>war medal 1 level 3 intro</key>
+	<string>歩兵部隊を作る時にレベルが２つアップし、突撃\nの戦術と防御の戦術を獲得します。</string>
+	
+	<key>war medal 2 level 1 intro</key>
+	<string>空軍の戦闘力を増強し。</string>
+	<key>war medal 2 level 2 intro</key>
+	<string>空軍の戦闘力を増強し、行動範囲を拡大する。</string>
+	<key>war medal 2 level 3 intro</key>
+	<string>空軍の戦闘力を増強し、行動範囲を拡大する。空\n軍出動のターン制限をキャンセルします。</string>
+	
+	<key>war medal 3 level 1 intro</key>
+	<string>大砲部隊を作る時にレベルが1つアップします。</string>
+	<key>war medal 3 level 2 intro</key>
+	<string>大砲部隊やロケットランチャー部隊を作る時にレ\nベルが1つアップし。</string>
+	<key>war medal 3 level 3 intro</key>
+	<string>大砲部隊やロケットランチャー部隊を作る時にレ\nベルが1つアップし、防衛戦術を獲得します。</string>
+	
+	<key>war medal 4 level 1 intro</key>
+	<string>装甲車両部隊を作る時にレベルが1つアップします。</string>
+	<key>war medal 4 level 2 intro</key>
+	<string>装甲車両部隊や戦車部隊を作る時にレベルが1つア\nップします。</string>
+	<key>war medal 4 level 3 intro</key>
+	<string>装甲車両や戦車部隊や重戦車部隊を作る時にレベ\nルが1つアップします。</string>
+	
+	<key>war medal 5 level 1 intro</key>
+	<string>すべての陸軍を作る時に輸送船を獲得できる。</string>
+	<key>war medal 5 level 2 intro</key>
+	<string>すべての陸軍を作る時に輸送船を獲得できる。駆\n逐艦、巡洋艦を作る時にレベルが１つアップします。</string>
+	<key>war medal 5 level 3 intro</key>
+	<string>すべての陸軍を作る時に輸送船を獲得できる。駆\n逐艦、巡洋艦、戦艦や航空母艦を作る時にレベル\nが１つアップします。</string>
+	
+	<key>war medal 6 level 1 intro</key>
+	<string>ターン毎に生産力と工業力を10%アップします。</string>
+	<key>war medal 6 level 2 intro</key>
+	<string>ターン毎に生産力と工業力を20%アップします。</string>
+	<key>war medal 6 level 3 intro</key>
+	<string>ターン毎に生産力と工業力を30%アップします。</string>
+
+	<key>next level</key>
+	<string>次のレベルまでに</string>
+
+	<key>bank tip</key>
+	<string>戦役ごとに金を借りるチャンスは一度だけです。</string>
+
+	<key>tip 1</key>
+	<string>移動力を保留したまま、ターンを終了すると部隊は補給を一回行えます。都市、\n工業エリア、空港や港はダメージを受けている部隊の耐久力への回復を更に\nアップできます。</string>
+	<key>tip 2</key>
+	<string>敵を消滅すると部隊の士気が上がり、逆に囲まれると士気が下がります。</string>
+	<key>tip 3</key>
+	<string>装甲車両、大砲、ロケットランチャー、戦車そして重戦車は工業エリアでしか\n募集できません。海軍は港で募集することで、空軍を使って作戦するにはまず\n空港を建設する必要があります。</string>
+	<key>tip 4</key>
+	<string>歩兵が一番怖がっているのは装甲車両部隊です。海軍の侵攻を防ぐには要塞砲\nがベストです。</string>
+	<key>tip 5</key>
+	<string>塹壕は安くてなかなかいい効果を持っている防御工事ですが、戦車の侵攻を防\nげません。</string>
+	<key>tip 6</key>
+	<string>敵が1つのエリアに大量に集まる時、空爆を考慮しましょう。しかし、もしこ\nのエリアに対空機関銃があれば、爆撃の効果はあまり期待できません。</string>
+	<key>tip 7</key>
+	<string>装甲車両は一番足の速い軍事部隊です。無人区を占領するには装甲車両を使う\nのがベストです。</string>
+	<key>tip 8</key>
+	<string>要塞砲を持ったない限り、大砲の攻撃を受けている時に反撃できません。</string>
+	<key>tip 9</key>
+	<string>陸軍は海を渡るには輸送船しか頼らない。海上ですべての船の移動スピードは\n同じです。</string>
+	<key>tip 10</key>
+	<string>ハイレベルなカードには技術のレベル支援が必要です。ハイレベルなカードを\n使えない時、まず研究カードを使って技術のレベルを上げましょう。</string>
+	<key>tip 11</key>
+	<string>国によって兵士の作戦能力も違っています。海軍にしても陸軍にしても空軍に\nしてもアメリカはとドイツは強い、彼らの指揮官のレベルも高いです。</string>
+	
+	<key>tutorails 1</key>
+	<string>指揮官、こんにちは。これから、ゲームの操作についてご説明さ\nせて頂きます。</string>
+	<key>tutorails 2</key>
+	<string>まず生産と工業は我々の戦争の支えとなるもの。ここは我々の\n生産と工業です。</string>
+	<key>tutorails 3</key>
+	<string>「生産」と「工業」はわが都市と工業エリアの生産力によります。\n1つのエリアをタッチするとこのエリアの生産と工業を確認でき\nます。</string>
+	<key>tutorails 4</key>
+	<string>わが部隊が存在する場所をタッチすると部隊を動かせます。青い\n矢印は移動できるエリアを指し、赤い矢印は敵との交戦エリアを\n指しています。</string>
+	<key>tutorails 5</key>
+	<string>もし、他国の部隊の台座色がこちらと同じなら、我々の盟友とい\nうことで、彼らを攻撃しないでください。</string>
+	<key>tutorails 6</key>
+	<string>各部隊にはそれなりの行動力があります。行動力が0になると、\n行動不能になります。</string>
+	<key>tutorails 7</key>
+	<string>各エリアに最大4つの部隊を駐留させることができます。もちろ\nん、エリアで部隊の順番を調整できます。</string>
+	<key>tutorails 8</key>
+	<string>軍艦は海を航行できます。陸軍は海を渡るには輸送船を装備しな\nければなりません。</string>
+	<key>tutorails 9</key>
+	<string>左下は戦術カードのボタンです。すべての戦術操作はこれらのカ\nードを通して行います。</string>
+	<key>tutorails 10</key>
+	<string>カードは部隊カード、開発カード、戦略カードに分かれています。\n各カードにはそれぞれ独特な効果が設定されており、カードを使\nうには生産と工業を消耗します。</string>
+	<key>tutorails 11</key>
+	<string>ハイレベルの都市や工業エリアでしか陸軍ユニットを募集できま\nせん。海軍ユニットは港でしか募集できません。</string>
+	<key>tutorails 12</key>
+	<string>当面の技術レベルがカードの技術に対する要求を満たさない場合\nはこのカードを使えません。この時は自分の技術レベルを上げる\n必要があります。</string>
+	<key>tutorails 13</key>
+	<string>ある特殊カードは使用後に一定時間が経てば再使用できます。</string>
+	<key>tutorails 14</key>
+	<string>指揮官カードは1つの部隊ユニットにしか使えません。</string>
+	<key>tutorails 15</key>
+	<string>空港を建設するのは敵陣地を爆撃するためですが、空軍の作戦範\n囲は有限です。</string>	
+	<key>tutorails 16</key>
+	<string>右上にあるシステムボタンでゲームをセーブしたり、オプション、\nやりなおす、やめるなどの操作をしたりすることができます。</string>
+	<key>tutorails 17</key>
+	<string>すべての配置を終えると右下にある待機ボタンをタッチし、次の\nターンの開始を待ちましょう。</string>
+	<key>tutorails 18</key>
+	<string>指揮官!すべての領土を失うと失敗になります。この点だけはくれ\nぐれもご注意ください。</string>
+
+	<key>defeated</key>
+	<string>敗北</string>
+	
+	<key>commander complain 1</key>
+	<string>指揮官閣下！貴方がこうすると我々の友誼は損われますよ。</string>
+	<key>commander complain 2</key>
+	<string>時には貴方は敵か友か本当に分からない！</string>
+
+	<key>commander retreat 1</key>
+	<string>一時の撤退は失敗を意味していない。</string>
+	<key>commander retreat 2</key>
+	<string>私が突入しすぎたかもしれない。部隊には整備が必要だ。</string>
+	<key>commander retreat 3</key>
+	<string>私は最後まで戦ったのに敵を退けることができない。</string>
+	<key>commander retreat 4</key>
+	<string>敵軍の頑強さは予想以上のもので戦術を立て直す必要がある。</string>
+	<key>commander retreat 5</key>
+	<string>敵の反撃に備え、我々は実力を温存しなければならない。退け！</string>
+	
+	<key>commander return 1</key>
+	<string>我が砲火声で敵を怯えさせろ！</string>
+	<key>commander return 2</key>
+	<string>全軍は最高スピードで敵の陣地に突撃する。</string>
+	<key>commander return 3</key>
+	<string>最後まであきらめるな！最後の一兵まで戦いぬくんだ！</string>
+	<key>commander return 4</key>
+	<string>兵士たちよ！敵に我々の強大な力を思い知らせてやるんだ。</string>
+	<key>commander return 5</key>
+	<string>進撃にしても防御にしても我が部隊は最高だ。</string>
+
+	<key>commander failure 1</key>
+	<string>指揮官閣下！貴方の過去の戦績はどうあれ、この度の失敗は我が\n国を完全な受動立場に立たせた。最高司令部は貴方の解釈を受け\n入れないため、貴方の指揮権をすべて取り上げた。</string>
+	<key>commander failure 2</key>
+	<string>指揮官閣下！貴方が限定期間内に目標を達成していないため、こ\nの戦いは我々の失敗として終わった。先ほど最高司令部からの伝\n達で貴方の指揮権はすでに取り上げられた。</string>
+
+	<key>commander victory 1</key>
+	<string>最高司令部はこれほどの短期間で敵に勝てるのを夢にも思わなか\nった。貴方は完璧な勝利を手に入れた！エクストラボーナスとし\nて勲章を50個もらえます。</string>
+	<key>commander victory 2</key>
+	<string>この戦いで貴方は傑出な軍事才能を世に示した。パーフェクトに\n近い勝利を手に入れた！エクストラボーナスとして勲章を25個も\nらえます。</string>
+	<key>commander victory 3</key>
+	<string>この戦いで貴方の優勢は明らかだった。敵は貴方に脅かすことが\nできなかった。エクストラボーナスとして勲章を15個もらえま\nす。</string>
+	<key>commander victory 4</key>
+	<string>指揮官閣下！敵の頑強な抵抗に貴方は一時彼らに勝てるかどうか\n疑っていたが、最後に勝利を収めた。エクストラボーナスとして\n勲章を5個もらえます。</string>
+	<key>commander victory 5</key>
+	<string>指揮官閣下！我々は最後の一刻までようやく勝利を手に入れた。\nこんな戦績に対して最高司令部は貴方に褒賞を与えられません。</string>
+
+	<key>commander victory 1 no award</key>
+	<string>最高司令部はこれほどの短期間で敵に勝てるのを夢にも思わなか\nった。貴方は完璧な勝利を手に入れた！</string>
+	<key>commander victory 2 no award</key>
+	<string>この戦いで貴方は傑出な軍事才能を世に示した。パーフェクトに\n近い勝利を手に入れた！</string>
+	<key>commander victory 3 no award</key>
+	<string>この戦いで貴方の優勢は明らかだった。敵は貴方に脅かすことが\nできなかった。</string>
+	<key>commander victory 4 no award</key>
+	<string>指揮官閣下！敵の頑強な抵抗に貴方は一時彼らに勝てるかどうか\n疑っていたが、最後に勝利を収めた。</string>
+
+	<key>axis battle 1 Guderian 1</key>
+	<string>奇襲という目的を達成するため、わが装甲軍団は足を止めずにワ\nルシャワに進軍する。</string>
+	<key>axis battle 1 Guderian 2</key>
+	<string>貴方はなるべく早くポーランドのほかの都市と地域を制圧し、進\n撃スピードが速ければ私に協力してワルシャワに侵攻する。</string>
+	<key>axis battle 1 Guderian 3</key>
+	<string>指揮官閣下！なるべく短期間でこの戦争を終らせてください。元\n首はあまりに時間を与えてくれないから。</string>
+	<key>axis battle 1 Guderian 4</key>
+	<string>わが装甲軍団は外郭の防衛線を突破した。今、ワルシャワは私の\nすぐ目の前にある。</string>
+	<key>axis battle 1 Guderian 5</key>
+	<string>もし連携攻撃を行うと我々の勝利を加速させることができる。</string>
+	
+	<key>axis battle 2 Guderian 1</key>
+	<string>指揮官閣下！貴方の軍集団Bは今度北欧のデンマークとノルウェ\nーに進撃する。</string>
+	<key>axis battle 2 Guderian 2</key>
+	<string>我々は初めて連携を取ることではないため、私の戦術スタイルを\nよく分かってくれると思う。</string>
+	<key>axis battle 2 Guderian 3</key>
+	<string>私はもうすぐパリ付近に到着する。貴方の軍隊にも間に合うよう\nに来てほしい。</string>
+	<key>axis battle 2 Guderian 4</key>
+	<string>わが装甲軍団は信じられないスピードで前進しているため、敵を\n捕虜にするほどの時間もない。</string>
+	<key>axis battle 2 de Gaulle 1</key>
+	<string>フランスに最も危険な時が来た！兵士たちよ！武器を持ち上げ、\n敵に突撃だ！</string>
+	
+	<key>axis battle 3 Rommel 1</key>
+	<string>指揮官閣下！わが装甲軍団はフランスの南部でフランス軍の残部\nを掃討している。</string>
+	<key>axis battle 3 Rommel 2</key>
+	<string>イギリス海峡対岸のイギリス人は貴方に任せる。ゲーリング元帥\nは彼の空軍で貴方を支援する。</string>
+	<key>axis battle 3 Goering 1</key>
+	<string>私の空軍はすでに配置に付いた。イギリス人にはもう制空権がな\nい。</string>
+	
+	<key>axis battle 4 Graziani 1</key>
+	<string>指揮官閣下！わが戦艦は貴方の行動を支援する。それで楽に勝つ\nことができます。</string>
+	<key>axis battle 4 Graziani 2</key>
+	<string>敵の海岸砲の精度が高い、わが戦艦は大被害を受けた。</string>
+	<key>axis battle 4 Guider 1</key>
+	<string>指揮官閣下！この戦いの勝利を獲得するには敵の艦隊をすべて撃\n破する必要がある。</string>
+
+	<key>axis battle 5 Rommel 1</key>
+	<string>イタリア軍団の戦闘力は予想以上に低いため、元首は我々を北ア\nフリカに派遣して彼らを援助するしかない。</string>
+	<key>axis battle 5 Rommel 2</key>
+	<string>敵の数は我々の数倍であるが、戦闘力は高くない。イギリス軍と\nフランス軍だけを注意すればいい。</string>
+	<key>axis battle 5 Rommel 3</key>
+	<string>わがタイガー戦車を食い止めるのは不可能だ！</string>
+	<key>axis battle 5 Montgomery 1</key>
+	<string>ドイツ軍の装甲軍団の戦闘力は高い、彼らが進撃する時に陣地を\n守り抜けば我々の勝利です！</string>
+
+	<key>axis battle 6 Guderian 1</key>
+	<string>指揮官閣下！わが軍団はキエフに向かって進軍している。</string>
+	<key>axis battle 6 Guderian 2</key>
+	<string>貴方の目的はミンスクを落とすこと。最終的に我々はモスクワで\n合流する。</string>
+	<key>axis battle 6 Guderian 3</key>
+	<string>我々の友軍フィンランドとハンガリーは協力してくれるが、あま\nりに当てにできない。</string>
+	<key>axis battle 6 Rokossovsky 1</key>
+	<string>兵士たちよ、陣地を守りぬけ、祖国を防衛するんだ。</string>
+	<key>axis battle 6 Zhukov 1</key>
+	<string>もし首都が陥落されたら、我々は作戦を継続する意味を失う。</string>
+
+	<key>axis battle 7 Yamamoto 1</key>
+	<string>指揮官閣下！この度の米軍太平洋艦隊への襲撃計画は大きな冒険\nだ。</string>
+	<key>axis battle 7 Yamamoto 2</key>
+	<string>ただし、一旦抜いた刀は相手を倒すまで鞘に納めるわけにはいか\nない！全力を持って作戦に赴こう。</string>
+	<key>axis battle 7 Nimitz 1</key>
+	<string>すべての兵士は自分の位置につけ。我々は敵の攻撃を受けている。\nこれは演習ではない。</string>
+
+	<key>axis battle 8 Guider 1</key>
+	<string>指揮官閣下！これらの地域をなるべく制圧する必要がある。この\n辺にはわが帝国に必要な資源がある。</string>
+	<key>axis battle 8 Guider 2</key>
+	<string>注意すべきのはイギリスは我々の前進を食い止めるために1つの\n強力な艦隊を派遣し、あそこで我々を待っているってこと。</string>
+	<key>axis battle 8 Guider 3</key>
+	<string>私は空軍を利用して彼らの艦隊に打撃を与えることを提案する。</string>
+
+	<key>axis battle 9 Yamamoto 1</key>
+	<string>指揮官閣下！中国とイギリスの軍隊はビルマに集結している。彼\nらは反撃を企んでいる。</string>
+	<key>axis battle 9 Yamamoto 2</key>
+	<string>太平洋戦争により我々は多くの力を消耗したため、もうこれ以上\nは支援できない。</string>
+	<key>axis battle 9 Zhang 1</key>
+	<string>兵士たちよ！我々の失った土地を奪い返しに行こう。</string>
+	
+	<key>axis battle 10 Goering 1</key>
+	<string>正確に言うとアメリカはすでに核弾の技術を掌握した。さもない\nと準備も整っていないこの状態で元首は戦争の発動を急がせてい\nるわけではなかろう。</string>
+	<key>axis battle 10 Goering 2</key>
+	<string>イタリアと日本を説得して共に北アメリカに対抗することにより\n我々の圧力も軽減される。</string>
+	<key>axis battle 10 Goering 3</key>
+	<string>指揮官閣下！元首と全国民は貴方の勝利を期待しています。</string>
+	<key>axis battle 10 Patton 1</key>
+	<string>兵士たちよ！我々の戦車を使って敵を押し潰せ！</string>
+	<key>axis battle 10 MacArthur 1</key>
+	<string>若者たちよ、勇気を出せ！死を恐れぬ人に生きる資格はある。</string>
+	
+	<key>allies battle 1 Zhukov 1</key>
+	<string>指揮官閣下！今のわが国に最も危険な時が来た。</string>
+	<key>allies battle 1 Zhukov 2</key>
+	<string>我々は各自の地域の防御を担当しているが、貴方の責任が一番大\nきい。</string>
+	<key>allies battle 1 Zhukov 3</key>
+	<string>ソ連は大きいが、我々に退く道はない。我々の後ろにあるのはモ\nスクワだ。</string>
+	<key>allies battle 1 Rokossovsky 1</key>
+	<string>私は数名の逃走しようとしていた兵士を処決した。私の祖国への\n忠誠を疑う必要はない。</string>
+	
+	<key>allies battle 2 Nimitz 1</key>
+	<string>我々が東京を空襲したことに復讐するため、日本はミッドウェイ\n島を次の目標として決めた。</string>
+	<key>allies battle 2 Nimitz 2</key>
+	<string>ミッドウェイ島は太平洋での我々の重要な軍港であり、戦略価値\nもかなり高い。いかなる対価を払ってもこの島を守るんだ。</string>
+	<key>allies battle 2 Nimitz 3</key>
+	<string>指揮官閣下！わが艦隊は真珠湾で貴方の作戦を全力にサポートし\nます。</string>
+	<key>allies battle 2 Yamamoto 1</key>
+	<string>今度、帝国海軍のほぼすべてが出動した。</string>
+	<key>allies battle 2 Yamamoto 2</key>
+	<string>帝国の運命を決める海戦となる。</string>
+
+	<key>allies battle 3 Montgomery 1</key>
+	<string>ドイツとイタリアの軍隊はまた進軍を始めていた。彼らの統帥ロ\nンメルは生まれつきの才能を持つ指揮官である。</string>
+	<key>allies battle 3 Montgomery 2</key>
+	<string>彼は砂漠の中の狐。彼の装甲兵団に気を付けねばならない。</string>
+	<key>allies battle 3 Rommel 1</key>
+	<string>この砂漠のせいでわが装甲軍団はなかなか突撃作戦を実施できな\nい。</string>
+	
+	<key>allies battle 4 Zhukov 1</key>
+	<string>最高司令部でこの度の戦いに関する作戦計画は何度も修正されて\nいた。</string>
+	<key>allies battle 4 Zhukov 2</key>
+	<string>なぜなら今度の作戦の規模が大きすぎで我々は使えるものをすべ\nて投入した。</string>
+	<key>allies battle 4 Rokossovsky 1</key>
+	<string>この戦いは決定的で空前でもある。気を付けてください。</string>
+	<key>allies battle 4 Guderian 1</key>
+	<string>わが戦車師団はナイフのように敵の懐に刺し込んだ。</string>
+	<key>allies battle 4 Goering 1</key>
+	<string>私のエース空軍は敵に恐怖を感じさせている。</string>
+	
+	<key>allies battle 5 Patton 1</key>
+	<string>指揮官閣下！我々は早くイタリアを撃破する必要がある。なぜな\nらドイツ人の援軍はこちらへ進攻している。</string>
+	<key>allies battle 5 Patton 2</key>
+	<string>彼らは我々にあまり時間を与えてくれないだろう。</string>
+	<key>allies battle 5 Rommel 1</key>
+	<string>元首の指示より我々はイタリア軍とその守備体系を接収する。</string>
+
+	<key>allies battle 6 Guider 1</key>
+	<string>情報によると日本人の数個の精鋭軍団はビルマに集結している。\nまもなく彼らはインドに進軍するだろう。</string>
+	<key>allies battle 6 Zhang 1</key>
+	<string>指揮官閣下！中国の軍隊は側面から貴方をサポートして日本軍を\n攻撃する。我々の目的は同じだから。</string>
+	<key>allies battle 6 Yamamoto 1</key>
+	<string>我々の補給線に大きな問題が出て疫病も蔓延し始めた。</string>
+	<key>allies battle 6 Yamamoto 2</key>
+	<string>でも天皇陛下のために我々は恐れることはない！</string>
+	
+	<key>allies battle 7 Nimitz 1</key>
+	<string>たとえ我々は事前に沢山の準備をしたが、これほどの大規模な上\n陸作戦は初めてだ。</string>
+	<key>allies battle 7 Patton 1</key>
+	<string>今度、防御を担当しているドイツ軍はロンメルの軍集団で、彼と\nの戦いを切に望んでいる。</string>
+	<key>allies battle 7 de Gaulle 1</key>
+	<string>我々はようやくホームランドに戻った。フランス解放のため、進\nめ！</string>
+	<key>allies battle 7 Nimitz 2</key>
+	<string>上陸する時に我々の兵士は大きな困難に遭った。わが艦隊は全力\nをもって彼らを援護する。</string>
+	<key>allies battle 7 Rommel 1</key>
+	<string>防衛線に穴を開けられたとき、わが装甲軍団はすぐ支援に駆けつ\nける。</string>
+	
+	<key>allies battle 8 MacArthur 1</key>
+	<string>ドイツ人は我々に投降するのを拒絶した。彼らの主力軍団はすべ\nて国内に集中している。</string>
+	<key>allies battle 8 MacArthur 2</key>
+	<string>東線のソ連人もワルシャワに進軍を始めた。ポーランドの解放も\n時間の問題だ。</string>
+	<key>allies battle 8 Patton 1</key>
+	<string>指揮官閣下！私の戦車は前で突撃する。私について来て下さい。\n最後の勝利は我々のものだ。</string>
+	<key>allies battle 8 Goering 1</key>
+	<string>偉大なる第三帝国は絶対に失敗しない。</string>
+	<key>allies battle 8 Rommel 1</key>
+	<string>我々の戦士はよく戦ってくれた。ただ敵の数が多すぎるだけだ！</string>
+	
+	<key>allies battle 9 Zhang 1</key>
+	<string>枢軸国のドイツとイタリアはすでに投降した。形勢は我々に有利\nだ。</string>
+	<key>allies battle 9 Zhang 2</key>
+	<string>最高司令部は日本に対して大規模な作戦を行うことを決定した。\n我々は失った国土を取り戻すんだ。</string>
+	<key>allies battle 9 Zhang 3</key>
+	<string>今朝、ソ連はわが北東に駐屯している日本軍に宣戦した。日本は\n止むを得ず二面作戦を直面するしかない。</string>
+	
+	<key>allies battle 10 MacArthur 1</key>
+	<string>日本は本土で防衛戦を行うつもりで、最後の1人まで戦うと宣言し\nている。</string>
+	<key>allies battle 10 MacArthur 2</key>
+	<string>武士道精神に憧れる日本軍が国土を守る時の狂ってる姿は私は今\nすぐ想像できる。</string>
+	<key>allies battle 10 MacArthur 3</key>
+	<string>指揮官閣下！彼らに手加減は不要だ。必要な時は我々の新武器\n「原子爆弾」を使ってもいいぞ。</string>
+	<key>allies battle 10 Nimitz 1</key>
+	<string>日本海軍と対抗できるのは我々アメリカ海軍だけだ。盟友の輸送\n船は我々の保護を必要としている。</string>
+	<key>allies battle 10 Yamamoto 1</key>
+	<string>兵士たちよ！最後まで戦って天皇に忠誠を尽くすんだ！</string>
+	
+	<key>wto battle 1 Peng 1</key>
+	<string>もうすぐ全国の統一を遂げる時にアメリカの艦隊は我々の沿岸地\n域に辿り着いた。</string>
+	<key>wto battle 1 Peng 2</key>
+	<string>指揮官閣下！アメリカ人は我々よりもずっとよい装備を持ってい\nる。戦略を立て直す必要があります。</string>
+	<key>wto battle 1 Peng 3</key>
+	<string>今の私の軍集団から貴方に増援を送れない。司令部から与えられ\nた命令はわが盟友朝鮮を援助するってことだ。</string>
+	<key>wto battle 1 MacArthur 1</key>
+	<string>我々はクリスマス前に戦争を終らせ、この子達を家に帰らせて家\n族と一緒にクリスマスを過ごさせる必要がある。</string>
+	
+	<key>wto battle 2 Guider 1</key>
+	<string>インドの軍隊は我々のチベット地域に深入りしている。彼らの背\n後にはイギリス軍の影がある。</string>
+	<key>wto battle 2 Guider 2</key>
+	<string>最高司令部は貴方の作戦計画を同意した。彼らを分割して包囲し、\n消滅するんだ。</string>
+	<key>wto battle 2 Guider 3</key>
+	<string>貴方の作戦をサポートするために彭将軍の軍団は最速でそちらに\n赴いている。</string>
+	<key>wto battle 2 Peng 1</key>
+	<string>インドは明らかに我々の実力を見くびっている。彼らはアメリカ\nからもらった武器があれば勝つことができると信じている。</string>
+	
+	<key>wto battle 3 Zhukov 1</key>
+	<string>アラブ地域における石油資源は戦争全体の勝敗に関わっている。</string>
+	<key>wto battle 3 Zhukov 2</key>
+	<string>我々はこの地域に突撃してアメリカ人より先に制圧すべきです。</string>
+	
+	<key>wto battle 4 Rokossovsky 1</key>
+	<string>我々が海上で彼らの艦隊を撃破するのを望まないでください。</string>
+	<key>wto battle 4 Rokossovsky 2</key>
+	<string>今、我々ができるのは海岸砲をもっと建造して彼らの到来をまつ\nことだけだ。</string>
+	<key>wto battle 4 Rokossovsky 3</key>
+	<string>彼らを絶対に上陸させてはならない。さもなくば戦局はとても不\n利になる。</string>
+	
+	<key>wto battle 5 Guider 1</key>
+	<string>指揮官閣下！ブルガリアは今、危険な状況に陥っている。</string>
+	<key>wto battle 5 Guider 2</key>
+	<string>最高司令部は彼らを救援するため、今すぐ貴方を派遣しなければ\nならないことを意識した。</string>
+	
+	<key>wto battle 6 Rokossovsky 1</key>
+	<string>指揮官閣下！我々の連合は最も厳しい状況に直面している。敵は\nすでに我々に全面攻撃を仕掛け始めた。</string>
+	<key>wto battle 6 Rokossovsky 2</key>
+	<string>最高司令部は我々に多方面で直ちに敵に反撃せよと命じた。</string>
+	
+	
+	<key>wto battle 7 Guider 1</key>
+	<string>我々の南アメリカへの侵入計画はすでにアメリカの諜報要員に知\nられた。</string>
+	<key>wto battle 7 Guider 2</key>
+	<string>彼らは南アメリカに軍隊を配置している。指揮官閣下！速やかに\n彼らを撃破してください。</string>
+	<key>wto battle 7 Guider 3</key>
+	<string>我々はミサイル発射装置を指定場所に運ぶ必要がある。この計画\nの成功は我々にとって重要な意味を持っている。</string>
+	
+	<key>nato battle 1 Patton 1</key>
+	<string>指揮官閣下！ソ連はすでにキューバで核ミサイル基地を建設した。</string>
+	<key>nato battle 1 Patton 2</key>
+	<string>今、彼らの核弾は北アメリカ全土に攻撃できるようになった。我\n々はもう黙ってはいられない。</string>
+	<key>nato battle 1 Patton 3</key>
+	<string>我々がすべきのは彼らを南アメリカから追い出し、核弾の威嚇を\n解除するってことだ。</string>
+	<key>nato battle 1 Patton 4</key>
+	<string>急ぐ必要がある。彼らは何時でも我々に核ミサイルを発射できる。</string>
+	
+	<key>nato battle 2 Montgomery 1</key>
+	<string>ヨーロッパに対して赤勢力の侵入はすでに始まった。</string>
+	<key>nato battle 2 Montgomery 2</key>
+	<string>指揮官閣下！そちらの防御工事をもって数日間持ち堪えてほしい。</string>
+	<key>nato battle 2 Montgomery 3</key>
+	<string>私の軍隊は最速でヨーロッパに駆けつけて貴方たちを支援する。</string>
+	<key>nato battle 2 Zhukov 1</key>
+	<string>ヨーロッパ全土はもうすぐ赤色に染められる。わが同志一等書記\n官はこの日の到来をとても期待しています。</string>
+	
+	<key>nato battle 3 de Gaulle 1</key>
+	<string>私は今、ポーランドの軍団と交戦しているため、ハンガリーの軍\n隊に後ろから襲われるのを心配している。</string>
+	<key>nato battle 3 de Gaulle 2</key>
+	<string>もちろん彼らの背後にあるソ連の軍団が我々の本当の敵です。</string>
+	<key>nato battle 3 Patton 1</key>
+	<string>指揮官閣下！貴方をサポートするために最高司令部は私をヨーロ\nッパの戦場からアフリカに移動させて来た。</string>
+	<key>nato battle 3 Patton 2</key>
+	<string>私の戦車をアメリカからここへ運ぶのは彼らにすごく手間を掛け\nさせた。</string>
+	<key>nato battle 3 Patton 3</key>
+	<string>私の戦車師団はきっと貴方の役に立つことを信じています。</string>
+	
+	<key>nato battle 4 Nimitz 1</key>
+	<string>今、アラビアの油田はソ連人にコントロールされているため、彼\nらの手から油田を奪い返す必要がある。</string>
+	<key>nato battle 4 Nimitz 2</key>
+	<string>私の軍隊がトルコの方向から進撃することにより敵主力部隊の注\n意を引き付けることに成功した。</string>
+	<key>nato battle 4 Nimitz 3</key>
+	<string>貴方はこの機会を利用して海峡を駆け抜ける必要がある。海峡に\nある私の戦艦は貴方を援護します。</string>
+	
+	<key>nato battle 5 MacArthur 1</key>
+	<string>インドは明らかにソ連側に傾いている。これはアジアへの上陸作\n戦がますます厳しくなることを意味している。</string>
+	<key>nato battle 5 MacArthur 2</key>
+	<string>指揮官閣下！今度の戦いは激しい戦いです。私の海軍はインド洋\nで貴方の作戦をサポートします。</string>
+	<key>nato battle 5 MacArthur 3</key>
+	<string>そちらの状況はどうだった？こちらの状況はもっと酷いかもしれ\nない。</string>	
+	
+	<key>nato battle 6 MacArthur 1</key>
+	<string>指揮官閣下！わが軍団は今、日本海地域でソ連と北朝鮮の侵入を\n防いでいる。</string>
+	<key>nato battle 6 MacArthur 2</key>
+	<string>南太平洋地域での戦いは貴方に頼るしかない。オーストリアの軍\nもいろいろ役に立つと思う。</string>	
+	
+	<key>nato battle 7 Guider 1</key>
+	<string>指揮官閣下！貴方には１つのあまりよくない情報を報告しなけれ\nばならない。</string>
+	<key>nato battle 7 Guider 2</key>
+	<string>他の指揮官の軍団はみんな指定地域に移動して来ていない。敵の\n頑強さは最高司令部の想像以上のもんだな。</string>
+	<key>nato battle 7 Guider 3</key>
+	<string>極めて難しいと思いながら、最後の攻撃は貴方がやるしかない。</string>	
+	<key>nato battle 7 Guider 4</key>
+	<string>攻めを焦るな！今度、最高司令部は貴方に十分な作戦時間を与え\nてくれた。</string>	
+	
+	<key>victory</key>
+	<string>勝利</string>
+	<key>great victory</key>
+	<string>大勝利</string>
+	<key>victory days2</key>
+	<string>日内で勝つ</string>
+	
+	<key>victory axis</key>
+	<string>貴方は素晴らしい指揮で我々枢軸国陣営に偉大な勝利をもたらしてくれた。\n指揮官閣下！史詩的な軍事生涯を送られるように！</string>
+	<key>victory allies</key>
+	<string>我々はようやく最後の勝利を手に入れた。でも大きな犠牲を払った。指揮官\n閣下！貴方の素晴らしい指揮能力は必ずや歴史に記録され、平和を愛する人\n々を励ましていくだろう。</string>
+	<key>victory wto</key>
+	<string>核武器の威嚇の下でアメリカはようやく平和交渉に応じた。この日のために\n貴方と貴方の背後にいる戦士たちが色んな犠牲を払ってきた。貴方はこの世\n界を変えた！歴史は貴方のことを忘れません！</string>
+	<key>victory nato</key>
+	<string>戦争で負けたことによってソ連内部で大きな変革が起こった。ソ連の赤旗が\nクレムリンの上空から緩く降ろされたことは巨大なソ連が解体したのを示し\nている。ソ連もついに歴史となった。真の平和が訪れた！長年に渡って貴方\nの努力もようやく報われた。祖国は貴方のことを忘れはしません！</string>
+		
+	<key>locked warning</key>
+	<string>枢軸国や連合国の戦役をクリアす\nるとWTOとNATOの戦役をプレイ\nできるようになります。</string>
+
+	<key>connecting</key>
+	<string>接続中...</string>
+	
+	<key>warning title 1</key>
+	<string>ネットワークが見つかりません</string>
+	<key>warning text 1</key>
+	<string>マルチプレイをしたい場合、機器の「設置」でブルートゥースやWi-FiをONにしてください。</string>
+	
+	<key>warning title 2</key>
+	<string>接続できません</string>
+	<key>warning text 2</key>
+	<string>ゲームに接続できません。もう一度やり直してください。</string>
+	
+	<key>warning title 3</key>
+	<string>ご注意！</string>
+	<key>warning text 3</key>
+	<string>ゲームをやめると他のプレイヤーはゲームをやり続けません。本当によろしいですか？</string>
+	
+	<key>warning title 4</key>
+	<string>ご注意！</string>
+	<key>warning text 4</key>
+	<string>プレイヤーがゲームをやめました。ゲームを継続できません。</string>
+	
+	<key>warning title 5</key>
+	<string>切断</string>
+	<key>warning text 5</key>
+	<string>ネットから切断されました。ゲームを継続できません。</string>
+	
+	<key>warning title 6</key>
+	<string>Warning!</string>
+	<key>warning text 6</key>
+	<string>Multiplayer is only available on Mac running OS X 10.8 and above.</string>
+	
+	<key>newgame1_service_1</key>
+	<string>EASYTECHはこれからも優れた戦略ゲームを開発\nできるよう全力を尽くします。</string>
+	<key>newgame1_service_2</key>
+	<string>&#160;</string>
+	<key>newgame1_version</key>
+	<string>アプリバージョン：</string>
+	
+	<key>newgame2_txt_1</key>
+	<string>親愛なる指揮官、長期に渡ってのサポートに\n感謝します。</string>
+	<key>newgame2_txt_2</key>
+	<string>より優れたゲームを提供するために、この改\n善計画に参加するようお勧めします。あなた\nの貴重なアドバイスやご提案はあなたの軍事\nキャリアをより鮮やかに輝かせます。</string>
+	
+	<key>newgame3_website</key>
+	<string>Website</string>
+	<key>newgame3_facebook</key>
+	<string>Facebook</string>
+	<key>newgame3_youtube</key>
+	<string>YouTube</string>
+	<key>newgame3_download</key>
+	<string>いますぐダウンロード</string>
+	<key>newgame3_join</key>
+	<string>いますぐ参加</string>
+	<key>newgame3_mail</key>
+	<string>メール</string>
+	
+	<key>newgame4_survey</key>
+	<string>アンケート</string>
+	<key>newgame4_recommend</key>
+	<string>おすすめ</string>
+	<key>newgame4_service</key>
+	<string>サービス</string>
+	<key>newgame4_iab_event</key>
+	<string>イベント</string>
+</dict>
+</plist>

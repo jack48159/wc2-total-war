@@ -1,0 +1,13 @@
+<Texture name="text_ja_hd.png" />
+<Images>
+    <Image name="buttontext_options.png" x="256" y="1" w="155" h="43" refx="-24" refy="-12" />
+    <Image name="buttontext_options_press.png" x="1" y="204" w="141" h="39" refx="-32" refy="-14" />
+    <Image name="buttontext_quit.png" x="1" y="246" w="201" h="42" refx="0" refy="-12" />
+    <Image name="buttontext_quit_press.png" x="303" y="90" w="182" h="39" refx="-10" refy="-13" />
+    <Image name="buttontext_restart.png" x="143" y="160" w="159" h="41" refx="-22" refy="-12" />
+    <Image name="buttontext_restart_press.png" x="98" y="121" w="145" h="38" refx="-26" refy="-14" />
+    <Image name="buttontext_resume.png" x="85" y="40" w="90" h="41" refx="-57" refy="-12" />
+    <Image name="buttontext_resume_press.png" x="1" y="76" w="83" h="39" refx="-59" refy="-13" />
+    <Image name="buttontext_save.png" x="1" y="121" w="96" h="41" refx="-54" refy="-12" />
+    <Image name="buttontext_save_press.png" x="74" y="1" w="87" h="38" refx="-58" refy="-13" />
+</Images>

@@ -1,0 +1,11 @@
+{
+    "appId":  "com.wc2.personal",
+    "appName":  "世界征服者:总体战",
+    "webDir":  "../../dist/ios_web",
+    "server":  {
+                   "cleartext":  true
+               },
+    "ios":  {
+                "contentInset":  "never"
+            }
+}

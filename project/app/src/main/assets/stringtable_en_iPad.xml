@@ -1,0 +1,940 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>Infantry</key>
+		<string>Infantry</string>
+		<key>Armour</key>
+		<string>Armour</string>
+		<key>Artillery</key>
+		<string>Artillery</string>
+		<key>Rocket</key>
+		<string>Rocket Launcher</string>
+		<key>Tank</key>
+		<string>Tank</string>
+		<key>Heavy Tank</key>
+		<string>Heavy Tank</string>
+		
+		<key>Destroyer</key>
+		<string>Destroyer</string>
+		<key>Cruiser</key>
+		<string>Cruiser</string>
+		<key>BattleShip</key>
+		<string>BattleShip</string>
+		<key>Aircraft Carrier</key>
+		<string>Aircraft Carrier</string>
+		
+		<key>Airstrike</key>
+		<string>Airstrike</string>
+		<key>Bomber</key>
+		<string>Bomber</string>
+		<key>Airborne Force</key>
+		<string>Airborne Force</string>
+		<key>Nuclear Bomb</key>
+		<string>Nuclear Bomb</string>
+		
+		<key>City</key>
+		<string>City</string>
+		<key>Industry</key>
+		<string>Industry</string>
+		<key>Airport</key>
+		<string>Airport</string>
+		<key>Land Fort</key>
+		<string>Land Fort</string>
+		<key>Entrenchment</key>
+		<string>Entrenchment</string>
+		<key>Antiaircraft</key>
+		<string>Antiaircraft</string>
+		<key>Radar</key>
+		<string>Radar</string>
+		
+		<key>Research</key>
+		<string>Research</string>
+		<key>Carrier</key>
+		<string>Carrier</string>
+		<key>Assault Art</key>
+		<string>Assault Art</string>
+		<key>Defend Art</key>
+		<string>Defend Art</string>
+		<key>Commander</key>
+		<string>Commander</string>
+		<key>Supply Line</key>
+		<string>Supply Line</string>
+		<key>Ace Forces</key>
+		<string>Ace Forces</string>
+		
+		<key>Infantry Intro</key>
+		<string>The easiest force to build and main force in the \nbattlefield.</string>
+		<key>Armour Intro</key>
+		<string>Armour has matchless mobility and is good against \ninfantry with its large-caliber machine gun.</string>
+		<key>Artillery Intro</key>
+		<string>It makes a lot of forces incapable of fighting back, \nyet features slow movement.</string>
+		<key>Rocket Intro</key>
+		<string>Rocket launcher can carry out long-range strikes \nwith its powerful rocket. However, it moves slowly \nand goes without armor protection.</string>
+		<key>Tank Intro</key>
+		<string>Featuring good armour and firepower, tank can get \nacross the entrenchment easily and destroy enemies \nwithout losing any movement.</string>
+		<key>Heavy Tank Intro</key>
+		<string>Known for formidable long-range firepower, heavy \ntank can definitely strike back artillery. It is also able \nto across the entrenchment and destroy all enemies \nwithout losing any movement.</string>
+		
+		<key>Destroyer Intro</key>
+		<string>This primary warship is mainly used for marine \nescort and patrol.</string>
+		<key>Cruiser Intro</key>
+		<string>The main warship in naval battles has good armor \nand kick-ass fire power.</string>
+		<key>BattleShip Intro</key>
+		<string>Equipped with large-caliber machine gun and heavy \narmor, it's self-evident that battleship has good attack \nand defense capability.</string>
+		<key>Aircraft Carrier Intro</key>
+		<string>Aircraft carrier is crucial to marine war. Use the \nseaborne aircraft to bomb your target, but don't \nexpect too much from its self-defense.</string>
+		
+		<key>Airstrike Intro</key>
+		<string>Use fighter plane equipped with large-caliber machine\n gun to launch air strike in hostile territory.</string>
+		<key>Bomber Intro</key>
+		<string>Bombing in hostile territory would blow all troops, \ncities and industrial facilities there.\n[Use once over 1 rounds.]</string>
+		<key>Airborne Force Intro</key>
+		<string>An airborne infantry appears in specified land area.\n[Use once over 2 rounds.]</string>
+		<key>Nuclear Bomb Intro</key>
+		<string>Release nuclear bomb on some area to wipe out \ntroops and infrastructure there.\n[Use once over 3 rounds.]</string>
+		
+		<key>City Intro</key>
+		<string>Upgrading a city to higher level leads to more \nproduction and force supplies. High-level city allows \nyou to build infantry.</string>
+		<key>Industry Intro</key>
+		<string>Upgrading industry to higher level leads to more \nindustry output and force supplies. High-level industrial \nzone allows you to build superior mechanized forces.</string>
+		<key>Airport Intro</key>
+		<string>When launching air strike, airport is surely an \nessential installation which can provide more supplies \nfor forces.</string>
+		<key>Land Fort Intro</key>
+		<string>Enhancing defensive power of the force could make \nit fight back artilleries and double counterattack \nagainst warships.</string>
+		<key>Entrenchment Intro</key>
+		<string>Raising defensive power of our forces can also \nlower the hostile movement.</string>
+		<key>Antiaircraft Intro</key>
+		<string>Use air defense weapons to alleviate damage from \nair attack and bombing in a large part.</string>
+		<key>Radar Intro</key>
+		<string>Under radar scout, the damage of long-range fires \nand airstrikes could be lowered effectively.</string>
+		
+		<key>Research Intro</key>
+		<string>It takes 3 rounds to complete upgrade technology and \nupon completion cards of this level would be unlocked.\n[Use once over 3 rounds.]</string>
+		<key>Carrier Intro</key>
+		<string>The army could move around the sea if putting \nequipment in the transport ship.</string>
+		<key>Assault Art Intro</key>
+		<string>Assault art helps our forces get more attack power.</string>
+		<key>Defend Art Intro</key>
+		<string>Defense art help our forces have stronger defense.</string>
+		<key>Commander Intro</key>
+		<string>You can also improve your force by using commander, \nwhose capability is determined by the rank.</string>
+		<key>Supply Line Intro</key>
+		<string>Replenish the damaged forces in a single area.\n[Use once over 3 rounds.]</string>
+		<key>Ace Forces Intro</key>
+		<string>Name one force to go up a level as bonus.\n[Use once over 1 rounds.]</string>
+		
+		<key>axis battle name 1</key>
+		<string>Blitzkrieg</string>
+		<key>axis battle name 2</key>
+		<string>Fall Gelb</string>
+		<key>axis battle name 3</key>
+		<string>Operation Sea Lion</string>
+		<key>axis battle name 4</key>
+		<string>Balkans Campaign</string>
+		<key>axis battle name 5</key>
+		<string>North Africa Campaign</string>
+		<key>axis battle name 6</key>
+		<string>Operation Barbarossa</string>
+		<key>axis battle name 7</key>
+		<string>Tora! Tora! Tora!   </string>
+		<key>axis battle name 8</key>
+		<string>South Asia War</string>
+		<key>axis battle name 9</key>
+		<string>China-Burma-India Theater</string>
+		<key>axis battle name 10</key>
+		<string>Invasion of North America</string>
+		
+		<key>allies battle name 1</key>
+		<string>Defend Moscow</string>
+		<key>allies battle name 2</key>
+		<string>Midway Island</string>
+		<key>allies battle name 3</key>
+		<string>Battle of El Alamein </string>
+		<key>allies battle name 4</key>
+		<string>Battle of Kursk</string>
+		<key>allies battle name 5</key>
+		<string>Sicily Campaign</string>
+		<key>allies battle name 6</key>
+		<string>Battle of Imphal</string>
+		<key>allies battle name 7</key>
+		<string>Operation Overlord</string>
+		<key>allies battle name 8</key>
+		<string>Destination Berlin</string>
+		<key>allies battle name 9</key>
+		<string>Far East Campaign</string>
+		<key>allies battle name 10</key>
+		<string>Destination Tokyo</string>
+		
+		<key>wto battle name 1</key>
+		<string>Red Storm</string>
+		<key>wto battle name 2</key>
+		<string>Sino-Indian War</string>
+		<key>wto battle name 3</key>
+		<string>Middle East War</string>
+		<key>wto battle name 4</key>
+		<string>Pacific War</string>
+		<key>wto battle name 5</key>
+		<string>Turkey Under Siege</string>
+		<key>wto battle name 6</key>
+		<string>Counter Attack</string>
+		<key>wto battle name 7</key>
+		<string>Expedition To America</string>
+		
+		<key>nato battle name 1</key>
+		<string>Missile Crisis</string>
+		<key>nato battle name 2</key>
+		<string>Red Shadow</string>
+		<key>nato battle name 3</key>
+		<string>African Liberation</string>
+		<key>nato battle name 4</key>
+		<string>Sea Road</string>
+		<key>nato battle name 5</key>
+		<string>Compete for Indian Ocean</string>
+		<key>nato battle name 6</key>
+		<string>South Pacific</string>
+		<key>nato battle name 7</key>
+		<string>Glory and Peace</string>
+
+		<key>axis battle intro 1</key>
+		<string>By order of the fuehrer, you will take elite troops to \nattack Poland and General Guderian is going to fight \nwith you. Commander! The high command is looking \nforward to your success!</string>
+		<key>axis battle intro 2</key>
+		<string>The high command has made a plan to march westward, \nwhich splits into two lines. After bypassing the Maginot \nLine, army group A will invade Netherlands and Belgium, \nfinally Paris. Army group B aims to attack Denmark and \nNorway in North Europe for needed resources. General \nGuderian would join you to lead the campaign.</string>
+		<key>axis battle intro 3</key>
+		<string>It's so exciting to see our forces pass through the Arch \nof Triumph and the fuehrer is very pleased. However, \nthe intelligence tells us British and French troops are \nattempting to fight back. Of course, we won't let it \nhappen! Marshal Goering will support you with his ace \nair forces.</string>
+		<key>axis battle intro 4</key>
+		<string>Germany was so unstoppable in last military actions that \nthe chancellor desires to expand to the Balkans. \nConsidering Greece gets support from Britain, we invite \nBulgaria and Romania to join our glorious expansion. \nGeneral Graziani also agrees to assist you on the sea!</string>
+		<key>axis battle intro 5</key>
+		<string>Knowing the Italian troops are swamped in North Africa, \nthe fuehrer concerns our supply line in Mediterranean \nwould be cut off if Britain seizes North Africa. Therefore, \nwe must send relief troops immediately. Commander! \nGeneral Rommel is back from vacation. He will lead the \nbest tank army to head North Africa with you.</string>
+		<key>axis battle intro 6</key>
+		<string>It's time to approach the Soviet Union! The Russians \nkeep losing because of poor preparation. Now General \nGuderian starts to siege Soviet troops stationed in Kiev \nand the fuehrer hopes you could meet in Moscow as \nsoon as possible.Commander! This would be the greatest \nvictory ever if you can make it!</string>
+		<key>axis battle intro 7</key>
+		<string>Now America has cut off our energy sources and \ndeployed a huge navy in Pearl Harbor, which stimulates \nthe high command to set defeating Americans as our \nurgent task. General Yamamoto has prepared the \noperational plan and the Mikado places high hopes on \nus.</string>
+		<key>axis battle intro 8</key>
+		<string>South Pacific nations, home to rich resources which we \nare dying for, have attracted a lot of attention recently. \nTo prevent our movement, America and Britain have done \na lot of things while Australia starts to get prepared \nacross the country. Commander! It's more than boldness \nyou need to conquer them.</string>
+		<key>axis battle intro 9</key>
+		<string>Although we won a lot of battles in Asia, our original \ngoal has not yet come true. Currently, China joins \nBritain to fight us in Burma. Commander! If we mess \nup this time, all previous efforts are in vain.</string>
+		<key>axis battle intro 10</key>
+		<string>It's unbelievable that, according to the intelligence, \nAmerica is building some devastating weapon. The fuehrer \nmakes a prompt decision to bring forward the plan of \nNorth America expedition. He also discusses details with \nItaly and Japan. Commander! This is our only chance. \nDon't screw up!</string>
+		
+		<key>allies battle intro 1</key>
+		<string>The country is falling into the most dangerous situation. \nAt this time, General Zhukov is fighting against Guderian's \narmy in Kiev while General Rokossovsky against Finland \nand Rommel's coalition forces in the north. Commander! \nYou are our last hope to protect Moscow!</string>
+		<key>allies battle intro 2</key>
+		<string>Commander! Japanese joint fleet is launching strikes on \nour naval base in Midway Island. If they succeed, all \nthe west coast would be under threat. We cannot afford \nthat. Moreover, we cannot let the president down. Go \nand roll them back! General Nimitz will assist you.</string>
+		<key>allies battle intro 3</key>
+		<string>Rommel with his armour army becomes our strongest \nenemy in North Africa. General Montgomery is seeking \nopportunity to beat them. Commander! Maybe the war \nwill end up earlier if you join in.</string>
+		<key>allies battle intro 4</key>
+		<string>Commander! The supreme headquarters resolve on a \nlarge-scale counterattack to kick invaders out of our \nterritory. During this operation, General Zhukov, General \nRokossovsky and you with your own army should launch \na general offensive from 3 different directions.</string>
+		<key>allies battle intro 5</key>
+		<string>As the battle in North Africa comes to an end, the \nsupreme headquarters plan to defeat Italy, the weakest \namong axis nations, and compel them to quit the war. \nCommander! Unfortunately Italy is not the only enemy \nwe face. Those German troops in Greece are what we \nshould really worry about!</string>
+		<key>allies battle intro 6</key>
+		<string>Intelligence shows Japan keeps rallying forces in Burma. \nIt seems they're ready to invade India which is the last \nBritish base in Asia. We have to get everything prepared. \nGood news is our ally Chinese forces will give us a \nhand.</string>
+		<key>allies battle intro 7</key>
+		<string>To support Soviet Union in eastern front and encircle \nGermany, the supreme headquarters decide to land \nEurope. We have been preparing this for a long time. \nCommander! This campaign could be the largest and \ntoughest you ever do.</string>
+		<key>allies battle intro 8</key>
+		<string>Germany is just ahead of us! I believe things will be \nmuch more brutal when we get in there. Every step \nforward requires us to pay a big price. The heavy \ncasualties that Soviet Union suffered in eastern front \nare a good example. Commander! Once you conquer \nGermany, we will get a big win over European theater. </string>
+		<key>allies battle intro 9</key>
+		<string>We are the most important force for allies in Far East. \nFor a long time we keep fighting against invaders and \nnever get conquered. Commander! It's time to take back \nthe territory we lost! Soviet Red Army will assist us in \nthe north east.</string>
+		<key>allies battle intro 10</key>
+		<string>Looking back in history you'll find no one, including \nGenghis Khan, has ever set foot on Japanese mainland \nfor a fight. But now a good opportunity comes to us. \nWe cannot miss it. Commander! You must figure out \nhow to eliminate their strong navy first.</string>
+		
+		<key>wto battle intro 1</key>
+		<string>Seeing the emergence of socialist camp in Far East, \nAmerican-led NATO is totally provoked. They actually try \nto meddle in our reunification. We have to think about \nhow to resist them. Commander! This is never easy, \nbecause we're really left behind by their armament.</string>
+		<key>wto battle intro 2</key>
+		<string>The headquarters just receive the information that a \ngreat number of well-equipped Indian troops show up on \nthe western border. They even cross the boundary. \nCommander! It's an emergency. You must leave for the \nfront line right now!</string>
+		<key>wto battle intro 3</key>
+		<string>We must get a head start when both America and \nBritain have their eyes on oil resources in Middle East. \nCommander! If we lose our place here, we would have \nnothing to compete with them.</string>
+		<key>wto battle intro 4</key>
+		<string>To ease the pressure in other battleground, America and \nCanada form a joint fleet and start an attack in the \nPacific. You may want to know Marshal Nimitz takes the \nlead. Commander! Fighting in the sea is the last thing \nwe want! Our navy forces are way too weak.</string>
+		<key>wto battle intro 5</key>
+		<string>After getting military aid from America, Turkey launches \nassault on our ally Bulgaria. Commander! We need you \nto help Bulgaria destroy Turkey as well as Greece and \nYugoslavia. You must be quick! End up the war before \nthe arrival of America's reinforcement. Or we will be \nthrown into a passive position.</string>
+		<key>wto battle intro 6</key>
+		<string>Within weeks, NATO allies led by America and Britain \nhave seized Germany. They even cross the Germany-\nPoland border. At the same time, French and Italian \narmies are advancing to Hungary. Commander! The \nheadquarters command you to gather troops immediately \nand set out for the front line. Remember to start \ncounterattack when things are under control.</string>
+		<key>wto battle intro 7</key>
+		<string>After multiple successes against WTO, our sphere of \ninfluence has extended all over Europe, Asia and Africa. \nBut we will never stop! The headquarters are planning \nto assault South America and build a missile launch \nsite there, which could force America to make peace \nnegotiations. Commander! America can be very tricky to \ndeal with.</string>
+		
+		<key>nato battle intro 1</key>
+		<string>As the Soviets carry guided missile launcher to Cuba, \nsthey could fire nuclear missile any minute. Commander! \nThe president orders you to destroy those devastating \nweapons by any means necessary. Also kick Soviets \nout of South America.</string>
+		<key>nato battle intro 2</key>
+		<string>It's not a secret that Soviet Union is scheming to \napproach West Europe, with Poland, Bulgaria, Romania \nand Hungary all its military allies. At present, they have \nfully controlled Germany after getting across Berlin Wall. \nThose who can compete with them in Europe are only \nBritain, France and Italy. Commander! This is the last \nline of defense. The future of Europe is in your hands.</string>
+		<key>nato battle intro 3</key>
+		<string>Now the Soviet Union and its allies have taken Africa. \nWe must send reinforcement as soon as possible, or \nthe enemy will soon target Mediterranean regions and \nthen Europe. Commander! General de Gaulle is going \nto join us in the war.</string>
+		<key>nato battle intro 4</key>
+		<string>The headquarters desire to liberate Middle East for next \nstep. As part of the plan, we would confuse the Soviets \nby breaking through Turkey while the truth is you \ndirectly go to the Middle East from where you are in \nAfrica. It's a long-prepared plan. Now it's time to turn \ninto action!</string>
+		<key>nato battle intro 5</key>
+		<string>It's a good idea to get into Asia by way of India. When \nwe're moving, however, India just turns its back on us. \nMeanwhile we find Soviet army shows up in India. \nCommander! The Soviets come to this through diplomacy, \nbut our only resort is fighting!</string>
+		<key>nato battle intro 6</key>
+		<string>It's good news that a rift occurs between the Soviet \nUnion and China. A border war even breaks out. \nCommander! Will you take this chance to cut off Soviet \nUnion's supply line in South Pacific? Australia is our \nonly ally there.</string>
+		<key>nato battle intro 7</key>
+		<string>Defeating the Soviet Union in its true sense means to \nmake them surrender at home. I know you can do this. \nAs the army is in position, headquarters command a \ngeneral offensive. Commander! Make progress very \ncarefully. The Soviets are well known for their strong \nmind!</string>
+				
+		<key>alliance name 1</key>
+		<string>AXIS</string>
+		<key>alliance name 2</key>
+		<string>ALLIES</string>
+		<key>alliance name 3</key>
+		<string>WTO</string>
+		<key>alliance name 4</key>
+		<string>NATO</string>
+		
+		<key>conquest name 1</key>
+		<string>EUROPE 1939</string>
+		<key>conquest name 2</key>
+		<string>PACIFIC 1942</string>
+		<key>conquest name 3</key>
+		<string>EUROPE 1943</string>
+		<key>conquest name 4</key>
+		<string>AFRICA 1942</string>
+		<key>conquest name 5</key>
+		<string>AMERICA 1945</string>
+		<key>conquest name 6</key>
+		<string>ASIA 1950</string>
+        <key>conquest name 7</key>
+        <string>EUROPE 1955</string>
+        <key>conquest name 8</key>
+        <string>ENERGY CRISIS</string>
+
+		<key>AutoSave</key>
+		<string>AUTOSAVE</string>
+		
+		<key>rank 1</key>
+		<string>Private</string>
+		<key>rank 2</key>
+		<string>Corporal</string>
+		<key>rank 3</key>
+		<string>Sergeant</string>
+		<key>rank 4</key>
+		<string>Staff sergeant</string>
+		<key>rank 5</key>
+		<string>Lieutenant</string>
+		<key>rank 6</key>
+		<string>First Lieutenant</string>
+		<key>rank 7</key>
+		<string>Captain</string>
+		<key>rank 8</key>
+		<string>Major</string>
+		<key>rank 9</key>
+		<string>Lieutenant Colonel</string>
+		<key>rank 10</key>
+		<string>Colonel</string>
+		<key>rank 11</key>
+		<string>Brigadier General</string>
+		<key>rank 12</key>
+		<string>Major General</string>
+		<key>rank 13</key>
+		<string>Lieutenant General</string>
+		<key>rank 14</key>
+		<string>General</string>
+		<key>rank 15</key>
+		<string>Field Marshal</string>
+		
+		<key>rank 1 intro</key>
+		<string>Forces led by Private, Durability supplies 10, \nMax durability +5%, Four-round cooldown.</string>
+		<key>rank 2 intro</key>
+		<string>Forces led by Corporal, Durability supplies 15, \nMax durability +10%, Four-round cooldown.</string>
+		<key>rank 3 intro</key>
+		<string>Forces led by Sergeant, Durability supplies 20, \nMax durability +15%, Four-round cooldown.</string>
+		<key>rank 4 intro</key>
+		<string>Forces led by Staff sergeant,  Attack +1, \nDurability supplies 25, Max durability +20%, \nFour-round cooldown.</string>
+		<key>rank 5 intro</key>
+		<string>Forces led by Lieutenant, Attack +1, \nDurability supplies 30,  Max durability +25%, \nFour-round cooldown.</string>
+		<key>rank 6 intro</key>
+		<string>Forces led by First Lieutenant, Attack +1, \nDurability supplies 35,  Strength supplies per round +1, \nMax durability +30%, Three-round cooldown.</string>
+		<key>rank 7 intro</key>
+		<string>Forces led by Captain, Attack +1, Defense +1, \nDurability supplies 40, Strength supplies per round +2, \nMax durability +35%, Three-round cooldown.</string>
+		<key>rank 8 intro</key>
+		<string>Forces led by Major, Attack +1, Defense +1, \nDurability supplies 45, Strength supplies per round +3, \nMax durability +40%, Three-round cooldown.</string>
+		<key>rank 9 intro</key>
+		<string>Forces led by Lieutenant Colonel, Attack +1, \nDefense +1, Strength supplies per round +4, \nMax durability +45%, Durability supplies 50,\nThree-round cooldown.</string>
+		<key>rank 10 intro</key>
+		<string>Forces led by Colonel, Attack +2, Defense +1, \nDurability supplies 55, Strength supplies per round +5, \nMax durability +50%, Three-round cooldown.</string>
+		<key>rank 11 intro</key>
+		<string>Forces led by Brigadier General, Attack +2, \nDefense +1, Strength supplies per round +6, \nDurability supplies 60,  Max durability +55%, \nTwo-round cooldown.</string>
+		<key>rank 12 intro</key>
+		<string>Forces led by Major General, Attack +2, Defense +1, \nDurability supplies 65, Strength supplies per round +7, \nMax durability +60%, Two-round cooldown.</string>
+		<key>rank 13 intro</key>
+		<string>Forces led by Lieutenant General, Attack +3, \nDefense +1, Strength supplies per round +8,\nDurability supplies 70, Max durability +65%, \nTwo-round cooldown.</string>
+		<key>rank 14 intro</key>
+		<string>Forces led by General, Attack +3, Defense +1, \nDurability supplies 75, Strength supplies per round +9, \nMax durability +70%, Two-round cooldown.</string>
+		<key>rank 15 intro</key>
+		<string>Forces led by Marshal, Attack +3, Defense +2, \nDurability supplies 80, Strength supplies per round +10, \nMax durability +75%, Two-round cooldown.</string>
+		
+		<key>war medal 1 level 1</key>
+		<string>Bronze Infantry Medal</string>
+		<key>war medal 1 level 2</key>
+		<string>Silver Infantry Medal</string>
+		<key>war medal 1 level 3</key>
+		<string>Gold Infantry Medal</string>
+		
+		<key>war medal 2 level 1</key>
+		<string>Bronze Air Force Medal</string>
+		<key>war medal 2 level 2</key>
+		<string>Silver Air Force Medal</string>
+		<key>war medal 2 level 3</key>
+		<string>Gold Air Force Medal</string>
+		
+		<key>war medal 3 level 1</key>
+		<string>Bronze Artillery Medal</string>
+		<key>war medal 3 level 2</key>
+		<string>Silver Artillery Medal</string>
+		<key>war medal 3 level 3</key>
+		<string>Gold Artillery Medal</string>
+		
+		<key>war medal 4 level 1</key>
+		<string>Bronze Armour Medal</string>
+		<key>war medal 4 level 2</key>
+		<string>Silver Armour Medal</string>
+		<key>war medal 4 level 3</key>
+		<string>Gold Armour Medal</string>
+		
+		<key>war medal 5 level 1</key>
+		<string>Bronze Navy Medal</string>
+		<key>war medal 5 level 2</key>
+		<string>Silver Navy Medal</string>
+		<key>war medal 5 level 3</key>
+		<string>Gold Navy Medal</string>
+		
+		<key>war medal 6 level 1</key>
+		<string>Bronze Medal of Honor</string>
+		<key>war medal 6 level 2</key>
+		<string>Silver Medal of Honor</string>
+		<key>war medal 6 level 3</key>
+		<string>Gold Medal of Honor</string>
+		
+		<key>war medal 1 level 1 intro</key>
+		<string>It would be level 1 with assault and defense art.</string>
+		<key>war medal 1 level 2 intro</key>
+		<string>It would be level 2 with assault and defense art.</string>
+		<key>war medal 1 level 3 intro</key>
+		<string>When you first build infantry, it would be level 2 with \nassault and defense art.</string>
+		
+		<key>war medal 2 level 1 intro</key>
+		<string>Give your air forces more combat power. </string>
+		<key>war medal 2 level 2 intro</key>
+		<string>Give your air forces more combat power and operation \nscope. </string>
+		<key>war medal 2 level 3 intro</key>
+		<string>Give your air forces more combat power and operation \nscope. What’s more, there’s no limit on how many \ntimes you dispatch them.</string>
+		
+		<key>war medal 3 level 1 intro</key>
+		<string>When you first build artillery, it would upgrade to level 1.</string>
+		<key>war medal 3 level 2 intro</key>
+		<string>When you build artillery and rocket launcher forces \nfor the first time, they would rise to level 1 .</string>
+		<key>war medal 3 level 3 intro</key>
+		<string>When you build artillery and rocket launcher forces \nfor the first time, they would rise to level 1 with \ndefense tactics.</string>
+		
+		<key>war medal 4 level 1 intro</key>
+		<string>The armour forces are increased to level 1 at the \nvery beginning of establishment.</string>
+		<key>war medal 4 level 2 intro</key>
+		<string>Both armour and tank forces are increased to level 1 \nat the very beginning of establishment.</string>
+		<key>war medal 4 level 3 intro</key>
+		<string>When you start building armour, tank and heavy tank \nforces, they are upgraded to level 1.</string>
+		
+		<key>war medal 5 level 1 intro</key>
+		<string>All land forces you build are with carriers. </string>
+		<key>war medal 5 level 2 intro</key>
+		<string>All land forces you build are with carriers. Building \ndestroyer and cruiser forces gets you directly to \nlevel 1.</string>
+		<key>war medal 5 level 3 intro</key>
+		<string>All land forces you build are with carriers. Building \ndestroyer, cruiser, battleship and aircraft carrier \nforces gets you directly to level 1.</string>
+		
+		<key>war medal 6 level 1 intro</key>
+		<string>Each round gives you 10% extra production and \nindustry values.</string>
+		<key>war medal 6 level 2 intro</key>
+		<string>Each round gives you 20% extra production and \nindustry values.</string>
+		<key>war medal 6 level 3 intro</key>
+		<string>Each round gives you 30% extra production and \nindustry values.</string>
+		
+		<key>next level</key>
+		<string>Before reaching next \nlevel you need</string>
+		
+		<key>bank tip</key>
+		<string>In each campaign you only have one chance to get a loan.</string>
+			
+		<key>tip 1</key>
+		<string>With movement left, you can supply your forces one time after each round. You can also \nsupply strength supplies for injured forces in cities, industrial zone, airports and ports.</string>
+		<key>tip 2</key>
+		<string>After destroying enemies, your soldiers may have the chance to get more morale. If \nsurrounded by enemies, they may have mess morale.</string>
+		<key>tip 3</key>
+		<string>Armours, artilleries, rocket Launchers,tanks and heavy tanks all need to be recruited in \nindustrial zones while the navies in port. If you want to activate air forces, build an airport \nfirst.</string>
+		<key>tip 4</key>
+		<string>Armour army scares infantry most. Land fort is your first choice to defend navy attack.</string>
+		<key>tip 5</key>
+		<string>Entrenchment are cheap but good defensive work, however, they cannot stand up to tanks.</string>
+		<key>tip 6</key>
+		<string>For a large volume of enemies within an area, try to use air bombing. But it would be less \neffective if there are antiaircraft.</string>
+		<key>tip 7</key>
+		<string>Armours are the quickest military forces and your top choice to seize areas without \ndefense.</string>
+		<key>tip 8</key>
+		<string>Artilleries make enemies unable to fight back unless they have land forts.</string>
+		<key>tip 9</key>
+		<string>Carriers are the only option to get your army at sea. All carriers at sea have the same \nspeed.</string>
+		<key>tip 10</key>
+		<string>High-level cards need support from high-level technology. If you find some advanced cards \nunavailable, it's time to upgrade your technology with research card.</string>
+		<key>tip 11</key>
+		<string>Soldiers from different countries have different combat capability. America and Germany \nare strong in navy, army and air force. They also have commanders of high level.</string>
+
+		<key>tutorails 1</key>
+		<string>Hello, Commander! Let me show you how to do this.</string>
+		<key>tutorails 2</key>
+		<string>First of all, production and industry values are necessary \npillar for battle. Here is what we got.</string>
+		<key>tutorails 3</key>
+		<string>Basically, they come from output of our cities and industrial \nzones. Touch each area you will find these two values in \nthere.</string>
+		<key>tutorails 4</key>
+		<string>By touching the area where our forces locate you can move \nthem. Blue arrows point to movable areas while red arrows \npoint to battlegrounds.</string>
+		<key>tutorails 5</key>
+		<string>If you find any forces with the same base color as ours, \nthey are our allies. Please don't attack them.</string>
+		<key>tutorails 6</key>
+		<string>All forces have movement. When it comes down to 0, the \nforce  can't move.</string>
+		<key>tutorails 7</key>
+		<string>Each area allows four armies at most. We can adjust how \nthey distribute.</string>
+		<key>tutorails 8</key>
+		<string>Battleships can navigate at sea. Armies can also enter the \nsea as long as equipped with carriers.</string>
+		<key>tutorails 9</key>
+		<string>The left bottom button is tactical card, through which you \ncan carry out tactical operation.</string>
+		<key>tutorails 10</key>
+		<string>They are classified into forces, development, and strategy. \nEach has unique function. Using any of these cards would \ncost you production and industry values.</string>
+		<key>tutorails 11</key>
+		<string>Only the city or industrial zone of high level could recruit \narmy while port is the only place to recruit navy.</string>
+		<key>tutorails 12</key>
+		<string>If your technology level is lower than request, you are \nunable to use the card until you upgrade the technology.</string>
+		<key>tutorails 13</key>
+		<string>Some special cards need time to cool down before you \nuse them again. </string>
+		<key>tutorails 14</key>
+		<string>Command card is only applicable for one military unit.</string>
+		<key>tutorails 15</key>
+		<string>Build airports to launch air strikes or bomb hostile \nterritories, but air forces have limited combat areas.</string>
+		<key>tutorails 16</key>
+		<string>Through the System button on top right corner, you can \nsave the game, look up options, restart or quit.</string>
+		<key>tutorails 17</key>
+		<string>After all deployment, you can touch the wait button in right \nbottom corner to wait for next round.</string>
+		<key>tutorails 18</key>
+		<string>Commander! You would fail if all of your land territory are \nlost. Please take note of it.</string>
+		
+		<key>defeated</key>
+		<string>Defeated</string>
+
+		<key>commander complain 1</key>
+		<string>Commander! This is not good for our friendship.</string>
+		<key>commander complain 2</key>
+		<string>Sometimes I doubt you are a friend or enemy!</string>
+		
+		<key>commander retreat 1</key>
+		<string>Temporary retreat is not failure.</string>
+		<key>commander retreat 2</key>
+		<string>Maybe I'm too rushed to advance. My army needs \nadjustment.</string>
+		<key>commander retreat 3</key>
+		<string>I fight to the last minute, but still cannot repel enemies.</string>
+		<key>commander retreat 4</key>
+		<string>I underestimated the enemy's willpower. I need to rework \ntactics.</string>
+		<key>commander retreat 5</key>
+		<string>We must preserve our strength before beating back enemies. \nRetreat!</string>
+		
+		<key>commander return 1</key>
+		<string>Let's shake enemies with our gunfire!</string>
+		<key>commander return 2</key>
+		<string>Full speed ahead! Let's give enemies a surprise attack.</string>
+		<key>commander return 3</key>
+		<string>Fight to the last minute until the last man!</string>
+		<key>commander return 4</key>
+		<string>Soldiers! Let's show enemies what we are capable of!</string>
+		<key>commander return 5</key>
+		<string>Talking about attack and defense, no one is better than my \ntroops.</string>
+		
+		<key>commander failure 1</key>
+		<string>Commander! No matter how incredible you were, this time \nyou throw our country into a totally passive position. The \nheadquarters cannot accept your explanation. You will be \ndischarged all commanding powers you have.</string>
+		<key>commander failure 2</key>
+		<string>Commander! You failed to accomplish the goal on time, \nthat's why we lost the war. The headquarters just send a \nnotice that all commanding powers you have are discharged.</string>
+		
+		<key>commander victory 1</key>
+		<string>The headquarters could never imagine that you win in such \na short time. That's a perfect victory! You will be rewarded \nwith 50 extra medals.</string>
+		<key>commander victory 2</key>
+		<string>You have shown outstanding military talents in this battle. \nIt's almost a perfect victory! You will be rewarded with 25 \nextra medals.</string>
+		<key>commander victory 3</key>
+		<string>It's obvious that you have much more predominance in the \nbattle. The enemy is never a problem. You will have 15 \nextra medals.</string>
+		<key>commander victory 4</key>
+		<string>Commander! The dogged enemies are so offensive that you \nalmost lose your confidence, but you finally win.  You will \nbe rewarded with 5 extra medals.</string>
+		<key>commander victory 5</key>
+		<string>Commander! You didn't win until the last moment, so it \nmakes sense that the headquarters won't give you anything \nfor reward.</string>
+
+		<key>commander victory 1 no award</key>
+		<string>The headquarters could never imagine that you win in such \na short time. That's a perfect victory!</string>
+		<key>commander victory 2 no award</key>
+		<string>You have shown outstanding military talents in this battle. \nIt's almost a perfect victory!</string>
+		<key>commander victory 3 no award</key>
+		<string>It's obvious that you have much more predominance in the \nbattle. The enemy is never a problem.</string>
+		<key>commander victory 4 no award</key>
+		<string>Commander! The dogged enemies are so offensive that you \nalmost lose your confidence, but you finally win.</string>
+		
+		<key>axis battle 1 Guderian 1</key>
+		<string>In order to make sudden strike, my armour forces will move \nto Warsaw without resting.</string>
+		<key>axis battle 1 Guderian 2</key>
+		<string>If you want to attack Warsaw with me, you must take \nother cities and regions first and quickly.</string>
+		<key>axis battle 1 Guderian 3</key>
+		<string>Commander! Try to win the war as soon as possible. The \nfuehrer doesn't give us too much time.</string>
+		<key>axis battle 1 Guderian 4</key>
+		<string>My armour forces have broken through the outer defense \nline. Now Warsaw is so close to us.</string>
+		<key>axis battle 1 Guderian 5</key>
+		<string>If we fight together, the victory can come earlier!</string>
+		
+		<key>axis battle 2 Guderian 1</key>
+		<string>Commander! This time you lead army group B to attack \nDenmark and Norway in North Europe.</string>
+		<key>axis battle 2 Guderian 2</key>
+		<string>It's not the first time we work together. You must know my \ntactics well.</string>
+		<key>axis battle 2 Guderian 3</key>
+		<string>I'm coming near to Paris very soon. Hope to see your army \nright then.</string>
+		<key>axis battle 2 Guderian 4</key>
+		<string>My armour forces are going forward at amazing speed. We \neven have no time to take prisoners.</string>
+		<key>axis battle 2 de Gaulle 1</key>
+		<string>It's a life or death moment. Soldiers! Use your weapons to \nkill enemies before they kill you.</string>
+		
+		<key>axis battle 3 Rommel 1</key>
+		<string>Commander! My armour forces are mopping up French \nforces in the south.</string>
+		<key>axis battle 3 Rommel 2</key>
+		<string>Take care of the British army across the British Channel. \nMarshal Goering will support you with air forces.</string>
+		<key>axis battle 3 Goering 1</key>
+		<string>My air forces are in position. I don't think the British have \nmuch air superiority now.</string>
+		
+		<key>axis battle 4 Graziani 1</key>
+		<string>Commander! My battleships will stand by you. It's a piece \nof cake to win the battle.</string>
+		<key>axis battle 4 Graziani 2</key>
+		<string>I didn't realize their costal artillery is so accurate. My \nbattleships suffer heavy damage.</string>
+		<key>axis battle 4 Guider 1</key>
+		<string>Commander! You must completely destroy the hostile fleets \nfor final success of the campaign.</string>
+		
+		<key>axis battle 5 Rommel 1</key>
+		<string>Italian army is not as good as we thought. So the fuehrer \nsends us to help them in North Africa.</string>
+		<key>axis battle 5 Rommel 2</key>
+		<string>The enemies are a few times more than us, but not \ncombat power! We only need to focus on Britain and \nFrance.</string>
+		<key>axis battle 5 Rommel 3</key>
+		<string>German armour forces are powerful. When they come to us, \nholding our ground is winning!</string>
+		<key>axis battle 5 Montgomery 1</key>
+		<string>There's no way to stop my tiger tank.</string>
+		
+		<key>axis battle 6 Guderian 1</key>
+		<string>Commander! My army is heading for Kiev.</string>
+		<key>axis battle 6 Guderian 2</key>
+		<string>Your task is to occupy Minsk, and then we meet in \nMoscow.</string>
+		<key>axis battle 6 Guderian 3</key>
+		<string>Finland and Hungary will help us, but don't count too much \non them.</string>
+		<key>axis battle 6 Rokossovsky 1</key>
+		<string>Soldiers! Stand your ground! Defend your country!</string>
+		<key>axis battle 6 Zhukov 1</key>
+		<string>The fighting is pointless if our capital falls.</string>
+		
+		<key>axis battle 7 Yamamoto 1</key>
+		<string>Commander! Assaulting American fleet can be very risky.</string>
+		<key>axis battle 7 Yamamoto 2</key>
+		<string>Once drawn the katana cannot be sheathed until it kills. \nFight with all your might.</string>
+		<key>axis battle 7 Nimitz 1</key>
+		<string>Soldiers! Get back to your position. We're attacked! It's not \nexercise.</string>
+		
+		<key>axis battle 8 Guider 1</key>
+		<string>Commander! You must seize these areas quickly, because \nthe emperor needs resources.</string>
+		<key>axis battle 8 Guider 2</key>
+		<string>The thing is Britain has sent a strong fleet ahead to block \nour progress. </string>
+		<key>axis battle 8 Guider 3</key>
+		<string>I suggest using air forces to hit their fleet.</string>
+		
+		<key>axis battle 9 Yamamoto 1</key>
+		<string>Commander! China and Britain are massing forces in Burma. \nThey are going to fire back.</string>
+		<key>axis battle 9 Yamamoto 2</key>
+		<string>We suffered heavy loss in the Pacific war. We cannot help \nyou anymore.</string>
+		<key>axis battle 9 Zhang 1</key>
+		<string>Soldiers! Take back our land!</string>
+		
+		<key>axis battle 10 Goering 1</key>
+		<string>Actually American has got the hang of nuclear technology. \nThat's why the fuehrer hurries to start the war before we \nare ready.</string>
+		<key>axis battle 10 Goering 2</key>
+		<string>We convince Italy and Japan to fight North America with us, \nso we can relieve some stress.</string>
+		<key>axis battle 10 Goering 3</key>
+		<string>Commander! The fuehrer and all fellowmen are hoping to \nsee you back in triumph.</string>
+		<key>axis battle 10 Patton 1</key>
+		<string>Soldiers! Use our tank to crush enemies down!</string>
+		<key>axis battle 10 MacArthur 1</key>
+		<string>Be brave! Man! Only the daredevil can survive.</string>
+		
+		<key>allies battle 1 Zhukov 1</key>
+		<string>Commander! Our country is facing the most dangerous \nmoment!</string>
+		<key>allies battle 1 Zhukov 2</key>
+		<string>We take charge of different places, but it's obvious your \ndefense is the most important.</string>
+		<key>allies battle 1 Zhukov 3</key>
+		<string>Soviet Union is very large, but we can find no way out \nexcept Moscow in the back.</string>
+		<key>allies battle 1 Rokossovsky 1</key>
+		<string>I have executed some deserters myself. Don't doubt my \nloyalty.</string>
+		
+		<key>allies battle 2 Nimitz 1</key>
+		<string>After air strikes on Tokyo, Japan is targeting the Midway \nIsland for revenge.</string>
+		<key>allies battle 2 Nimitz 2</key>
+		<string>Midway Island is an important naval harbor in Pacific Ocean. \nConsidering its strategic value, we have to hold it by any \nmeans.</string>
+		<key>allies battle 2 Nimitz 3</key>
+		<string>Commander! My fleet will support you with all strength.</string>
+		<key>allies battle 2 Yamamoto 1</key>
+		<string>This time almost all navy in the emperor turn out.</string>
+		<key>allies battle 2 Yamamoto 2</key>
+		<string>This sea battle decides the country's destiny.</string>
+		
+		<key>allies battle 3 Montgomery 1</key>
+		<string>Germany and Italy are moving again. Their commander \nGeneral Rommel is very talented.</string>
+		<key>allies battle 3 Montgomery 2</key>
+		<string>He is like a fox in the desert. We have to watch out his \narmour forces.</string>
+		<key>allies battle 3 Rommel 1</key>
+		<string>Assaulting in the desert is undesirable for my armour forces. </string>
+		
+		<key>allies battle 4 Zhukov 1</key>
+		<string>The battle plan is revised again and again before the \nheadquarters make a final call.</string>
+		<key>allies battle 4 Zhukov 2</key>
+		<string>This is such a massive war that we put almost all forces \nwe have in it.</string>
+		<key>allies battle 4 Rokossovsky 1</key>
+		<string>This campaign is unprecedented yet crucial. You can't be \ntoo careful about it.</string>
+		<key>allies battle 4 Guderian 1</key>
+		<string>My tank forces cut into the enemy's heartland like a knife.</string>
+		<key>allies battle 4 Goering 1</key>
+		<string>My ace forces already freak the enemy out.</string>
+		
+		<key>allies battle 5 Patton 1</key>
+		<string>Commander! We must overcome the Italians quickly, \nbecause the Germans are on the way.</string>
+		<key>allies battle 5 Patton 2</key>
+		<string>We don't have too much time left.</string>
+		<key>allies battle 5 Rommel 1</key>
+		<string>According to the fuehrer, we will take over Italy's army and \ndefense system.</string>
+		
+		<key>allies battle 6 Guider 1</key>
+		<string>From intelligence we know Japan's elite troops are \nassembling in Burma. I believe they will march to India \nsoon.</string>
+		<key>allies battle 6 Zhang 1</key>
+		<string>Commander! The Chinese forces will assist you from the \nside to beat Japan. We share the same goal.</string>
+		<key>allies battle 6 Yamamoto 1</key>
+		<string>We get serious supply problems. Disease also starts to \nspread.</string>
+		<key>allies battle 6 Yamamoto 2</key>
+		<string>But for the Mikado we have nothing to fear.</string>
+		
+		<key>allies battle 7 Nimitz 1</key>
+		<string>We made a lot of preparation earlier, but such a massive \nlanding operation is totally new.</string>
+		<key>allies battle 7 Patton 1</key>
+		<string>This time German troops are led by Rommel for defense. I \ncan't wait to challenge him.</string>
+		<key>allies battle 7 de Gaulle 1</key>
+		<string>Finally we are home! To liberate France, move on!</string>
+		<key>allies battle 7 Nimitz 2</key>
+		<string>Our soldiers have some difficulty when landing. My fleet will \nspare no efforts to cover them.</string>
+		<key>allies battle 7 Rommel 1</key>
+		<string>If my defense line is breached, my armour forces will come \nto help immediately.</string>
+		
+		<key>allies battle 8 MacArthur 1</key>
+		<string>Germany refuses to surrender. Their main forces are \nconcentrated within the country.</string>
+		<key>allies battle 8 MacArthur 2</key>
+		<string>Soviet Union is moving forward Warsaw in east front. Poland \nwill get free sooner or later.</string>
+		<key>allies battle 8 Patton 1</key>
+		<string>Commander! My tanks will charge forward. Follow me. \nVictory belongs to us.</string>
+		<key>allies battle 8 Goering 1</key>
+		<string>Nothing can break the great Third Reich down.</string>
+		<key>allies battle 8 Rommel 1</key>
+		<string>Our soldiers are good, but there are way too many \nenemies!</string>
+		
+		<key>allies battle 9 Zhang 1</key>
+		<string>Now two of the axis powers, Germany and Italy, have put \nup the white flag. The situation is in our favor.</string>
+		<key>allies battle 9 Zhang 2</key>
+		<string>The headquarters decide to launch a large campaign on \nJapan. We are going to make up the lost ground.</string>
+		<key>allies battle 9 Zhang 3</key>
+		<string>This morning Soviet Union just declared war against Japan \nwho currently takes up the northeast China. So Japan has \nto deal with two battles. </string>
+		
+		<key>allies battle 10 MacArthur 1</key>
+		<string>Japan is ready for a defensive war. They claim they will \nfight to the last man.</string>
+		<key>allies battle 10 MacArthur 2</key>
+		<string>I can imagine how crazy the Japanese would be. The \nsamurai moral is no kidding!</string>
+		<key>allies battle 10 MacArthur 3</key>
+		<string>Commander! Don't feel any mercy for them. You can use \nour new weapon - atomic bomb if necessary.</string>
+		<key>allies battle 10 Nimitz 1</key>
+		<string>No one but us can compete with Japanese navy. Allies \nneed us to protect their carriers.</string>
+		<key>allies battle 10 Yamamoto 1</key>
+		<string>Soldiers! For Mikado, let's fight to the last minute!</string>
+		
+		<key>wto battle 1 Peng 1</key>
+		<string>The reunification is almost coming true. But at this time \nAmerican fleet shows up along the coast.</string>
+		<key>wto battle 1 Peng 2</key>
+		<string>Commander! America has far more advanced weapons than \nus. You need to adjust your strategy.</string>
+		<key>wto battle 1 Peng 3</key>
+		<string>I can't give you any help now, because the headquarters \nsend my army to aid Korea.</string>
+		<key>wto battle 1 MacArthur 1</key>
+		<string>We should finish the war before Christmas. Then soldiers \ncan spend the holiday with their families. </string>
+		
+		<key>wto battle 2 Guider 1</key>
+		<string>Indian troops are deep into Tibetan areas. They are not \nalone. Britain is behind them.</string>
+		<key>wto battle 2 Guider 2</key>
+		<string>The headquarters have approved your battle plan. First divide \nand encircle the enemy, then wipe them out. </string>
+		<key>wto battle 2 Guider 3</key>
+		<string>General Peng is coming to assist you as fast as possible.</string>
+		<key>wto battle 2 Peng 1</key>
+		<string>Obviously India underestimated us. They thought they could \nwin with America's weapons.</string>
+		
+		<key>wto battle 3 Zhukov 1</key>
+		<string>Oil in Arab areas is the ultimate key to success.</string>
+		<key>wto battle 3 Zhukov 2</key>
+		<string>We must move quickly. Take up the area before American \narmy arrives.</string>
+		
+		<key>wto battle 4 Rokossovsky 1</key>
+		<string>It's impossible to beat their fleet.</string>
+		<key>wto battle 4 Rokossovsky 2</key>
+		<string>What we can do is building more costal artillery and waiting \nfor them.</string>
+		<key>wto battle 4 Rokossovsky 3</key>
+		<string>We must stop them landing. Otherwise, we will face terrible \nsituation.</string>
+		
+		<key>wto battle 5 Guider 1</key>
+		<string>Commander! Bulgaria is at stake now!</string>
+		<key>wto battle 5 Guider 2</key>
+		<string>The headquarters realize you must set off to save them.</string>
+		<key>wto battle 6 Rokossovsky 1</key>
+		<string>Commander! Our union faces the most severe test ever. \nThe enemy is mounting an all-out attack.</string>
+		<key>wto battle 6 Rokossovsky 2</key>
+		<string>The headquarters want us to strike back from different \ndirections.</string>
+		
+		<key>wto battle 7 Guider 1</key>
+		<string>American intelligence already discovers our plan to invade \nSouth America.</string>
+		<key>wto battle 7 Guider 2</key>
+		<string>They begin to deploy troops in South America. Commander! \nHurry up! Blow them out of water!</string>
+		<key>wto battle 7 Guider 3</key>
+		<string>We must take the missile launcher to designated location. \nThis is of great importance to our success.</string>
+		
+		<key>nato battle 1 Patton 1</key>
+		<string>Commander! The Soviet Union has built a nuclear site in \nCuba.</string>
+		<key>nato battle 1 Patton 2</key>
+		<string>So far their nuclear bomb can destroy the whole North \nAmerica. We can't keep silent anymore.</string>
+		<key>nato battle 1 Patton 3</key>
+		<string>Our goal is to kick them out of South America and remove \nnuclear threat.</string>
+		<key>nato battle 1 Patton 4</key>
+		<string>We have to speed up. They could trigger the nuclear bomb \nany minute.</string>
+		
+		<key>nato battle 2 Montgomery 1</key>
+		<string>The Red Army starts to expand its power in Europe.</string>
+		<key>nato battle 2 Montgomery 2</key>
+		<string>Commander! I hope you can use the fortification to hang on \na few more days.</string>
+		<key>nato battle 2 Montgomery 3</key>
+		<string>My army would head to European mainland as fast as we \ncan.</string>
+		<key>nato battle 2 Zhukov 1</key>
+		<string>The whole Europe will become red very soon. The First \nSecretary is looking forward to it.</string>
+		
+		<key>nato battle 3 de Gaulle 1</key>
+		<string>I'm fighting against Poland. I'm worried Hungary nearby may \nattack me from behind.</string>
+		<key>nato battle 3 de Gaulle 2</key>
+		<string>Of course, the Soviet Union in back of them is the real \nenemy.</string>
+		<key>nato battle 3 Patton 1</key>
+		<string>Commander! The headquarters transfer me from Europe to \nhelp you out in Africa.</string>
+		<key>nato battle 3 Patton 2</key>
+		<string>It costs them a lot of work to convey my tanks from \nAmerica.</string>
+		<key>nato battle 3 Patton 3</key>
+		<string>I believe my tanks are extremely useful to you.</string>
+		
+		<key>nato battle 4 Nimitz 1</key>
+		<string>At present those Arab oil fields are controlled by the \nSoviets. We want them back.</string>
+		<key>nato battle 4 Nimitz 2</key>
+		<string>Just as planned, their main forces are distracted when I \napproach Turkey.</string>
+		<key>nato battle 4 Nimitz 3</key>
+		<string>You must seize the moment to get through the channel. \nMy fleet there will cover you.</string>
+		
+		<key>nato battle 5 MacArthur 1</key>
+		<string>Obviously India has swung to the Soviet Union, which \nmeans we have a lot of difficulties to land Asia.</string>
+		<key>nato battle 5 MacArthur 2</key>
+		<string>Commander! It's a tough battle. My navy will assist you in \nIndian Ocean.</string>
+		<key>nato battle 5 MacArthur 3</key>
+		<string>How is everything going? I guess my position is worse than \nyours.</string>
+		
+		<key>nato battle 6 MacArthur 1</key>
+		<string>Commander! My army is defending the Soviet Union and \nNorth Korea in the Sea of Japan.</string>
+		<key>nato battle 6 MacArthur 2</key>
+		<string>We look to you to take care of South Pacific. Australia \nshould give you some help.</string>
+		
+		<key>nato battle 7 Guider 1</key>
+		<string>Commander! I have some bad news.</string>
+		<key>nato battle 7 Guider 2</key>
+		<string>The other commanders fail to reach target locations. It \nseems the enemy is more stubborn than the headquarters \nexpected.</string>
+		<key>nato battle 7 Guider 3</key>
+		<string>Although it's highly difficult, you are the only choice to \ncarry out final attack.</string>
+		<key>nato battle 7 Guider 4</key>
+		<string>You don't have to rush aggression. The headquarters leave \nyou enough time to conduct operations.</string>		
+		
+		<key>victory</key>
+		<string>Victory</string>
+		<key>great victory</key>
+		<string>Great Victory</string>
+		<key>victory days1</key>
+		<string>Win in </string>
+		<key>victory days2</key>
+		<string>Days</string>
+					
+		<key>victory axis</key>
+		<string>The axis nations cannot win without your excellent leadership. \nCommander! Wish you an epic military career!</string>
+		<key>victory allies</key>
+		<string>The war has exacted a heavy price from all of us, but finally we \nsucceed. Commander! I’m sure your operational art will go down in \nhistory and encourage every person who loves peace.</string>
+		<key>victory wto</key>
+		<string>At last, under threat of nuclear weapons America is willing to talk \nwith us peacefully. You and your men have rendered outstanding \nservice. It’s you guys who change the whole world! Your name will \nremain forever in history!</string>
+		<key>victory nato</key>
+		<string>After the lost war, significant changes take place in the Soviet Union. \nThe red flag slowly lowered from Kremlin marks the huge union \nfinally collapses. From now on, the Soviet Union will be the history \nwhile peace has come into the world! Your hard working over years \nis rewarded with gains! Motherland will never forget you!</string>
+
+		<key>locked warning</key>
+		<string>After axis or allies campaign, \nyou can move on to WTO and \nNATO battles.</string>
+		
+		<key>connecting</key>
+		<string>Connecting...</string>
+		
+		<key>warning title 1</key>
+		<string>No Network</string>
+		<key>warning text 1</key>
+		<string>To use multiplayer, please enable Bluetooth or Wi-Fi in your device's Settings.</string>
+		
+		<key>warning title 2</key>
+		<string>Connection Failed</string>
+		<key>warning text 2</key>
+		<string>Connection failed. Please try again.</string>
+		
+		<key>warning title 3</key>
+		<string>Warning!</string>
+		<key>warning text 3</key>
+		<string>If you quit, other players can't continue the game. Are you sure to quit?</string>
+		
+		<key>warning title 4</key>
+		<string>Warning!</string>
+		<key>warning text 4</key>
+		<string>Some player left the game and you can't continue.</string>
+		
+		<key>warning title 5</key>
+		<string>Disconnected</string>
+		<key>warning text 5</key>
+		<string>You were disconnected for the game. The game can't continue.</string>
+			
+		<key>warning title 6</key>
+		<string>Warning!</string>
+		<key>warning text 6</key>
+		<string>Multiplayer is only available on Mac running OS X 10.8 and above.</string>
+	
+		<key>newgame1_service_1</key>
+		<string>Easytech devotes to design and develop the \nmost brilliant strategy games on military \naffairs.</string>
+		<key>newgame1_service_2</key>
+		<string>&#160;</string>
+		<key>newgame1_version</key>
+		<string>App Version：</string>
+	
+		<key>newgame2_txt_1</key>
+		<string>Dear commander, thank you very much \nfor your support all the time.</string>
+		<key>newgame2_txt_2</key>
+		<string>To provide better experience, we sincerely \ninvite you to help improve the game. You \ncan offer your valuable comments and \nsuggestions and create a more brilliant \nnmilitary career.</string>
+	
+		<key>newgame3_website</key>
+		<string>Website</string>
+		<key>newgame3_facebook</key>
+		<string>Facebook</string>
+		<key>newgame3_youtube</key>
+		<string>YouTube</string>
+		<key>newgame3_download</key>
+		<string>Download</string>
+		<key>newgame3_join</key>
+		<string>Participate</string>
+		<key>newgame3_mail</key>
+		<string>Send E-Mail</string>
+	
+		<key>newgame4_survey</key>
+		<string>Questionnaires</string>
+		<key>newgame4_recommend</key>
+		<string>Recommend</string>
+		<key>newgame4_service</key>
+		<string>Service</string>
+		<key>newgame4_iab_event</key>
+		<string>Activities</string>
+	</dict>
+</plist>

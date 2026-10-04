@@ -1,0 +1,37 @@
+<Texture name="m1_zone3_1.webp"/>
+<Images>
+    <Image name="0173.png" x="1" y="916" w="186" h="100" refx="0" refy="0"/>
+    <Image name="0175.png" x="184" y="664" w="180" h="118" refx="0" refy="0"/>
+    <Image name="0176.png" x="680" y="1" w="201" h="79" refx="0" refy="0"/>
+    <Image name="0179.png" x="496" y="599" w="185" h="167" refx="0" refy="0"/>
+    <Image name="0183.png" x="341" y="916" w="176" h="102" refx="0" refy="0"/>
+    <Image name="0185.png" x="1" y="784" w="189" h="130" refx="0" refy="0"/>
+    <Image name="0186.png" x="732" y="593" w="153" h="189" refx="0" refy="0"/>
+    <Image name="0187.png" x="210" y="261" w="131" h="195" refx="0" refy="0"/>
+    <Image name="0191.png" x="343" y="367" w="193" h="106" refx="0" refy="0"/>
+    <Image name="0192.png" x="814" y="398" w="131" h="193" refx="0" refy="0"/>
+    <Image name="0193.png" x="527" y="895" w="182" h="115" refx="0" refy="0"/>
+    <Image name="0194.png" x="527" y="768" w="184" h="125" refx="0" refy="0"/>
+    <Image name="0199.png" x="642" y="259" w="170" h="193" refx="0" refy="0"/>
+    <Image name="0200.png" x="1" y="1" w="229" h="121" refx="0" refy="0"/>
+    <Image name="0202.png" x="198" y="458" w="137" h="168" refx="0" refy="0"/>
+    <Image name="0204.png" x="713" y="784" w="146" h="183" refx="0" refy="0"/>
+    <Image name="0206.png" x="1" y="124" w="209" h="131" refx="0" refy="0"/>
+    <Image name="0209.png" x="1" y="390" w="195" h="125" refx="0" refy="0"/>
+    <Image name="0210.png" x="538" y="454" w="192" h="143" refx="0" refy="0"/>
+    <Image name="0213.png" x="680" y="82" w="199" h="175" refx="0" refy="0"/>
+    <Image name="0215.png" x="1" y="257" w="207" h="131" refx="0" refy="0"/>
+    <Image name="0216.png" x="457" y="1" w="221" h="123" refx="0" refy="0"/>
+    <Image name="0217.png" x="1" y="517" w="181" h="180" refx="0" refy="0"/>
+    <Image name="0218.png" x="341" y="475" w="153" h="187" refx="0" refy="0"/>
+    <Image name="0219.png" x="887" y="593" w="133" h="179" refx="0" refy="0"/>
+    <Image name="0220.png" x="232" y="111" w="209" h="148" refx="0" refy="0"/>
+    <Image name="0221.png" x="192" y="784" w="147" h="188" refx="0" refy="0"/>
+    <Image name="0222.png" x="881" y="200" w="101" h="196" refx="0" refy="0"/>
+    <Image name="0225.png" x="232" y="1" w="223" h="108" refx="0" refy="0"/>
+    <Image name="0227.png" x="887" y="774" w="136" h="174" refx="0" refy="0"/>
+    <Image name="0228.png" x="443" y="126" w="198" h="122" refx="0" refy="0"/>
+    <Image name="0233.png" x="341" y="784" w="184" h="130" refx="0" refy="0"/>
+    <Image name="0234.png" x="443" y="250" w="197" h="115" refx="0" refy="0"/>
+    <Image name="0237.png" x="883" y="1" w="130" h="197" refx="0" refy="0"/>
+</Images>

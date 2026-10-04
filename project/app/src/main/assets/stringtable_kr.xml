@@ -1,0 +1,854 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>Infantry</key>
+		<string>보병</string>
+		<key>Armour</key>
+		<string>장갑차</string>
+		<key>Artillery</key>
+		<string>대포</string>
+		<key>Rocket</key>
+		<string>로켓 포</string>
+		<key>Tank</key>
+		<string>탱크</string>
+		<key>Heavy Tank</key>
+		<string>중전차</string>
+		<key>Destroyer</key>
+		<string>구축함</string>
+		<key>Cruiser</key>
+		<string>순양함</string>
+		<key>BattleShip</key>
+		<string>전투함</string>
+		<key>Aircraft Carrier</key>
+		<string>항공모함</string>
+		<key>Airstrike</key>
+		<string>공습</string>
+		<key>Bomber</key>
+		<string>폭격</string>
+		<key>Airborne Force</key>
+		<string>낙하산병</string>
+		<key>Nuclear Bomb</key>
+		<string>핵폭탄</string>
+		<key>City</key>
+		<string>도시</string>
+		<key>Industry</key>
+		<string>공업</string>
+		<key>Airport</key>
+		<string>공항</string>
+		<key>Land Fort</key>
+		<string>요새포</string>
+		<key>Entrenchment</key>
+		<string>참호</string>
+		<key>Antiaircraft</key>
+		<string>방공 기관총</string>
+		<key>Radar</key>
+		<string>레이더</string>
+		<key>Research</key>
+		<string>연구 개발</string>
+		<key>Carrier</key>
+		<string>수송선</string>
+		<key>Assault Art</key>
+		<string>돌격 전술</string>
+		<key>Defend Art</key>
+		<string>방어 전술</string>
+		<key>Commander</key>
+		<string>지휘관</string>
+		<key>Supply Line</key>
+		<string>보급선</string>
+		<key>Ace Forces</key>
+		<string>킹 카드 부대</string>
+		<key>Infantry Intro</key>
+		<string>제일 쉬게 편성할수있느 부대입니다.전쟁터에서의 주\n력군입니다.</string>
+		<key>Armour Intro</key>
+		<string>장갑차는 가장 우월한 기동성을 가지고 있습니다.대\n구경 기관총은 유력하게 보병을 살상할수있습니다.</string>
+		<key>Artillery Intro</key>
+		<string>진공할때 많은 부대로 하여금 반격할수 없도록 합니\n다.하지만 이동 속도가 느립니다.</string>
+		<key>Rocket Intro</key>
+		<string>위력이 아주 큰 로켓 장비를 갖추었습니다.적에게 먼 \n거리 공격을 할수 있습니다.하지만 이동 속도가 느릴\n뿐만아니라 방갑 보호장치가 없습니다.</string>
+		<key>Tank Intro</key>
+		<string>아주 훌륭한 장갑과 화력이 갖추어졌습니다.참호도 \n앞길을 막을수가 없습니다.적군을 전멸하고도 이동력\n을 전혀 소모하지 않습니다.</string>
+		<key>Heavy Tank Intro</key>
+		<string>강력한 먼 거리 화력을 갖추어 있습니다.대포로 공\n격할때 반격할수 있습니다.참호도 그들의 앞길을 막\n을수가 없습니다.적군을 전멸하고도 이동력을 전혀 \n소모하지 않습니다.</string>
+		<key>Destroyer Intro</key>
+		<string>가장 초급적인 군함입니다.일반적으로 해상 호송과 순\n찰하는 임무를 담당하고 있습니다.</string>
+		<key>Cruiser Intro</key>
+		<string>해전에서 주력 군함입니다. 훌륭한 장갑과 강력한 화\n력을 가지고 있습니다.</string>
+		<key>BattleShip Intro</key>
+		<string>대구경 함포와 두껍고 무거운 장갑등이 장비되여 있\n습니다.아주 강력한 공격력과 방어력을 지니고 있습\n니다.</string>
+		<key>Aircraft Carrier Intro</key>
+		<string>항공모함은 해전의 핵심입니다.그의 항모에 실은 비\n행기로 목표를 향해 폭격할수 있습니다.하지만 자체\n의 방어력은 강하지 못합니다.</string>
+		<key>Airstrike Intro</key>
+		<string>전투기에 장비된 대구경 기관총으로 적군 지역을 향\n해 공중에서 공격할수 있습니다.</string>
+		<key>Bomber Intro</key>
+		<string>적군 지역을 향해 폭격할수 있습니다.폭격당한 구역\n내의 모든 부대,도시 그리고 공업시설등은 모두 타\n격을 받게 됩니다.[1개 회합에 1번의 사용이 가능함]</string>
+		<key>Airborne Force Intro</key>
+		<string>지정된 육지 지역내에 한 갈래의 보병을 낙하시킬수 \n있습니다.[3개 회합에 1번의 사용이 가능함]</string>
+		<key>Nuclear Bomb Intro</key>
+		<string>한개 지역내에 핵폭탄 공격을 실시합니다.그 지역의 \n군대와 시설을 철저히 파괴시킵니다.[4개 회합에 1번\n의 사용이 가능함]</string>
+		<key>City Intro</key>
+		<string>도시의 등급을 향상시키며 생산액과 부대 보급을 증\n가시킵니다.높은 등급의 도시는 보병을 편성할수 있\n습니다.</string>
+		<key>Industry Intro</key>
+		<string>공업 등급을 향상시키며 공업 수치와 부대 보급을 증\n가시킵니다.높은 등급의 공업구는 높은 등급의 기계\n화 부대를 편성할수 있습니다.</string>
+		<key>Airport Intro</key>
+		<string>공항은 공중에서 적군을 공격함에 있어서 필요한 시\n설이며 부대에게 보다 많은 보급을 가져다 줄수 있\n습니다.</string>
+		<key>Land Fort Intro</key>
+		<string>부대의 방어력을 향상시킵니다.방어 대포 공격이 있\n을때 반격할수 있으며 방어 군함 공격이 있을때 배\n로 되는 반격을 할수 있습니다.</string>
+		<key>Entrenchment Intro</key>
+		<string>아군 부대의 방어력을 증강시키며 진공 부대의 이동\n력을 감소시킬수 있습니다.</string>
+		<key>Antiaircraft Intro</key>
+		<string>방공 무기는 공습과 폭격이 가져다 주는 손상을 상\n당한 정도로 감소할수 있습니다.</string>
+		<key>Radar Intro</key>
+		<string>레이더 정찰기능은 적군의 먼 거리 화력과 공습이 \n가져다주는 손상을 효과적으로 감소시킬수 있습니\n다.</string>
+		<key>Research Intro</key>
+		<string>과학 기술의 업그레이드는 3개 회합이 필요합니다.\n과학 기술 연구 개발을 완성한후 이 등급의 카드를 \n사용할수 있습니다.[3개 회합에 1번의 사용이 가능\n함]</string>
+		<key>Carrier Intro</key>
+		<string>장비가 수송선에 오르게 되면 육군 부대가 해양에서\n의 이동이 가능하게 됩니다.</string>
+		<key>Assault Art Intro</key>
+		<string>돌격 전술은 아군 부대를 위하여 공격력을 증가시키\n는데 도움이 됩니다.</string>
+		<key>Defend Art Intro</key>
+		<string>방어 전술은 아군 부대를 위하여 방어력을 증가시키\n는데 도움이 됩니다.</string>
+		<key>Commander Intro</key>
+		<string>지휘관을 사용하면 부대의 능력이 증가됩니다.지휘\n관의 계급 등급에의해 지휘관의 능력이 결정됩니다.</string>
+		<key>Supply Line Intro</key>
+		<string>아군의 한개 지역내의 모든 손상한 부대를 위하여 \n보급을 완성할수 있습니다.[3개 회합에 1번의 사용\n이 가능함]</string>
+		<key>Ace Forces Intro</key>
+		<string>지정되 한개 부대에게 승진 1급의 장려를 줍니다.\n [1개 회합에 1번의 사용이 가능함]</string>
+		<key>axis battle name 1</key>
+		<string>전격전</string>
+		<key>axis battle name 2</key>
+		<string>노랑 계획</string>
+		<key>axis battle name 3</key>
+		<string>바다사자 작전</string>
+		<key>axis battle name 4</key>
+		<string>발칸 전투</string>
+		<key>axis battle name 5</key>
+		<string>북아프리카 전투</string>
+		<key>axis battle name 6</key>
+		<string>바르바로사 작전</string>
+		<key>axis battle name 7</key>
+		<string>토라! 토라! 토라!</string>
+		<key>axis battle name 8</key>
+		<string>남아세아 전투</string>
+		<key>axis battle name 9</key>
+		<string>중국-미얀마-인도 싸움터</string>
+		<key>axis battle name 10</key>
+		<string>북미를 침입하다 </string>
+		<key>allies battle name 1</key>
+		<string>모스크바 공방전</string>
+		<key>allies battle name 2</key>
+		<string>미드웨이섬 전투</string>
+		<key>allies battle name 3</key>
+		<string>엘 알라메인 전투</string>
+		<key>allies battle name 4</key>
+		<string>쿠르스크 전투</string>
+		<key>allies battle name 5</key>
+		<string>시칠리아 상륙 작전</string>
+		<key>allies battle name 6</key>
+		<string>임팔 전투</string>
+		<key>allies battle name 7</key>
+		<string>노르망디 상륙 작전 </string>
+		<key>allies battle name 8</key>
+		<string>목표-베를린</string>
+		<key>allies battle name 9</key>
+		<string>원동 전역</string>
+		<key>allies battle name 10</key>
+		<string>목표-동경</string>
+		<key>wto battle name 1</key>
+		<string>레드 태풍</string>
+		<key>wto battle name 2</key>
+		<string>중인전쟁</string>
+		<key>wto battle name 3</key>
+		<string>중동전쟁</string>
+		<key>wto battle name 4</key>
+		<string>태평양전쟁</string>
+		<key>wto battle name 5</key>
+		<string>터키를 포위 공격하다</string>
+		<key>wto battle name 6</key>
+		<string>반격하다</string>
+		<key>wto battle name 7</key>
+		<string>아메리카주를 원정하다</string>
+		<key>nato battle name 1</key>
+		<string>쿠바 미사일 위기</string>
+		<key>nato battle name 2</key>
+		<string>레드 그늘</string>
+		<key>nato battle name 3</key>
+		<string>아프리카를 해방하다</string>
+		<key>nato battle name 4</key>
+		<string>해상의 길</string>
+		<key>nato battle name 5</key>
+		<string>인도양을 쟁패하다</string>
+		<key>nato battle name 6</key>
+		<string>남태평양</string>
+		<key>nato battle name 7</key>
+		<string>영광과 평화</string>
+		<key>axis battle intro 1</key>
+		<string>원수께서는 이미 폴란드를 진공하라는 명령을 내리셨습니\n다.당신은 제국에서 가장 정예한 군단을 인솔하여 신속히 \n폴란드를 격파하여야 합니다.구데리안 장군이 당신과 함께 \n작전에 참여할 것입니다.지휘관님!최고 지휘부는 당신의 승\n리의 소식을 기대할것입니다!</string>
+		<key>axis battle intro 2</key>
+		<string>최고 사령부에서는 드디어 서쪽으로 진군하는 계획을 초\n안하였습니다.이 계획은 2개 부분으로 나뉘어집니다.A집단\n군은 프랑스의 마지노방어선을 에돌아서 폴란드와 벨기에\n를 침입합니다.최종적으로 파리를 진공합니다.B집단군은 제\n국의 필요한 자원을 위하여 북유럽국가인 덴마크와 노르\n웨이에 진군합니다.구데리안 장군이 당신과 함께 이번 전\n투에 참여할 것입니다.</string>
+		<key>axis battle intro 3</key>
+		<string>우리의 군대가 개선문을 지나가는 장면은 정말로 감탄을 \n금치 못하게 하였습니다.원수께서는 아주 만족스러워 하고 \n있습니다.정보에 의하면 영국군과 프랑스군은 반격을 시도\n하고 있다고 합니다.그들에게 어떤 기회도 주지말아야 합\n니다!괴링 총사령관이 그의 킹 카드인 공군더러 당신의 \n작전을 협조하도록 할것입니다.</string>
+		<key>axis battle intro 4</key>
+		<string>독일의 몇번이나 되는 군사행동은 모두 전례가  없는 성\n공을 거두었습니다.이것은 총리각하의 발칸지역을 확장하\n려는 결심을 자극하였습니다.그리스는 영국인이 원조하\n고 있는것을 고려하여 우리도 불가리아와 루마니아가 공\n동으로 이번 작전에 참여할것을 요청하였습니다.그라지\n아니장군이 해상에서 당신을 지원할 것입니다!</string>
+		<key>axis battle intro 5</key>
+
+		<string>이탈리아의 군대가 북아프리카에서 곤경에 빠지여 있습니\n다.원수께서는 북아프리카가 영국의 손에 들어가게 되면 \n지중해의 보급선이 단절될까 염려하고 있습니다.때문에 반\n드시 북아프리카에 지원군을 파견하여야 합니다.지휘관각\n하! 로멜장군이 휴가를 마치고 돌아왔습니다.그가 정예한 \n탱크군단을 거느리고 당신과 함께 북아프리카로 진군할것\n입니다.</string>
+		
+		
+		<key>axis battle intro 6</key>
+		<string>소련을 침입하는 계획이 시작되였습니다! 러시아인이 준\n비가 부족하여 번번히 패배하였습니다.지금쯤 구데리안장\n군의 남방집단군은 벌써 키예프에 주둔하고 있는 소련군\n을 포위 공격하고 있을것입니다.원수께서는 당신들이 빠른 \n시일내에 모스크바에서 합류하기를 바라고 있습니다.지휘\n관각하!만약에 당신이 승리를 거둔다면 이는 한차례의 가\n장 위대한 승리가 될것입니다.</string>
+		
+		
+		<key>axis battle intro 7</key>
+		<string>미국은 이미 우리들의 필요한 에너지원을 차단시켰습니다.\n그리고 아직 진주만에 방대한 해군이 주둔하고 있습니다.\n이 모든것은 최고지휘부로 하여금 아주 불안을 느끼게 \n하고 있습니다.진주만의 미국군을 소멸하는것이 우리들의 \n절박한 목표입니다.야마모토 이소로쿠장군은 벌써 작전계\n획을 준비하였습니다.천황께서는 당신들의 승리의 소식을 \n기다리고 있습니다.</string>
+		<key>axis battle intro 8</key>
+		<string>남태평양의 섬나라에는 제국이 절박히 수요하는 많은 자\n원이 있습니다.아마도 미국과 영국은 벌써 이점을 느꼈을 \n것입니다.하여 우리들의 진공을 저항하려고 많은 부서를 \n했을것입니다.그리고 오스트레일리아도 전국적인 동원을 시\n작하였습니다.지휘관각하!그들을 이기려면 용기만으로는 부\n족합니다.</string>
+		<key>axis battle intro 9</key>
+		<string>우리가 아세아 전장에서 비록 많은 승리를 거두었지만 아\n직도 우리가 애초에 제정한 목표에 도달하지 못하고 있습\n니다.지금쯤 중국인은 미얀마와 영국과 연합하여 우리를 향\n해 반격하고 있을 것입니다.지휘관각하!그들의 반격을 막아\n내지 못하면 우리는 모든것이 물거품이 되고 말것입니다.</string>
+		<key>axis battle intro 10</key>
+		<string>우리들의 정보에 의하면 미국인은 한창 일종의 위력이 강\n대한 초강무기를 제조하고 있습니다.정말 놀라케하는 정보\n입니다.원수께서는 당장 북아메리카에 원정하는 계획을 앞\n당기기로 결정하였습니다.그리고 이탈리아와 연합하여 진\n공할 계획을 협의 검토하고있습니다.지휘관각하!우리에게는 \n단 한번의 계획밖에 없습니다.</string>
+		<key>allies battle intro 1</key>
+		<string>국가는 이미 가장 위험한 시각에 놓여 있습니다.지금 주코\n프장군이 키예프에서 구데리안장군의 군단과 저항하고 있\n습니다.로코소프스키장군은 북방에서 핀란드와 로멜군단의 \n연합군과 대항하고 있습니다.모스크바는 오직 당신에게만 \n의지하여 보위할수 밖에 없습니다.지휘관각하!당신은 우리\n들의 마지막 희망입니다.</string>
+
+		<key>allies battle intro 2</key>
+		<string>지휘관각하!일본 연합 함대는 벌써 우리 미드웨이 섬 해\n군기지를 향해 공격하고 있습니다.만약에 일본이 성공적\n으로 미드웨이 섬을 점령하게 되면 우리 나라 서해안이 \n일본 해군의 위협을 받을 것이다.그때에는 우리는 대통령\n각하에게 설명할 방법이 없습니다.그리고 우리가 일본\n군을 격파하는데 있어서 확실히 확보하기 위하여 니미츠\n장군이 당신의 작전에 협조할것입니다.</string>
+		<key>allies battle intro 3</key>
+		<string>로멜의 장갑군단은 벌써 우리들이 북아프리카에 있어서 \n가장 강력한 적이 되였습니다.몽고메리장군은 줄곧 그들\n을 철저히 격파할수있는 기회를 노리고 있습니다.지휘관\n각하!당신의 가입으로 인해 이 시각이 더욱 빨리 올수가 \n있을것입니다.</string>
+		<key>allies battle intro 4</key>
+		<string>지휘관각하!최고 지휘부는 한차례의 대규모적인 반격을 \n하기로 결심하였습니다.죽일 놈의 침략자들을 우리 땅에\n서 철저히 쫓아 내야 합니다.이번 계획은 주코프장군, 로\n코소프스키장군과 당신이 각자의 집단군을 지휘하여 3갈\n래의 방향으로 적군을 향해 총공격을 하게 됩니다.</string>
+		<key>allies battle intro 5</key>
+		<string>북아프리카의 전역이 끝난후 동맹군지휘부에서는 축심국\n의 가장 약한 이탈리아를 철저히 격파하기를 바라고 있\n습니다.하여 그들이 전쟁에서 물러나게 하여야 합니다.지\n휘관각하!이번 전역에서 이탈리아군대는 우리의 유일한 \n적이 아닙니다.그리스에 주둔하고 있는 독일군이야말로 \n우리들이 중시해야할 상대입니다!</string>
+		<key>allies battle intro 6</key>
+		<string>정보에 의하면 일본이 미얀마지역에 대량의 군대를 집결\n시키고 있습니다.아마도 그들은 인도를 향해 진공할 준\n비를 하고 있는것 같습니다.인도는 우리 대영제국이 아세\n아에서의 마지막 근거지입니다.우리는 반드시 사전에 부서\n를 잘 해놓아야 합니다.북부에 있는 중국군대는 우리의 \n동맹국입니다.그들이 우리와 함께 작전에 참여할것입니다.</string>
+		<key>allies battle intro 7</key>
+		<string>동선에서 작전하고 있는 소련을 지원하여 독일군으로 하\n여금 동맹군의 포위에 빠지게 하기 위하여 최고 지휘부\n에서는 유럽에 상륙하여 작전하기로 결정하였습니다.이 목\n표를 위하여 우리는 오래전부터 준비하여 왔습니다.이것\n은 당신의 일생에 있어서 지휘한 가장 방대하고 가장 힘\n든 전역이 될것입니다.</string>
+		<key>allies battle intro 8</key>
+		<string>우리의 전방이 곧 독일 본토입니다.나는 독일 본토에 진\n입한후 전쟁은 더욱더 격렬해질 것이라고 믿고 있습니다.\n한발작을 내디딜때마다 커다란 대가를 치러야 할것입니다.\n소련 홍군이 동선에서 작전하면서 사망자수자는 우리를 \n몹시 놀래케하였습니다.지휘관각하!일단 독일군을 패배시\n키면 우리는 유럽지구의 승리를 얻게 될것입니다.</string>
+		<key>allies battle intro 9</key>
+		<string>우리는 동맹군이 원동에 있어서 가장 중요한 힘이 될것\n입니다.오랜 기간동안 우리는 침략자와의 투쟁을 견지해 \n왔습니다.우리는 종래로 정복당한적이 없습니다.지휘관각\n하!지금이 바로 우리가 반격할 시기입니다.우리가 잃었던 \n땅을 되찾아야 합니다.소련 홍군이 동북에서 우리를 협조\n할것입니다.</string>
+		<key>allies battle intro 10</key>
+		<string>역사상 어느 누구도 일본 본토에 상륙하여 작전한적이 \n없었습니다.칭기즈 칸이라도 할수가 없었습니다.하지만 \n역사는 우리에게 이런 기회를 주었습니다.우리는 반드시 \n완성하여야 합니다.지휘관각하!상륙하여 작전하기전 당\n신은 반드시 그들의 강대한 해군을 격파하여야 합니다.</string>
+		<key>wto battle intro 1</key>
+		<string>미국을 우두머리로한 "북대서양 조약 기구"는 원동지역이 \n완전히 사회주의 진영이 되는것을 용납할수가 없는 것입\n니다.그래서 그들은 우리의 전국 통일하는 전쟁을 간섭하\n려고 준비하고 있습니다.아마도 우리는 어떻게 그들을 격\n파할것인가를 잘 생각해보아야 할것입니다.지휘관각하!이\n것은 절대로 쉬운 일이 아닙니다.왜냐하면 우리의 장비는 \n그들과 현저한 차이가 있습니다</string>
+		<key>wto battle intro 2</key>
+		<string>지휘부에서 방금전에 정보를 수집하였습니다.우리 나라 \n서부 변경지역에 대량의 장비가 훌률한 인도군대가 나\n타났습니다.그들은 이미 우리 나라 변경을 넘어왔습니\n다.지휘관각하!상황이 아주 긴급합니다.당신은 반드시 전\n선에 달려가서 전투준비를 하여야 합니다.</string>
+		<key>wto battle intro 3</key>
+		<string>우리는 반드시 미국과 영국에 앞서 중동지역의 석유자원\n을 빼앗아야 합니다.그들도 분명히 이렇게 생각하고 있\n을것입니다.지휘관각하!우리가 중동지역에서 쫓겨나면 우리\n는 그들과 대항할 자본을 잃게 되는 것입니다.</string>
+		<key>wto battle intro 4</key>
+		<string>기타 전쟁지역의 압력을 완화하기 위하여 미국과 캐나다\n는 하나의 연합 함대를 만들었으며 태평양 위에서 우리\n에게 공격을 가하고 있습니다.그들의 사령은 니미츠총사\n령관입니다.지휘관각하!우리들의 해군의 힘은 아주 약합니\n다.해상에서 그들과 정면 충돌을 할수가 없습니다.</string>
+		<key>wto battle intro 5</key>
+		<string>터키가 미국의 군사지원을 받은후 우리의 맹우인 불가리\n아를 향해 진공하고 있습니다.지휘관각하!우리는 당신이 \n불가리아를 증원하여 신속히 터키,그리스 그리고 유고슬\n라비아를 격파하기를 바라고 있습니다.만약에 전쟁을 빨\n리 끝내지 못한다면 미국의 지원군이 곧 도착할것입니다.\n그러면 우리는 피동의 위치에 처할것입니다.</string>
+		<key>wto battle intro 6</key>
+		<string>미국과 영국을 우두머리로한 연합군은 짧디 짧은 몇주사\n이에 온 독일을 공제하게 되였습니다.뿐만아니라 폴란드\n변경까지 넘어 왔습니다.동시에 프랑스와 이탈리아 군\n단도 흉아리를 향해 진공하고 있습니다.지휘관각하!최고 \n사령부는 당신에게 빨리 당신의 군단을 모집하여 전선으\n로 가서 그들을 원조할것을 명령합니다.하여 국면을 안정\n시킨후 적에게도 필요한 반격을 하여야 합니다.</string>
+		<key>wto battle intro 7</key>
+		
+		<string>몇번의 북대서양 조약 기구와의 작전에서 중대한 승리를 \n거둔후 우리의 세력 판도는 유럽,아세아 그리고 아프리아\n까지 미치게 되였습니다.최고지휘부의 다음 계획은 남아메\n리카를 기습하여 거기에 미사일 발사기지를 건설하고 미\n국을 압박하여 회담하는 것입니다.지휘관각하!미국은  당신\n더러 쉽게 목표에 도달하게 하지 않을 것입니다.</string>
+		<key>nato battle intro 1</key>
+		<string>소련인은 이미 미사일 발사 장치를 쿠바로 운송하였습니\n다.그들은 수시로 우리 본토을 향해 미사일을 발사할수 \n있습니다.지휘관각하!대통령께서 당신에게 어떠한 대가를 \n치르더라도 우리에게 위협이 되는 무기를 소멸하는것과 \n남아메리카에 주둔하고  있는 소련인을 남아메리카에서 \n쫓아낼것을 명령합니다.</string>
+		<key>nato battle intro 2</key>
+		<string>소련이 서유럽을 향해 확장하고자 하는 의도는 아주 선\n명하게 드러내고 있습니다.폴란드,불가리아,루마니아와 흉\n아리가 모두 소련의 군사 동맹국이 되였습니다.지금 그들\n은"베를린성벽"을 넘었으며 온 독일을 공제하였습니다.유럽\n에서 그들과 대항할수 있는것은 오직 영국,프랑스 그리고 \n이탈리아입니다.지휘관각하!이것은 최후의 방어선입니다.당\n신에게 유럽의 운명이 달려있습니다.</string>
+		<key>nato battle intro 3</key>
+		<string>현재 소련과 그의 동맹국이 이미 아프리카를 공제하였습\n니다.우리가 빨리 대책을 서둘러 아프리카를 증원하지 않\n으면 그들은 곧 온 지중해지역 나아가서 유럽을 진공할\n것입니다.지휘관각하!프랑스의 드골장군이 우리의 맹우로\n서 우리와 함께 작전에 참여할것입니다.</string>
+		<key>nato battle intro 4</key>
+		<string>최고지휘부의 다음 작전 계획은 중동지역을 해방시키는 \n것입니다.우리는 터키방향으로 진공하는 척하면서 소련인\n으로 하여금 판단력을 잃게 하여야 합니다.진정한 작전 \n계획은 당신이 지금 있는 아프리카 지역으로부터 중동지\n역으로 진군하는 것입니다.이 계획을 위하여 우리는 오\n래동안 준비하여 왔습니다.지금이 바로 출격할 시각입니\n다!</string>
+		<key>nato battle intro 5</key>
+		<string>만약 우리가 인도를 통과하여 아세아에 진입하게 되면 \n그 어떤 장애물도 없을것입니다.우리가 이 계획을 실행\n하려고 하는 순간 인도의 태도가 근본적으로 달라졌으\n며 동시에 소련인의 군단이 인도 본토에 나타났습니다.\n지휘관각하! 소련인의 외교가 성공을 거두었습니다.우리\n는 오직 전쟁을 통하여야 목적에 도달할수 있습니다!</string>
+		<key>nato battle intro 6</key>
+		<string>소련과 중국의 관계에 금이 갔으며 나아가 변경전쟁까지 \n폭발하였습니다.이는 우리에게 있어서 굿 뉴스입니다.지휘\n관각하!당신이 이번 좋은 기회를 잡아서 소련의 남태평양 \n보급선을 차단할수 있습니까?이 지역에 우리의 지원군은 \n오직 오스트레일리아밖에 없습니다.</string>
+		<key>nato battle intro 7</key>
+		<string>만약에 진정으로 소련을 격파하려면 반드시 본토에서 그\n들을 격파하여야 합니다.분명히 당신은 이런 능력이 구비\n되였습니다.각 방면의 부대가 각자의 정해진 위치에 놓여\n있을때 총 공격의 소식이 지휘부로 부터 올것입니다.지휘\n관각하!조심히 전진하십시요.소련인의 전투의지는 아주 강\n합니다!</string>
+		<key>alliance name 1</key>
+		<string>축심국</string>
+		<key>alliance name 2</key>
+		<string>동맹국</string>
+		<key>alliance name 3</key>
+		<string>WTO</string>
+		<key>alliance name 4</key>
+		<string>NATO</string>
+		<key>conquest name 1</key>
+		<string>EUROPE 1939</string>
+		<key>conquest name 2</key>
+		<string>PACIFIC 1942</string>
+		<key>conquest name 3</key>
+		<string>EUROPE 1943</string>
+		<key>conquest name 4</key>
+		<string>AFRICA 1942</string>
+		<key>conquest name 5</key>
+		<string>AMERICA 1945</string>
+		<key>conquest name 6</key>
+		<string>ASIA 1950</string>
+		<key>conquest name 7</key>
+		<string>EUROPE 1955</string>
+		<key>conquest name 8</key>
+		<string>ENERGY CRISIS</string>
+		<key>AutoSave</key>
+		<string>AUTOSAVE</string>
+		<key>rank 1</key>
+		<string>일등병</string>
+		<key>rank 2</key>
+		<string>하사</string>
+		<key>rank 3</key>
+		<string>중사</string>
+		<key>rank 4</key>
+		<string>상사</string>
+		<key>rank 5</key>
+		<string>소위</string>
+		<key>rank 6</key>
+		<string>중위</string>
+		<key>rank 7</key>
+		<string>상위</string>
+		<key>rank 8</key>
+		<string>소교</string>
+		<key>rank 9</key>
+		<string>중교</string>
+		<key>rank 10</key>
+		<string>상교</string>
+		<key>rank 11</key>
+		<string>준장</string>
+		<key>rank 12</key>
+		<string>소장</string>
+		<key>rank 13</key>
+		<string>중장</string>
+		<key>rank 14</key>
+		<string>상장</string>
+		<key>rank 15</key>
+		<string>총사령관</string>
+		<key>rank 1 intro</key>
+		<string>일등병이 지휘하는 부대 내구력 보급 10 \n내구력 한계+5% 사용 간격 4회합 </string>
+		<key>rank 2 intro</key>
+		<string>총사령관이 지휘하는 부대 내구력 보급 \n15 내구력 한계+10% 사용 간격 4회합</string>
+		<key>rank 3 intro</key>
+		<string>중사이 지휘하는 부대 내구력 보급 20 \n내구력 한계+15% 사용 간격 4회합</string>
+		<key>rank 4 intro</key>
+		<string>상사이 지휘하는 부대 공격력+1 내구력 \n보급 25 내구력 한계+20% 사용 간격 \n4회합</string>
+		<key>rank 5 intro</key>
+		<string>소위이 지휘하는 부대 공격력+1 내구력 \n보급 30 내구력 한계+25% 사용 간격 \n4회합</string>
+		<key>rank 6 intro</key>
+		<string>중위이 지휘하는 부대 공격력+1 내구력 \n보급 35 매번 회합에 내구력 보급이 1 \n내구력 한계+30% 사용 간격 3회합</string>
+		<key>rank 7 intro</key>
+		<string>상위이 지휘하는 부대 공격력+1 방어력\n+1 내구력 보급 40 매번 회합에 내구력 \n보급이 2 내구력 한계+35% 사용 간격 \n3회합</string>
+		<key>rank 8 intro</key>
+		<string>소교이 지휘하는 부대 공격력+1 방어력\n+1 내구력 보급 45 매번 회합에 내구력 \n보급이 3 내구력 한계+40% 사용 간격 \n3회합</string>
+		<key>rank 9 intro</key>
+		<string>중교이 지휘하는 부대 공격력+1 방어력\n+1 내구력 보급 50 매번 회합에 내구력 \n보급이 4 내구력 한계+45% 사용 간격 \n3회합</string>
+		<key>rank 10 intro</key>
+		<string>상교이 지휘하는 부대 공격력+2 방어력\n+1 내구력 보급 55 매번 회합에 내구력 \n보급이 5 내구력 한계+50% 사용 간격 \n3회합</string>
+		<key>rank 11 intro</key>
+		<string>준장이 지휘하는 부대 공격력+2 방어력\n+1 내구력 보급 60 매번 회합에 내구력 \n보급이 6 내구력 한계+55% 사용 간격 \n2회합</string>
+		<key>rank 12 intro</key>
+		<string>소장이 지휘하는 부대 공격력+2 방어력\n+1 내구력 보급 65 매번 회합에 내구력 \n보급이 7 내구력 한계+60% 사용 간격 \n2회합</string>
+		<key>rank 13 intro</key>
+		<string>중장이 지휘하는 부대 공격력+3 방어력\n+1 내구력 보급 70 매번 회합에 내구력 \n보급이 8 내구력 한계+65% 사용 간격 \n2회합</string>
+		<key>rank 14 intro</key>
+		<string>상장이 지휘하는 부대 공격력+3 방어력\n+1 내구력 보급 75 매번 회합에 내구력 \n보급이 9 내구력 한계+70% 사용 간격 \n2회합</string>
+		<key>rank 15 intro</key>
+		<string>총사령관이 지휘하는 부대 공격력+2 \n방어력+2 내구력 보급 100  매번 회합에 \n내구력 보급이 8 내구력 한계+80% 사용 \n간격 2회합 </string>
+		<key>war medal 1 level 1</key>
+		<string>보병 동 훈장</string>
+		<key>war medal 1 level 2</key>
+		<string>보병 은 훈장</string>
+		<key>war medal 1 level 3</key>
+		<string>보병 금 훈장</string>
+		<key>war medal 2 level 1</key>
+		<string>공군 동 훈장</string>
+		<key>war medal 2 level 2</key>
+		<string>공군 은 훈장</string>
+		<key>war medal 2 level 3</key>
+		<string>공군 금 훈장</string>
+		<key>war medal 3 level 1</key>
+		<string>포병 동 훈장</string>
+		<key>war medal 3 level 2</key>
+		<string>포병 은 훈장</string>
+		<key>war medal 3 level 3</key>
+		<string>포병 금 훈장</string>
+		<key>war medal 4 level 1</key>
+		<string>장갑 동 훈장</string>
+		<key>war medal 4 level 2</key>
+		<string>장갑 은 훈장</string>
+		<key>war medal 4 level 3</key>
+		<string>장갑 금 훈장</string>
+		<key>war medal 5 level 1</key>
+		<string>해군 동 훈장</string>
+		<key>war medal 5 level 2</key>
+		<string>해군 은 훈장</string>
+		<key>war medal 5 level 3</key>
+		<string>해군 금 훈장</string>
+		<key>war medal 6 level 1</key>
+		<string>명예 동 훈장</string>
+		<key>war medal 6 level 2</key>
+		<string>명예 은 훈장</string>
+		<key>war medal 6 level 3</key>
+		<string>명예 금 훈장</string>
+		<key>war medal 1 level 1 intro</key>
+		<string>보병 부대를 편성할때 이미 1급 승진을 \n획득하였습니다.</string>
+		<key>war medal 1 level 2 intro</key>
+		<string>보병 부대를 편성할때 이미 2급 승진을 \n획득하였습니다.</string>
+		<key>war medal 1 level 3 intro</key>
+		<string>보병 부대를 편성할때 이미 2급 승진을 \n획득하였습니다.진공 전술과 방어 전술을 \n갖추었습니다.</string>
+		<key>war medal 2 level 1 intro</key>
+		<string>공군의 전투력을 증강합니다.</string>
+		<key>war medal 2 level 2 intro</key>
+	
+		<string>공군의 전투력을 증강하고  작전 범위를 \n확대합니다.</string>
+		<key>war medal 2 level 3 intro</key>
+		<string>공군의 전투력을 증강하고 작전 범위를 \n확대합니다.공군의 출동 회합 제한을 \n취소합니다.</string>
+		<key>war medal 3 level 1 intro</key>
+		<string>대포 부대를 편성할때 이미 1급 승진을 \n획득하였습니다.</string>
+		<key>war medal 3 level 2 intro</key>
+		<string>대포 부대,로켓 포 부대를 편성할때 이미 \n1급 승진을 \n획득하였습니다.</string>
+		<key>war medal 3 level 3 intro</key>
+		<string>대포 부대,로켓 포 부대를 편성할때 이미 \n1급 승진을 획득하였습니다.방어 전술을 \n갖추었습니다.</string>
+		<key>war medal 4 level 1 intro</key>
+		<string>장갑차 부대를 편성할때 이미 1급 승진을 \n획득하였습니다.</string>
+		<key>war medal 4 level 2 intro</key>
+		<string>장갑차 부대,탱크 부대를 편성할때 이미 \n1급 승진을 획득하였습니다.</string>
+		<key>war medal 4 level 3 intro</key>
+		<string>장갑차 부대,탱크 부대,중탱크 부대를 \n편성할때 이미 1급 승진을 획득하였습\n니다.</string>
+		<key>war medal 5 level 1 intro</key>
+		<string>모든 육군을 편성할때 수송선을 갖추었\n습니다.</string>
+		<key>war medal 5 level 2 intro</key>
+		<string>모든 육군을 편성할때 수송선을 갖추었\n습니다.구축함,순양함을 편성할때 이미 \n1급 승진을 획득하였습\n니다.</string>
+		<key>war medal 5 level 3 intro</key>
+		<string>모든 육군을 편성할때 수송선을 갖추었\n습니다.구축함,순양함,전투함,항공모함을 \n편성할때 이미 1급 승진을 획득하였습니\n다.</string>
+		<key>war medal 6 level 1 intro</key>
+		<string>매개 회합때 마다 10%의 생산액과 공업 \n수치가 증가합니다.</string>
+		<key>war medal 6 level 2 intro</key>
+		<string>매개 회합때 마다 20%의 생산액과 공업 \n수치가 증가합니다.</string>
+		<key>war medal 6 level 3 intro</key>
+		<string>매개 회합때 마다 30%의 생산액과 공업 \n수치가 증가합니다.</string>
+		<key>next level</key>
+		<string>다름 급으로 업그레이드하려면 필요합니다.</string>
+		<key>bank tip</key>
+		<string>매 전역에 오직 단 한번의 대출 기회가 주어진다</string>
+		<key>tip 1</key>
+		<string>이동력을 보류하는 상태하에서 매개 회합이 끝나면 한번의 보급\n을 완성할수 있습니다.도시,공업구,공항,항구등에서 상처입은 부대의 \n내구도를 보급할수 있습니다.</string>
+		<key>tip 2</key>
+		<string>부대가 적군을 소멸한후 사기가 높아지는 상태가 확률로 나타나\n게 되며 반대로 적군에게 포위되면 사기가 낮아지는 상태가 확\n률로 나타나게 됩니다. </string>
+		<key>tip 3</key>
+		<string>장갑차,대포,로켓포,탱크 그리고 중탱크는 공업구에서만 모집할수\n있다.해군은 항구에서 모집해야 하며 공군작전을 사용하려면 우선 \n공항을 먼저 걸설하여야 합니다.</string>
+		<key>tip 4</key>
+		<string>보병이 제일 두려워하는것은 장갑차부대입니다. 요새포는 해군의 \n진공을 방어하는 가장 좋은 선택입니다.</string>
+		<key>tip 5</key>
+		<string>도랑은 아주 저렴하면서도 효과가 좋은 방어공사입니다.하지만 \n탱크의 진공을 막을수가 없습니다.</string>
+		<key>tip 6</key>
+		<string>적군이 대량으로 한 지역에 집결하였을때 공중 폭격을 고려할수 \n있습니다.하지만 그 지역에 방공 기관총이 있을 경우에는 폭격 \n효과가 그다지 좋지 못합니다.</string>
+		<key>tip 7</key>
+		<string>장갑차는 가장 빠른 군사부대입니다.때문에 무인 방어 지역을 \n점령할때 장갑차는 가장 좋은 선택입니다.</string>
+		<key>tip 8</key>
+		<string>상대방이 요새포를 가지고 있을 경우를  제외하고는  대포로 적군을 \n공격할때 사대방은 일반적으로 반격을 하지 못합니다.</string>
+		<key>tip 9</key>
+		<string>육군이 해양에 진입하려면 오직 운수선을 통해야만이 이루어질수 \n있습니다.그리고 모든 배의 해상에서 이동하는 속도는 동일합니다. </string>
+		<key>tip 10</key>
+		<string>최고급 카드는 과학기술 등급의 지지가 필요합니다.최고급 카드를 \n사용할수 없을 경우에는 반드시 연구카드로 과학기술을 업그레\n이드하여야 합니다.</string>
+		<key>tip 11</key>
+		<string>각 국가의 병사의 작전능력에는 차이가 존재합니다.미국과 독일은 \n해군이나 육군이나 공군 모두가 아주 강합니다.그들의 지휘관의 등\n급은 아주 높습니다.</string>
+		<key>tutorails 1</key>
+		<string>지휘관님,안녕하세요.아래 저가 조작법에 대하여  알려드리겠습니다.</string>
+		<key>tutorails 2</key>
+		<string>우선 생산액과 공업 수치는 우리들의 전쟁을 지탱하여주는 필요한 \n기둥입니다.여기가  바로 우리들의 생산액과 공업 수치입니다.</string>
+		<key>tutorails 3</key>
+		<string>그들의 주요 근원은 우리쪽의 매개 지역도시와 공업구에서의  \n생산으로 부터 옵니다.매개 구역을 터치하면 그 지역의 생산액과 \n공업 수치를 볼수가 있습니다.</string>
+		<key>tutorails 4</key>
+		<string>아군의 소재지를 클릭하면 부대를 움직이게 할수 있습니다. \n파란색 화살표는 이동할수있는 지역을 가리킵니다.빨간색 화살표는 \n적군과  교전하는 지역을 가리킵니다.   </string>
+		<key>tutorails 5</key>
+		<string>부대의 밑받침 칼라가 우리와 같은 국가는 바로 우리의 \n동맹국이기에 그들을 공격하지 마십시요.</string>
+		<key>tutorails 6</key>
+		<string>매개 부대마다 자신의 행동력이 있습니다.행동력이 0이 되면 더는 \n움직일수가 없습니다.</string>
+		<key>tutorails 7</key>
+		<string>매개 지역에 최다 4개 부대가 주둔할수있습니다.물론 우리는  그 \n지역에서의 부대의  순서를 조절할수 있습니다.</string>
+		<key>tutorails 8</key>
+		<string>군함은 해양에서만 항행할수 있습니다.육군은 장비 수송선이 \n있어야 해양에 진입할수 있습니다.  </string>
+		<key>tutorails 9</key>
+		<string>왼쪽아래에  전술카드 버튼이 있는데  당신의 모든 전술 조작은 \n모두 전술카드를 통하여 완성됩니다. </string>
+		<key>tutorails 10</key>
+		<string>그들은 부대카드,개발카드,전략카드로 나뉘어집니다.매장 카드마다 \n각자의 독특한 역할을 하고 있습니다.카드를 사용하게 되면 \n생산액과 공업수치를 소모하게 됩니다.</string>
+		<key>tutorails 11</key>
+		<string>오직 고급 순위의 도시나 공업구에서만 육군 단위를 모집할수 \n있습니다.해군은 오직 항구에서만 모집할수 있습니다.</string>
+		<key>tutorails 12</key>
+		<string>당면 과학 기술 등급이 카드의 과학 기술 요구에 도달하지 \n못하였으면 카드를 사용할수 없습니다.이런 경우에 당신은 자신의 \n과학 기술의 등급을 업그레이드하여야 합니다. </string>
+		<key>tutorails 13</key>
+		<string>어떤 특수 카드는 사용후 일정한 시간이 지나야 계속 사용할수 \n있습니다. </string>
+		<key>tutorails 14</key>
+		<string>지휘관 카드는 오직 한개 부대 단위로만 사용할수 있습니다. </string>
+		<key>tutorails 15</key>
+		<string>공항을 건설하는 것은 공습이나 적군의 영지를 폭격하기 \n위해서입니다. 공군의 작전 범위도 제한되여 있습니다.</string>
+		<key>tutorails 16</key>
+		<string>우측위의 시스템 버턴을 통해 게임을 보존하고  작은 지도를 보며 \n선택,다시 시작 그리고  게임 퇴장등 조작을 할수있습니다. </string>
+		<key>tutorails 17</key>
+		<string>모든 배치를 완성한후 우측 아래에 있는 기다림 버턴을 클릭하여 \n다음 회합의 시작을 기다립니다. </string>
+		<key>tutorails 18</key>
+		<string>지휘관님!당신이 모든 육지 영토를 잃어버리면 곧 실패하게 \n됩니다.이 점을 꼭 기억하십시요.</string>
+		<key>defeated</key>
+		<string>전패</string>
+		<key>commander complain 1</key>
+		<string>지휘관각하!당신께서 이렇게 하시면 우리사이의 우정에 영향을 \n주십니다.</string>
+		<key>commander complain 2</key>
+		<string>때로는 당신이 도대체 친구인지 적인지를 정말 잘 모르겠습니다!</string>
+		<key>commander retreat 1</key>
+		<string>잠시적인 철퇴는 실패를 의미하지 않습니다.</string>
+		<key>commander retreat 2</key>
+		<string>아마도 내가 돌진하는데 너무 서둘렀나 봅니다.나의 부대를 \n정리할 필요가 있습니다.</string>
+		<key>commander retreat 3</key>
+		<string>나는 이미 마지막 순간까지 분투하여 왔습니다.하지만 여전히 \n적군을 물리칠수가 없습니다.</string>
+		<key>commander retreat 4</key>
+		<string>적군의 완강함이 나의 상상밖이였습니다. 전술을 다시 세울 \n필요가 있습니다.  </string>
+		<key>commander retreat 5</key>
+		<string>적군에게 반격을 하기 위하여 우리는 반드시 실력을 보존하여야 \n합니다.철수!</string>
+		<key>commander return 1</key>
+		<string>적군더러 우리의 포성속에서 부들부들 떨게 합시다!</string>
+		<key>commander return 2</key>
+		<string>전군이 제일 빠른 속도로 적군의 진지를 향해 돌격합니다.</string>
+		<key>commander return 3</key>
+		<string>마지막 1분까지 견지하여야 하며 한명의 병사가 남을 때까지 \n끝까지 전투하여야 합니다!</string>
+		<key>commander return 4</key>
+		<string>사병들이여! 적군더러 우리들의 강대한 전투력을 느끼도록 합시다.</string>
+		<key>commander return 5</key>
+		<string>우리 부대는 진공이든 방어이든 모두 최고로 잘 완성할수 \n있습니다.</string>
+		<key>commander failure 1</key>
+		<string>지휘관각하!당신의 과거의 전과가 어떻튼간에 이번에 실패하면 \n우리 나라는 와전히 피동의 위치에 처하게 됩니다. 최고 지휘부는 \n당신의 실패에 대한 변명을 도저히 받아 드릴수가 없습니다.\n당신의 모든 지휘권을 해제합니다.</string>
+		<key>commander failure 2</key>
+		<string>지휘관각하!당신은 처음 정한 기한내에 목표를 달성하지 못했습니다.\n하여 이번 전역에서 아군이 최종적으로 실패하게 되였습니다.\n최고 지휘부에서 금방 전에 통지가 날아 왔습니다.그들은 당신의 \n모든 지휘권을 해제하였습니다.</string>
+		<key>commander victory 1</key>
+		<string>최고 지휘부는 당신이 이렇게 짧은 시일내에 적군을 이겨낼것\n이라고 상상도 하지 못했습니다.당신은 아주 완벽하게 승리를 \n거두었습니다.당신은 곧 정액 외로 50개의 훈장을 장려로 받을 \n것입니다.</string>
+		<key>commander victory 2</key>
+		<string>당신은 이번 전역에서 출중한 군사 재능을 발휘하였습니다.\n당신은 한차례의 거의 완벽한 승리를 거두었습니다!당신은 곧 \n정액 외로 25개의 훈장을 장려로 받을 것입니다.</string>
+		<key>commander victory 3</key>
+		<string>당신이 이번 전역에서 우세가 아주 뚜렷하였습니다.이런 적군은 \n당신에게 진정한 위협을 줄수가 없습니다.당신은 곧 정액 외로 15개의 \n훈장을 장려로 받을 것입니다.</string>
+		<key>commander victory 4</key>
+		<string>지휘관각하!적군의 완강한 공세가 일시적으로 당신에게 그들을 \n전승할수 있을지 의심을 품게 하였습니다.하지만 당신은 승리를 \n거두었습니다.당신은 곧 정액 외로 5개의 훈장을 장려로 받을 \n것입니다.</string>
+		<key>commander victory 5</key>
+		<string>지휘관각하!우리는 마지막 순간이 되여서야 승리를 거두었습니다.\n이런 전적은 최고 지휘관으로 하여금 당신에게 장려를 내릴수가 \n없습니다.</string>
+		<key>commander victory 1 no award</key>
+		<string>최고 지휘부는 당신이 이렇게 짧은 시일내에 적군을 이겨낼것\n이라고 상상도 하지 못했습니다.당신은 아주 완벽하게 승리를 거두\n었습니다.당신은 곧 정액 외로 50개의 훈장을 장려로 받을 \n것입니다.</string>
+		<key>commander victory 2 no award</key>
+		<string>당신은 이번 전투에서 출중한 군사 재능을 발휘하였습니다.당신은 한차례의 \n거의 완벽한 승리를 거두었습니다!당신은 곧 정액 외로 25개의 훈장을 장려로 받을 \n것입니다.</string>
+		<key>commander victory 3 no award</key>
+		<string>당신이 이번 전투에서 우세가 아주 뚜렷하였습니다.이런 적군은 \n당신에게 진정한 위협을 줄수가 없습니다.당신은 곧 정액 외로 \n15개의 훈장을 장려로 받을 것입니다.</string>
+		<key>commander victory 4 no award </key>
+		<string>지휘관각하!적군의 완강한 공세가 일시적으로 당신에게 그들을 \n전승할수 있을지 의심을 품게 하였습니다.하지만 당신은 승리를 \n거두었습니다.당신은 곧 정액 외로 5개의 훈장을 장려로 받을 것입니다.</string>
+		<key>axis battle 1 Guderian 1</key>
+		<string>돌격의 목적에 도달하기 위하여 우리의 장갑사단은 1초라도 \n쉬지않고 바르샤바를 향해 진군하고 있습니다.</string>
+		<key>axis battle 1 Guderian 2</key>
+		<string>당신은 빨리 폴란드의 기타 도시와 지역을 점령해야 합니다.\n만약에 당신의 진공 속도가 빠르면 나를 협조하여 바르샤바를 \n진공할수 있습니다.</string>
+		<key>axis battle 1 Guderian 3</key>
+		<string>지휘관각하!될수록 짧은 시간내에 이번 전쟁을 완성하십시요.\n원수께서 우리에게 많은 시간을 주지 않을 것입니다.</string>
+		<key>axis battle 1 Guderian 4</key>
+		<string>나의 장갑군단은 벌써 외부의 방어선을 뚫었습니다.현재 바르샤\n바는 바로 나의 눈앞의 멀지않은 곳에 있습니다.</string>
+		<key>axis battle 1 Guderian 5</key>
+		<string>만약에 우리가 연합하여 공격할수 있으면 승기의 속도를 더 \n가속화 시킬수 있을 것이다!s</string>
+		<key>axis battle 2 Guderian 1</key>
+		<string>지휘관각하!이번에 당신의 B집단군이 북유럽국가인 덴마크와 노\n르웨이를 향해서 진공을 하게 됩니다.</string>
+		<key>axis battle 2 Guderian 2</key>
+		<string>우리는 처음으로 손잡는 것이 아닙니다.때문에 당신은 이미 나\n의 전술 스타일에 대하여 잘 요해하고 있다고 믿습니다.</string>
+		<key>axis battle 2 Guderian 3</key>
+		<string>우리는 곧 프랑스의 파리 부근에 도착할것입니다.그때 당신의 \n부대도 때를 맞추어 도착하기를 바랍니다.</string>
+		<key>axis battle 2 Guderian 4</key>
+		<string>나의 장갑군단은 한창 적군이 상상하지 못할 속도로 앞으로 \n전진하고 있습니다.나는 심지어 적군을 포로하는 시간마저 없\n습니다.</string>
+		<key>axis battle 2 de Gaulle 1</key>
+		<string>프랑스는 이미 가장 위험한 시각에 처해 있습니다.사병들이여,무\n기를 들고 적들을 향해 돌격합시다.</string>
+		<key>axis battle 3 Rommel 1</key>
+		<string>지휘관각하!우리의 장갑사단이 한창 프랑스 남부에서 남은 프랑스 \n군대를 소탕하고 있습니다.</string>
+		<key>axis battle 3 Rommel 2</key>
+		<string>영국 해협 맞은켠에 있는 영국인은 당신께 맡기겠습니다.괴링 \n총사령관께서 그의 공군으로 당신을 원조할것있니다.</string>
+		<key>axis battle 3 Goering 1</key>
+		<string>나의 공군은 이미 부서를 완성하였습니다.영국인은 더는 공중 \n우세를 누리지 못하게 되였습니다.</string>
+		<key>axis battle 4 Graziani 1</key>
+		<string>지휘관각하!우리의 군함이 당신의 오퍼레이션을 지원할것입니다.\n우리는 아주 쉽게 적군을 이겨낼수 있습니다.</string>
+		<key>axis battle 4 Graziani 2</key>
+		<string>적군의 해안포는 정확도가 아주 높습니다.나의  군함의 파괴가 \n아주 엄중합니다.</string>
+		<key>axis battle 4 Guider 1</key>
+		<string>참고：지휘관각하!이번 전투의 최종 승리을 얻으려면 반드시 \n적군의 함대를 완전히 격파하여야 합니다.</string>
+		<key>axis battle 5 Rommel 1</key>
+		<string>이탈리아의 전투력이 우리가 상상한것 보다 아주 약합니다.\n원수께서 우리를 북아프리카로 파견하여 그들을 원조할수 \n밖에 없습니다.</string>
+		<key>axis battle 5 Rommel 2</key>
+		<string>적군의 수자는 우리의 몇배나 됩니다.하지만 전투력이 그다지 \n세지 못합니다.우리는 영국군과 프랑스군만 조심하면 됩니다.</string>
+		<key>axis battle 5 Rommel 3</key>
+		<string>우리의 토라식 탱크를 막는다는것은 불가능한 일입니다.</string>
+		<key>axis battle 5 Montgomery 1</key>
+		<string>독일군의 장감군단의 전투력이 아주 강합니다.그들이 전진할때 \n진지를 빼앗기지만 않으면 우리는 승리한 것입니다!</string>
+		<key>axis battle 6 Guderian 1</key>
+		<string>지휘관각하!우리의 군단이 한창 키예프를 향해 진군하고 있습니다.</string>
+		<key>axis battle 6 Guderian 2</key>
+		<string>당신의 목표는 민스크를 점령하는 것입니다.우리는 마지막에 \n모스크바에서 합류할것입니다.</string>
+		<key>axis battle 6 Guderian 3</key>
+		<string>우리의 동맹국인 핀란드와 흉아리가 우리를 협조해줄것입니다.\n하지만 그들을 너무 바랄수 없다는것도 뻔한 사실입니다.</string>
+		<key>axis battle 6 Rokossovsky 1</key>
+		<string>사병들이여,진지를 고수하고 조국을 보위합시다!</string>
+		<key>axis battle 6 Zhukov 1</key>
+		<string>우리의 수도가 함락되였다면 우리는 계속 작전할 의미를 잃게 \n됩니다.</string>
+		<key>axis battle 7 Yamamoto 1</key>
+		<string>지휘관각하!이번의 미국 태평양을 습격하는 계획은 한차례의 아주 \n큰 모험입니다.</string>
+		<key>axis battle 7 Yamamoto 2</key>
+		<string>하지만 무사는 칼을 뽑았으면 무라도 썰어야 하는 법!온 힘을 \n다해 작전합시다.</string>
+		<key>axis battle 7 Nimitz 1</key>
+		<string>전체 사병들은 각자의 위치에 돌아가야 합니다.우리는 적군의 \n진공를 받고 있습니다.이것은 훈련이 아닙니다.</string>
+		<key>axis battle 8 Guider 1</key>
+		<string>지휘관각하!당신은 반드시 이 지역들을 점령하여야 합니다.\n왜냐하면 제국은 여기의 자원이 너무 절박히 수요하기 때문입\n니다.</string>
+		<key>axis battle 8 Guider 2</key>
+		<string>주의할점은 영국은 우리들이 앞으로 계속 전진하는것을 막기 \n위하여 이미 강대한 함대를 파견하여서 거기서 우리를 기다리고 \n있습니다.</string>
+		<key>axis battle 8 Guider 3</key>
+		<string>나는 우리의 공군으로 그들의 함대에 공격할것을 건의합니다.</string>
+		<key>axis battle 9 Yamamoto 1</key>
+		<string>지휘관각하!중국과 영국의 군대가 미얀마에 한창 집결하고 \n있습니다.그들은 반격하려고 시도하고 있습니다.</string>
+		<key>axis battle 9 Yamamoto 2</key>
+		<string>태평양전쟁에서 우리는 너무나 많은 역량을 소모하였습니다.나는 \n더는 당신에게 더욱 많은 원조를 해줄 방법이 없습니다.</string>
+		<key>axis battle 9 Zhang 1</key>
+		<string>사병들이여!우리의 잃었던 땅을 되찾읍시다.</string>
+		<key>axis battle 10 Goering 1</key>
+		<string>정확히 말하여 미국은 이미 핵폭탄의 기술을 장악하였습니다.\n그렇지 않으면 원수께서 준비가 잘 되여있지 않은 상황에서  \n전쟁을하지 않을 것입니다.</string>
+		<key>axis battle 10 Goering 2</key>
+		<string>우리는 이탈리아와 일본이 공동으로 북아메리카를 향해 작전할\n것을 설득하였습니다.이렇게 하면 우리들의 많은 부담을 덜어 \n줄수 있습니다.</string>
+		<key>axis battle 10 Goering 3</key>
+		<string>지휘관각하!원수와 전체 인민은 당신이 승리하여 돌아오기를 \n손꼽아 기다립니다.</string>
+		<key>axis battle 10 Patton 1</key>
+		<string>사병들이여,우리의 탱크로 적들을 깔아 눕힙시다!</string>
+		<key>axis battle 10 MacArthur 1</key>
+		<string>용감한 청년들이여!오직 죽음을 두려워하지 않는 사람만이 \n살수 있습니다.</string>
+		<key>allies battle 1 Zhukov 1</key>
+		<string>지휘관각하!현재 우리 나라는 이미 아주 위험한 시기에 처하여 \n있습니다.</string>
+		<key>allies battle 1 Zhukov 2</key>
+		<string>우리는 각자가 각 지역의 방어작업을 담당하여야 합니다.하지만 \n그중에서도 당신의 책임은 누구보다도 제일 무겁습니다.</string>
+		<key>allies battle 1 Zhukov 3</key>
+		<string>소련이 비록 아주 크지만 우리는 더는 물러설 길이 없습니다.\n우리의 뒤가 바로 모스크바입니다.</string>
+		<key>allies battle 1 Rokossovsky 1</key>
+		<string>나는 벌써 물러서려는 사병을 몇이나 해결하였습니다.조국에 \n대한 나의 충성을 의심하지 마십시요.</string>
+		<key>allies battle 2 Nimitz 1</key>
+		<string>동경을 공습한 우리의 오퍼레이션을 향해 보복하기 위하여 일본은 \n미드웨이 섬을 그들의 다음 목표로 정하고 있습니다.</string>
+		<key>allies battle 2 Nimitz 2</key>
+		<string>미드웨이 섬은 우리가 태평양에 있어서 중요한 군사항구입니다.\n그의 전략적 가치는 아주 큽니다.우리는 그 어떤 대가를 \n치르더라도 거기를 지켜내야 합니다.</string>
+		<key>allies battle 2 Nimitz 3</key>
+		<string>지휘관각하!우리의 함대는 진주만방향을 향해 당신을 전력다해 \n협조하여 작전에 참여할것입니다.</string>
+		<key>allies battle 2 Yamamoto 1</key>
+		<string>이번 제국의 해군은 거의 모두 출동하였습니다.</string>
+		<key>allies battle 2 Yamamoto 2</key>
+		<string>이것은 제국의 운명을 결정하는 한차례의 해상전쟁이 될것입니다.</string>
+		<key>allies battle 3 Montgomery 1</key>
+		<string>독일과 이탈리아의 군대는 또 진군하기 시작하였습니다.그들의 \n연합군 총사령관 로멜은 아주 뛰여난 천재적 지휘관입니다.</string>
+		<key>allies battle 3 Montgomery 2</key>
+		<string>그는 마치 이 사막에서의 한마리 여우와도 같습니다.반드시 \n그의 장갑병단을 조심히 방어하여야 합니다.</string>
+		<key>allies battle 3 Rommel 1</key>
+		<string>이 사막은 나의 장갑군단이 돌격 작전을 실행하는데 유리하지 \n않습니다.</string>
+		<key>allies battle 4 Zhukov 1</key>
+		<string>최고 지휘부에서는 이번 전역의 작전방안을 다시금 개정하였\n습니다.</string>
+		<key>allies battle 4 Zhukov 2</key>
+		<string>이번 작전의 규모가 너무나 크기때문입니다.우리는 거의 운용할수 \n있는 모든 역량을 운용하였습니다.</string>
+		<key>allies battle 4 Rokossovsky 1</key>
+		<string>이번 전역은 결정성을 띄고 있으며 전에도 없었던 것입니다.\n당신은 반드시 조심히 대응하여야 합니다.</string>
+		<key>allies battle 4 Guderian 1</key>
+		<string>나의 탱크 사단은 마치 비수와 같이 적군의 내부를 찌릅니다.</string>
+		<key>allies battle 4 Goering 1</key>
+		<string>나의 킹 카드인 공군이 이미 적군더러 무서움에 떨게 하였습니다.</string>
+		<key>allies battle 5 Patton 1</key>
+		<string>지휘관각하!우리는 반드시 빨리 이탈리아를 격파하여야 .\n합니다왜냐하면 독일인이 이미 지원하려 오고 있는 중이기 .\n때문입니다.</string>
+		<key>allies battle 5 Patton 2</key>
+		<string>그들은 우리에게 많은 시간을 주지 않을 것입니다.</string>
+		<key>allies battle 5 Rommel 1</key>
+		<string>원수의 지시에 의하면 우리는 이탈리아의 군대와 방어체계를 \n도맡을 것입니다.</string>
+		<key>allies battle 6 Guider 1</key>
+		<string>정보에 의하면 일본인은 몇개의 정예부대를 미얀마에 집결시키고 \n있습니다.멀지않아 인도를 향해 진군할것입니다.</string>
+		<key>allies battle 6 Zhang 1</key>
+		<string>지휘관각하!우리 중국군대는 측면에서 당신들이 일본군대를 \n격파하는 것을 도울 것입니다.우리의 목표는 동일합니다.</string>
+		<key>allies battle 6 Yamamoto 1</key>
+		<string>우리의 보급에 심각한 문제가 나타났습니다. 질병도 점점 퍼져가기 \n시작했습니다.</string>
+		<key>allies battle 6 Yamamoto 2</key>
+		<string>천황페하를 위하여 우리는 두렵지 않습니다.</string>
+		<key>allies battle 7 Nimitz 1</key>
+		<string>비록 우리가 많은 사전의 작업을 하였지만 이런 대규모적인 \n상륙 작전은 처음입니다.</string>
+		<key>allies battle 7 Patton 1</key>
+		<string>이번에 방어를 책임지고 있는 독일군은 로멜장군의 집단군입니다.\n나는 그와 맞붙어 싸울수 있기를 아주 바라고 있습니다.</string>
+		<key>allies battle 7 de Gaulle 1</key>
+		<string>우리는 드디어 우리 자신의 집으로 돌아왔습니다.프랑스의 해방을 \n위하여 전진! </string>
+		<key>allies battle 7 Nimitz 2</key>
+		<string>우리의 사병이 상륙할때 큰 곤난에 부딪혔습니다.우리의 함대가 \n온힘을 다해 이 애들을 보호할것입니다.</string>
+		<key>allies battle 7 Rommel 1</key>
+		<string>나의 방어선에 허점이 나타났을때 나의 장갑군단이 즉시로 \n증원할것입니다.</string>
+		<key>allies battle 8 MacArthur 1</key>
+		<string>독일인은 우리를 향해 투항하는것을 거절하고 있습니다.그들의 \n주력군단은 이미 모두 국내로 집결하여 있습니다.</string>
+		<key>allies battle 8 MacArthur 2</key>
+		<string>동선의 소련은 이미 바르샤바를 향해 진군하고 있습니다.폴란드를 \n해방시키는 것은 시간문제 일뿐입니다.</string>
+		<key>allies battle 8 Patton 1</key>
+		<string>지휘관각하!나의 탱크가 앞에서 돌격하고있습니다.나의 발자국을 \n따라 오세요.우리는 꼭 최후의 승리를 거둘것입니다.</string>
+		<key>allies battle 8 Goering 1</key>
+		<string>위대한 제3제국은 절대로 실패하지 않습니다.</string>
+		<key>allies battle 8 Rommel 1</key>
+		<string>우리의 전사는 모두가 훌륭합니다.적군이 너무 많은 것입니다.</string>
+		<key>allies battle 9 Zhang 1</key>
+		<string>축심국중에서 독일과 이탈리아는 이미 투항하였습니다.이 형세는 \n우리에게 아주 유리합니다.</string>
+		<key>allies battle 9 Zhang 2</key>
+		<string>최고 지휘부는 일본군에게 한차례의 대규모적인 전역을 벌리기로 \n결정하였습니다.우리는 잃었던 국토를 다시 찾아와야 합니다.</string>
+		<key>allies battle 9 Zhang 3</key>
+		<string>소련은 오늘 아침 벌써 우리 나라 동북에 주둔하고 있는 일본군\n에게 선전하였습니다.일본은 부득이 양면으로 작전을 하게 되였\n습니다.</string>
+		<key>allies battle 10 MacArthur 1</key>
+		<string>일본은 이미 본토에서 방어전을 진행하려고 준비를 마쳤습니다.\n그들은 한사람이 남을 때까지 싸우겠다고 말하고 있습니다.</string>
+		<key>allies battle 10 MacArthur 2</key>
+		<string>나는 벌써 무사 정신을 숭배하고 있는 일본군이 국토를 지키기\n위하여 발광하는것을 상상할수 있습니다.</string>
+		<key>allies battle 10 MacArthur 3</key>
+		<string>지휘관각하!그들에 대해서 마음이 약해져서 안됩니다.필요할때는 \n우리들의 새로운 무기-원자탄을 사용할수 있습니다.</string>
+		<key>allies battle 10 Nimitz 1</key>
+		<string>일본해군과 대항할수 있는 것은 오직 우리 미국 해군입니다.\n맹우의 수송선이 우리의 보호를 필요하고 있습니다.</string>
+		<key>allies battle 10 Yamamoto 1</key>
+		<string>사병들이여!우리가 마지막 순간까지 싸워서 천황께 충성합시다!</string>
+		<key>wto battle 1 Peng 1</key>
+		<string>우리가 전국을 거의 통일하려고 할때 미국의 군함이 우리의 \n연해지구에 도착항였습니다.</string>
+		<key>wto battle 1 Peng 2</key>
+		<string>지휘관각하!미국인의 장비는 우리보다 훨씬 좋습니다.당신은 \n전략을 새롭게 조절할 필요가 있습니다.</string>
+		<key>wto battle 1 Peng 3</key>
+		<string>당면 우리 집단군은 당신에게 어떠한 원조를 줄수가 없습니다.\n지휘부가 나에게 내린 명령은 조선맹우를 증원하라는 것입니다.</string>
+		<key>wto battle 1 MacArthur 1</key>
+		<string>우리는 성탄절전에 전쟁를 마칠것입니다.그렇게 되면 애들이 \n집으로 돌아가서 성탄절을 보낼수가 있습니다.</string>
+		<key>wto battle 2 Guider 1</key>
+		<string>인도 군대는 벌써 우리의 서장 지구에 침입하였습니다.그들의 \n배후에는 영국군의 그림자가 있습니다.</string>
+		<key>wto battle 2 Guider 2</key>
+		<string>최고 지휘부는 이미 당신의 작전방안에 동의하였습니다.그들을 \n분할시켜 포위하고 소멸하는것입니다.</string>
+		<key>wto battle 2 Guider 3</key>
+		<string>펑장군의 군단은 지금 제일 빠른 속도로 당신을 협조하여 \n작전하려고 달려 오고 있습니다.</string>
+		<key>wto battle 2 Peng 1</key>
+		<string>인도는 분명히 우리들의 전투력을 얕잡아 보았습니다.그들은 \n영국의 원조하는 무기가 있기때문에 이긴다고 생각하였을 것\n입니다.</string>
+		<key>wto battle 3 Zhukov 1</key>
+		<string>아랍지역의 석유 자원은 온 전쟁의 승부와 밀접한 관계가 \n있습니다.</string>
+		<key>wto battle 3 Zhukov 2</key>
+		<string>우리는 반드시 그 지역을 빨리 돌격하여야 합니다.미국인보다 \n앞서서 그것들을 점령하여야 합니다.</string>
+		<key>wto battle 4 Rokossovsky 1</key>
+		<string>우리가 해상에서 그들의 함대를 격파할수 있을거라고 바라지 \n마십시요.</string>
+		<key>wto battle 4 Rokossovsky 2</key>
+		<string>우리가 현재 할수있는것은 해안포를 될수록 많이 만들어 그들을 \n기다리는 것입니다.</string>
+		<key>wto battle 4 Rokossovsky 3</key>
+		<string>우리는 절대로 그들의 육군이 상륙하게 해서는 안됩니다.\n그러면 전쟁 국면이 아주 불리하게 됩니다.</string>
+		<key>wto battle 5 Guider 1</key>
+		<string>지휘관각하!현재 불가리아는 아주 위험한 위치에 놓여 있습니다.</string>
+		<key>wto battle 5 Guider 2</key>
+		<string>최고 지휘부는 반드시 즉각 당신을 파견하여 그들을 원조하여야 \n되는것을 느꼈습니다.</string>
+		<key>wto battle 6 Rokossovsky 1</key>
+		<string>지휘관각하!우리의 연맹은 엄준한 시험을 맞이하고 있습니다.\n적군은 벌써 우리를 향해 전면적인 진공을 시작하였습니다.</string>
+		<key>wto battle 6 Rokossovsky 2</key>
+		<string>최고 사령부는 우리에게 부동한 방향에서 적군에 대해 효과적\n인 반격을 진행할것을 명령하였습니다.</string>
+		<key>wto battle 7 Guider 1</key>
+		<string>미국인 정보원은 벌써 우리가 남아메리카를 침입하는 계획을 \n알고 있습니다.</string>
+		<key>wto battle 7 Guider 2</key>
+		<string>그들의 군대는 남아메리카에서 부서를 진행하는것을 시작하고 \n있습니다.지휘관각하!신속히 그들을 격파합시다.</string>
+		<key>wto battle 7 Guider 3</key>
+		<string>우리는 미사일 발사 장치를 지정된 지점에 운송할 것이 필요\n합니다.이번 계획의 성공은 우리에게 아주 중요한 의미를 가지고 \n있습니다.</string>
+		<key>nato battle 1 Patton 1</key>
+		<string>지휘관각하!소련은 이미 쿠바에다 핵폭탄의 기지를 세웠습니다.</string>
+		<key>nato battle 1 Patton 2</key>
+		<string>현재 그들의 핵폭탄은 온 북아메리카지구를 공격할수 있습니다.\n우리는 더는 가만히 있을수가 없습니다.</string>
+		<key>nato battle 1 Patton 3</key>
+		<string>현재 우리가 하여야 하는것은 그들을 남아메리카에서 쫓아내는\n것과 핵위협을 제거하는 것입니다.</string>
+		<key>nato battle 1 Patton 4</key>
+		<string>우리는 속도를 가해야 합니다.그들은 수시로 우리에게 핵폭탄을 \n발사할것입니다.</string>
+		<key>nato battle 2 Montgomery 1</key>
+		<string>레드 세력이 유럽으로의 침입을 벌써 시작하였습니다.</string>
+		<key>nato battle 2 Montgomery 2</key>
+		<string>지휘관각하!나는 당신이 방어공사를 이용하여 될수록 며칠이라도 \n많이 견지하기를 바랍니다.</string>
+		<key>nato battle 2 Montgomery 3</key>
+		<string>나의 군대는 제일 빠른 속도로 유럽 대륙으로 와서 당신들을 \n증원할것입니다.</string>
+		<key>nato battle 2 Zhukov 1</key>
+		<string>이제 곧 온 유럽이 레드로 변할것입니다.제1서기 동지께서 이 \n날이 오기를 아주 기대하고 있습니다.</string>
+		<key>nato battle 3 de Gaulle 1</key>
+		<string>나는 지금 그들의 폴란드 군단과 싸우고 있습니다.옆에 있는 \n흉아리 군단이 뒤쪽에서 나를 습격할까 두렵습니다.</string>
+		<key>nato battle 3 de Gaulle 2</key>
+		<string>물론 그들 배후에 있는 소련군단이야말로 우리들의 진정한 \n적이지만 말입니다.</string>
+		<key>nato battle 3 Patton 1</key>
+		<string>지휘관각하!최고 지휘부에서 나를 유럽 전쟁터로부터 아프리카로 \n파견하여 당신을 원조하도록 하였습니다.</string>
+		<key>nato battle 3 Patton 2</key>
+		<string>미국에서 나의 탱크를 운반해 오느라 그들은 많은 수고를 \n하였습니다.</string>
+		<key>nato battle 3 Patton 3</key>
+		<string>나의 탱크사단이 당신에게 큰 도움이 될것이라고 믿습니다.</string>
+		<key>nato battle 4 Nimitz 1</key>
+		<string>현재 아랍의 유전은 소련인에 의해 공제되고 있습니다.우리는 \n그것들을 빼앗아 와야 합니다.</string>
+		<key>nato battle 4 Nimitz 2</key>
+		<string>현재 우리 군대는 성공적으로 끌어들인 그들의 주력부대를 \n터키방향에서 진공하고 있습니다.</string>
+		<key>nato battle 4 Nimitz 3</key>
+		<string>당신은 이번 기회를 이용하여 신속히 해협을 지나야 합니다.\n나의 해협에 있는 군함이 당신을 보호해 줄것입니다.</string>
+		<key>nato battle 5 MacArthur 1</key>
+		<string>인도는 이미 소련쪽으로 넘어갔습니다.이는 우리가 아세아에 \n상륙하여 작전하는데 곤난이 많다는것을 의미합니다.</string>
+		<key>nato battle 5 MacArthur 2</key>
+		<string>지휘관각하!이것은 한차례의 힘든 전쟁입니다.우리의 해군이 \n인도양에서 당신을 협조하여 작전에 참여할것입니다.</string>
+		<key>nato battle 5 MacArthur 3</key>
+		<string>당신 쪽은 어떻습니까?나 이쪽의 처지가 아마 더 심각할것입니다.</string>
+		<key>nato battle 6 MacArthur 1</key>
+		<string>지휘관각하!현재 우리의 군단은 일본해구역에서 소련과 북한의 \n침입을 방어하고 있습니다.</string>
+		<key>nato battle 6 MacArthur 2</key>
+		<string>남태평양지역의 전투는 오직 당신에게 의지할수밖에 없습니다.\n오스트레일리아 군단은 당신을 많이 도와줄수 있을 것입니다.</string>
+		<key>nato battle 7 Guider 1</key>
+		<string>지휘관각하!당신에게 힘빠지는 소식을 전하지 않으면 않될 \n상황입니다.</string>
+		<key>nato battle 7 Guider 2</key>
+		<string>기타 지휘관의 군단이 모두 지정된 지역으로 이동을 못했습니다.\n적군의 완강함은 최고 지휘부의 상상을 초월한것 같습니다.</string>
+		<key>nato battle 7 Guider 3</key>
+		<string>비록 매우 힘들지만 최후의 공격은 당신이 할수 밖에 없습니다.</string>
+		<key>nato battle 7 Guider 4</key>
+		<string>진공을 너무 서두르지 마십시요.최고지휘부는 이번에 당신에게 \n충분한 작전시간을 주었습니다.</string>
+		<key>victory</key>
+		<string>승리</string>
+		<key>great victory</key>
+		<string>중대 승리</string>
+		<key>victory days2</key>
+		<string>일내에 승리함</string>
+		<key>victory axis</key>
+		<string>당신의 뛰여난 지휘로인하여 우리 축심국 진영이 아주 휘황한 \n승리를 거두게 되였습니다.지휘관각하!당신의 시적인 군사생애를 \n축하드립니다.</string>
+		<key>victory allies</key>
+		<string>우리는 드디어 마지막 승리를 거두었습니다.동시에 우리도 \n많은 대가를 치르었습니다.지휘관각하!나는 당신의 뛰여난 \n지휘 예술이 반드시 역사책에 남을것이라고 믿습니다.동시에 \n한분 한분의 평화를 사랑하는 분들을 격려할수 있을 것입니다.</string>
+		<key>victory wto</key>
+		<string>핵무기의 위협하에 미국은 끝내 우리와 평화 화담을 하기로 \n하였습니다.오늘을 위하여 당신과 당신뒤의 전사 모두가 많은 \n대가를 치렀습니다.당신이 온 세계의 구조를 개변하였을지도 \n모릅니다!역사는 당신을 기억할것입니다!</string>
+		<key>victory nato</key>
+		<string>전쟁의 실패로 소련 내부에서 한차례의 아주 큰  변혁이 폭발하\n였습니다.소련의 붉은 기발이 크레믈린 궁전의 상공에서 서서히 \n내려지는것은 바로 방대한 소련이 해체되였음을 상징합니다.\n소련도 역사의 명사로서 남게 되였습니다.이 시각에 진정한 \n평화가 돌아왔을지도 모릅니다!당신의 몇년간의 노력이 드디어 \n보답을 받게 되였습니다.조국은 당신을 잊지 않을 것입니다!  </string>
+		<key>locked warning</key>
+		<string>축심국 전투 혹은 동맹국 전투을 \n완성한후 세계 무역 기구와 북대\n서양 조약 기구의 전투을 진행할수 \n있습니다.</string>
+		<key>connecting</key>
+		<string>Connecting...</string>
+		<key>warning title 1</key>
+		<string>No Network</string>
+		<key>warning text 1</key>
+		<string>To use multiplayer, please enable Bluetooth or Wi-Fi in your device's Settings.</string>
+		<key>warning title 2</key>
+		<string>Connection Failed</string>
+		<key>warning text 2</key>
+		<string>Connection failed. Please try again.</string>
+		<key>warning title 3</key>
+		<string>Warning!</string>
+		<key>warning text 3</key>
+		<string>If you quit, other players can't continue the game. Are you sure to quit?</string>
+		<key>warning title 4</key>
+		<string>Warning!</string>
+		<key>warning text 4</key>
+		<string>Some player left the game and you can't continue.</string>
+		<key>warning title 5</key>
+		<string>Disconnected</string>
+		<key>warning text 5</key>
+		<string>You were disconnected for the game. The game can't continue.</string>
+
+		<key>newgame1_service_1</key>
+		<string>쑤저우 EasyTech는 가장 뛰어난 군사 전략 \n게임의 설계와 연구개발에 주력하고 있습니다.</string>
+		<key>newgame1_service_2</key>
+		<string>&#160;</string>
+		<key>newgame1_version</key>
+		<string>앱 버전：</string>
+	
+		<key>newgame2_txt_1</key>
+		<string>존경하는 지휘관 각하, 당신의 오랫동안의 \n지지에 감사드립니다.</string>
+		<key>newgame2_txt_2</key>
+		<string>보다 나은 게임 처험을 위해, 사용자님께서 \n이번 개선 계획에 참여하여 소중한 의견과 \n건의를 제공하고, 군사 생애를 더욱 빛나게 \n하시기 바랍니다.</string>
+	
+		<key>newgame3_website</key>
+		<string>Website</string>
+		<key>newgame3_facebook</key>
+		<string>Facebook</string>
+		<key>newgame3_youtube</key>
+		<string>YouTube</string>
+		<key>newgame3_download</key>
+		<string>즉시 다운로드</string>
+		<key>newgame3_join</key>
+		<string>즉시 참여</string>
+		<key>newgame3_mail</key>
+		<string>메일</string>
+	
+		<key>newgame4_survey</key>
+		<string>설문조사</string>
+		<key>newgame4_recommend</key>
+		<string>추천</string>
+		<key>newgame4_service</key>
+		<string>고객센터</string>
+		<key>newgame4_iab_event</key>
+		<string>이벤트</string>
+	</dict>
+</plist>

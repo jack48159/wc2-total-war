@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>四角卡顿排查</title>
+<style>
+  :root{
+    --bg:#f4ecd6; --ink:#2b2118; --muted:#6b5c45; --card:#fffdf6; --line:#d8c9a5;
+    --brass:#b8935a; --brass-d:#8a6a38; --good:#3d7a3d; --warn:#9a5a2a; --ctrl:#2f5d86;
+  }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+    --bg:#1c1712; --ink:#f0e7d4; --muted:#b6a888; --card:#28211a; --line:#40352612; --line:#463824;
+    --brass:#c8a266; --brass-d:#e0c07f; --good:#7bbf6a; --warn:#d79a5a; --ctrl:#6fa8d6;
+  }}
+  :root[data-theme="dark"]{ --bg:#1c1712; --ink:#f0e7d4; --muted:#b6a888; --card:#28211a; --line:#463824; --brass:#c8a266; --brass-d:#e0c07f; --good:#7bbf6a; --warn:#d79a5a; --ctrl:#6fa8d6; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Microsoft YaHei","PingFang SC","Noto Sans CJK SC",sans-serif;line-height:1.5;padding:24px 16px 60px}
+  .wrap{max-width:860px;margin:0 auto}
+  h1{font-size:22px;margin:0 0 4px}
+  p.sub{color:var(--muted);margin:0 0 18px;font-size:14px}
+  .how{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:0 0 22px;font-size:14px}
+  .how b{color:var(--brass-d)}
+  .grp{font-size:13px;color:var(--muted);text-transform:none;margin:22px 0 8px;font-weight:700;letter-spacing:.02em}
+  .card{display:flex;gap:14px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:0 0 10px}
+  .card .txt{flex:1;min-width:0}
+  .card .name{font-weight:700;font-size:15px}
+  .card .desc{color:var(--muted);font-size:13px;margin-top:2px}
+  .flag{font-family:ui-monospace,Consolas,monospace;font-size:12px;color:var(--ctrl);background:color-mix(in srgb,var(--ctrl) 12%,transparent);padding:1px 7px;border-radius:6px;white-space:nowrap}
+  a.btn{flex:none;text-decoration:none;background:linear-gradient(180deg,var(--brass),var(--brass-d));color:#fff;font-weight:700;font-size:14px;padding:10px 16px;border-radius:9px;box-shadow:0 1px 0 rgba(0,0,0,.15);white-space:nowrap}
+  a.btn:active{transform:translateY(1px)}
+  a.btn.base{background:linear-gradient(180deg,var(--good),#2c5c2c)}
+  a.btn.ctl{background:linear-gradient(180deg,var(--warn),#7a4520)}
+  .combo{margin-top:8px;font-size:13px}
+  .combo input{font-family:ui-monospace,Consolas,monospace;font-size:13px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);width:240px;max-width:60%}
+  .combo a.btn{display:inline-block;vertical-align:middle}
+  @media(max-width:560px){ .card{flex-wrap:wrap} a.btn{width:100%;text-align:center} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>四角卡顿 · 逐项排查</h1>
+  <p class="sub">每个按钮用一个开关进入游戏。方法：点开 → 正常打一场 → <b>盯着战斗刚结束那一两秒的四角</b> → 记下卡还是不卡。一次只试一个。</p>
+
+  <div class="how">
+    <div><b>先做这两步定性：</b></div>
+    <div>① 先点 <b>基准（当前修复版）</b>，打一仗看四角还卡不卡。</div>
+    <div>② 再点 <b>对照·还原旧闪烁</b>。如果这个明显更卡、而基准不卡 → 说明就是闪烁高亮的问题，已经修好。</div>
+    <div style="margin-top:6px">若基准仍卡，再往下逐个试「关掉某一项」，哪个一关就不卡，问题就在那一项。</div>
+  </div>
+
+  <div class="grp">A · 定性对照</div>
+  <div class="card"><div class="txt"><div class="name">基准（当前修复版）</div><div class="desc">已把闪烁高亮做成缓存。先确认现在的表现。</div></div><a class="btn base" href="/?exp=#battle/battle_axis1">打开</a></div>
+  <div class="card"><div class="txt"><div class="name">对照 · 还原旧闪烁 <span class="flag">flashwarp</span></div><div class="desc">恢复到「每帧透视重画闪烁」的旧逻辑（我怀疑的元凶）。</div></div><a class="btn ctl" href="/?exp=flashwarp#battle/battle_axis1">打开</a></div>
+
+  <div class="grp">C · 3D 卡顿：地板（直接以 3D 打开；缩到最远、左右拖动到侧面领袖处最明显）</div>
+  <div class="card"><div class="txt"><div class="name">基准（当前版）</div><div class="desc">地板用 drawImage 按行拉伸（快路径）+ 缩小档位 + 跳过被桌子挡住的部分。</div></div><a class="btn base" href="/?3d&exp=#battle/battle_axis1">打开</a></div>
+  <div class="card"><div class="txt"><div class="name">地板用纹理填充 <span class="flag">floorpattern</span></div><div class="desc">上一版的画法（CPU 渲染下每帧 60–120 ms）。用来对照。</div></div><a class="btn" href="/?3d&exp=floorpattern#battle/battle_axis1">打开</a></div>
+  <div class="card"><div class="txt"><div class="name">地板不用缩小档位 <span class="flag">floornomip</span></div><div class="desc">远处地板直接从原尺寸贴图缩小取样。</div></div><a class="btn" href="/?3d&exp=floornomip#battle/battle_axis1">打开</a></div>
+  <div class="card"><div class="txt"><div class="name">地板旧画法 <span class="flag">floorold</span></div><div class="desc">每一行整行画（这次卡顿的来源）。用来对照。</div></div><a class="btn" href="/?3d&exp=floorold#battle/battle_axis1">打开</a></div>
+  <div class="card"><div class="txt"><div class="name">不画地板 <span class="flag">nofloor</span></div><div class="desc">地板完全不画（极端对照）。</div></div><a class="btn" href="/?3d&exp=nofloor#battle/battle_axis1">打开</a></div>
+  <div class="card"><div class="txt"><div class="name">不画墙 <span class="flag">nowall</span></div><div class="desc">远处墙面不画。</div></div><a class="btn" href="/?3d&exp=nowall#battle/battle_axis1">打开</a></div>
+
+  <div class="grp">B · 关掉单项（哪个一关就不卡，问题在它）</div>
+  <div class="card"><div class="txt"><div class="name">不画闪烁高亮 <span class="flag">noflash</span></div><div class="desc">战斗后我方地块闪烁的高亮层完全不画。</div></div><a class="btn" href="/?exp=noflash#battle/battle_axis1">打开</a></div>
+  <div class="card"><div class="txt"><div class="name">不画单位光晕 <span class="flag">noglow</span></div><div class="desc">去掉「可移动单位」的蓝色光晕。</div></div><a class="btn" href="/?exp=noglow#battle/battle_axis1">打开</a></div>
+  <div class="card"><div class="txt"><div class="name">不画桌面摆件 <span class="flag">noacc</span></div><div class="desc">桌上摆件（含兵人）的透视绘制关闭。</div></div><a class="btn" href="/?exp=noacc#battle/battle_axis1">打开</a></div>
+  <div class="card"><div class="txt"><div class="name">不画顶层 <span class="flag">notop</span></div><div class="desc">箭头 / 空袭范围圈等顶层不画。</div></div><a class="btn" href="/?exp=notop#battle/battle_axis1">打开</a></div>
+  <div class="card"><div class="txt"><div class="name">不画爆炸/飘字 <span class="flag">noeffects</span></div><div class="desc">粒子爆炸和伤害飘字不画。</div></div><a class="btn" href="/?exp=noeffects#battle/battle_axis1">打开</a></div>
+  <div class="card"><div class="txt"><div class="name">不画四角 HUD <span class="flag">nohud</span></div><div class="desc">四角面板/按钮完全不画。若这样就不卡 → 问题在 HUD 本身绘制。</div></div><a class="btn" href="/?exp=nohud#battle/battle_axis1">打开</a></div>
+  <div class="card"><div class="txt"><div class="name">不画单位 <span class="flag">nounits</span></div><div class="desc">地图上的单位不画（极端对照）。</div></div><a class="btn" href="/?exp=nounits#battle/battle_axis1">打开</a></div>
+
+  <div class="card"><div class="txt"><div class="name">不画桌边领袖 <span class="flag">nomarshal</span></div><div class="desc">三位领袖大图不画（这一版新增的每帧开销）。</div></div><a class="btn" href="/?exp=nomarshal#battle/battle_axis1">打开</a></div>
+
+  <div class="grp">B2 · 细分「爆炸/飘字」（noeffects 命中后，这里精确定位）</div>
+  <div class="card"><div class="txt"><div class="name">只关爆炸粒子 <span class="flag">noparticles</span></div><div class="desc">只关粒子，保留伤害飘字。</div></div><a class="btn" href="/?exp=noparticles#battle/battle_axis1">打开</a></div>
+  <div class="card"><div class="txt"><div class="name">只关伤害飘字 <span class="flag">nofloats</span></div><div class="desc">只关飘字，保留爆炸粒子。</div></div><a class="btn" href="/?exp=nofloats#battle/battle_axis1">打开</a></div>
+  <div class="card"><div class="txt"><div class="name">粒子不重着色 <span class="flag">notint</span></div><div class="desc">画粒子但不做逐帧按颜色生成画布（我最怀疑的 GPU 纹理churn）。若这样就不卡 → 就是它。</div></div><a class="btn" href="/?exp=notint#battle/battle_axis1">打开</a></div>
+  <div class="card"><div class="txt"><div class="name">粒子不叠加发光 <span class="flag">nolighter</span></div><div class="desc">爆炸用普通混合代替 lighter 叠加（测是否叠加填充率过高）。</div></div><a class="btn" href="/?exp=nolighter#battle/battle_axis1">打开</a></div>
+
+  <div class="grp">C · 资源 / 填充率对照</div>
+  <div class="card"><div class="txt"><div class="name">强制每帧重画地面 <span class="flag">nogroundcache</span></div><div class="desc">关掉地面缓存（应该更卡，用于确认缓存有效）。</div></div><a class="btn ctl" href="/?exp=nogroundcache#battle/battle_axis1">打开</a></div>
+  <div class="card"><div class="txt"><div class="name">60% 分辨率渲染 <span class="flag">halfres</span></div><div class="desc">降低内部渲染分辨率。若这样就顺 → 是填充率/GPU 带宽问题。</div></div><a class="btn" href="/?exp=halfres#battle/battle_axis1">打开</a></div>
+  <div class="card"><div class="txt"><div class="name">50% 分辨率渲染 <span class="flag">quarterres</span></div><div class="desc">更低分辨率，进一步验证是否填充率瓶颈。</div></div><a class="btn" href="/?exp=quarterres#battle/battle_axis1">打开</a></div>
+
+  <div class="grp">工具 · 元帅贴合调试</div>
+  <div class="card"><div class="txt"><div class="name">元帅 / 视角调试台 <span class="flag">marshal</span></div><div class="desc">进对局后左上角出现滑块：3D 俯角 + 元帅大小/深度/左右（位置相对桌面）。拖到满意后点「复制数值」发我固化。</div></div><a class="btn base" href="/?exp=marshal#battle/battle_axis1">打开</a></div>
+
+  <div class="grp">D · 自由组合</div>
+  <div class="how combo">
+    可以逗号组合多个开关，例如 <span class="flag">noflash,noglow</span>：
+    <div style="margin-top:8px">
+      <input id="combo" placeholder="noflash,noglow" spellcheck="false">
+      <a class="btn" id="go" href="/?exp=#battle/battle_axis1">打开组合</a>
+    </div>
+  </div>
+</div>
+<script>
+  const inp=document.getElementById('combo'), go=document.getElementById('go');
+  const upd=()=>{ go.href='/?exp='+encodeURIComponent(inp.value.trim())+'#battle/battle_axis1'; };
+  inp.addEventListener('input',upd); upd();
+</script>
+</body>
+</html>

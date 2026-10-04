@@ -1,0 +1,1872 @@
+{
+  "version": 1,
+  "elements": {
+    "round": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 448,
+          "y": 290,
+          "width": 32,
+          "height": 30
+        },
+        "wide": {
+          "x": 984,
+          "y": 730,
+          "width": 40,
+          "height": 38
+        }
+      }
+    },
+    "card": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 0,
+          "y": 290,
+          "width": 32,
+          "height": 30
+        },
+        "wide": {
+          "x": 0,
+          "y": 730,
+          "width": 40,
+          "height": 38
+        }
+      }
+    },
+    "pause": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 448,
+          "y": 0,
+          "width": 32,
+          "height": 30
+        },
+        "wide": {
+          "x": 984,
+          "y": 0,
+          "width": 40,
+          "height": 38
+        }
+      }
+    },
+    "resources": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 0,
+          "y": 0,
+          "width": 104,
+          "height": 38
+        },
+        "wide": {
+          "x": 0,
+          "y": 0,
+          "width": 104,
+          "height": 38
+        }
+      }
+    },
+    "tileInfo": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 0,
+          "y": 0,
+          "width": 104,
+          "height": 38
+        },
+        "wide": {
+          "x": 0,
+          "y": 0,
+          "width": 104,
+          "height": 38
+        }
+      }
+    },
+    "armySelector": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 420,
+          "y": 40,
+          "width": 60,
+          "height": 240
+        },
+        "wide": {
+          "x": 964,
+          "y": 264,
+          "width": 60,
+          "height": 240
+        }
+      }
+    },
+    "roundPopupBoard": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 0,
+          "y": 0,
+          "width": 193,
+          "height": 282
+        },
+        "wide": {
+          "x": 0,
+          "y": 0,
+          "width": 193,
+          "height": 282
+        }
+      }
+    },
+    "roundPopupRoundText": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 47,
+          "y": 45,
+          "width": 82,
+          "height": 19
+        },
+        "wide": {
+          "x": 47,
+          "y": 45,
+          "width": 82,
+          "height": 19
+        }
+      }
+    },
+    "roundPopupMoneyText": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 77,
+          "y": 108,
+          "width": 29,
+          "height": 19
+        },
+        "wide": {
+          "x": 77,
+          "y": 108,
+          "width": 29,
+          "height": 19
+        }
+      }
+    },
+    "roundPopupIndustryText": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 77,
+          "y": 135,
+          "width": 20,
+          "height": 19
+        },
+        "wide": {
+          "x": 77,
+          "y": 135,
+          "width": 20,
+          "height": 19
+        }
+      }
+    },
+    "roundPopupMedals": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 33,
+          "y": 180,
+          "width": 144,
+          "height": 24
+        },
+        "wide": {
+          "x": 33,
+          "y": 180,
+          "width": 144,
+          "height": 24
+        }
+      }
+    },
+    "roundPopupBank": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 10,
+          "y": 237,
+          "width": 64,
+          "height": 32
+        },
+        "wide": {
+          "x": 10,
+          "y": 237,
+          "width": 64,
+          "height": 32
+        }
+      }
+    },
+    "roundPopupConfirm": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 117,
+          "y": 237,
+          "width": 64,
+          "height": 32
+        },
+        "wide": {
+          "x": 117,
+          "y": 237,
+          "width": 64,
+          "height": 32
+        }
+      }
+    }
+  },
+  "interfaceScreens": {
+    "bankScreenAssetCounter": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 0,
+          "y": 0,
+          "width": 114,
+          "height": 33
+        },
+        "wide": {
+          "x": 0,
+          "y": 0,
+          "width": 114,
+          "height": 33
+        }
+      }
+    },
+    "bankScreenBack": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 0,
+          "y": 326,
+          "width": 36,
+          "height": 34
+        },
+        "wide": {
+          "x": 0,
+          "y": 326,
+          "width": 36,
+          "height": 34
+        }
+      }
+    },
+    "bankScreenBackground": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 0,
+          "y": 0,
+          "width": 640,
+          "height": 360
+        },
+        "wide": {
+          "x": 0,
+          "y": 0,
+          "width": 640,
+          "height": 360
+        }
+      }
+    },
+    "bankScreenIndustrial10": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 165,
+          "y": 179,
+          "width": 110,
+          "height": 35
+        },
+        "wide": {
+          "x": 165,
+          "y": 179,
+          "width": 110,
+          "height": 35
+        }
+      }
+    },
+    "bankScreenIndustrial50": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 363,
+          "y": 179,
+          "width": 110,
+          "height": 35
+        },
+        "wide": {
+          "x": 363,
+          "y": 179,
+          "width": 110,
+          "height": 35
+        }
+      }
+    },
+    "bankScreenMedalAdd": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 121,
+          "y": 332,
+          "width": 36,
+          "height": 28
+        },
+        "wide": {
+          "x": 121,
+          "y": 332,
+          "width": 36,
+          "height": 28
+        }
+      }
+    },
+    "bankScreenMedalCounter": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 41,
+          "y": 334,
+          "width": 79,
+          "height": 26
+        },
+        "wide": {
+          "x": 41,
+          "y": 334,
+          "width": 79,
+          "height": 26
+        }
+      }
+    },
+    "bankScreenMoney100": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 363,
+          "y": 123,
+          "width": 110,
+          "height": 35
+        },
+        "wide": {
+          "x": 363,
+          "y": 123,
+          "width": 110,
+          "height": 35
+        }
+      }
+    },
+    "bankScreenMoney20": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 165,
+          "y": 123,
+          "width": 110,
+          "height": 35
+        },
+        "wide": {
+          "x": 165,
+          "y": 123,
+          "width": 110,
+          "height": 35
+        }
+      }
+    },
+    "bankScreenTip": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 220,
+          "y": 241,
+          "width": 200,
+          "height": 21
+        },
+        "wide": {
+          "x": 220,
+          "y": 241,
+          "width": 200,
+          "height": 21
+        }
+      }
+    },
+    "bankScreenTitle": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 291,
+          "y": 79,
+          "width": 54,
+          "height": 22
+        },
+        "wide": {
+          "x": 291,
+          "y": 79,
+          "width": 54,
+          "height": 22
+        }
+      }
+    },
+    "battleIntroBoard": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 0,
+          "y": 0,
+          "width": 480,
+          "height": 320
+        },
+        "wide": {
+          "x": 0,
+          "y": 0,
+          "width": 480,
+          "height": 320
+        }
+      }
+    },
+    "battleIntroConfirm": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 206,
+          "y": 280,
+          "width": 68,
+          "height": 36
+        },
+        "wide": {
+          "x": 206,
+          "y": 280,
+          "width": 68,
+          "height": 36
+        }
+      }
+    },
+    "commanderScreenBack": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 0,
+          "y": 327,
+          "width": 34,
+          "height": 33
+        },
+        "wide": {
+          "x": 0,
+          "y": 327,
+          "width": 34,
+          "height": 33
+        }
+      }
+    },
+    "commanderScreenBackground": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 0,
+          "y": 0,
+          "width": 640,
+          "height": 360
+        },
+        "wide": {
+          "x": 0,
+          "y": 0,
+          "width": 640,
+          "height": 360
+        }
+      }
+    },
+    "commanderScreenInfoBoard": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 235,
+          "y": 0,
+          "width": 396,
+          "height": 173
+        },
+        "wide": {
+          "x": 235,
+          "y": 0,
+          "width": 396,
+          "height": 173
+        }
+      }
+    },
+    "commanderScreenIntroBoard": {
+      "visible": false,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 280,
+          "y": 20,
+          "width": 240,
+          "height": 113
+        },
+        "wide": {
+          "x": 280,
+          "y": 20,
+          "width": 240,
+          "height": 113
+        }
+      }
+    },
+    "commanderScreenMedalCounter": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 40,
+          "y": 330,
+          "width": 116,
+          "height": 30
+        },
+        "wide": {
+          "x": 40,
+          "y": 330,
+          "width": 116,
+          "height": 30
+        }
+      }
+    },
+    "commanderScreenPortrait": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 0,
+          "y": 6,
+          "width": 240,
+          "height": 354
+        },
+        "wide": {
+          "x": 0,
+          "y": 6,
+          "width": 240,
+          "height": 354
+        }
+      }
+    },
+    "commanderScreenRankMedal": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 283,
+          "y": 188,
+          "width": 102,
+          "height": 135
+        },
+        "wide": {
+          "x": 283,
+          "y": 188,
+          "width": 102,
+          "height": 135
+        }
+      }
+    },
+    "commanderScreenUpgrade": {
+      "visible": false,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 121,
+          "y": 330,
+          "width": 35,
+          "height": 30
+        },
+        "wide": {
+          "x": 121,
+          "y": 330,
+          "width": 35,
+          "height": 30
+        }
+      }
+    },
+    "commanderScreenWarMedals": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 390,
+          "y": 178,
+          "width": 188,
+          "height": 142
+        },
+        "wide": {
+          "x": 390,
+          "y": 178,
+          "width": 188,
+          "height": 142
+        }
+      }
+    },
+    "commanderScreenWoodenBox": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 274,
+          "y": 179,
+          "width": 334,
+          "height": 181
+        },
+        "wide": {
+          "x": 274,
+          "y": 179,
+          "width": 334,
+          "height": 181
+        }
+      }
+    },
+    "countrySelectBack": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 0,
+          "y": 327,
+          "width": 34,
+          "height": 33
+        },
+        "wide": {
+          "x": 0,
+          "y": 327,
+          "width": 34,
+          "height": 33
+        }
+      }
+    },
+    "countrySelectConfirm": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 606,
+          "y": 327,
+          "width": 34,
+          "height": 33
+        },
+        "wide": {
+          "x": 606,
+          "y": 327,
+          "width": 34,
+          "height": 33
+        }
+      }
+    },
+    "countrySelectFlags": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 0,
+          "y": 0,
+          "width": 640,
+          "height": 360
+        },
+        "wide": {
+          "x": 0,
+          "y": 0,
+          "width": 640,
+          "height": 360
+        }
+      }
+    },
+    "countrySelectIntroBoard": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 548,
+          "y": 0,
+          "width": 92,
+          "height": 360
+        },
+        "wide": {
+          "x": 548,
+          "y": 0,
+          "width": 92,
+          "height": 360
+        }
+      }
+    },
+    "countrySelectList": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 548,
+          "y": 0,
+          "width": 92,
+          "height": 327
+        },
+        "wide": {
+          "x": 548,
+          "y": 0,
+          "width": 92,
+          "height": 327
+        }
+      }
+    },
+    "countrySelectMap": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 0,
+          "y": 0,
+          "width": 640,
+          "height": 360
+        },
+        "wide": {
+          "x": 0,
+          "y": 0,
+          "width": 640,
+          "height": 360
+        }
+      }
+    },
+    "countrySelectMedalCounter": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 40,
+          "y": 330,
+          "width": 116,
+          "height": 30
+        },
+        "wide": {
+          "x": 40,
+          "y": 330,
+          "width": 116,
+          "height": 30
+        }
+      }
+    },
+    "countrySelectNewBackground": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 0,
+          "y": 0,
+          "width": 640,
+          "height": 360
+        },
+        "wide": {
+          "x": 0,
+          "y": 0,
+          "width": 640,
+          "height": 360
+        }
+      }
+    },
+    "countrySelectNewDescriptionBoard": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 240,
+          "y": 145,
+          "width": 382,
+          "height": 208
+        },
+        "wide": {
+          "x": 240,
+          "y": 145,
+          "width": 382,
+          "height": 208
+        }
+      }
+    },
+    "countrySelectNewDescriptionImage": {
+      "visible": false,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 258,
+          "y": 164,
+          "width": 132,
+          "height": 112
+        },
+        "wide": {
+          "x": 258,
+          "y": 164,
+          "width": 132,
+          "height": 112
+        }
+      }
+    },
+    "countrySelectNewDescriptionText": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 278,
+          "y": 197,
+          "width": 306,
+          "height": 141
+        },
+        "wide": {
+          "x": 278,
+          "y": 197,
+          "width": 306,
+          "height": 141
+        }
+      }
+    },
+    "countrySelectNewFlagStrip": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 0,
+          "y": 0,
+          "width": 640,
+          "height": 132
+        },
+        "wide": {
+          "x": 0,
+          "y": 0,
+          "width": 640,
+          "height": 132
+        }
+      }
+    },
+    "countrySelectNewPortrait": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 18,
+          "y": 150,
+          "width": 210,
+          "height": 204
+        },
+        "wide": {
+          "x": 18,
+          "y": 150,
+          "width": 210,
+          "height": 204
+        }
+      }
+    },
+    "countrySelectNewTitleText": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 278,
+          "y": 162,
+          "width": 306,
+          "height": 24
+        },
+        "wide": {
+          "x": 278,
+          "y": 162,
+          "width": 306,
+          "height": 24
+        }
+      }
+    },
+    "floatingOverlayAutoPlayBackground": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 0,
+          "y": 0,
+          "width": 640,
+          "height": 360
+        },
+        "wide": {
+          "x": 0,
+          "y": 0,
+          "width": 640,
+          "height": 360
+        }
+      }
+    },
+    "floatingOverlayAutoPlayButton": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 588,
+          "y": 64,
+          "width": 52,
+          "height": 52
+        },
+        "wide": {
+          "x": 588,
+          "y": 64,
+          "width": 52,
+          "height": 52
+        }
+      }
+    },
+    "floatingOverlayAutoPlayCloseButton": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 0,
+          "y": 0,
+          "width": 52,
+          "height": 52
+        },
+        "wide": {
+          "x": 0,
+          "y": 0,
+          "width": 52,
+          "height": 52
+        }
+      }
+    },
+    "floatingOverlayAutoPlayStatusBar": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 125,
+          "y": 18,
+          "width": 390,
+          "height": 34
+        },
+        "wide": {
+          "x": 125,
+          "y": 18,
+          "width": 390,
+          "height": 34
+        }
+      }
+    },
+    "floatingOverlayCommandStatus": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 155,
+          "y": 159,
+          "width": 330,
+          "height": 42
+        },
+        "wide": {
+          "x": 155,
+          "y": 159,
+          "width": 330,
+          "height": 42
+        }
+      }
+    },
+    "floatingOverlayDiplomacyBackground": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 0,
+          "y": 0,
+          "width": 640,
+          "height": 360
+        },
+        "wide": {
+          "x": 0,
+          "y": 0,
+          "width": 640,
+          "height": 360
+        }
+      }
+    },
+    "floatingOverlayDiplomacyButton": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 588,
+          "y": 124,
+          "width": 52,
+          "height": 52
+        },
+        "wide": {
+          "x": 588,
+          "y": 124,
+          "width": 52,
+          "height": 52
+        }
+      }
+    },
+    "floatingOverlayDiplomacyCloseButton": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 0,
+          "y": 0,
+          "width": 52,
+          "height": 52
+        },
+        "wide": {
+          "x": 0,
+          "y": 0,
+          "width": 52,
+          "height": 52
+        }
+      }
+    },
+    "floatingOverlaySituationBackground": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 0,
+          "y": 0,
+          "width": 640,
+          "height": 360
+        },
+        "wide": {
+          "x": 0,
+          "y": 0,
+          "width": 640,
+          "height": 360
+        }
+      }
+    },
+    "floatingOverlaySituationButton": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 588,
+          "y": 244,
+          "width": 52,
+          "height": 52
+        },
+        "wide": {
+          "x": 588,
+          "y": 244,
+          "width": 52,
+          "height": 52
+        }
+      }
+    },
+    "floatingOverlaySituationCloseButton": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 0,
+          "y": 0,
+          "width": 52,
+          "height": 52
+        },
+        "wide": {
+          "x": 0,
+          "y": 0,
+          "width": 52,
+          "height": 52
+        }
+      }
+    },
+    "floatingOverlayWarEventBackground": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 0,
+          "y": 0,
+          "width": 640,
+          "height": 360
+        },
+        "wide": {
+          "x": 0,
+          "y": 0,
+          "width": 640,
+          "height": 360
+        }
+      }
+    },
+    "floatingOverlayWarEventButton": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 588,
+          "y": 184,
+          "width": 52,
+          "height": 52
+        },
+        "wide": {
+          "x": 588,
+          "y": 184,
+          "width": 52,
+          "height": 52
+        }
+      }
+    },
+    "floatingOverlayWarEventCloseButton": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 0,
+          "y": 0,
+          "width": 52,
+          "height": 52
+        },
+        "wide": {
+          "x": 0,
+          "y": 0,
+          "width": 52,
+          "height": 52
+        }
+      }
+    },
+    "loadingScreenBackground": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 0,
+          "y": 0,
+          "width": 480,
+          "height": 320
+        },
+        "wide": {
+          "x": 0,
+          "y": 0,
+          "width": 1024,
+          "height": 768
+        }
+      }
+    },
+    "loadingScreenIndicatorCn": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 394,
+          "y": 300,
+          "width": 78,
+          "height": 11
+        },
+        "wide": {
+          "x": 850,
+          "y": 730,
+          "width": 156,
+          "height": 22
+        }
+      }
+    },
+    "loadingScreenIndicatorDefault": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 394,
+          "y": 300,
+          "width": 78,
+          "height": 11
+        },
+        "wide": {
+          "x": 850,
+          "y": 730,
+          "width": 156,
+          "height": 22
+        }
+      }
+    },
+    "loadingScreenTip": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 30,
+          "y": 150,
+          "width": 420,
+          "height": 90
+        },
+        "wide": {
+          "x": 50,
+          "y": 370,
+          "width": 924,
+          "height": 180
+        }
+      }
+    },
+    "loadingScreenTitleCn": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 0,
+          "y": 0,
+          "width": 214,
+          "height": 59
+        },
+        "wide": {
+          "x": 0,
+          "y": 0,
+          "width": 428,
+          "height": 118
+        }
+      }
+    },
+    "loadingScreenTitleDefault": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 0,
+          "y": 0,
+          "width": 214,
+          "height": 59
+        },
+        "wide": {
+          "x": 0,
+          "y": 0,
+          "width": 428,
+          "height": 118
+        }
+      }
+    },
+    "optionsScreenAnimation": {
+      "visible": false,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 147,
+          "y": 142,
+          "width": 291,
+          "height": 32
+        },
+        "wide": {
+          "x": 147,
+          "y": 142,
+          "width": 291,
+          "height": 32
+        }
+      }
+    },
+    "optionsScreenBack": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 0,
+          "y": 327,
+          "width": 34,
+          "height": 33
+        },
+        "wide": {
+          "x": 0,
+          "y": 327,
+          "width": 34,
+          "height": 33
+        }
+      }
+    },
+    "optionsScreenBackground": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 0,
+          "y": 0,
+          "width": 640,
+          "height": 360
+        },
+        "wide": {
+          "x": 0,
+          "y": 0,
+          "width": 640,
+          "height": 360
+        }
+      }
+    },
+    "optionsScreenBoard": {
+      "visible": true,
+      "asset": "main_hud/options_screen_board.png",
+      "layouts": {
+        "normal": {
+          "x": 0,
+          "y": 0,
+          "width": 640,
+          "height": 360
+        },
+        "wide": {
+          "x": 0,
+          "y": 0,
+          "width": 640,
+          "height": 360
+        }
+      }
+    },
+    "optionsScreenConfirm": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 606,
+          "y": 327,
+          "width": 34,
+          "height": 33
+        },
+        "wide": {
+          "x": 606,
+          "y": 327,
+          "width": 34,
+          "height": 33
+        }
+      }
+    },
+    "optionsScreenEffects": {
+      "visible": false,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 345,
+          "y": 39,
+          "width": 165,
+          "height": 75
+        },
+        "wide": {
+          "x": 345,
+          "y": 39,
+          "width": 165,
+          "height": 75
+        }
+      }
+    },
+    "optionsScreenHighDefinition": {
+      "visible": false,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 147,
+          "y": 178,
+          "width": 291,
+          "height": 32
+        },
+        "wide": {
+          "x": 147,
+          "y": 178,
+          "width": 291,
+          "height": 32
+        }
+      }
+    },
+    "optionsScreenMusic": {
+      "visible": false,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 119,
+          "y": 31,
+          "width": 165,
+          "height": 75
+        },
+        "wide": {
+          "x": 119,
+          "y": 31,
+          "width": 165,
+          "height": 75
+        }
+      }
+    },
+    "optionsScreenSpeed": {
+      "visible": false,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 150,
+          "y": 225,
+          "width": 350,
+          "height": 45
+        },
+        "wide": {
+          "x": 150,
+          "y": 225,
+          "width": 350,
+          "height": 45
+        }
+      }
+    },
+    "pausePopupBoard": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 223,
+          "y": 31,
+          "width": 197,
+          "height": 299
+        },
+        "wide": {
+          "x": 223,
+          "y": 31,
+          "width": 197,
+          "height": 299
+        }
+      }
+    },
+    "pausePopupOptions": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 260,
+          "y": 176,
+          "width": 117,
+          "height": 40
+        },
+        "wide": {
+          "x": 260,
+          "y": 176,
+          "width": 117,
+          "height": 40
+        }
+      }
+    },
+    "pausePopupQuit": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 260,
+          "y": 262,
+          "width": 117,
+          "height": 40
+        },
+        "wide": {
+          "x": 260,
+          "y": 262,
+          "width": 117,
+          "height": 40
+        }
+      }
+    },
+    "pausePopupRestart": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 260,
+          "y": 219,
+          "width": 117,
+          "height": 40
+        },
+        "wide": {
+          "x": 260,
+          "y": 219,
+          "width": 117,
+          "height": 40
+        }
+      }
+    },
+    "pausePopupResume": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 260,
+          "y": 90,
+          "width": 117,
+          "height": 40
+        },
+        "wide": {
+          "x": 260,
+          "y": 90,
+          "width": 117,
+          "height": 40
+        }
+      }
+    },
+    "pausePopupSave": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 260,
+          "y": 133,
+          "width": 117,
+          "height": 40
+        },
+        "wide": {
+          "x": 260,
+          "y": 133,
+          "width": 117,
+          "height": 40
+        }
+      }
+    },
+    "saveScreenAutoSlot": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 259,
+          "y": 51,
+          "width": 123,
+          "height": 232
+        },
+        "wide": {
+          "x": 259,
+          "y": 51,
+          "width": 123,
+          "height": 232
+        }
+      }
+    },
+    "saveScreenBack": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 0,
+          "y": 327,
+          "width": 34,
+          "height": 33
+        },
+        "wide": {
+          "x": 0,
+          "y": 327,
+          "width": 34,
+          "height": 33
+        }
+      }
+    },
+    "saveScreenBackground": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 0,
+          "y": 0,
+          "width": 640,
+          "height": 360
+        },
+        "wide": {
+          "x": 0,
+          "y": 0,
+          "width": 640,
+          "height": 360
+        }
+      }
+    },
+    "saveScreenConfirm": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 606,
+          "y": 327,
+          "width": 34,
+          "height": 33
+        },
+        "wide": {
+          "x": 606,
+          "y": 327,
+          "width": 34,
+          "height": 33
+        }
+      }
+    },
+    "saveScreenLeftBottom": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 47,
+          "y": 223,
+          "width": 204,
+          "height": 97
+        },
+        "wide": {
+          "x": 47,
+          "y": 223,
+          "width": 204,
+          "height": 97
+        }
+      }
+    },
+    "saveScreenLeftMiddle": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 47,
+          "y": 118,
+          "width": 204,
+          "height": 97
+        },
+        "wide": {
+          "x": 47,
+          "y": 118,
+          "width": 204,
+          "height": 97
+        }
+      }
+    },
+    "saveScreenLeftTop": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 47,
+          "y": 13,
+          "width": 204,
+          "height": 97
+        },
+        "wide": {
+          "x": 47,
+          "y": 13,
+          "width": 204,
+          "height": 97
+        }
+      }
+    },
+    "saveScreenRightBottom": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 389,
+          "y": 223,
+          "width": 204,
+          "height": 97
+        },
+        "wide": {
+          "x": 389,
+          "y": 223,
+          "width": 204,
+          "height": 97
+        }
+      }
+    },
+    "saveScreenRightMiddle": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 389,
+          "y": 118,
+          "width": 204,
+          "height": 97
+        },
+        "wide": {
+          "x": 389,
+          "y": 118,
+          "width": 204,
+          "height": 97
+        }
+      }
+    },
+    "saveScreenRightTop": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 389,
+          "y": 13,
+          "width": 204,
+          "height": 97
+        },
+        "wide": {
+          "x": 389,
+          "y": 13,
+          "width": 204,
+          "height": 97
+        }
+      }
+    },
+    "victoryResultBack": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 0,
+          "y": 326,
+          "width": 36,
+          "height": 34
+        },
+        "wide": {
+          "x": 0,
+          "y": 326,
+          "width": 36,
+          "height": 34
+        }
+      }
+    },
+    "victoryResultBackground": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 0,
+          "y": 0,
+          "width": 640,
+          "height": 360
+        },
+        "wide": {
+          "x": 0,
+          "y": 0,
+          "width": 640,
+          "height": 360
+        }
+      }
+    },
+    "victoryResultBoard": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 257,
+          "y": 0,
+          "width": 383,
+          "height": 306
+        },
+        "wide": {
+          "x": 257,
+          "y": 0,
+          "width": 383,
+          "height": 306
+        }
+      }
+    },
+    "victoryResultCommander": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 0,
+          "y": 6,
+          "width": 241,
+          "height": 354
+        },
+        "wide": {
+          "x": 0,
+          "y": 6,
+          "width": 241,
+          "height": 354
+        }
+      }
+    },
+    "victoryResultMedal": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 541,
+          "y": 142,
+          "width": 18,
+          "height": 87
+        },
+        "wide": {
+          "x": 541,
+          "y": 142,
+          "width": 18,
+          "height": 87
+        }
+      }
+    },
+    "victoryResultNext": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 604,
+          "y": 326,
+          "width": 36,
+          "height": 34
+        },
+        "wide": {
+          "x": 604,
+          "y": 326,
+          "width": 36,
+          "height": 34
+        }
+      }
+    },
+    "victoryResultRankStars": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 413,
+          "y": 141,
+          "width": 69,
+          "height": 21
+        },
+        "wide": {
+          "x": 413,
+          "y": 141,
+          "width": 69,
+          "height": 21
+        }
+      }
+    },
+    "victoryResultRestart": {
+      "visible": true,
+      "asset": "",
+      "layouts": {
+        "normal": {
+          "x": 265,
+          "y": 315,
+          "width": 110,
+          "height": 38
+        },
+        "wide": {
+          "x": 265,
+          "y": 315,
+          "width": 110,
+          "height": 38
+        }
+      }
+    }
+  },
+  "countrySelectNewPage": {
+    "starCount": 3,
+    "descriptionText": "",
+    "descriptionVisible": true
+  },
+  "floatingOverlay": {
+    "autoPlay": false,
+    "diplomacy": true,
+    "warEvent": true,
+    "situation": true
+  }
+}

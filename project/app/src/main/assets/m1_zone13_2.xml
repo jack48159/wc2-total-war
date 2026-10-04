@@ -1,0 +1,41 @@
+<Texture name="m1_zone13_2.webp"/>
+<Images>
+    <Image name="0865.png" x="826" y="1" w="163" h="111" refx="0" refy="0"/>
+    <Image name="0870.png" x="1" y="115" w="169" h="163" refx="0" refy="0"/>
+    <Image name="0873.png" x="1" y="280" w="152" h="166" refx="0" refy="0"/>
+    <Image name="0876.png" x="812" y="405" w="150" h="97" refx="0" refy="0"/>
+    <Image name="0878.png" x="305" y="517" w="143" h="129" refx="0" refy="0"/>
+    <Image name="0882.png" x="655" y="295" w="155" h="109" refx="0" refy="0"/>
+    <Image name="0883.png" x="519" y="172" w="134" h="155" refx="0" refy="0"/>
+    <Image name="0884.png" x="1" y="726" w="117" h="130" refx="0" refy="0"/>
+    <Image name="0885.png" x="134" y="690" w="132" h="120" refx="0" refy="0"/>
+    <Image name="0886.png" x="798" y="504" w="137" h="103" refx="0" refy="0"/>
+    <Image name="0887.png" x="460" y="417" w="144" h="117" refx="0" refy="0"/>
+    <Image name="0888.png" x="495" y="329" w="155" h="86" refx="0" refy="0"/>
+    <Image name="0889.png" x="342" y="224" w="151" h="158" refx="0" refy="0"/>
+    <Image name="0890.png" x="308" y="384" w="150" h="131" refx="0" refy="0"/>
+    <Image name="0891.png" x="349" y="1" w="171" h="145" refx="0" refy="0"/>
+    <Image name="0896.png" x="652" y="406" w="144" h="127" refx="0" refy="0"/>
+    <Image name="0897.png" x="606" y="535" w="134" h="101" refx="0" refy="0"/>
+    <Image name="0900.png" x="1" y="448" w="150" h="136" refx="0" refy="0"/>
+    <Image name="0901.png" x="175" y="113" w="171" h="90" refx="0" refy="0"/>
+    <Image name="0902.png" x="1" y="858" w="128" h="110" refx="0" refy="0"/>
+    <Image name="0904.png" x="172" y="205" w="168" h="97" refx="0" refy="0"/>
+    <Image name="0905.png" x="348" y="148" w="169" h="74" refx="0" refy="0"/>
+    <Image name="0906.png" x="1" y="1" w="172" h="112" refx="0" refy="0"/>
+    <Image name="0907.png" x="360" y="764" w="108" h="109" refx="0" refy="0"/>
+    <Image name="0909.png" x="661" y="154" w="159" h="139" refx="0" refy="0"/>
+    <Image name="0910.png" x="522" y="1" w="137" h="169" refx="0" refy="0"/>
+    <Image name="0911.png" x="153" y="452" w="150" h="114" refx="0" refy="0"/>
+    <Image name="0913.png" x="826" y="114" w="144" h="161" refx="0" refy="0"/>
+    <Image name="0921.png" x="296" y="648" w="133" h="114" refx="0" refy="0"/>
+    <Image name="0922.png" x="175" y="1" w="172" h="110" refx="0" refy="0"/>
+    <Image name="0923.png" x="131" y="812" w="122" h="103" refx="0" refy="0"/>
+    <Image name="0928.png" x="155" y="304" w="151" h="146" refx="0" refy="0"/>
+    <Image name="0930.png" x="822" y="277" w="159" h="126" refx="0" refy="0"/>
+    <Image name="0931.png" x="153" y="568" w="141" h="120" refx="0" refy="0"/>
+    <Image name="0932.png" x="450" y="536" w="132" h="133" refx="0" refy="0"/>
+    <Image name="0933.png" x="661" y="1" w="163" h="151" refx="0" refy="0"/>
+    <Image name="0937.png" x="1" y="586" w="131" h="138" refx="0" refy="0"/>
+    <Image name="0938.png" x="255" y="812" w="103" h="118" refx="0" refy="0"/>
+</Images>

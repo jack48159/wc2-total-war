@@ -1,0 +1,18 @@
+<generals>
+	<general name="Rommel" filename="general_rommel.webp" w="275" h="271" refx="137"/>
+	<general name="Goering" filename="general_goering.webp" w="338" h="253" refx="169"/>
+	<general name="Guderian" filename="general_guderian.webp" w="298" h="260" refx="149"/>
+	<general name="MacArthur" filename="general_macarthur.webp" w="250" h="261" refx="125"/>
+	<general name="Patton" filename="general_patton.webp" w="321" h="249" refx="160"/>
+	<general name="Nimitz" filename="general_nimitz.webp" w="257" h="265" refx="128"/>
+	<general name="Zhukov" filename="general_zhukov.webp" w="241" h="260" refx="120"/>
+	<general name="Rokossovsky" filename="general_rokossovsky.webp" w="247" h="267" refx="123"/>
+	<general name="Montgomery" filename="general_montgomery.webp" w="241" h="254" refx="120"/>
+	<general name="de Gaulle" filename="general_degaulle.webp" w="208" h="256" refx="104"/>
+	<general name="Yamamoto" filename="general_yamamoto.webp" w="248" h="253" refx="124"/>
+	<general name="Graziani" filename="general_graziani.webp" w="316" h="268" refx="158"/>
+	<general name="Zhang" filename="general_zhang.webp" w="246" h="254" refx="123"/>
+	<general name="Peng" filename="general_peng.webp" w="228" h="250" refx="114"/>
+	<general name="Player" filename="general_player.webp" w="267" h="252" refx="133"/>
+	<general name="Guider" filename="guider.webp" w="210" h="246" refx="105"/>
+</generals>

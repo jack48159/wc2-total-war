@@ -1,0 +1,7 @@
+﻿<Texture name="cruiser.png" />
+<Images>
+    <Image name="炮台.png" x="1" y="1" w="71" h="33" refx="0" refy="0" />
+    <Image name="摧毁.png" x="1" y="35" w="77" h="33" refx="0" refy="0" />
+    <Image name="炮管1.png" x="73" y="1" w="13" h="5" refx="0" refy="0" />
+    <Image name="炮管2.png" x="1" y="69" w="14" h="7" refx="0" refy="0" />
+</Images>

@@ -1,0 +1,43 @@
+<Texture name="cardtex_hd.webp" />
+<Images>
+    <Image name="card_aceforce.png" x="411" y="1" w="202" h="234" refx="0" refy="0" />
+    <Image name="card_airborneforce.png" x="614" y="1" w="202" h="234" refx="0" refy="0" />
+    <Image name="card_aircraftcarriers.png" x="411" y="236" w="202" h="234" refx="0" refy="0" />
+    <Image name="card_airport.png" x="614" y="236" w="202" h="234" refx="0" refy="0" />
+    <Image name="card_airstrike.png" x="817" y="1" w="202" h="234" refx="0" refy="0" />
+    <Image name="card_antiaircraft.png" x="496" y="471" w="202" h="234" refx="0" refy="0" />
+    <Image name="card_armour.png" x="817" y="236" w="202" h="234" refx="0" refy="0" />
+    <Image name="card_artillery.png" x="496" y="706" w="202" h="234" refx="0" refy="0" />
+    <Image name="card_assaultart.png" x="699" y="471" w="202" h="234" refx="0" refy="0" />
+    <Image name="card_battleship.png" x="699" y="706" w="202" h="234" refx="0" refy="0" />
+    <Image name="card_bomber.png" x="1" y="1021" w="202" h="234" refx="0" refy="0" />
+    <Image name="card_carrier.png" x="274" y="835" w="202" h="234" refx="0" refy="0" />
+    <Image name="card_city.png" x="1" y="1256" w="202" h="234" refx="0" refy="0" />
+    <Image name="card_commander.png" x="477" y="941" w="202" h="234" refx="0" refy="0" />
+    <Image name="card_common.png" x="274" y="510" w="221" h="324" refx="6" refy="12" />
+    <Image name="card_cruiser.png" x="204" y="1070" w="202" h="234" refx="0" refy="0" />
+    <Image name="card_d_research_2.png" x="407" y="1070" w="63" h="81" refx="31" refy="0" />
+    <Image name="card_d_research_3.png" x="902" y="637" w="81" h="81" refx="40" refy="0" />
+    <Image name="card_d_research_4.png" x="902" y="554" w="91" h="82" refx="42" refy="0" />
+    <Image name="card_d_research_5.png" x="902" y="471" w="83" h="82" refx="41" refy="0" />
+    <Image name="card_d_research_max.png" x="1" y="1961" w="164" h="56" refx="86" refy="0" />
+    <Image name="card_defendart.png" x="680" y="941" w="202" h="234" refx="0" refy="0" />
+    <Image name="card_destroyer.png" x="204" y="1305" w="202" h="234" refx="0" refy="0" />
+    <Image name="card_entrenchment.png" x="1" y="1491" w="202" h="234" refx="0" refy="0" />
+    <Image name="card_heavytank.png" x="407" y="1176" w="202" h="234" refx="0" refy="0" />
+    <Image name="card_industry.png" x="610" y="1176" w="202" h="234" refx="0" refy="0" />
+    <Image name="card_infantry.png" x="407" y="1411" w="202" h="234" refx="0" refy="0" />
+    <Image name="card_landfort.png" x="1" y="1726" w="202" h="234" refx="0" refy="0" />
+    <Image name="card_nuclearbomb.png" x="204" y="1540" w="202" h="234" refx="0" refy="0" />
+    <Image name="card_radar.png" x="610" y="1411" w="202" h="234" refx="0" refy="0" />
+    <Image name="card_research.png" x="204" y="1775" w="202" h="234" refx="0" refy="0" />
+    <Image name="card_rocketlaunch.png" x="813" y="1176" w="202" h="234" refx="0" refy="0" />
+    <Image name="card_shadow.png" x="883" y="941" w="123" h="175" refx="11" refy="11" />
+    <Image name="card_supplyline.png" x="407" y="1646" w="202" h="234" refx="0" refy="0" />
+    <Image name="card_tank.png" x="610" y="1646" w="202" h="234" refx="0" refy="0" />
+    <Image name="label_airforces.png" x="274" y="1" w="136" h="508" refx="7" refy="4" />
+    <Image name="label_development.png" x="1" y="512" w="135" h="508" refx="7" refy="4" />
+    <Image name="label_groundforces.png" x="1" y="1" w="136" h="510" refx="7" refy="5" />
+    <Image name="label_navy.png" x="137" y="512" w="136" h="507" refx="7" refy="4" />
+    <Image name="label_strategy.png" x="138" y="1" w="135" h="510" refx="7" refy="6" />
+</Images>

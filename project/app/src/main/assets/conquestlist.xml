@@ -1,0 +1,160 @@
+<battlelist>
+	<battle name="conquest 1" centerx="261 " centery="236 ">
+		<list type="flag">
+			<flag name="de" x="283" y="170"/>
+			<flag name="pl" x="371" y="175" scale="0.8"/>
+			<flag name="no" x="213" y="83" scale="0.6"/>
+			
+			<flag name="fl" x="318" y="79" scale="0.7"/>
+			<flag name="dk" x="224" y="119" scale="0.5"/>
+			<flag name="nl" x="189" y="163" scale="0.5"/>
+			<flag name="be" x="165" y="177" scale="0.5"/>
+			<flag name="fr" x="193" y="221" scale="0.9"/>
+			<flag name="gb" x="132" y="121" scale="0.9"/>
+			<flag name="ru" x="373" y="129"/>
+			<flag name="es" x="105" y="351" scale="0.8"/>
+			
+			
+			<flag name="it" x="256" y="340" scale="0.9"/>
+			<flag name="hu" x="296" y="279" scale="0.6"/>
+			<flag name="yu" x="290" y="314" scale="0.6"/>
+			<flag name="bg" x="334" y="347" scale="0.6"/>
+			<flag name="gr" x="329" y="375" scale="0.6"/>
+			
+			<flag name="ro" x="327" y="295" scale="0.7"/>
+		</list>
+	</battle>
+	<battle name="conquest 2" centerx="1062 " centery="497 ">
+		<list type="flag">
+			<flag name="ru" x="892" y="343" />
+			<flag name="ja" x="932" y="343" scale="0.7"/>
+			<flag name="tw" x="880" y="373" scale="0.9"/>
+			<flag name="ja" x="981" y="346" />
+			<flag name="ca" x="1183" y="340" scale="0.8"/>
+			<flag name="am" x="1095" y="396" scale="0.7"/>
+
+			<flag name="am" x="1150" y="514" />
+
+			<flag name="am" x="929" y="523" scale="0.8"/>
+			<flag name="gb" x="929" y="597" />
+
+			<flag name="au" x="1046" y="639" scale="0.8"/>
+		</list>
+	</battle>
+	<battle name="conquest 3" centerx="261 " centery="236 ">		
+		<list type="flag">
+			<flag name="de" x="283" y="170"/>
+			<flag name="de" x="213" y="83" scale="0.7"/>
+			<flag name="ca" x="169" y="139" scale="0.7"/>
+			<flag name="fr" x="166" y="160" scale="0.7"/>
+			<flag name="fl" x="318" y="79" scale="0.8"/>
+			<flag name="de" x="193" y="221" scale="0.9"/>
+			<flag name="gb" x="132" y="121" scale="0.9"/>
+			<flag name="ru" x="373" y="129"/>
+			<flag name="ru" x="373" y="274"/>
+			<flag name="es" x="105" y="351" scale="0.8"/>
+			<flag name="am" x="70" y="181" scale="0.8"/>
+			<flag name="it" x="256" y="340" scale="0.9"/>
+			<flag name="hu" x="296" y="279" scale="0.6"/>
+			<flag name="de" x="290" y="314" scale="0.6"/>
+			<flag name="bg" x="334" y="347" scale="0.6"/>
+			<flag name="gr" x="329" y="375" scale="0.6"/>
+
+			<flag name="am" x="282" y="375" scale="0.7"/>			
+			<flag name="ro" x="327" y="295" scale="0.7"/>
+		</list>
+	</battle>
+	<battle name="conquest 4" centerx="265 " centery="545 ">
+		<list type="flag">
+			<flag name="gr" x="363" y="685" scale="0.6"/>
+			<flag name="gb" x="327" y="614" scale="0.9"/>
+			<flag name="it" x="246" y="636" scale="0.8"/>
+			<flag name="it" x="258" y="407" scale="0.6"/>
+			<flag name="au" x="278" y="582" scale="0.6"/>
+			<flag name="de" x="211" y="510" />
+			<flag name="de" x="325" y="397" scale="0.6"/>
+			<flag name="fr" x="322" y="573" scale="0.9"/>
+			<flag name="gb" x="327" y="496" scale="0.9"/>
+			<flag name="es" x="71" y="391" scale="0.8"/>
+			<flag name="tr" x="360" y="400" scale="0.5"/>
+		</list>
+	</battle>
+	<battle name="conquest 5" centerx="1477 " centery="210 ">
+		<list type="flag">
+			<flag name="ja" x="1238" y="51" scale="0.7"/>
+			<flag name="ja" x="1240" y="233" scale="0.9"/>
+			<flag name="am" x="1240" y="103" scale="0.7"/>
+			<flag name="ca" x="1346" y="114" scale="0.9"/>
+			<flag name="am" x="1427" y="297" />
+			<flag name="mx" x="1379" y="353" scale="0.7"/>
+			<flag name="it" x="1614" y="297" scale="0.7"/>
+			<flag name="de" x="1581" y="185" scale="0.9"/>
+			<flag name="de" x="1559" y="54" scale="0.7"/>
+		</list>
+	</battle>
+	<battle name="conquest 6" centerx="891 " centery="423 ">
+		<list type="flag">
+			<flag name="ru" x="816" y="273" />
+			<flag name="cn" x="840" y="331" />
+			<flag name="rk" x="933" y="324" scale="0.6"/>
+			<flag name="nk" x="931" y="282" scale="0.6"/>
+			<flag name="am" x="961" y="378" scale="0.9"/>
+			<flag name="ja" x="1021" y="335" scale="0.8"/>
+			<flag name="tw" x="757" y="398" scale="0.8"/>
+			<flag name="in" x="674" y="420" scale="0.8"/>
+			<flag name="gb" x="762" y="506" scale="0.9"/>
+			<flag name="ca" x="823" y="567" scale="0.7"/>
+			<flag name="au" x="984" y="567" scale="0.7"/>
+			<flag name="am" x="921" y="562" scale="0.8"/>
+		</list>
+	</battle>
+	<battle name="conquest 7" centerx="261 " centery="236 ">
+		<list type="flag">
+			<flag name="ru" x="273" y="143"/>
+			<flag name="am" x="259" y="219"/>
+			<flag name="gb" x="132" y="121"/>
+			<flag name="gb" x="226" y="138" scale="0.7"/>
+			<flag name="fr" x="214" y="192"/>
+			<flag name="it" x="256" y="340" scale="0.9"/>
+			<flag name="pl" x="307" y="187" scale="0.8"/>
+			<flag name="yu" x="290" y="314" scale="0.6"/>
+			<flag name="ro" x="327" y="295" scale="0.7"/>
+			<flag name="gr" x="329" y="375" scale="0.6"/>
+			<flag name="bg" x="334" y="347" scale="0.6"/>
+			<flag name="hu" x="296" y="279" scale="0.6"/>
+			<flag name="dk" x="224" y="119" scale="0.5"/>
+			<flag name="tr" x="392" y="375" scale="0.7"/>
+			<flag name="no" x="213" y="83" scale="0.6"/>
+			<flag name="nl" x="189" y="163" scale="0.5"/>
+			<flag name="be" x="165" y="177" scale="0.5"/>
+		</list>
+  </battle>
+  <battle name="conquest 8" centerx="427 " centery="496 ">		
+		<list type="flag">
+			<flag name="ru" x="456" y="346"/>
+			<flag name="cn" x="546" y="375"/>
+			<flag name="am" x="262" y="588"/>
+			<flag name="gb" x="316" y="487"/>
+			<flag name="fr" x="191" y="341" scale="0.9"/>
+			<flag name="fr" x="190" y="429" scale="0.7"/>
+			<flag name="it" x="259" y="369" scale="0.9"/>
+			<flag name="it" x="424" y="523" scale="0.7"/>
+			<flag name="it" x="207" y="458" scale="0.7"/>
+			<flag name="pl" x="463" y="403" scale="0.8"/>	
+			<flag name="tr" x="374" y="382" scale="0.8"/>
+			<flag name="es" x="320" y="551" scale="0.9"/>
+			<flag name="in" x="544" y="426" scale="0.8"/>
+			<flag name="au" x="404" y="617" scale="0.8"/>
+			<flag name="ca" x="239" y="486" scale="0.8"/>
+			<flag name="yu" x="307" y="347" scale="0.7"/>
+			<flag name="yu" x="430" y="480" scale="0.7"/>
+			<flag name="bg" x="334" y="347" scale="0.7"/>
+			<flag name="bg" x="452" y="505" scale="0.7"/>
+			<flag name="ro" x="359" y="339" scale="0.7"/>
+			<flag name="hu" x="280" y="339" scale="0.7"/>
+			<flag name="gr" x="329" y="375" scale="0.7"/>
+			<flag name="gr" x="459" y="574" scale="0.7"/>
+			<flag name="nk" x="517" y="505" scale="0.8"/>
+		</list>
+  </battle>
+</battlelist>

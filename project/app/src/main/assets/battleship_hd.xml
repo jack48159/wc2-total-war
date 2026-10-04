@@ -1,0 +1,8 @@
+﻿<Texture name="battleship_hd.png" />
+<Images>
+    <Image name="炮台.png" x="1" y="1" w="146" h="74" refx="0" refy="0" />
+    <Image name="摧毁.png" x="1" y="76" w="157" h="74" refx="0" refy="0" />
+    <Image name="1.png" x="148" y="1" w="38" h="12" refx="0" refy="0" />
+    <Image name="2.png" x="1" y="151" w="39" h="11" refx="0" refy="0" />
+    <Image name="3.png" x="159" y="14" w="40" h="12" refx="0" refy="0" />
+</Images>

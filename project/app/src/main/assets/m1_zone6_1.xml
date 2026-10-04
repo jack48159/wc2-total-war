@@ -1,0 +1,38 @@
+<Texture name="m1_zone6_1.webp"/>
+<Images>
+    <Image name="0372.png" x="645" y="515" w="188" h="117" refx="0" refy="0"/>
+    <Image name="0378.png" x="313" y="750" w="181" h="111" refx="0" refy="0"/>
+    <Image name="0379.png" x="1" y="741" w="168" h="188" refx="0" refy="0"/>
+    <Image name="0380.png" x="497" y="561" w="143" h="185" refx="0" refy="0"/>
+    <Image name="0382.png" x="171" y="863" w="178" h="159" refx="0" refy="0"/>
+    <Image name="0384.png" x="1" y="931" w="145" h="92" refx="0" refy="0"/>
+    <Image name="0385.png" x="351" y="933" w="175" h="88" refx="0" refy="0"/>
+    <Image name="0391.png" x="248" y="138" w="206" h="182" refx="0" refy="0"/>
+    <Image name="0392.png" x="328" y="322" w="120" h="197" refx="0" refy="0"/>
+    <Image name="0393.png" x="208" y="322" w="118" h="201" refx="0" refy="0"/>
+    <Image name="0395.png" x="358" y="561" w="137" h="187" refx="0" refy="0"/>
+    <Image name="0398.png" x="518" y="129" w="207" h="175" refx="0" refy="0"/>
+    <Image name="0400.png" x="660" y="337" w="196" h="176" refx="0" refy="0"/>
+    <Image name="0402.png" x="165" y="525" w="191" h="149" refx="0" refy="0"/>
+    <Image name="0410.png" x="456" y="306" w="202" h="87" refx="0" refy="0"/>
+    <Image name="0411.png" x="450" y="395" w="193" h="164" refx="0" refy="0"/>
+    <Image name="0412.png" x="262" y="1" w="254" h="135" refx="0" refy="0"/>
+    <Image name="0414.png" x="858" y="337" w="124" h="173" refx="0" refy="0"/>
+    <Image name="0415.png" x="638" y="773" w="180" h="171" refx="0" refy="0"/>
+    <Image name="0416.png" x="1" y="350" w="162" h="197" refx="0" refy="0"/>
+    <Image name="0417.png" x="733" y="1" w="152" h="209" refx="0" refy="0"/>
+    <Image name="0418.png" x="887" y="1" w="133" h="209" refx="0" refy="0"/>
+    <Image name="0422.png" x="518" y="1" w="213" h="126" refx="0" refy="0"/>
+    <Image name="0424.png" x="1" y="1" w="259" h="116" refx="0" refy="0"/>
+    <Image name="0425.png" x="497" y="748" w="139" h="183" refx="0" refy="0"/>
+    <Image name="0428.png" x="820" y="904" w="173" h="107" refx="0" refy="0"/>
+    <Image name="0429.png" x="820" y="794" w="180" h="108" refx="0" refy="0"/>
+    <Image name="0430.png" x="727" y="212" w="204" h="123" refx="0" refy="0"/>
+    <Image name="0431.png" x="1" y="119" w="245" h="135" refx="0" refy="0"/>
+    <Image name="0432.png" x="1" y="549" w="157" h="190" refx="0" refy="0"/>
+    <Image name="0433.png" x="171" y="676" w="140" h="184" refx="0" refy="0"/>
+    <Image name="0435.png" x="835" y="515" w="187" h="153" refx="0" refy="0"/>
+    <Image name="0436.png" x="642" y="634" w="184" h="137" refx="0" refy="0"/>
+    <Image name="0437.png" x="1" y="256" w="205" h="92" refx="0" refy="0"/>
+    <Image name="0438.png" x="828" y="670" w="184" h="122" refx="0" refy="0"/>
+</Images>

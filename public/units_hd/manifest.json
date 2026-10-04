@@ -1,0 +1,175 @@
+{
+  "version": 2,
+  "facing": "right",
+  "stage": "battle_axis1",
+  "frames": [
+    {
+      "name": "soldier_de",
+      "file": "de/soldier.png",
+      "w": 53,
+      "h": 117,
+      "rx": 21,
+      "ry": 114,
+      "template": "soldier_de",
+      "flipped": false,
+      "scale": 0.1137855579868709,
+      "source": "output/de/soldier_v1.png",
+      "originalBounds": [
+        0,
+        0,
+        52,
+        117
+      ],
+      "contentBox": [
+        0,
+        5,
+        52,
+        112
+      ]
+    },
+    {
+      "name": "eliteinfantry_de",
+      "file": "de/eliteinfantry.png",
+      "w": 100,
+      "h": 118,
+      "rx": 26,
+      "ry": 113,
+      "template": "eliteinfantry_de",
+      "flipped": false,
+      "scale": 0.11366245694603903,
+      "source": "output/de/eliteinfantry_v2.png",
+      "originalBounds": [
+        0,
+        0,
+        99,
+        118
+      ],
+      "contentBox": [
+        0,
+        28,
+        99,
+        90
+      ]
+    },
+    {
+      "name": "cannon_de",
+      "file": "de/cannon.png",
+      "w": 202,
+      "h": 76,
+      "rx": 87,
+      "ry": 50,
+      "template": "cannon_de",
+      "flipped": false,
+      "scale": 0.09857142857142857,
+      "source": "output/de/cannon_v1.png",
+      "originalBounds": [
+        7,
+        0,
+        202,
+        69
+      ],
+      "contentBox": [
+        47,
+        0,
+        115,
+        69
+      ]
+    },
+    {
+      "name": "tank_de",
+      "file": "de/tank.png",
+      "w": 149,
+      "h": 97,
+      "rx": 78,
+      "ry": 89,
+      "template": "tank_de",
+      "flipped": false,
+      "scale": 0.17908653846153846,
+      "source": "output/de/tank_v1.png",
+      "originalBounds": [
+        0,
+        1,
+        149,
+        97
+      ],
+      "contentBox": [
+        0,
+        16,
+        149,
+        81
+      ]
+    },
+    {
+      "name": "heavytank_de",
+      "file": "de/heavytank.png",
+      "w": 204,
+      "h": 94,
+      "rx": 87,
+      "ry": 77,
+      "template": "heavytank_de",
+      "flipped": false,
+      "scale": 0.13722627737226278,
+      "source": "output/de/heavytank_v1.png",
+      "originalBounds": [
+        1,
+        0,
+        204,
+        94
+      ],
+      "contentBox": [
+        24,
+        0,
+        158,
+        94
+      ]
+    },
+    {
+      "name": "panzer_de",
+      "file": "de/panzer.png",
+      "w": 137,
+      "h": 72,
+      "rx": 74,
+      "ry": 67,
+      "template": "panzer_de",
+      "flipped": false,
+      "scale": 0.09366754617414248,
+      "source": "output/de/panzer_v1.png",
+      "originalBounds": [
+        0,
+        1,
+        137,
+        72
+      ],
+      "contentBox": [
+        16,
+        1,
+        106,
+        71
+      ]
+    },
+    {
+      "name": "rocketlauncher_de",
+      "file": "de/rocketlauncher.png",
+      "w": 162,
+      "h": 115,
+      "rx": 75,
+      "ry": 98,
+      "template": "rocketlauncher_de",
+      "flipped": false,
+      "scale": 0.1659056316590563,
+      "source": "output/de/rocketlauncher_v1.png",
+      "originalBounds": [
+        0,
+        0,
+        162,
+        109
+      ],
+      "contentBox": [
+        18,
+        0,
+        126,
+        109
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+node_modules/
+ios/App/App/public/
+ios/App/build/
+ios/App/DerivedData/
+ios/App/App.xcodeproj/xcuserdata/
+ios/App/App.xcworkspace/xcuserdata/

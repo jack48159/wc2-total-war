@@ -1,0 +1,671 @@
+// Production, recruitment, strategic air force and economic investment staff module.
+// Conforms to V2 Architecture (§5.6, §6) and AI_FIX_R2 F5 resolution.
+import { handlerFor } from '../../../commands.js';
+import { unitValue } from '../core/value.js';
+import { shopCards } from '../../../cards.js';
+import { doctrineFor } from '../core/doctrine.js';
+import { minDistanceToAirport } from '../../../rules/cardEffects.js';
+import { loadStaffOverrides, STAFF_P } from './params_staff.js';
+
+export function getUnitCategory(nameOrType) {
+  const s = String(nameOrType || '').toLowerCase().replace(/[\s_-]+/g, '');
+  if (s.includes('panzer') || s.includes('tank') || s.includes('armour') || s.includes('armored')) return 'armor';
+  if (s.includes('elite')) return 'elite';
+  if (s.includes('infantry')) return 'infantry';
+  if (s.includes('artillery')) return 'artillery';
+  if (s.includes('rocket')) return 'rocket';
+  if (s.includes('destroyer') || s.includes('cruiser') || s.includes('battleship') || s.includes('carrier') || s.includes('navy')) return 'navy';
+  return 'infantry';
+}
+
+// Backward-compatible named exports sourced from centralized STAFF_P
+export const DEFAULT_RESERVE_TURNS = STAFF_P.reserveTurns;
+export const MAX_RESERVE_MONEY_FRACTION = STAFF_P.maxReserveMoneyFraction;
+export const EMERGENCY_DEFENSE_PLOSE_THRESHOLD = STAFF_P.emergencyDefensePLose;
+export const INVESTMENT_HORIZON_TURNS = STAFF_P.investmentHorizonTurns;
+export const MIN_INVESTMENT_ROI_THRESHOLD = STAFF_P.minInvestmentRoi;
+
+/**
+ * Generates purchase, recruitment, air strike, and development commands for current turn.
+ * Completely resolves F5 defects:
+ * - Stacks recruitment up to base capacity (cap/maxArmies) without artificial 1-unit breaks.
+ * - Actively utilizes Air Force cards (Airstrike, Bombing) and Strategy cards (Tech, General, Heal, Buffs).
+ * - Aggressively spends down idle treasury so end-of-turn money <= 3 rounds of income.
+ * - Integrates doctrine unitMix priors (e.g. German armor >= 40%, Soviet infantry >= 55%).
+ */
+export function produceCommands(model, plan = null, doctrine = {}) {
+  const game = model.game;
+  const country = model.me;
+  const stage = model.st;
+
+  const wallet = country === game.player ? game : stage.countries.get(country);
+  if (!wallet) return [];
+
+  let currentMoney = wallet.money ?? 0;
+  let currentIndustry = wallet.industry ?? 0;
+  if (currentMoney <= 0) return [];
+
+  const prevActive = game.activeCountry;
+  const needRestoreActive = (game.activeCountry !== country);
+  if (needRestoreActive) {
+    game.activeCountry = country;
+  }
+
+  try {
+    return _generateCommands(model, plan, doctrine, game, country, stage, currentMoney, currentIndustry, wallet);
+  } finally {
+    if (needRestoreActive) {
+      game.activeCountry = prevActive;
+    }
+  }
+}
+
+function _generateCommands(model, plan, doctrine, game, country, stage, currentMoney, currentIndustry, wallet) {
+  const commands = [];
+  const useCardHandler = handlerFor('useCard');
+  const buyCardHandler = handlerFor('buyCard');
+  if (!useCardHandler) return [];
+
+  const income = game.income ? game.income(country) : { money: 60, industry: 20 };
+  const incMoney = Math.max(1, income.money || 60);
+  const incInd = Math.max(1, income.industry || 20);
+
+  const moneyTurns = currentMoney / incMoney;
+  const indTurns = currentIndustry / incInd;
+
+  // Resolve doctrine parameters
+  const doc = (doctrine && doctrine.unitMix) ? doctrine : doctrineFor(game, country);
+  const targetUnitMix = { ...(doc?.unitMix || {}) };
+
+  // Enforce doctrine priors specified in AI_FIX_R2:
+  // German armor >= 40%, Soviet infantry >= 55% as a strong guiding preference
+  const flag = stage.countries.get(country)?.flag || country;
+  if (flag === 'de') {
+    targetUnitMix.armor = Math.max(targetUnitMix.armor ?? 0, 0.40);
+  } else if (flag === 'ru' || flag === 'su') {
+    targetUnitMix.infantry = Math.max(targetUnitMix.infantry ?? 0, 0.55);
+  }
+
+  // Strict anti-hoarding reserve calculation:
+  // Target: end-of-turn money <= 3 * incMoney.
+  // In surplus situations (e.g. scenario start funds 3000), target reserve is capped at 1.5 * incMoney.
+  const isSurplusMoney = moneyTurns >= 2.0 || currentMoney >= 300;
+  const isExtremeSurplusMoney = moneyTurns >= 2.8 || currentMoney >= 500;
+
+  let emergencyReserve = 0;
+  if (!isSurplusMoney) {
+    const reserveTurns = doc?.reserveTurns ?? DEFAULT_RESERVE_TURNS;
+    const tMap = model.threatMap ? model.threatMap() : new Map();
+    let maxTurnThreatLoss = 0;
+    for (const [aId, threat] of tMap.entries()) {
+      if (threat.atk > 0) {
+        const areaVal = model.areaValue ? model.areaValue(aId) : 50;
+        maxTurnThreatLoss = Math.max(maxTurnThreatLoss, threat.atk * (areaVal * 0.05));
+      }
+    }
+    const reserveCap = Math.trunc(currentMoney * MAX_RESERVE_MONEY_FRACTION);
+    emergencyReserve = Math.min(reserveCap, Math.trunc(reserveTurns * maxTurnThreatLoss));
+  }
+  emergencyReserve = Math.min(emergencyReserve, Math.trunc(1.5 * incMoney));
+
+  let spendableMoney = Math.max(0, currentMoney - emergencyReserve);
+  let spendableIndustry = currentIndustry;
+
+  // Catalog inspection
+  const cardData = game.cardData || stage.data?.cards || { others: [] };
+  const catalog = shopCards(cardData, flag);
+  const availableCards = catalog.filter(c => !game.whyNot(c, country));
+
+  const armyCards = [];
+  const devCards = [];
+  const airCards = [];
+  const stratCards = [];
+  let techCard = null;
+
+  for (const c of availableCards) {
+    if (c.type === 'army' || c.type === 'navy') {
+      armyCards.push(c);
+    } else if (c.type === 'development') {
+      devCards.push(c);
+    } else if (c.type === 'airforce' || [10, 11, 12, 13].includes(c.id)) {
+      airCards.push(c);
+    } else if (c.type === 'strategy' || [21, 22, 23, 24, 25, 26, 27].includes(c.id)) {
+      stratCards.push(c);
+      if (c.id === 21) techCard = c;
+    }
+  }
+
+  // Track usage count per card within this turn's planned commands
+  const cardUsageCount = new Map();
+
+  function canAffordCard(card) {
+    const price = game.price(card, country);
+    const indCost = game.industryCost(card, country);
+    if (price > spendableMoney || indCost > spendableIndustry) return false;
+    // Check card round cooldown: if card has cooldown round > 0, allow at most 1 per turn
+    const usage = cardUsageCount.get(card.id) || 0;
+    if ((card.round || 0) > 0 && usage >= 1) return false;
+    return true;
+  }
+
+  function commitSpend(card) {
+    const price = game.price(card, country);
+    const indCost = game.industryCost(card, country);
+    spendableMoney = Math.max(0, spendableMoney - price);
+    spendableIndustry = Math.max(0, spendableIndustry - indCost);
+    cardUsageCount.set(card.id, (cardUsageCount.get(card.id) || 0) + 1);
+  }
+
+  // Count existing living friendly forces across categories
+  const categoryCounts = {
+    infantry: 0,
+    armor: 0,
+    artillery: 0,
+    rocket: 0,
+    elite: 0,
+    navy: 0,
+  };
+  let totalLivingUnits = 0;
+  for (const a of model.mine) {
+    for (const u of (a.armies || [])) {
+      const cat = getUnitCategory(u.type);
+      if (categoryCounts[cat] != null) {
+        categoryCounts[cat]++;
+        totalLivingUnits++;
+      }
+    }
+  }
+
+  // -------------------------------------------------------------
+  // STEP 1: STRATEGY & TACTICAL CARDS (Tech 21, General 25, Heal 26, Buffs 23/24)
+  // -------------------------------------------------------------
+  const countryInfo = stage.countries.get(country);
+  const techLevel = country === game.player ? game.tech : (wallet.techlevel ?? wallet.tech ?? 1);
+
+  // 1.1 Tech Research (Card 21)
+  if (techCard && buyCardHandler && techLevel < 4 && spendableMoney >= 180) {
+    const buyCmd = { type: 'buyCard', country, card: 21 };
+    if (buyCardHandler.validate(game, buyCmd) == null && canAffordCard(techCard)) {
+      commands.push(buyCmd);
+      commitSpend(techCard);
+    }
+  }
+
+  // 1.2 Commander / General Appointment (Card 25)
+  const card25 = stratCards.find(c => c.id === 25);
+  if (card25 && canAffordCard(card25) && countryInfo && !countryInfo.commanderAlive && (countryInfo.commanderTurn || 0) <= 0) {
+    let bestUnitArea = null, bestScore = 0;
+    for (const area of model.mine) {
+      if (!area.armies || area.armies.length === 0) continue;
+      const unit = area.armies[0];
+      if (!unit || (unit.cards & 8)) continue;
+      const rankScore = ['heavytank', 'tank', 'battleship'].includes(unit.type) ? 500 :
+                        ['artillery', 'rocket', 'cruiser', 'panzer'].includes(unit.type) ? 300 : 100;
+      const score = rankScore + (unit.hp || 0) + (unit.level || 0) * 30;
+      if (score > bestScore) {
+        bestScore = score;
+        bestUnitArea = area;
+      }
+    }
+    if (bestUnitArea && bestScore > 200) {
+      const cmd = { type: 'useCard', country, card: 25, target: bestUnitArea.id, pendingPurchase: true };
+      if (useCardHandler.validate(game, cmd) == null) {
+        commands.push(cmd);
+        commitSpend(card25);
+      }
+    }
+  }
+
+  // 1.3 Field Hospital / Supply Line (Card 26 Heal)
+  const card26 = stratCards.find(c => c.id === 26);
+  if (card26 && canAffordCard(card26) && spendableIndustry >= 40) {
+    for (const area of model.mine) {
+      if (!area.armies || area.armies.length === 0) continue;
+      const unit = area.armies[0];
+      if (!unit) continue;
+      const hasGeneral = area.armies.some(a => a.cards & 8);
+      const isSuperArmor = ['heavytank', 'tank', 'panzer'].includes(unit.type) && unit.hp < (unit.maxHp || 100) * 0.55;
+      const totalLostHp = area.armies.reduce((sum, a) => sum + ((a.maxHp || 100) - (a.hp || 0)), 0);
+      if ((hasGeneral && unit.hp < (unit.maxHp || 100) * 0.6) || isSuperArmor || totalLostHp >= 80) {
+        const cmd = { type: 'useCard', country, card: 26, target: area.id, pendingPurchase: true };
+        if (useCardHandler.validate(game, cmd) == null) {
+          commands.push(cmd);
+          commitSpend(card26);
+          break;
+        }
+      }
+    }
+  }
+
+  // 1.4 Assault / Defence Buffs (Card 23 / Card 24)
+  const card23 = stratCards.find(c => c.id === 23);
+  const card24 = stratCards.find(c => c.id === 24);
+  if ((card23 || card24) && spendableIndustry >= 80) {
+    for (const area of model.mine) {
+      const unit = area.armies?.[0];
+      if (!unit || !model.isFront(area.id)) continue;
+      const isPremier = ['heavytank', 'tank', 'panzer'].includes(unit.type) || (unit.cards & 8) || (area.areaType === 4);
+      if (!isPremier) continue;
+
+      if (card23 && canAffordCard(card23) && !(unit.cards & 1)) {
+        const cmd = { type: 'useCard', country, card: 23, target: area.id, pendingPurchase: true };
+        if (useCardHandler.validate(game, cmd) == null) {
+          commands.push(cmd);
+          commitSpend(card23);
+        }
+      } else if (card24 && canAffordCard(card24) && !(unit.cards & 2)) {
+        const cmd = { type: 'useCard', country, card: 24, target: area.id, pendingPurchase: true };
+        if (useCardHandler.validate(game, cmd) == null) {
+          commands.push(cmd);
+          commitSpend(card24);
+        }
+      }
+    }
+  }
+
+  // -------------------------------------------------------------
+  // STEP 2: AIR FORCE STRIKES & BOMBING (Cards 10, 11, 13)
+  // -------------------------------------------------------------
+  if (airCards.length > 0 && game.airstrikeRadius) {
+    const maxAirStrikes = isExtremeSurplusMoney ? 8 : (isSurplusMoney ? 5 : 3);
+    let airStrikesDone = 0;
+
+    while (airStrikesDone < maxAirStrikes && spendableMoney > 0) {
+      const usableAir = airCards.filter(c => [10, 11, 13].includes(c.id) && canAffordCard(c));
+      if (usableAir.length === 0) break;
+
+      let bestAirTarget = null;
+      let bestAirScore = -Infinity;
+      let bestAirCard = null;
+
+      for (const targetId of stage.enabled) {
+        const target = stage.st(targetId);
+        if (!target || target.country === country || !target.armies || target.armies.length === 0) continue;
+        if (model.rel && model.rel(target.country) !== 'enemy') continue;
+
+        const dist = minDistanceToAirport(stage, country, targetId);
+        if (dist <= 0 || dist >= game.airstrikeRadius()) continue;
+
+        const armies = target.armies;
+        const hasGeneral = armies.some(a => a.cards & 8);
+        const totalHp = armies.reduce((sum, u) => sum + (u.hp || 0), 0);
+        const hasArmor = armies.some(a => ['heavytank', 'tank', 'panzer', 'battleship'].includes(a.type));
+        const isCapital = target.areaType === 4;
+        const hasContact = (stage.adjE.get(targetId) || []).some(nid => stage.st(nid)?.country === country);
+
+        let targetScore = 0;
+        if (isCapital) targetScore += 500;
+        if (hasGeneral) targetScore += 600;
+        if (hasArmor) targetScore += 400;
+        targetScore += armies.length * 150 + Math.min(300, totalHp);
+        if (hasContact) targetScore += 300;
+
+        if (plan?.mainFrontId != null) {
+          const mainFront = (plan.fronts || []).find(f => f.id === plan.mainFrontId);
+          if (mainFront && (mainFront.areas || []).includes(targetId)) {
+            targetScore += 350;
+          }
+        }
+
+        // Selection among currently usable air cards
+        let chosenCard = null;
+        if (armies.length >= 2 && usableAir.some(c => c.id === 11)) {
+          chosenCard = usableAir.find(c => c.id === 11);
+        } else if (usableAir.some(c => c.id === 13)) {
+          chosenCard = usableAir.find(c => c.id === 13);
+        } else {
+          chosenCard = usableAir.find(c => c.id === 10) || usableAir[0];
+        }
+
+        if (chosenCard && targetScore > bestAirScore) {
+          bestAirScore = targetScore;
+          bestAirTarget = targetId;
+          bestAirCard = chosenCard;
+        }
+      }
+
+      if (bestAirTarget != null && bestAirCard != null && bestAirScore > 0) {
+        const cmd = { type: 'useCard', country, card: bestAirCard.id, target: bestAirTarget, pendingPurchase: true };
+        if (useCardHandler.validate(game, cmd) == null) {
+          commands.push(cmd);
+          commitSpend(bestAirCard);
+          airStrikesDone++;
+          continue;
+        }
+      }
+      break;
+    }
+  }
+
+  // -------------------------------------------------------------
+  // STEP 3: EMERGENCY LOCAL DEFENSE
+  // -------------------------------------------------------------
+  const threatenedMine = model.mine
+    .filter(a => a.land && model.pLose(a.id) >= EMERGENCY_DEFENSE_PLOSE_THRESHOLD && a.stackCount < a.cap)
+    .sort((a, b) => model.areaValue(b.id) - model.areaValue(a.id));
+
+  for (const area of threatenedMine) {
+    if (spendableMoney <= 0) break;
+    while (area.stackCount < area.cap && spendableMoney > 0) {
+      let deployed = false;
+      for (const card of armyCards) {
+        if (!canAffordCard(card)) continue;
+        const cmd = { type: 'useCard', country, card: card.id, target: area.id, pendingPurchase: true };
+        if (useCardHandler.validate(game, cmd) == null) {
+          commands.push(cmd);
+          commitSpend(card);
+          area.stackCount++;
+          const cardCat = getUnitCategory(card.name);
+          categoryCounts[cardCat] = (categoryCounts[cardCat] || 0) + 1;
+          totalLivingUnits++;
+          deployed = true;
+          break;
+        }
+      }
+      if (!deployed) break;
+    }
+  }
+
+  // -------------------------------------------------------------
+  // STEP 4: COMMANDER REINFORCEMENT REQUESTS
+  // -------------------------------------------------------------
+  const reports = plan?.reports || [];
+  const reinforceRequests = [];
+  for (const rep of reports) {
+    for (const req of (rep.requests || [])) {
+      if (req.type === 'reinforce') {
+        reinforceRequests.push({ report: rep, request: req });
+      }
+    }
+  }
+
+  for (const { report, request } of reinforceRequests) {
+    if (spendableMoney <= 0) break;
+    const focalAreaId = report.threats?.[0]?.area ?? report.order?.to ?? (model.mine[0]?.id);
+    if (focalAreaId == null) continue;
+
+    const candidateBases = model.mine
+      .filter(a => a.land && a.stackCount < a.cap)
+      .sort((a, b) => {
+        const distA = model.dist?.(a.id, focalAreaId) ?? 5;
+        const distB = model.dist?.(b.id, focalAreaId) ?? 5;
+        return distA - distB;
+      });
+
+    const reason = String(request.reason || '').toLowerCase();
+    const prefersArmor = reason.includes('armor') || reason.includes('tank') || reason.includes('breakthrough');
+    const prefersArtillery = reason.includes('artillery') || reason.includes('suppress');
+
+    const matchingCards = [...armyCards].sort((a, b) => {
+      const catA = getUnitCategory(a.name);
+      const catB = getUnitCategory(b.name);
+      let scoreA = 0, scoreB = 0;
+      if (prefersArmor && catA === 'armor') scoreA += 50;
+      if (prefersArmor && catB === 'armor') scoreB += 50;
+      if (prefersArtillery && (catA === 'artillery' || catA === 'rocket')) scoreA += 40;
+      if (prefersArtillery && (catB === 'artillery' || catB === 'rocket')) scoreB += 40;
+      return scoreB - scoreA;
+    });
+
+    for (const base of candidateBases.slice(0, 3)) {
+      if (spendableMoney <= 0) break;
+      while (base.stackCount < base.cap && spendableMoney > 0) {
+        let deployed = false;
+        for (const card of matchingCards) {
+          if (!canAffordCard(card)) continue;
+          const cmd = { type: 'useCard', country, card: card.id, target: base.id, pendingPurchase: true };
+          if (useCardHandler.validate(game, cmd) == null) {
+            commands.push(cmd);
+            commitSpend(card);
+            base.stackCount++;
+            const cardCat = getUnitCategory(card.name);
+            categoryCounts[cardCat] = (categoryCounts[cardCat] || 0) + 1;
+            totalLivingUnits++;
+            deployed = true;
+            break;
+          }
+        }
+        if (!deployed) break;
+      }
+    }
+  }
+
+  // -------------------------------------------------------------
+  // STEP 5: FRONTLINE & STRATEGIC BASE RECRUITMENT (MAX ARMIES STACKING + unitMix PRIOR)
+  // -------------------------------------------------------------
+  if (armyCards.length > 0 && spendableMoney > 0) {
+    const fronts = plan?.fronts || [];
+    const frontGaps = [];
+    for (const front of fronts) {
+      const isMain = plan?.mainFrontId != null && front.id === plan.mainFrontId;
+      const R = front.R ?? 1.0;
+      if (isMain || R < 1.0) {
+        frontGaps.push({ front, isMain, deficit: Math.max(10, (front.P_en || 50) - (front.P_me || 50)) });
+      }
+    }
+
+    // Function to calculate efficiency and ranking of cards for a specific base
+    function getScoredCards(base) {
+      const isIndustrialBase = base ? (base.construction === 'industry' || base.areaType === 1 || base.areaType === 3) : false;
+      const scored = [];
+      for (const card of armyCards) {
+        const price = game.price(card, country);
+        const indCost = game.industryCost(card, country);
+        const creditCost = price + model.wI * indCost;
+
+        const cardCat = getUnitCategory(card.name);
+        const currentRatio = totalLivingUnits > 0 ? (categoryCounts[cardCat] / totalLivingUnits) : 0;
+        const targetRatio = targetUnitMix[cardCat] ?? 0.2;
+
+        const deficit = targetRatio - currentRatio;
+        // Strong unitMix prior multiplier
+        const priorMultiplier = deficit > 0
+          ? (1.0 + Math.min(3.0, deficit * 5.0))
+          : Math.max(0.3, 1.0 + deficit * 2.0);
+
+        const armyType = card.name?.toLowerCase().replace(/\s+/g, '');
+        const dummyUnit = { type: armyType, hp: 100, maxHp: 100, level: 0, country };
+        const val = unitValue(model, dummyUnit);
+
+        let score;
+        if (isSurplusMoney || indTurns >= 1.2) {
+          let baseWeight = { 5: 120, 4: 110, 3: 90, 2: 85, 1: 80, 28: 65, 0: 40, 8: 35, 7: 30 }[card.id] || 50;
+          score = baseWeight * priorMultiplier + val * 0.1;
+        } else {
+          score = (val * priorMultiplier) / Math.max(1, creditCost);
+        }
+
+        // Industrial specialization bonus: if this base has industry, prioritize armor and heavy units
+        if (isIndustrialBase && (cardCat === 'armor' || cardCat === 'artillery')) {
+          score += (flag === 'de' ? 80 : 40);
+        }
+
+        const nearestPlan = (plan?.fronts || [])
+          .map(f => ({ f, d: Math.min(...(f.friendlyAreas || f.areas || []).map(id => model.dist?.(base?.id, id) ?? 999)) }))
+          .sort((a, b) => a.d - b.d)[0]?.f?.plan;
+        if (nearestPlan === 'offensive' && ['armor', 'artillery', 'rocket'].includes(cardCat)) score *= 1.2;
+        if (nearestPlan === 'defensive' && ['infantry', 'artillery'].includes(cardCat)) score *= 1.15;
+        if (nearestPlan === 'consolidate' && cardCat === 'infantry') score *= 1.15;
+        scored.push({ card, cardCat, score, creditCost });
+      }
+      return scored.sort((a, b) => b.score - a.score);
+    }
+
+    // Collect all viable recruitment bases: frontline, industrial centers, capitals, and rear bases
+    const recruitBases = model.mine
+      .filter(a => a.land && a.stackCount < a.cap)
+      .sort((a, b) => {
+        let aScore = (a.areaType === 1 ? 60 : 0) + (a.construction === 'industry' ? 40 : 0) + (model.isFront(a.id) ? 35 : 0) + (a.areaType === 4 ? 30 : 0);
+        let bScore = (b.areaType === 1 ? 60 : 0) + (b.construction === 'industry' ? 40 : 0) + (model.isFront(b.id) ? 35 : 0) + (b.areaType === 4 ? 30 : 0);
+
+        for (const { front, isMain } of frontGaps) {
+          const frontAreas = front.friendlyAreas || front.areas || [];
+          if (frontAreas.some(faId => (model.dist?.(a.id, faId) ?? 5) <= 2)) aScore += (isMain ? 40 : 25);
+          if (frontAreas.some(faId => (model.dist?.(b.id, faId) ?? 5) <= 2)) bScore += (isMain ? 40 : 25);
+        }
+
+        if (isSurplusMoney) {
+          aScore += (a.cap - a.stackCount) * 10;
+          bScore += (b.cap - b.stackCount) * 10;
+        }
+
+        return bScore - aScore;
+      });
+
+    for (const base of recruitBases) {
+      if (spendableMoney <= 0) break;
+      // Stacking loop: recruit until base capacity is reached or money exhausted
+      while (base.stackCount < base.cap && spendableMoney > 0) {
+        const scoredCards = getScoredCards(base);
+        let recruited = false;
+
+        for (const { card, cardCat } of scoredCards) {
+          if (!canAffordCard(card)) continue;
+          const cmd = { type: 'useCard', country, card: card.id, target: base.id, pendingPurchase: true };
+          if (useCardHandler.validate(game, cmd) == null) {
+            commands.push(cmd);
+            commitSpend(card);
+            base.stackCount++;
+            categoryCounts[cardCat] = (categoryCounts[cardCat] || 0) + 1;
+            totalLivingUnits++;
+            recruited = true;
+            break;
+          }
+        }
+
+        if (!recruited) {
+          break;
+        }
+      }
+    }
+  }
+
+  // -------------------------------------------------------------
+  // STEP 6: INFRASTRUCTURE & FORTIFICATIONS (City 14, Industry 15, Airport 16, Fort 17, Entrenchment 18)
+  // -------------------------------------------------------------
+  if (devCards.length > 0 && (spendableMoney > 0 || isSurplusMoney)) {
+    const maxForts = isSurplusMoney ? 6 : 3;
+    let fortsBuilt = 0;
+    for (const card of devCards.filter(c => c.id === 17 || c.id === 18)) {
+      if (!canAffordCard(card) || fortsBuilt >= maxForts) continue;
+      for (const area of model.mine) {
+        if (!area.land || !model.isFront(area.id) || fortsBuilt >= maxForts) continue;
+        const cmd = { type: 'useCard', country, card: card.id, target: area.id, pendingPurchase: true };
+        if (useCardHandler.validate(game, cmd) == null) {
+          commands.push(cmd);
+          commitSpend(card);
+          fortsBuilt++;
+        }
+      }
+    }
+
+    const maxCities = isExtremeSurplusMoney ? 6 : (isSurplusMoney ? 3 : 1);
+    let citiesBuilt = 0;
+    const card14 = devCards.find(c => c.id === 14);
+    if (card14 && canAffordCard(card14)) {
+      for (const area of model.mine) {
+        if (!area.land || citiesBuilt >= maxCities) continue;
+        const cmd = { type: 'useCard', country, card: 14, target: area.id, pendingPurchase: true };
+        if (useCardHandler.validate(game, cmd) == null) {
+          commands.push(cmd);
+          commitSpend(card14);
+          citiesBuilt++;
+        }
+      }
+    }
+
+    const maxIndustries = isExtremeSurplusMoney ? 5 : (isSurplusMoney ? 3 : 1);
+    let industriesBuilt = 0;
+    const card15 = devCards.find(c => c.id === 15);
+    if (card15 && canAffordCard(card15)) {
+      for (const area of model.mine) {
+        if (!area.land || industriesBuilt >= maxIndustries) continue;
+        const cmd = { type: 'useCard', country, card: 15, target: area.id, pendingPurchase: true };
+        if (useCardHandler.validate(game, cmd) == null) {
+          commands.push(cmd);
+          commitSpend(card15);
+          industriesBuilt++;
+        }
+      }
+    }
+
+    const card16 = devCards.find(c => c.id === 16);
+    if (card16 && canAffordCard(card16) && spendableMoney >= 100) {
+      for (const area of model.mine) {
+        if (!area.land || area.construction !== 'none') continue;
+        const distToExisting = minDistanceToAirport(stage, country, area.id);
+        if (distToExisting < 0 || distToExisting > 250) {
+          if (model.isFront(area.id)) {
+            const cmd = { type: 'useCard', country, card: 16, target: area.id, pendingPurchase: true };
+            if (useCardHandler.validate(game, cmd) == null) {
+              commands.push(cmd);
+              commitSpend(card16);
+              break;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // -------------------------------------------------------------
+  // STEP 7: AGGRESSIVE SURPLUS SPENDDOWN (GUARANTEE <= 3 ROUNDS INCOME)
+  // -------------------------------------------------------------
+  // If spendable money is still > 1.8 * incMoney, aggressively drain surplus treasury
+  if (spendableMoney > 1.8 * incMoney) {
+    // 7.1 Repeat Air Strikes if available (Airstrike card 10 has round 0)
+    const card10 = airCards.find(c => c.id === 10);
+    if (card10 && canAffordCard(card10)) {
+      for (const targetId of stage.enabled) {
+        if (spendableMoney <= 1.8 * incMoney) break;
+        const target = stage.st(targetId);
+        if (!target || target.country === country || !target.armies || target.armies.length === 0) continue;
+        const dist = minDistanceToAirport(stage, country, targetId);
+        if (dist <= 0 || dist >= game.airstrikeRadius()) continue;
+        const cmd = { type: 'useCard', country, card: 10, target: targetId, pendingPurchase: true };
+        if (useCardHandler.validate(game, cmd) == null) {
+          commands.push(cmd);
+          commitSpend(card10);
+        }
+      }
+    }
+
+    // 7.2 Recruit in any available land area with free capacity
+    const allFreeBases = model.mine.filter(a => a.land && a.stackCount < a.cap);
+    for (const base of allFreeBases) {
+      if (spendableMoney <= 1.8 * incMoney) break;
+      while (base.stackCount < base.cap && spendableMoney > 1.8 * incMoney) {
+        let placed = false;
+        for (const card of armyCards) {
+          if (!canAffordCard(card)) continue;
+          const cmd = { type: 'useCard', country, card: card.id, target: base.id, pendingPurchase: true };
+          if (useCardHandler.validate(game, cmd) == null) {
+            commands.push(cmd);
+            commitSpend(card);
+            base.stackCount++;
+            totalLivingUnits++;
+            placed = true;
+            break;
+          }
+        }
+        if (!placed) break;
+      }
+    }
+
+    // 7.3 Build City or Industry anywhere possible
+    const anyDevCard = devCards.find(c => c.id === 14 || c.id === 15);
+    if (anyDevCard && canAffordCard(anyDevCard)) {
+      for (const area of model.mine) {
+        if (spendableMoney <= 1.8 * incMoney) break;
+        if (!area.land) continue;
+        const cmd = { type: 'useCard', country, card: anyDevCard.id, target: area.id, pendingPurchase: true };
+        if (useCardHandler.validate(game, cmd) == null) {
+          commands.push(cmd);
+          commitSpend(anyDevCard);
+        }
+      }
+    }
+  }
+
+  return commands;
+}

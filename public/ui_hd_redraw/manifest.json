@@ -1,0 +1,177 @@
+{
+  "version": 1,
+  "provenance": "Independent vector primitives and seeded procedural texture; no source pixels used in rendering.",
+  "frames": [
+    {
+      "name": "asset_board",
+      "atlas": "ui1_hd",
+      "file": "asset_board.png",
+      "w": 202,
+      "h": 58,
+      "rx": 1,
+      "ry": 0
+    },
+    {
+      "name": "buttonboard_blue",
+      "atlas": "ui1_hd",
+      "file": "buttonboard_blue.png",
+      "w": 71,
+      "h": 58,
+      "rx": 1,
+      "ry": -2
+    },
+    {
+      "name": "buttonboard_green",
+      "atlas": "ui1_hd",
+      "file": "buttonboard_green.png",
+      "w": 66,
+      "h": 58,
+      "rx": 2,
+      "ry": -2
+    },
+    {
+      "name": "buttonboard_red",
+      "atlas": "ui1_hd",
+      "file": "buttonboard_red.png",
+      "w": 65,
+      "h": 66,
+      "rx": 1,
+      "ry": 0
+    },
+    {
+      "name": "gamebutton_card_normal",
+      "atlas": "ui1_hd",
+      "file": "gamebutton_card_normal.png",
+      "w": 47,
+      "h": 44,
+      "rx": -1,
+      "ry": -12
+    },
+    {
+      "name": "gamebutton_card_press",
+      "atlas": "ui1_hd",
+      "file": "gamebutton_card_press.png",
+      "w": 39,
+      "h": 37,
+      "rx": -6,
+      "ry": -15
+    },
+    {
+      "name": "gamebutton_cardremove_normal",
+      "atlas": "ui1_hd",
+      "file": "gamebutton_cardremove_normal.png",
+      "w": 44,
+      "h": 44,
+      "rx": -2,
+      "ry": -11
+    },
+    {
+      "name": "gamebutton_cardremove_press",
+      "atlas": "ui1_hd",
+      "file": "gamebutton_cardremove_press.png",
+      "w": 37,
+      "h": 37,
+      "rx": -6,
+      "ry": -15
+    },
+    {
+      "name": "gamebutton_pause_normal",
+      "atlas": "ui1_hd",
+      "file": "gamebutton_pause_normal.png",
+      "w": 30,
+      "h": 41,
+      "rx": -22,
+      "ry": -6
+    },
+    {
+      "name": "gamebutton_pause_press",
+      "atlas": "ui1_hd",
+      "file": "gamebutton_pause_press.png",
+      "w": 24,
+      "h": 31,
+      "rx": -26,
+      "ry": -10
+    },
+    {
+      "name": "gamebutton_round_normal",
+      "atlas": "ui1_hd",
+      "file": "gamebutton_round_normal.png",
+      "w": 32,
+      "h": 40,
+      "rx": -21,
+      "ry": -15
+    },
+    {
+      "name": "gamebutton_round_press",
+      "atlas": "ui1_hd",
+      "file": "gamebutton_round_press.png",
+      "w": 25,
+      "h": 31,
+      "rx": -25,
+      "ry": -19
+    },
+    {
+      "name": "asset_board_stability",
+      "atlas": "ui1_hd",
+      "file": "asset_board_stability.png",
+      "w": 379,
+      "h": 58,
+      "rx": 1,
+      "ry": 0
+    },
+    {
+      "name": "buttonboard_zhengwu",
+      "atlas": "ui1_hd",
+      "file": "buttonboard_zhengwu.png",
+      "w": 71,
+      "h": 66,
+      "rx": 0,
+      "ry": 0
+    },
+    {
+      "name": "buttonboard_save",
+      "atlas": "ui1_hd",
+      "file": "buttonboard_save.png",
+      "w": 65,
+      "h": 66,
+      "rx": 1,
+      "ry": 0
+    },
+    {
+      "name": "hud_folder",
+      "atlas": "ui1_hd",
+      "file": "hud_folder.png",
+      "w": 42,
+      "h": 38,
+      "rx": 21,
+      "ry": 19
+    },
+    {
+      "name": "hud_stability",
+      "atlas": "ui1_hd",
+      "file": "hud_stability.png",
+      "w": 24,
+      "h": 28,
+      "rx": 12,
+      "ry": 14
+    },
+    {
+      "name": "hud_legend",
+      "atlas": "ui1_hd",
+      "file": "hud_legend.png",
+      "w": 236,
+      "h": 186,
+      "rx": 0,
+      "ry": 0
+    },
+    {
+      "name": "hud_legend_closed",
+      "atlas": "ui1_hd",
+      "file": "hud_legend_closed.png",
+      "w": 96,
+      "h": 34,
+      "rx": 0,
+      "ry": 0
+    }
+  ]
+}

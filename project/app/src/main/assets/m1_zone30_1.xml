@@ -1,0 +1,30 @@
+<Texture name="m1_zone30_1.webp"/>
+<Images>
+    <Image name="1864.png" x="172" y="868" w="160" h="148" refx="0" refy="0"/>
+    <Image name="1865.png" x="1" y="128" w="212" h="146" refx="0" refy="0"/>
+    <Image name="1866.png" x="251" y="108" w="216" h="132" refx="0" refy="0"/>
+    <Image name="1867.png" x="1" y="432" w="196" h="146" refx="0" refy="0"/>
+    <Image name="1868.png" x="1" y="276" w="201" h="154" refx="0" refy="0"/>
+    <Image name="1869.png" x="1" y="727" w="168" h="169" refx="0" refy="0"/>
+    <Image name="1870.png" x="712" y="222" w="149" h="211" refx="0" refy="0"/>
+    <Image name="1871.png" x="1" y="580" w="195" h="145" refx="0" refy="0"/>
+    <Image name="1872.png" x="204" y="416" w="196" h="182" refx="0" refy="0"/>
+    <Image name="1873.png" x="493" y="104" w="217" h="130" refx="0" refy="0"/>
+    <Image name="1874.png" x="590" y="511" w="182" h="154" refx="0" refy="0"/>
+    <Image name="1875.png" x="1" y="1" w="248" h="125" refx="0" refy="0"/>
+    <Image name="1876.png" x="812" y="435" w="187" h="169" refx="0" refy="0"/>
+    <Image name="1877.png" x="402" y="484" w="186" h="110" refx="0" refy="0"/>
+    <Image name="1878.png" x="863" y="222" w="157" h="197" refx="0" refy="0"/>
+    <Image name="1879.png" x="469" y="236" w="202" h="102" refx="0" refy="0"/>
+    <Image name="1880.png" x="198" y="726" w="176" h="140" refx="0" refy="0"/>
+    <Image name="1881.png" x="215" y="242" w="201" h="172" refx="0" refy="0"/>
+    <Image name="1882.png" x="730" y="1" w="214" h="219" refx="0" refy="0"/>
+    <Image name="1883.png" x="198" y="600" w="179" h="124" refx="0" refy="0"/>
+    <Image name="1884.png" x="334" y="868" w="118" h="83" refx="0" refy="0"/>
+    <Image name="1885.png" x="418" y="340" w="198" h="142" refx="0" refy="0"/>
+    <Image name="1886.png" x="493" y="1" w="235" h="101" refx="0" refy="0"/>
+    <Image name="1887.png" x="402" y="596" w="179" h="173" refx="0" refy="0"/>
+    <Image name="1888.png" x="618" y="435" w="192" h="74" refx="0" refy="0"/>
+    <Image name="1889.png" x="1" y="898" w="169" h="118" refx="0" refy="0"/>
+    <Image name="1890.png" x="251" y="1" w="240" h="105" refx="0" refy="0"/>
+</Images>

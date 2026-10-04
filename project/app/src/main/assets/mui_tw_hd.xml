@@ -1,0 +1,20 @@
+<Texture name="mui_tw_hd.png" />
+<Images>
+    <Image name="m_buttontext_allies.png" x="91" y="1" w="128" h="40" refx="-22" refy="-17" />
+    <Image name="m_buttontext_axis.png" x="102" y="42" w="132" h="41" refx="-22" refy="-17" />
+    <Image name="m_buttontext_campaign.png" x="1" y="129" w="162" h="41" refx="-32" refy="-13" />
+    <Image name="m_buttontext_commander.png" x="1" y="171" w="162" h="41" refx="-32" refy="-13" />
+    <Image name="m_buttontext_conquest.png" x="1" y="213" w="162" h="40" refx="-33" refy="-13" />
+    <Image name="m_buttontext_global.png" x="164" y="167" w="179" h="42" refx="-20" refy="-15" />
+    <Image name="m_buttontext_host.png" x="164" y="210" w="179" h="42" refx="-20" refy="-15" />
+    <Image name="m_buttontext_join.png" x="1" y="383" w="180" h="42" refx="-20" refy="-15" />
+    <Image name="m_buttontext_load.png" x="1" y="42" w="100" h="44" refx="-13" refy="-12" />
+    <Image name="m_buttontext_load_press.png" x="1" y="1" w="89" h="40" refx="-18" refy="-15" />
+    <Image name="m_buttontext_local.png" x="1" y="254" w="179" h="42" refx="-20" refy="-15" />
+    <Image name="m_buttontext_multiplayer.png" x="1" y="87" w="160" h="41" refx="-32" refy="-13" />
+    <Image name="m_buttontext_nato.png" x="1" y="297" w="179" h="42" refx="-22" refy="-17" />
+    <Image name="m_buttontext_options.png" x="162" y="84" w="163" h="40" refx="-32" refy="-13" />
+    <Image name="m_buttontext_quitgame.png" x="164" y="125" w="163" h="41" refx="-34" refy="-14" />
+    <Image name="m_buttontext_tutorials.png" x="235" y="1" w="162" h="41" refx="-32" refy="-13" />
+    <Image name="m_buttontext_wto.png" x="1" y="340" w="179" h="42" refx="-22" refy="-17" />
+</Images>

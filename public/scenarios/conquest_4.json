@@ -1,0 +1,219 @@
+{
+  "diplomacy": {
+    "enabled": true,
+    "allowAlliedAttack": false,
+    "betrayalPolicy": "war",
+    "pacts": {
+      "es_pt": {
+        "type": "nap",
+        "sinceRound": 1,
+        "reason": "iberian_pact"
+      }
+    },
+    "relations": {
+      "au_gb": "alliance",
+      "gb_gr": "alliance",
+      "de_gb": "war",
+      "gb_it": "war",
+      "fr_gb": "peace",
+      "es_gb": "peace",
+      "gb_tr": "peace",
+      "gb_pt": "peace",
+      "au_gr": "alliance",
+      "au_de": "war",
+      "au_it": "war",
+      "au_fr": "peace",
+      "au_es": "peace",
+      "au_tr": "peace",
+      "au_pt": "peace",
+      "de_gr": "war",
+      "gr_it": "war",
+      "fr_gr": "peace",
+      "es_gr": "peace",
+      "gr_tr": "peace",
+      "gr_pt": "peace",
+      "de_it": "alliance",
+      "de_fr": "peace",
+      "de_es": "peace",
+      "de_tr": "peace",
+      "de_pt": "peace",
+      "fr_it": "peace",
+      "es_it": "peace",
+      "it_tr": "peace",
+      "it_pt": "peace",
+      "es_fr": "peace",
+      "fr_tr": "peace",
+      "fr_pt": "peace",
+      "es_tr": "peace",
+      "es_pt": "peace",
+      "pt_tr": "peace"
+    }
+  },
+  "scenarioEvents": {
+    "definitions": [
+      {
+        "id": "battle_of_el_alamein",
+        "type": "notice",
+        "trigger": "roundBegin",
+        "conditions": [
+          {
+            "type": "round",
+            "value": 4,
+            "op": "gte"
+          }
+        ],
+        "title": "第二次阿拉曼战役",
+        "body": "蒙哥马利指挥英联邦第8集团军在阿拉曼发起反攻，粉碎德意装甲军团，北非战局出现历史性转折！",
+        "actions": [
+          {
+            "type": "changeMoney",
+            "country": "gb",
+            "amount": 300
+          },
+          {
+            "type": "changeIndustry",
+            "country": "gb",
+            "amount": 120
+          },
+          {
+            "type": "changeStability",
+            "country": "gb",
+            "amount": 15,
+            "reason": "alamein_victory"
+          },
+          {
+            "type": "changeStability",
+            "country": "de",
+            "amount": -15,
+            "reason": "alamein_defeat"
+          },
+          {
+            "type": "changeStability",
+            "country": "it",
+            "amount": -15,
+            "reason": "alamein_defeat"
+          }
+        ]
+      },
+      {
+        "id": "operation_torch",
+        "type": "notice",
+        "trigger": "roundBegin",
+        "conditions": [
+          {
+            "type": "round",
+            "value": 8,
+            "op": "gte"
+          },
+          {
+            "type": "diplomaticRelation",
+            "first": "fr",
+            "second": "gb",
+            "state": "peace"
+          }
+        ],
+        "title": "火炬行动：北非登陆与法军倒戈",
+        "body": "美英盟军在法属北非实施代号火炬行动的大规模登陆，法军在达尔朗协议下倒戈加入盟军，正式对德意宣战！",
+        "actions": [
+          {
+            "type": "setDiplomacy",
+            "first": "fr",
+            "second": "gb",
+            "state": "alliance",
+            "reason": "operation_torch"
+          },
+          {
+            "type": "setDiplomacy",
+            "first": "fr",
+            "second": "au",
+            "state": "alliance",
+            "reason": "operation_torch"
+          },
+          {
+            "type": "setDiplomacy",
+            "first": "fr",
+            "second": "gr",
+            "state": "alliance",
+            "reason": "operation_torch"
+          },
+          {
+            "type": "setDiplomacy",
+            "first": "fr",
+            "second": "de",
+            "state": "war",
+            "reason": "operation_torch"
+          },
+          {
+            "type": "setDiplomacy",
+            "first": "fr",
+            "second": "it",
+            "state": "war",
+            "reason": "operation_torch"
+          },
+          {
+            "type": "changeMoney",
+            "country": "fr",
+            "amount": 200
+          },
+          {
+            "type": "changeStability",
+            "country": "fr",
+            "amount": 15,
+            "reason": "torch_allied"
+          },
+          {
+            "type": "changeStability",
+            "country": "de",
+            "amount": -15,
+            "reason": "torch_shock"
+          }
+        ]
+      },
+      {
+        "id": "tunisia_campaign_victory",
+        "type": "notice",
+        "trigger": "roundBegin",
+        "conditions": [
+          {
+            "type": "round",
+            "value": 16,
+            "op": "gte"
+          }
+        ],
+        "title": "突尼斯决战与北非解放",
+        "body": "盟军两面夹击合围突尼斯桥头堡，德意北非军团全线瓦解投降，地中海航线全面打通！",
+        "actions": [
+          {
+            "type": "changeMoney",
+            "country": "gb",
+            "amount": 250
+          },
+          {
+            "type": "changeStability",
+            "country": "gb",
+            "amount": 15,
+            "reason": "north_africa_liberated"
+          },
+          {
+            "type": "changeStability",
+            "country": "it",
+            "amount": -20,
+            "reason": "tunisia_surrender"
+          },
+          {
+            "type": "changeStability",
+            "country": "de",
+            "amount": -15,
+            "reason": "tunisia_loss"
+          }
+        ]
+      }
+    ],
+    "variables": {}
+  },
+  "ai_rules": {
+    "war_cooldown": 4,
+    "min_stability": 55,
+    "max_active_major_enemies": 2
+  }
+}

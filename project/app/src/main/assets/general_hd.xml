@@ -1,0 +1,36 @@
+<Texture name="general_hd.webp" />
+<Images>
+    <Image name="commander_level_1_s.png" x="1" y="538" w="38" h="54" refx="17" refy="48" />
+    <Image name="commander_level_2_s.png" x="385" y="417" w="38" h="57" refx="16" refy="49" />
+    <Image name="commander_level_3_s.png" x="424" y="417" w="42" h="57" refx="19" refy="49" />
+    <Image name="commander_level_4_s.png" x="449" y="1" w="48" h="60" refx="22" refy="52" />
+    <Image name="commander_level_5_s.png" x="1" y="413" w="52" h="62" refx="24" refy="53" />
+    <Image name="match_general_common.png" x="1" y="311" w="117" h="101" refx="4" refy="95" />
+    <Image name="match_general_degaulle.png" x="222" y="103" w="112" h="102" refx="0" refy="98" />
+    <Image name="match_general_goering.png" x="360" y="315" w="135" h="101" refx="0" refy="97" />
+    <Image name="match_general_graziani.png" x="119" y="308" w="119" h="103" refx="6" refy="96" />
+    <Image name="match_general_guderian.png" x="335" y="104" w="114" h="104" refx="4" refy="95" />
+    <Image name="match_general_macarthur.png" x="360" y="209" w="125" h="105" refx="5" refy="100" />
+    <Image name="match_general_montgomery.png" x="239" y="311" w="120" h="105" refx="2" refy="97" />
+    <Image name="match_general_nimitz.png" x="110" y="99" w="111" h="103" refx="1" refy="98" />
+    <Image name="match_general_patton.png" x="239" y="209" w="119" h="101" refx="0" refy="96" />
+    <Image name="match_general_peng.png" x="335" y="1" w="113" h="102" refx="0" refy="98" />
+    <Image name="match_general_player.png" x="119" y="206" w="117" h="101" refx="4" refy="93" />
+    <Image name="match_general_rokossovsky.png" x="1" y="210" w="115" h="100" refx="0" refy="95" />
+    <Image name="match_general_rommel.png" x="1" y="104" w="108" h="105" refx="3" refy="98" />
+    <Image name="match_general_yamamoto.png" x="222" y="1" w="111" h="101" refx="2" refy="95" />
+    <Image name="match_general_zhang.png" x="107" y="1" w="107" h="97" refx="0" refy="90" />
+    <Image name="match_general_zhukov.png" x="1" y="1" w="105" h="102" refx="0" refy="98" />
+    <Image name="medal_am.png" x="119" y="412" w="76" h="60" refx="37" refy="55" />
+    <Image name="medal_cn.png" x="257" y="417" w="62" h="60" refx="30" refy="55" />
+    <Image name="medal_common_1.png" x="54" y="413" w="60" h="67" refx="28" refy="62" />
+    <Image name="medal_common_2.png" x="450" y="62" w="60" h="67" refx="28" refy="62" />
+    <Image name="medal_common_3.png" x="196" y="417" w="60" h="67" refx="28" refy="62" />
+    <Image name="medal_de.png" x="56" y="481" w="55" h="55" refx="27" refy="50" />
+    <Image name="medal_fr.png" x="1" y="481" w="54" h="56" refx="26" refy="50" />
+    <Image name="medal_gb.png" x="112" y="481" w="60" h="47" refx="29" refy="44" />
+    <Image name="medal_it.png" x="1" y="593" w="53" h="53" refx="25" refy="49" />
+    <Image name="medal_ja.png" x="450" y="130" w="58" h="58" refx="28" refy="53" />
+    <Image name="medal_ru.png" x="320" y="417" w="64" h="62" refx="30" refy="57" />
+    <Image name="medal_tw.png" x="40" y="538" w="54" h="54" refx="26" refy="50" />
+</Images>

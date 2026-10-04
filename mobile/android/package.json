@@ -1,0 +1,16 @@
+{
+  "name": "wc2-remake-android",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build:web": "node ../../tools/build_mobile_bundle.mjs",
+    "android:sync": "cap sync android"
+  },
+  "dependencies": {
+    "@capacitor/core": "6.2.1",
+    "@capacitor/android": "6.2.1"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "6.2.1"
+  }
+}

@@ -1,0 +1,259 @@
+{
+  "diplomacy": {
+    "enabled": true,
+    "allowAlliedAttack": false,
+    "betrayalPolicy": "war",
+    "pacts": {
+      "ja_ru": {
+        "type": "nap",
+        "sinceRound": 1,
+        "reason": "soviet_japanese_neutrality"
+      }
+    },
+    "relations": {
+      "am_gb": "alliance",
+      "am_tw": "alliance",
+      "am_au": "alliance",
+      "am_ca": "alliance",
+      "gb_tw": "alliance",
+      "au_gb": "alliance",
+      "ca_gb": "alliance",
+      "au_tw": "alliance",
+      "ca_tw": "alliance",
+      "au_ca": "alliance",
+      "am_ja": "war",
+      "gb_ja": "war",
+      "ja_tw": "war",
+      "au_ja": "war",
+      "ca_ja": "war",
+      "ja_ru": "peace",
+      "am_ru": "peace",
+      "gb_ru": "peace",
+      "ru_tw": "peace",
+      "au_ru": "peace",
+      "ca_ru": "peace"
+    }
+  },
+  "scenarioEvents": {
+    "definitions": [
+      {
+        "id": "us_war_mobilization",
+        "type": "notice",
+        "trigger": "roundBegin",
+        "conditions": [
+          {
+            "type": "round",
+            "value": 2,
+            "op": "gte"
+          }
+        ],
+        "title": "民主兵工厂全面动员",
+        "body": "美国全面启动《两洋舰队法案》与战时工业大动员，工业潜能爆发，太平洋舰队加速建造与增援前线！",
+        "actions": [
+          {
+            "type": "changeMoney",
+            "country": "am",
+            "amount": 400
+          },
+          {
+            "type": "changeIndustry",
+            "country": "am",
+            "amount": 200
+          },
+          {
+            "type": "changeStability",
+            "country": "am",
+            "amount": 15,
+            "reason": "arsenal_of_democracy"
+          },
+          {
+            "type": "spawnArmy",
+            "area": 767,
+            "armyType": "aircraftcarrier",
+            "level": 2
+          },
+          {
+            "type": "spawnArmy",
+            "area": 765,
+            "armyType": "battleship",
+            "level": 2
+          },
+          {
+            "type": "spawnArmy",
+            "area": 1560,
+            "armyType": "tank",
+            "level": 2
+          }
+        ]
+      },
+      {
+        "id": "midway_turning_point",
+        "type": "notice",
+        "trigger": "roundBegin",
+        "conditions": [
+          {
+            "type": "round",
+            "value": 5,
+            "op": "gte"
+          }
+        ],
+        "title": "中途岛战役转折",
+        "body": "盟军破译联合舰队机密电报，在中途岛伏击重创日军主力航母编队，夺取中太平洋战略制海权！",
+        "actions": [
+          {
+            "type": "changeMoney",
+            "country": "am",
+            "amount": 300
+          },
+          {
+            "type": "changeIndustry",
+            "country": "am",
+            "amount": 120
+          },
+          {
+            "type": "changeStability",
+            "country": "am",
+            "amount": 15,
+            "reason": "midway_victory"
+          },
+          {
+            "type": "changeStability",
+            "country": "ja",
+            "amount": -20,
+            "reason": "midway_defeat"
+          },
+          {
+            "type": "spawnArmy",
+            "area": 767,
+            "armyType": "destroyer",
+            "level": 2
+          }
+        ]
+      },
+      {
+        "id": "guadalcanal_offensive",
+        "type": "notice",
+        "trigger": "roundBegin",
+        "conditions": [
+          {
+            "type": "round",
+            "value": 9,
+            "op": "gte"
+          }
+        ],
+        "title": "瓜达尔卡纳尔岛反攻",
+        "body": "美澳联军在南太平洋发起瓜岛战略战役，夺取亨德森机场并击溃日军增援，盟军全面展开岛礁反攻！",
+        "actions": [
+          {
+            "type": "changeMoney",
+            "country": "am",
+            "amount": 250
+          },
+          {
+            "type": "changeMoney",
+            "country": "au",
+            "amount": 200
+          },
+          {
+            "type": "changeIndustry",
+            "country": "am",
+            "amount": 100
+          },
+          {
+            "type": "changeIndustry",
+            "country": "au",
+            "amount": 80
+          },
+          {
+            "type": "changeStability",
+            "country": "au",
+            "amount": 15,
+            "reason": "guadalcanal_victory"
+          },
+          {
+            "type": "changeStability",
+            "country": "am",
+            "amount": 10,
+            "reason": "guadalcanal_victory"
+          },
+          {
+            "type": "changeStability",
+            "country": "ja",
+            "amount": -15,
+            "reason": "guadalcanal_loss"
+          }
+        ]
+      },
+      {
+        "id": "soviet_storm_manchuria",
+        "type": "notice",
+        "trigger": "roundBegin",
+        "conditions": [
+          {
+            "type": "any",
+            "conditions": [
+              {
+                "type": "round",
+                "value": 22,
+                "op": "gte"
+              },
+              {
+                "type": "countryDefeated",
+                "country": "tw"
+              }
+            ]
+          },
+          {
+            "type": "diplomaticRelation",
+            "first": "ru",
+            "second": "ja",
+            "state": "peace"
+          }
+        ],
+        "title": "八月风暴行动",
+        "body": "苏联正式废除《苏日中立条约》向日本宣战！远东红军主力发起八月风暴战役，跨越边境席卷关东军阵地！",
+        "actions": [
+          {
+            "type": "setDiplomacy",
+            "first": "ru",
+            "second": "ja",
+            "state": "war",
+            "reason": "soviet_storm_manchuria"
+          },
+          {
+            "type": "changeStability",
+            "country": "ru",
+            "amount": 15,
+            "reason": "soviet_storm_declared"
+          },
+          {
+            "type": "changeStability",
+            "country": "ja",
+            "amount": -25,
+            "reason": "soviet_storm_crisis"
+          }
+        ]
+      }
+    ],
+    "variables": {}
+  },
+  "ai_rules": {
+    "war_cooldown": 4,
+    "min_stability": 55,
+    "max_active_major_enemies": 2,
+    "special_restraints": [
+      {
+        "attacker": "ru",
+        "target": "ja",
+        "min_round": 22,
+        "overwhelming_power_ratio": 4.5
+      },
+      {
+        "attacker": "ja",
+        "target": "ru",
+        "min_round": 30,
+        "overwhelming_power_ratio": 5.0
+      }
+    ]
+  }
+}

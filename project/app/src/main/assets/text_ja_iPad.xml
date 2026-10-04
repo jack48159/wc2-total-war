@@ -1,0 +1,24 @@
+<Texture name="text_ja_iPad.png" />
+<Images>
+    <Image name="buttontext_options.png" x="63" y="45" w="78" h="22" refx="-11" refy="-6" />
+    <Image name="buttontext_options_press.png" x="1" y="80" w="71" h="20" refx="-15" refy="-7" />
+    <Image name="buttontext_quit.png" x="142" y="41" w="101" h="22" refx="0" refy="-6" />
+    <Image name="buttontext_quit_press.png" x="73" y="68" w="92" h="20" refx="-4" refy="-7" />
+    <Image name="buttontext_restart.png" x="169" y="1" w="80" h="21" refx="-10" refy="-6" />
+    <Image name="buttontext_restart_press.png" x="1" y="101" w="73" h="19" refx="-15" refy="-7" />
+    <Image name="buttontext_resume.png" x="46" y="1" w="46" h="21" refx="-27" refy="-6" />
+    <Image name="buttontext_resume_press.png" x="1" y="1" w="43" h="20" refx="-29" refy="-6" />
+    <Image name="buttontext_save.png" x="46" y="23" w="49" h="21" refx="-26" refy="-6" />
+    <Image name="buttontext_save_press.png" x="1" y="22" w="44" h="20" refx="-28" refy="-6" />
+    <Image name="text_animation.png" x="126" y="192" w="292" h="39" refx="150" refy="19" />
+    <Image name="text_bank.png" x="1" y="149" w="95" h="38" refx="51" refy="18" />
+    <Image name="text_conditon.png" x="1" y="121" w="93" h="27" refx="49" refy="13" />
+    <Image name="text_destroyed.png" x="250" y="1" w="170" h="44" refx="82" refy="19" />
+    <Image name="text_medals.png" x="97" y="108" w="195" h="44" refx="1" refy="20" />
+    <Image name="text_music.png" x="96" y="1" w="72" h="39" refx="35" refy="18" />
+    <Image name="text_rating.png" x="1" y="188" w="124" h="40" refx="64" refy="20" />
+    <Image name="text_round.png" x="166" y="64" w="174" h="43" refx="0" refy="18" />
+    <Image name="text_select.png" x="421" y="1" w="598" h="38" refx="296" refy="18" />
+    <Image name="text_sfx.png" x="1" y="45" w="61" h="34" refx="30" refy="17" />
+    <Image name="text_speed.png" x="126" y="153" w="229" h="38" refx="111" refy="19" />
+</Images>

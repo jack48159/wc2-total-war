@@ -1,0 +1,34 @@
+<Texture name="m1_zone31_1.webp"/>
+<Images>
+    <Image name="1891.png" x="1" y="137" w="237" h="185" refx="0" refy="0"/>
+    <Image name="1892.png" x="194" y="444" w="181" h="151" refx="0" refy="0"/>
+    <Image name="1893.png" x="240" y="243" w="147" h="199" refx="0" refy="0"/>
+    <Image name="1894.png" x="573" y="303" w="181" h="170" refx="0" refy="0"/>
+    <Image name="1895.png" x="1" y="1" w="255" h="134" refx="0" refy="0"/>
+    <Image name="1896.png" x="389" y="277" w="182" h="134" refx="0" refy="0"/>
+    <Image name="1897.png" x="323" y="597" w="148" h="135" refx="0" refy="0"/>
+    <Image name="1898.png" x="398" y="148" w="201" h="127" refx="0" refy="0"/>
+    <Image name="1899.png" x="1" y="776" w="159" h="171" refx="0" refy="0"/>
+    <Image name="1900.png" x="631" y="1" w="220" h="111" refx="0" refy="0"/>
+    <Image name="1901.png" x="162" y="746" w="136" h="163" refx="0" refy="0"/>
+    <Image name="1902.png" x="756" y="350" w="159" h="166" refx="0" refy="0"/>
+    <Image name="1903.png" x="1" y="594" w="148" h="180" refx="0" refy="0"/>
+    <Image name="1904.png" x="258" y="1" w="138" h="240" refx="0" refy="0"/>
+    <Image name="1905.png" x="398" y="1" w="231" h="145" refx="0" refy="0"/>
+    <Image name="1906.png" x="389" y="413" w="181" h="155" refx="0" refy="0"/>
+    <Image name="1907.png" x="740" y="518" w="125" h="125" refx="0" refy="0"/>
+    <Image name="1908.png" x="466" y="823" w="126" h="136" refx="0" refy="0"/>
+    <Image name="1909.png" x="834" y="114" w="186" h="144" refx="0" refy="0"/>
+    <Image name="1910.png" x="320" y="899" w="144" h="109" refx="0" refy="0"/>
+    <Image name="1911.png" x="473" y="570" w="140" h="130" refx="0" refy="0"/>
+    <Image name="1912.png" x="151" y="597" w="170" h="147" refx="0" refy="0"/>
+    <Image name="1913.png" x="300" y="746" w="143" h="151" refx="0" refy="0"/>
+    <Image name="1914.png" x="1" y="440" w="191" h="152" refx="0" refy="0"/>
+    <Image name="1915.png" x="834" y="260" w="183" h="88" refx="0" refy="0"/>
+    <Image name="1916.png" x="445" y="734" w="141" h="87" refx="0" refy="0"/>
+    <Image name="1917.png" x="572" y="475" w="166" h="89" refx="0" refy="0"/>
+    <Image name="1918.png" x="853" y="1" w="166" h="110" refx="0" refy="0"/>
+    <Image name="1919.png" x="631" y="114" w="201" h="187" refx="0" refy="0"/>
+    <Image name="1920.png" x="1" y="324" w="194" h="114" refx="0" refy="0"/>
+    <Image name="1921.png" x="162" y="911" w="156" h="90" refx="0" refy="0"/>
+</Images>

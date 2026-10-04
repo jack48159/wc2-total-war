@@ -1,0 +1,37 @@
+<Texture name="m1_zone8_1.webp"/>
+<Images>
+    <Image name="0493.png" x="885" y="511" w="138" h="181" refx="0" refy="0"/>
+    <Image name="0494.png" x="524" y="1" w="225" h="95" refx="0" refy="0"/>
+    <Image name="0495.png" x="167" y="521" w="204" h="125" refx="0" refy="0"/>
+    <Image name="0496.png" x="378" y="767" w="186" h="130" refx="0" refy="0"/>
+    <Image name="0497.png" x="1" y="598" w="158" h="202" refx="0" refy="0"/>
+    <Image name="0498.png" x="190" y="806" w="186" h="156" refx="0" refy="0"/>
+    <Image name="0499.png" x="751" y="1" w="221" h="124" refx="0" refy="0"/>
+    <Image name="0500.png" x="558" y="899" w="174" h="118" refx="0" refy="0"/>
+    <Image name="0501.png" x="700" y="511" w="183" h="154" refx="0" refy="0"/>
+    <Image name="0504.png" x="1" y="153" w="209" h="123" refx="0" refy="0"/>
+    <Image name="0507.png" x="834" y="822" w="179" h="176" refx="0" refy="0"/>
+    <Image name="0508.png" x="517" y="245" w="213" h="137" refx="0" refy="0"/>
+    <Image name="0509.png" x="524" y="98" w="220" h="145" refx="0" refy="0"/>
+    <Image name="0510.png" x="700" y="667" w="132" h="181" refx="0" refy="0"/>
+    <Image name="0512.png" x="1" y="390" w="164" h="206" refx="0" refy="0"/>
+    <Image name="0514.png" x="297" y="113" w="218" h="145" refx="0" refy="0"/>
+    <Image name="0515.png" x="1" y="278" w="207" h="110" refx="0" refy="0"/>
+    <Image name="0516.png" x="161" y="648" w="193" h="156" refx="0" refy="0"/>
+    <Image name="0518.png" x="732" y="249" w="212" h="101" refx="0" refy="0"/>
+    <Image name="0522.png" x="167" y="416" w="206" h="103" refx="0" refy="0"/>
+    <Image name="0523.png" x="1" y="806" w="187" h="108" refx="0" refy="0"/>
+    <Image name="0527.png" x="212" y="260" w="208" h="154" refx="0" refy="0"/>
+    <Image name="0528.png" x="422" y="384" w="206" h="110" refx="0" refy="0"/>
+    <Image name="0530.png" x="732" y="352" w="210" h="157" refx="0" refy="0"/>
+    <Image name="0531.png" x="582" y="496" w="116" h="205" refx="0" refy="0"/>
+    <Image name="0533.png" x="746" y="127" w="215" h="120" refx="0" refy="0"/>
+    <Image name="0534.png" x="834" y="694" w="180" h="126" refx="0" refy="0"/>
+    <Image name="0537.png" x="356" y="657" w="191" h="108" refx="0" refy="0"/>
+    <Image name="0543.png" x="1" y="1" w="294" h="150" refx="0" refy="0"/>
+    <Image name="0547.png" x="566" y="703" w="121" h="167" refx="0" refy="0"/>
+    <Image name="0548.png" x="378" y="899" w="178" h="116" refx="0" refy="0"/>
+    <Image name="0549.png" x="375" y="496" w="205" h="159" refx="0" refy="0"/>
+    <Image name="0553.png" x="297" y="1" w="225" h="110" refx="0" refy="0"/>
+    <Image name="0554.png" x="1" y="916" w="165" h="84" refx="0" refy="0"/>
+</Images>

@@ -1,0 +1,4 @@
+<Texture name="title_hd.png" />
+<Images>
+    <Image name="title.png" x="0" y="0" w="989" h="204" refx="484" refy="326" />
+</Images>

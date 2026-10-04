@@ -1,0 +1,87 @@
+<battle name="Conquest">
+	<country name="gb" ai="1" money="180">
+		<area id="0" army="18" />		
+		<area id="1" army="5" />
+		<area id="2" army="5" />
+	</country>
+	<country name="fr" ai="1" money="130">
+		<area id="3" army="19" />		
+		<area id="4" army="4" />
+		<area id="5" army="6" />
+		<area id="6" army="3" />
+	</country>
+	<country name="de" ai="1" money="200">
+		<area id="7" army="20" />		
+		<area id="8" army="6" />
+		<area id="9" army="5" />
+		<area id="10" army="5" />
+	</country>
+	<country name="ru" ai="1" money="80">
+		<area id="20" army="5" />		
+		<area id="21" army="5" />
+		<area id="22" army="5" />
+		<area id="23" army="2" />
+		<area id="24" army="2" />
+		<area id="25" army="5" />
+		<area id="26" army="2" />
+		<area id="27" army="2" />
+		<area id="28" army="2" />
+		<area id="29" army="2" />
+		<area id="30" army="2" />
+		<area id="31" army="2" />
+		<area id="32" army="4" />
+	</country>
+	<country name="ah" ai="1" money="200">
+		<area id="11" army="18" />		
+		<area id="12" army="6" />
+		<area id="13" army="8" />
+	</country>
+	<country name="tr" ai="1" money="230">
+		<area id="14" army="8" />		
+		<area id="15" army="3" />
+		<area id="16" army="3" />
+		<area id="17" army="4" />
+		<area id="18" army="2" />
+		<area id="19" army="1" />
+	</country>
+	<country name="pt" ai="1" money="200">
+		<area id="33" army="5" />		
+	</country>
+	<country name="es" ai="1" money="200">
+		<area id="34" army="4" />
+		<area id="35" army="6" />
+		<area id="36" army="5" />	
+	</country>
+	<country name="ch" ai="1" money="200">
+		<area id="37" army="4" />
+	</country>
+	<country name="it" ai="1" money="200">
+		<area id="38" army="5" />
+		<area id="39" army="4" />
+	</country>
+	<country name="rs" ai="1" money="200">
+		<area id="40" army="5" />
+	</country>
+	<country name="bg" ai="1" money="200">
+		<area id="41" army="6" />
+	</country>
+	<country name="ro" ai="1" money="200">
+		<area id="42" army="4" />
+	</country>
+	<country name="gr" ai="1" money="200">
+		<area id="43" army="5" />
+	</country>
+	<country name="dk" ai="1" money="200">
+		<area id="44" army="6" />
+	</country>
+	<country name="nl" ai="1" money="200">
+		<area id="45" army="7" />
+	</country>
+	<country name="no" ai="1" money="200">
+		<area id="46" army="3" />
+	</country>
+	<country name="se" ai="1" money="200">
+		<area id="47" army="4" />
+		<area id="48" army="5" />
+	</country>
+</battle>

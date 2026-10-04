@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapDisplay version="1" globalScalePercent="100">
+  <fog scenarioId="battle_axis2.xml" enabled="false" color="#b8b09c" opacityPercent="32"/>
+  <fog scenarioId="conquest_1.xml" enabled="true" color="#aeb3b6" opacityPercent="27"/>
+</mapDisplay>

@@ -1,0 +1,115 @@
+<script>
+	<cmd name="show text" id="1"/>
+	<cmd name="wait"/>
+	<cmd name="finger at" x="512" y="384"/>
+	<cmd name="finger to" x="48" y="18"/>
+	<cmd name="draw rect" x="0" y="0" w="98" h="26"/>
+	<cmd name="show text" id="2"/>
+	<cmd name="wait"/>
+	<cmd name="clear rect"/>
+	<cmd name="finger to" x="525" y="390"/>
+	<cmd name="sel area" id="45"/>
+	<cmd name="show text" id="3"/>
+	<cmd name="wait"/>
+	<cmd name="finger to" x="45" y="62"/>
+	<cmd name="draw rect" x="0" y="22" w="88" h="48"/>
+	<cmd name="wait"/>
+	<cmd name="clear rect"/>
+	<cmd name="hide finger"/>
+	<cmd name="unsel area"/>
+	<cmd name="sel area" id="46"/>
+	<cmd name="show text" id="4"/>
+	<cmd name="wait"/>
+	<cmd name="unsel area"/>
+	<cmd name="moveto area" id="65"/>
+	<cmd name="draw rect" x="463" y="110" w="100" h="220"/>
+	<cmd name="show text" id="5"/>
+	<cmd name="wait"/>
+	<cmd name="clear rect"/>
+	<cmd name="draw rect" x="478" y="148" w="25" h="30"/>
+	<cmd name="finger at" x="493" y="175"/>
+	<cmd name="show text" id="6"/>
+	<cmd name="wait"/>
+	<cmd name="clear rect"/>
+	<cmd name="hide finger"/>
+	<cmd name="moveto area" id="45"/>
+	<cmd name="finger at" x="389" y="334"/>
+	<cmd name="draw rect" x="351" y="285" w="75" h="75"/>
+	<cmd name="show text" id="7"/>
+	<cmd name="wait"/>
+	<cmd name="clear rect"/>
+	<cmd name="sel area" id="44"/>
+	<cmd name="draw rect" x="960" y="260" w="75" h="265"/>
+	<cmd name="finger to" x="995" y="385"/>
+	<cmd name="wait"/>
+	<cmd name="unsel area"/>
+	<cmd name="clear rect"/>
+	<cmd name="finger to" x="277" y="513"/>
+	<cmd name="draw rect" x="210" y="419" w="150" h="120"/>
+	<cmd name="show text" id="8"/>
+	<cmd name="wait"/>
+	<cdm name="clear rect"/>
+	<cmd name="finger to" x="405" y="484"/>
+	<cmd name="draw rect" x="342" y="416" w="130" h="130"/>
+	<cmd name="sel area" id="54"/>
+	<cdm name="wait"/>
+	<cmd name="unsel area"/>
+	<cmd name="clear rect"/>
+	<cmd name="finger to" x="16" y="746"/>
+	<cmd name="draw rect" x="0" y="727" w="43" h="42"/>
+	<cmd name="show text" id="9"/>
+	<cmd name="wait"/>
+	<cmd name="hide finger"/>
+	<cmd name="clear rect"/>
+	<cmd name="show image" id="1" x="271" y="-23" w="462" h="244"/>
+	<cmd name="draw rect" x="284" y="127" w="108" h="31"/>
+	<cmd name="finger at" x="336" y="149"/>
+	<cmd name="show text" id="10"/>
+	<cmd name="wait"/>
+	<cmd name="hide image" id="1"/>
+	<cmd name="hide finger"/>
+	<cmd name="clear rect"/>
+	<cmd name="draw rect" x="272" y="50" w="257" h="136"/>
+	<cmd name="finger at" x="414" y="165"/>
+	<cmd name="show text" id="11"/>
+	<cmd name="wait"/>
+	<cmd name="finger to" x="479" y="121"/>
+	<cmd name="wait"/>
+	<cmd name="finger to" x="313" y="125"/>
+	<cmd name="wait"/>
+	<cmd name="hide finger"/>
+	<cmd name="show image" id="1" x="271" y="0" w="462" h="244"/>
+	<cmd name="draw rect" x="601" y="25" w="108" h="156"/>
+	<cmd name="show text" id="12"/>
+	<cmd name="wait"/>
+	<cmd name="draw rect" x="391" y="25" w="106" h="156"/>
+	<cmd name="wait"/>
+	<cmd name="draw rect" x="495" y="25" w="108" h="156"/>
+	<cmd name="show text" id="13"/>
+	<cmd name="wait"/>
+	<cmd name="hide image" id="1"/>
+	<cmd name="draw rect" x="435" y="247" w="100" h="80"/>
+	<cmd name="finger at" x="484" y="304"/>
+	<cmd name="sel area" id="36"/>
+	<cmd name="show text" id="14"/>
+	<cmd name="wait"/>
+	<cmd name="hide finger"/>
+	<cmd name="clear rect"/>
+	<cmd name="sel area" id="37"/>
+	<cmd name="show text" id="15"/>
+	<cmd name="wait"/>
+	<cmd name="unsel area"/>
+	<cmd name="draw rect" x="980" y="0" w="45" h="42"/>
+	<cmd name="finger at" x="1006" y="18"/>
+	<cmd name="show text" id="16"/>
+	<cmd name="wait"/>
+	<cmd name="draw rect" x="980" y="727" w="45" h="45"/>
+	<cmd name="finger to" x="1006" y="746"/>
+	<cmd name="show text" id="17"/>
+	<cmd name="wait"/>
+	<cmd name="clear rect"/>
+	<cmd name="hide finger"/>
+	<cmd name="show text" id="18"/>
+	<cmd name="wait"/>
+	<cmd name="exit"/>
+</script>

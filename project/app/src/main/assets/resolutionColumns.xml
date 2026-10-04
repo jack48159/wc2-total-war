@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<columnList>
+    <column name="controller">
+        <title>国家信息</title>
+        <content>这一内容由petter开发，用于显示一个国家的基本信息，移植在这里的暂时是阉割版。
+            税率：%f；金钱收入：%d，工业收入：%d；军队数量：%d；地区数量：%d。
+        </content>
+        <button>增加金钱（100元）</button>
+        <editText></editText>
+    </column>
+</columnList>

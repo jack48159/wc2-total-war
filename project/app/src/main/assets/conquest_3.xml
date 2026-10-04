@@ -1,0 +1,831 @@
+<battle map="1" areasenable="conquest_3.bin">
+    <list name="country">
+        <country id="am" name="am" commander="Patton" ai="1" defeated="army" taxfactor="3.000000" money="500" industry="260" techlevel="4" alliance="b" r="162" g="255" b="64" a="90" />
+        <country id="gb" name="gb" commander="Montgomery" ai="1" defeated="land" taxfactor="1.450000" money="300" industry="180" techlevel="4" alliance="b" r="255" g="255" b="0" a="90" />
+        <country id="fr" name="fr" commander="de Gaulle" ai="1" defeated="army" taxfactor="1.400000" money="400" industry="200" techlevel="4" alliance="b" r="0" g="170" b="170" a="90" />
+        <country id="ca" name="ca" commander="common1" ai="1" defeated="army" taxfactor="2.500000" money="300" industry="150" techlevel="4" alliance="b" r="0" g="162" b="232" a="90" />
+        <country id="de" name="de" commander="Rommel" ai="1" defeated="land" taxfactor="1.100000" money="300" industry="200" techlevel="4" alliance="a" r="71" g="87" b="99" a="90" />
+        <country id="it" name="it" commander="Graziani" ai="1" defeated="land" taxfactor="1.300000" money="280" industry="160" techlevel="4" alliance="a" r="80" g="20" b="200" a="90" />
+        <country id="ru" name="ru" commander="Zhukov" ai="1" defeated="land" taxfactor="1.350000" money="260" industry="140" techlevel="4" alliance="b" r="255" g="0" b="0" a="90" />
+        <country id="ro" name="ro" commander="common2" ai="1" defeated="land" taxfactor="1.200000" money="200" industry="120" techlevel="3" alliance="a" r="149" g="55" b="53" a="90" />
+        <country id="bg" name="bg" commander="common2" ai="1" defeated="land" taxfactor="1.200000" money="200" industry="100" techlevel="3" alliance="a" r="0" g="0" b="128" a="90" />
+        <country id="hu" name="hu" commander="common2" ai="1" defeated="land" taxfactor="1.200000" money="200" industry="110" techlevel="3" alliance="a" r="128" g="64" b="90" a="90" />
+        <country id="fl" name="fl" commander="common2" ai="1" defeated="land" taxfactor="1.250000" money="200" industry="120" techlevel="3" alliance="a" r="146" g="205" b="220" a="90" />
+        <country id="tr" name="tr" commander="common1" ai="1" defeated="land" taxfactor="1.250000" money="200" industry="120" techlevel="3" alliance="b" r="0" g="128" b="192" a="90" />
+        <country id="es" name="es" commander="common1" ai="1" defeated="land" taxfactor="1.250000" money="200" industry="120" techlevel="3" alliance="a" r="255" g="0" b="128" a="90" />
+        <country id="pt" name="pt" commander="common3" ai="1" defeated="land" taxfactor="1.000000" money="0" industry="0" techlevel="3" alliance="n" r="127" g="127" b="127" a="90" />
+        <country id="se" name="se" commander="common3" ai="1" defeated="land" taxfactor="1.000000" money="0" industry="0" techlevel="3" alliance="n" r="0" g="0" b="204" a="90" />
+        <country id="ch" name="ch" commander="common3" ai="1" defeated="land" taxfactor="1.000000" money="0" industry="0" techlevel="3" alliance="n" r="141" g="180" b="0" a="90" />
+    </list>
+    <list name="area">
+        <area id="10" construction="none" level="0" installation="none" country="gb" />
+        <area id="11" construction="none" level="0" installation="none" country="gb" />
+        <area id="13" construction="airport" level="1" installation="fort" country="gb">
+            <army type="infantry" level="0" cards="0" />
+        </area>
+        <area id="15" construction="none" level="0" installation="none" country="de">
+            <army type="battleship" level="2" cards="3" />
+        </area>
+        <area id="16" construction="none" level="0" installation="none" country="de">
+            <army type="destroyer" level="2" cards="3" />
+        </area>
+        <area id="19" construction="none" level="0" installation="none" country="gb" />
+        <area id="20" construction="none" level="0" installation="none" country="gb" />
+        <area id="21" construction="industry" level="1" installation="none" country="gb">
+            <army type="artillery" level="1" cards="2" />
+        </area>
+        <area id="22" construction="city" level="2" installation="none" country="gb">
+            <army type="infantry" level="0" cards="0" />
+        </area>
+        <area id="24" construction="none" level="0" installation="none" country="gb">
+            <army type="aircraft carrier" level="1" cards="3" />
+        </area>
+        <area id="25" construction="none" level="0" installation="none" country="gb" />
+        <area id="26" construction="none" level="0" installation="none" country="gb" />
+        <area id="28" construction="none" level="0" installation="none" country="gb">
+            <army type="battleship" level="2" cards="3" />
+        </area>
+        <area id="32" construction="industry" level="1" installation="none" country="gb">
+            <army type="infantry" level="2" cards="5" />
+        </area>
+        <area id="33" construction="city" level="4" installation="antiaircraft" country="gb">
+            <army type="infantry" level="1" cards="3" />
+        </area>
+        <area id="36" construction="industry" level="3" installation="none" country="gb">
+            <army type="artillery" level="2" cards="3" />
+        </area>
+        <area id="37" construction="none" level="0" installation="fort" country="gb" />
+        <area id="38" construction="none" level="0" installation="none" country="gb">
+            <army type="cruiser" level="1" cards="3" />
+        </area>
+        <area id="41" construction="airport" level="1" installation="radar" country="gb">
+            <army type="artillery" level="1" cards="3" />
+        </area>
+        <area id="42" construction="none" level="0" installation="none" country="gb" />
+        <area id="44" construction="industry" level="3" installation="fort" country="gb" />
+        <area id="45" construction="city" level="4" installation="antiaircraft" country="gb">
+            <army type="heavy tank" level="0" cards="11" />
+        </area>
+        <area id="46" construction="none" level="0" installation="none" country="gb" />
+        <area id="47" construction="none" level="0" installation="none" country="ca">
+            <army type="artillery" level="1" cards="7" />
+            <army type="artillery" level="1" cards="7" />
+            <army type="artillery" level="1" cards="7" />
+        </area>
+        <area id="48" construction="none" level="0" installation="none" country="ca">
+            <army type="tank" level="0" cards="15" />
+            <army type="panzer" level="1" cards="7" />
+            <army type="infantry" level="1" cards="7" />
+        </area>
+        <area id="52" construction="none" level="0" installation="none" country="am">
+            <army type="aircraft carrier" level="2" cards="3" />
+        </area>
+        <area id="53" construction="none" level="0" installation="none" country="gb" />
+        <area id="54" construction="airport" level="1" installation="none" country="am">
+            <army type="infantry" level="2" cards="5" />
+        </area>
+        <area id="55" construction="city" level="2" installation="fort" country="gb" />
+        <area id="56" construction="airport" level="1" installation="none" country="gb">
+            <army type="rocket" level="1" cards="3" />
+        </area>
+        <area id="57" construction="none" level="0" installation="none" country="fr">
+            <army type="heavy tank" level="0" cards="15" />
+            <army type="tank" level="1" cards="7" />
+            <army type="panzer" level="1" cards="7" />
+        </area>
+        <area id="58" construction="none" level="0" installation="none" country="fr">
+            <army type="tank" level="1" cards="7" />
+            <army type="panzer" level="1" cards="7" />
+            <army type="artillery" level="1" cards="7" />
+        </area>
+        <area id="60" construction="none" level="0" installation="none" country="am">
+            <army type="battleship" level="1" cards="3" />
+        </area>
+        <area id="61" construction="none" level="0" installation="none" country="am">
+            <army type="heavy tank" level="0" cards="15" />
+            <army type="heavy tank" level="2" cards="7" />
+            <army type="artillery" level="2" cards="7" />
+            <army type="artillery" level="2" cards="7" />
+        </area>
+        <area id="62" construction="none" level="0" installation="none" country="am">
+            <army type="tank" level="2" cards="7" />
+            <army type="panzer" level="2" cards="7" />
+        </area>
+        <area id="63" construction="none" level="0" installation="none" country="gb">
+            <army type="panzer" level="2" cards="7" />
+            <army type="infantry" level="2" cards="7" />
+            <army type="infantry" level="2" cards="7" />
+        </area>
+        <area id="64" construction="none" level="0" installation="none" country="am">
+            <army type="panzer" level="2" cards="7" />
+            <army type="infantry" level="2" cards="7" />
+            <army type="infantry" level="2" cards="7" />
+        </area>
+        <area id="65" construction="city" level="1" installation="fort" country="de">
+            <army type="infantry" level="2" cards="2" />
+            <army type="infantry" level="2" cards="2" />
+        </area>
+        <area id="66" construction="none" level="0" installation="none" country="gb">
+            <army type="battleship" level="1" cards="3" />
+        </area>
+        <area id="67" construction="none" level="0" installation="none" country="gb">
+            <army type="tank" level="1" cards="7" />
+            <army type="infantry" level="1" cards="7" />
+            <army type="artillery" level="2" cards="7" />
+        </area>
+        <area id="68" construction="none" level="0" installation="fort" country="de">
+            <army type="artillery" level="2" cards="2" />
+            <army type="artillery" level="2" cards="3" />
+        </area>
+        <area id="69" construction="city" level="3" installation="fort" country="de">
+            <army type="infantry" level="2" cards="3" />
+            <army type="infantry" level="2" cards="3" />
+        </area>
+        <area id="70" construction="city" level="3" installation="fort" country="de">
+            <army type="tank" level="2" cards="3" />
+            <army type="panzer" level="2" cards="3" />
+        </area>
+        <area id="71" construction="none" level="0" installation="entrenchment" country="de">
+            <army type="panzer" level="2" cards="3" />
+        </area>
+        <area id="72" construction="none" level="0" installation="none" country="de" />
+        <area id="73" construction="none" level="0" installation="none" country="de">
+            <army type="rocket" level="2" cards="1" />
+        </area>
+        <area id="74" construction="none" level="0" installation="none" country="de" />
+        <area id="75" construction="none" level="0" installation="none" country="se" />
+        <area id="77" construction="none" level="0" installation="none" country="fl" />
+        <area id="78" construction="none" level="0" installation="none" country="fl" />
+        <area id="79" construction="none" level="0" installation="entrenchment" country="fl">
+            <army type="infantry" level="1" cards="3" />
+            <army type="infantry" level="1" cards="3" />
+        </area>
+        <area id="80" construction="none" level="0" installation="entrenchment" country="ru" />
+        <area id="81" construction="none" level="0" installation="none" country="ru">
+            <army type="infantry" level="1" cards="3" />
+            <army type="infantry" level="1" cards="3" />
+        </area>
+        <area id="82" construction="none" level="0" installation="none" country="ru">
+            <army type="heavy tank" level="1" cards="3" />
+        </area>
+        <area id="83" construction="none" level="0" installation="fort" country="ru" />
+        <area id="84" construction="none" level="0" installation="entrenchment" country="fl">
+            <army type="artillery" level="1" cards="3" />
+        </area>
+        <area id="85" construction="none" level="0" installation="none" country="fl" />
+        <area id="86" construction="airport" level="1" installation="entrenchment" country="fl" />
+        <area id="87" construction="city" level="3" installation="none" country="fl">
+            <army type="panzer" level="1" cards="3" />
+        </area>
+        <area id="88" construction="none" level="0" installation="none" country="fl" />
+        <area id="89" construction="none" level="0" installation="fort" country="fl" />
+        <area id="90" construction="none" level="0" installation="fort" country="fl" />
+        <area id="92" construction="industry" level="2" installation="radar" country="se">
+            <army type="artillery" level="1" cards="3" />
+        </area>
+        <area id="93" construction="none" level="0" installation="none" country="se" />
+        <area id="94" construction="city" level="1" installation="none" country="de" />
+        <area id="95" construction="none" level="0" installation="none" country="se" />
+        <area id="96" construction="none" level="0" installation="none" country="de">
+            <army type="panzer" level="1" cards="2" />
+        </area>
+        <area id="97" construction="city" level="4" installation="antiaircraft" country="de">
+            <army type="tank" level="1" cards="3" />
+        </area>
+        <area id="98" construction="industry" level="2" installation="fort" country="de" />
+        <area id="99" construction="none" level="0" installation="none" country="de">
+            <army type="artillery" level="1" cards="2" />
+        </area>
+        <area id="100" construction="none" level="0" installation="none" country="de" />
+        <area id="101" construction="none" level="0" installation="entrenchment" country="se">
+            <army type="infantry" level="2" cards="2" />
+        </area>
+        <area id="102" construction="city" level="4" installation="fort" country="se">
+            <army type="tank" level="1" cards="10" />
+        </area>
+        <area id="103" construction="none" level="0" installation="none" country="fl">
+            <army type="cruiser" level="0" cards="3" />
+        </area>
+        <area id="104" construction="city" level="4" installation="antiaircraft" country="fl">
+            <army type="tank" level="0" cards="11" />
+        </area>
+        <area id="105" construction="industry" level="2" installation="fort" country="fl">
+            <army type="tank" level="1" cards="3" />
+        </area>
+        <area id="106" construction="none" level="0" installation="entrenchment" country="fl">
+            <army type="infantry" level="1" cards="1" />
+            <army type="infantry" level="1" cards="2" />
+        </area>
+        <area id="107" construction="none" level="0" installation="none" country="ru" />
+        <area id="108" construction="none" level="0" installation="entrenchment" country="ru">
+            <army type="artillery" level="1" cards="3" />
+            <army type="infantry" level="2" cards="2" />
+        </area>
+        <area id="109" construction="industry" level="2" installation="entrenchment" country="ru">
+            <army type="artillery" level="1" cards="3" />
+        </area>
+        <area id="110" construction="none" level="0" installation="none" country="fl" />
+        <area id="111" construction="none" level="0" installation="none" country="fl" />
+        <area id="112" construction="none" level="0" installation="fort" country="fl" />
+        <area id="115" construction="none" level="0" installation="entrenchment" country="se">
+            <army type="panzer" level="1" cards="3" />
+        </area>
+        <area id="116" construction="city" level="2" installation="fort" country="se">
+            <army type="infantry" level="1" cards="2" />
+            <army type="infantry" level="1" cards="2" />
+        </area>
+        <area id="117" construction="none" level="0" installation="none" country="de">
+            <army type="cruiser" level="1" cards="3" />
+        </area>
+        <area id="119" construction="airport" level="1" installation="fort" country="de">
+            <army type="infantry" level="2" cards="2" />
+        </area>
+        <area id="120" construction="city" level="4" installation="radar" country="de">
+            <army type="artillery" level="3" cards="3" />
+        </area>
+        <area id="121" construction="industry" level="1" installation="fort" country="de">
+            <army type="infantry" level="2" cards="3" />
+        </area>
+        <area id="123" construction="none" level="0" installation="entrenchment" country="de" />
+        <area id="124" construction="city" level="1" installation="fort" country="de">
+            <army type="panzer" level="2" cards="3" />
+        </area>
+        <area id="125" construction="none" level="0" installation="none" country="de" />
+        <area id="126" construction="none" level="0" installation="none" country="de" />
+        <area id="127" construction="city" level="2" installation="entrenchment" country="de">
+            <army type="tank" level="2" cards="3" />
+        </area>
+        <area id="128" construction="none" level="0" installation="none" country="de" />
+        <area id="129" construction="none" level="0" installation="none" country="de" />
+        <area id="130" construction="none" level="0" installation="entrenchment" country="de">
+            <army type="infantry" level="2" cards="3" />
+            <army type="artillery" level="1" cards="3" />
+        </area>
+        <area id="131" construction="none" level="0" installation="none" country="ru">
+            <army type="heavy tank" level="1" cards="3" />
+            <army type="tank" level="2" cards="3" />
+        </area>
+        <area id="132" construction="city" level="4" installation="entrenchment" country="ru">
+            <army type="heavy tank" level="1" cards="3" />
+            <army type="tank" level="2" cards="3" />
+            <army type="artillery" level="1" cards="3" />
+            <army type="infantry" level="2" cards="2" />
+        </area>
+        <area id="133" construction="none" level="0" installation="entrenchment" country="de">
+            <army type="heavy tank" level="2" cards="3" />
+            <army type="tank" level="2" cards="3" />
+            <army type="infantry" level="2" cards="3" />
+        </area>
+        <area id="134" construction="city" level="2" installation="none" country="de">
+            <army type="infantry" level="2" cards="3" />
+        </area>
+        <area id="135" construction="none" level="0" installation="none" country="de" />
+        <area id="136" construction="none" level="0" installation="none" country="de" />
+        <area id="137" construction="industry" level="2" installation="fort" country="de">
+            <army type="artillery" level="1" cards="2" />
+        </area>
+        <area id="138" construction="none" level="0" installation="none" country="de" />
+        <area id="139" construction="none" level="0" installation="none" country="de" />
+        <area id="140" construction="none" level="0" installation="entrenchment" country="de" />
+        <area id="141" construction="none" level="0" installation="entrenchment" country="de" />
+        <area id="142" construction="airport" level="1" installation="none" country="de" />
+        <area id="143" construction="none" level="0" installation="none" country="de" />
+        <area id="144" construction="none" level="0" installation="none" country="de" />
+        <area id="145" construction="industry" level="3" installation="radar" country="de" />
+        <area id="146" construction="industry" level="3" installation="entrenchment" country="de">
+            <army type="artillery" level="2" cards="3" />
+            <army type="infantry" level="3" cards="3" />
+        </area>
+        <area id="147" construction="none" level="0" installation="none" country="de">
+            <army type="rocket" level="1" cards="1" />
+        </area>
+        <area id="148" construction="none" level="0" installation="none" country="de" />
+        <area id="149" construction="city" level="4" installation="antiaircraft" country="de">
+            <army type="heavy tank" level="0" cards="11" />
+        </area>
+        <area id="150" construction="none" level="0" installation="fort" country="de" />
+        <area id="151" construction="none" level="0" installation="none" country="de" />
+        <area id="152" construction="none" level="0" installation="none" country="de" />
+        <area id="153" construction="none" level="0" installation="none" country="de" />
+        <area id="154" construction="city" level="4" installation="radar" country="de">
+            <army type="heavy tank" level="2" cards="3" />
+        </area>
+        <area id="155" construction="none" level="0" installation="none" country="de" />
+        <area id="156" construction="none" level="0" installation="none" country="de" />
+        <area id="157" construction="none" level="0" installation="entrenchment" country="de">
+            <army type="tank" level="2" cards="3" />
+            <army type="tank" level="2" cards="3" />
+        </area>
+        <area id="158" construction="none" level="0" installation="none" country="ru" />
+        <area id="159" construction="none" level="0" installation="none" country="ru" />
+        <area id="160" construction="none" level="0" installation="none" country="ru" />
+        <area id="161" construction="industry" level="1" installation="antiaircraft" country="de">
+            <army type="artillery" level="1" cards="3" />
+            <army type="artillery" level="1" cards="3" />
+        </area>
+        <area id="162" construction="none" level="0" installation="none" country="de" />
+        <area id="163" construction="none" level="0" installation="none" country="de" />
+        <area id="164" construction="none" level="0" installation="none" country="de" />
+        <area id="165" construction="none" level="0" installation="none" country="de" />
+        <area id="166" construction="none" level="0" installation="none" country="de" />
+        <area id="167" construction="none" level="0" installation="entrenchment" country="de">
+            <army type="infantry" level="3" cards="3" />
+        </area>
+        <area id="168" construction="city" level="1" installation="none" country="de" />
+        <area id="169" construction="none" level="0" installation="none" country="de" />
+        <area id="170" construction="none" level="0" installation="none" country="de" />
+        <area id="171" construction="city" level="3" installation="none" country="de" />
+        <area id="172" construction="none" level="0" installation="none" country="de">
+            <army type="rocket" level="1" cards="3" />
+        </area>
+        <area id="173" construction="none" level="0" installation="none" country="ru" />
+        <area id="174" construction="none" level="0" installation="none" country="ru" />
+        <area id="175" construction="none" level="0" installation="none" country="ru" />
+        <area id="176" construction="none" level="0" installation="none" country="ru" />
+        <area id="177" construction="none" level="0" installation="none" country="ru" />
+        <area id="180" construction="none" level="0" installation="none" country="ru" />
+        <area id="181" construction="none" level="0" installation="none" country="ru" />
+        <area id="182" construction="none" level="0" installation="none" country="ru" />
+        <area id="183" construction="city" level="2" installation="none" country="ru">
+            <army type="infantry" level="3" cards="3" />
+        </area>
+        <area id="184" construction="none" level="0" installation="none" country="ru" />
+        <area id="185" construction="none" level="0" installation="none" country="ru" />
+        <area id="186" construction="none" level="0" installation="none" country="ru" />
+        <area id="187" construction="industry" level="1" installation="entrenchment" country="ru">
+            <army type="infantry" level="2" cards="1" />
+        </area>
+        <area id="188" construction="none" level="0" installation="none" country="ru" />
+        <area id="189" construction="none" level="0" installation="entrenchment" country="ru">
+            <army type="panzer" level="2" cards="3" />
+        </area>
+        <area id="190" construction="city" level="2" installation="entrenchment" country="ru">
+            <army type="tank" level="1" cards="3" />
+            <army type="infantry" level="2" cards="0" />
+        </area>
+        <area id="191" construction="none" level="0" installation="none" country="ru" />
+        <area id="192" construction="none" level="0" installation="none" country="ru" />
+        <area id="193" construction="none" level="0" installation="entrenchment" country="ru" />
+        <area id="194" construction="none" level="0" installation="none" country="ru" />
+        <area id="195" construction="none" level="0" installation="none" country="ru" />
+        <area id="196" construction="none" level="0" installation="none" country="ru" />
+        <area id="197" construction="none" level="0" installation="none" country="ru" />
+        <area id="198" construction="none" level="0" installation="none" country="ru" />
+        <area id="201" construction="none" level="0" installation="entrenchment" country="ru">
+            <army type="infantry" level="2" cards="3" />
+        </area>
+        <area id="202" construction="none" level="0" installation="none" country="ru" />
+        <area id="203" construction="airport" level="1" installation="none" country="ru" />
+        <area id="204" construction="city" level="4" installation="radar" country="ru">
+            <army type="heavy tank" level="0" cards="11" />
+            <army type="infantry" level="2" cards="3" />
+            <army type="infantry" level="2" cards="3" />
+        </area>
+        <area id="205" construction="none" level="0" installation="entrenchment" country="ru" />
+        <area id="206" construction="none" level="0" installation="entrenchment" country="ru" />
+        <area id="207" construction="none" level="0" installation="none" country="ru">
+            <army type="rocket" level="0" cards="3" />
+        </area>
+        <area id="208" construction="airport" level="1" installation="entrenchment" country="ru">
+            <army type="artillery" level="1" cards="2" />
+        </area>
+        <area id="209" construction="none" level="0" installation="none" country="ru">
+            <army type="artillery" level="1" cards="3" />
+            <army type="panzer" level="1" cards="3" />
+        </area>
+        <area id="210" construction="none" level="0" installation="none" country="ru">
+            <army type="rocket" level="1" cards="3" />
+        </area>
+        <area id="211" construction="none" level="0" installation="none" country="ru" />
+        <area id="212" construction="none" level="0" installation="none" country="ru" />
+        <area id="213" construction="industry" level="2" installation="fort" country="ru">
+            <army type="panzer" level="1" cards="3" />
+        </area>
+        <area id="214" construction="none" level="0" installation="none" country="ru" />
+        <area id="215" construction="none" level="0" installation="none" country="ru" />
+        <area id="216" construction="none" level="0" installation="none" country="ru" />
+        <area id="219" construction="none" level="0" installation="none" country="ru" />
+        <area id="220" construction="none" level="0" installation="none" country="ru" />
+        <area id="221" construction="city" level="2" installation="entrenchment" country="ru">
+            <army type="infantry" level="2" cards="1" />
+            <army type="infantry" level="2" cards="2" />
+        </area>
+        <area id="222" construction="none" level="0" installation="none" country="ru" />
+        <area id="223" construction="none" level="0" installation="none" country="ru" />
+        <area id="224" construction="none" level="0" installation="none" country="ru" />
+        <area id="225" construction="none" level="0" installation="none" country="ru" />
+        <area id="226" construction="none" level="0" installation="entrenchment" country="ru" />
+        <area id="227" construction="city" level="4" installation="fort" country="ru">
+            <army type="tank" level="1" cards="3" />
+            <army type="panzer" level="1" cards="1" />
+            <army type="artillery" level="1" cards="2" />
+            <army type="infantry" level="2" cards="1" />
+        </area>
+        <area id="228" construction="none" level="0" installation="none" country="ru" />
+        <area id="229" construction="none" level="0" installation="entrenchment" country="ru">
+            <army type="artillery" level="1" cards="2" />
+            <army type="infantry" level="1" cards="3" />
+        </area>
+        <area id="230" construction="none" level="0" installation="none" country="ru" />
+        <area id="231" construction="none" level="0" installation="entrenchment" country="ru" />
+        <area id="232" construction="none" level="0" installation="none" country="ru" />
+        <area id="233" construction="none" level="0" installation="none" country="ru" />
+        <area id="234" construction="none" level="0" installation="none" country="ru" />
+        <area id="235" construction="none" level="0" installation="none" country="ru" />
+        <area id="236" construction="none" level="0" installation="none" country="ru" />
+        <area id="939" construction="city" level="2" installation="entrenchment" country="ru">
+            <army type="infantry" level="2" cards="3" />
+            <army type="infantry" level="1" cards="2" />
+        </area>
+        <area id="940" construction="none" level="0" installation="none" country="ru" />
+        <area id="941" construction="none" level="0" installation="entrenchment" country="ru">
+            <army type="infantry" level="2" cards="3" />
+        </area>
+        <area id="942" construction="none" level="0" installation="none" country="ru" />
+        <area id="943" construction="none" level="0" installation="none" country="ru" />
+        <area id="944" construction="none" level="0" installation="none" country="ru" />
+        <area id="949" construction="none" level="0" installation="none" country="ru" />
+        <area id="950" construction="none" level="0" installation="none" country="ru" />
+        <area id="951" construction="industry" level="3" installation="antiaircraft" country="ru">
+            <army type="panzer" level="2" cards="3" />
+        </area>
+        <area id="952" construction="none" level="0" installation="entrenchment" country="ru" />
+        <area id="953" construction="city" level="2" installation="entrenchment" country="ru">
+            <army type="heavy tank" level="2" cards="3" />
+        </area>
+        <area id="954" construction="none" level="0" installation="none" country="ru" />
+        <area id="955" construction="none" level="0" installation="none" country="ru" />
+        <area id="956" construction="none" level="0" installation="none" country="ru" />
+        <area id="957" construction="none" level="0" installation="none" country="ru" />
+        <area id="958" construction="none" level="0" installation="none" country="ru" />
+        <area id="959" construction="none" level="0" installation="none" country="ru" />
+        <area id="960" construction="none" level="0" installation="entrenchment" country="ru" />
+        <area id="961" construction="none" level="0" installation="none" country="ru" />
+        <area id="962" construction="none" level="0" installation="none" country="ru" />
+        <area id="963" construction="none" level="0" installation="none" country="ru" />
+        <area id="964" construction="none" level="0" installation="none" country="ru" />
+        <area id="967" construction="city" level="1" installation="entrenchment" country="ru" />
+        <area id="968" construction="none" level="0" installation="none" country="ru" />
+        <area id="969" construction="none" level="0" installation="none" country="ru" />
+        <area id="970" construction="none" level="0" installation="none" country="ru" />
+        <area id="971" construction="none" level="0" installation="none" country="ru" />
+        <area id="972" construction="none" level="0" installation="none" country="ru" />
+        <area id="973" construction="none" level="0" installation="none" country="ru" />
+        <area id="976" construction="none" level="0" installation="none" country="ru" />
+        <area id="977" construction="none" level="0" installation="none" country="ru" />
+        <area id="978" construction="none" level="0" installation="none" country="ru" />
+        <area id="979" construction="none" level="0" installation="none" country="ru" />
+        <area id="981" construction="none" level="0" installation="none" country="ru" />
+        <area id="982" construction="city" level="1" installation="entrenchment" country="ru">
+            <army type="infantry" level="1" cards="3" />
+        </area>
+        <area id="985" construction="none" level="0" installation="none" country="ru" />
+        <area id="986" construction="none" level="0" installation="none" country="ru" />
+        <area id="987" construction="industry" level="1" installation="none" country="ru">
+            <army type="tank" level="2" cards="3" />
+        </area>
+        <area id="988" construction="none" level="0" installation="none" country="ru" />
+        <area id="989" construction="none" level="0" installation="none" country="ru" />
+        <area id="990" construction="none" level="0" installation="none" country="ru" />
+        <area id="994" construction="none" level="0" installation="none" country="ru" />
+        <area id="995" construction="none" level="0" installation="none" country="ru" />
+        <area id="996" construction="none" level="0" installation="none" country="ru" />
+        <area id="999" construction="none" level="0" installation="none" country="tr" />
+        <area id="1000" construction="none" level="0" installation="none" country="tr" />
+        <area id="1001" construction="none" level="0" installation="none" country="tr" />
+        <area id="1002" construction="city" level="2" installation="fort" country="tr">
+            <army type="panzer" level="1" cards="1" />
+        </area>
+        <area id="1003" construction="industry" level="2" installation="fort" country="tr">
+            <army type="artillery" level="1" cards="3" />
+        </area>
+        <area id="1004" construction="none" level="0" installation="none" country="tr" />
+        <area id="1005" construction="none" level="0" installation="none" country="tr" />
+        <area id="1006" construction="none" level="0" installation="none" country="tr" />
+        <area id="1009" construction="industry" level="1" installation="none" country="tr">
+            <army type="artillery" level="1" cards="1" />
+        </area>
+        <area id="1016" construction="none" level="0" installation="none" country="ru" />
+        <area id="1017" construction="none" level="0" installation="none" country="de">
+            <army type="infantry" level="1" cards="3" />
+        </area>
+        <area id="1018" construction="none" level="0" installation="none" country="de" />
+        <area id="1019" construction="industry" level="3" installation="entrenchment" country="de">
+            <army type="tank" level="2" cards="3" />
+        </area>
+        <area id="1020" construction="none" level="0" installation="entrenchment" country="de" />
+        <area id="1021" construction="airport" level="1" installation="radar" country="de">
+            <army type="panzer" level="2" cards="3" />
+        </area>
+        <area id="1022" construction="none" level="0" installation="none" country="de" />
+        <area id="1023" construction="city" level="2" installation="entrenchment" country="de">
+            <army type="infantry" level="2" cards="1" />
+        </area>
+        <area id="1024" construction="none" level="0" installation="entrenchment" country="de" />
+        <area id="1025" construction="none" level="0" installation="entrenchment" country="de" />
+        <area id="1026" construction="none" level="0" installation="none" country="de" />
+        <area id="1027" construction="none" level="0" installation="none" country="de" />
+        <area id="1028" construction="none" level="0" installation="fort" country="de" />
+        <area id="1029" construction="city" level="3" installation="entrenchment" country="de" />
+        <area id="1030" construction="none" level="0" installation="none" country="de" />
+        <area id="1031" construction="none" level="0" installation="none" country="de" />
+        <area id="1032" construction="none" level="0" installation="none" country="de" />
+        <area id="1033" construction="none" level="0" installation="none" country="de" />
+        <area id="1034" construction="none" level="0" installation="entrenchment" country="de">
+            <army type="artillery" level="1" cards="3" />
+        </area>
+        <area id="1035" construction="none" level="0" installation="none" country="ru" />
+        <area id="1036" construction="industry" level="1" installation="entrenchment" country="ru">
+            <army type="artillery" level="1" cards="3" />
+            <army type="infantry" level="2" cards="3" />
+        </area>
+        <area id="1037" construction="none" level="0" installation="none" country="ru" />
+        <area id="1038" construction="city" level="2" installation="none" country="hu">
+            <army type="infantry" level="1" cards="3" />
+        </area>
+        <area id="1039" construction="none" level="0" installation="none" country="ro" />
+        <area id="1040" construction="none" level="0" installation="none" country="hu" />
+        <area id="1041" construction="none" level="0" installation="entrenchment" country="de" />
+        <area id="1042" construction="none" level="0" installation="none" country="hu">
+            <army type="tank" level="1" cards="11" />
+        </area>
+        <area id="1043" construction="none" level="0" installation="none" country="de" />
+        <area id="1044" construction="industry" level="2" installation="entrenchment" country="hu">
+            <army type="infantry" level="1" cards="3" />
+        </area>
+        <area id="1045" construction="none" level="0" installation="none" country="de" />
+        <area id="1046" construction="city" level="4" installation="antiaircraft" country="de">
+            <army type="infantry" level="3" cards="3" />
+            <army type="infantry" level="2" cards="3" />
+        </area>
+        <area id="1047" construction="none" level="0" installation="none" country="de" />
+        <area id="1048" construction="none" level="0" installation="none" country="de" />
+        <area id="1049" construction="industry" level="2" installation="entrenchment" country="de">
+            <army type="heavy tank" level="1" cards="3" />
+        </area>
+        <area id="1050" construction="city" level="4" installation="antiaircraft" country="ch">
+            <army type="artillery" level="2" cards="11" />
+            <army type="infantry" level="1" cards="2" />
+        </area>
+        <area id="1051" construction="none" level="0" installation="none" country="ch">
+            <army type="panzer" level="1" cards="2" />
+        </area>
+        <area id="1052" construction="none" level="0" installation="none" country="hu" />
+        <area id="1053" construction="none" level="0" installation="none" country="hu" />
+        <area id="1054" construction="none" level="0" installation="none" country="hu" />
+        <area id="1055" construction="city" level="4" installation="entrenchment" country="hu">
+            <army type="infantry" level="1" cards="3" />
+        </area>
+        <area id="1056" construction="none" level="0" installation="none" country="hu" />
+        <area id="1057" construction="industry" level="3" installation="fort" country="ro">
+            <army type="infantry" level="2" cards="3" />
+        </area>
+        <area id="1058" construction="none" level="0" installation="none" country="ro">
+            <army type="tank" level="1" cards="3" />
+            <army type="infantry" level="1" cards="3" />
+        </area>
+        <area id="1059" construction="none" level="0" installation="none" country="ru" />
+        <area id="1060" construction="none" level="0" installation="entrenchment" country="ru">
+            <army type="artillery" level="2" cards="3" />
+        </area>
+        <area id="1061" construction="airport" level="1" installation="fort" country="ru">
+            <army type="tank" level="2" cards="3" />
+            <army type="infantry" level="1" cards="2" />
+        </area>
+        <area id="1062" construction="city" level="1" installation="entrenchment" country="ro">
+            <army type="panzer" level="1" cards="5" />
+            <army type="infantry" level="1" cards="4" />
+        </area>
+        <area id="1063" construction="city" level="4" installation="entrenchment" country="ro">
+            <army type="panzer" level="0" cards="11" />
+        </area>
+        <area id="1064" construction="none" level="0" installation="none" country="ro">
+            <army type="artillery" level="1" cards="3" />
+        </area>
+        <area id="1065" construction="none" level="0" installation="none" country="ro" />
+        <area id="1066" construction="none" level="0" installation="entrenchment" country="ro" />
+        <area id="1067" construction="none" level="0" installation="entrenchment" country="it" />
+        <area id="1068" construction="city" level="2" installation="entrenchment" country="it">
+            <army type="panzer" level="1" cards="3" />
+        </area>
+        <area id="1069" construction="industry" level="2" installation="entrenchment" country="it">
+            <army type="tank" level="1" cards="2" />
+        </area>
+        <area id="1070" construction="industry" level="1" installation="none" country="ch">
+            <army type="infantry" level="2" cards="2" />
+            <army type="infantry" level="1" cards="2" />
+        </area>
+        <area id="1071" construction="none" level="0" installation="none" country="it" />
+        <area id="1073" construction="none" level="0" installation="none" country="it" />
+        <area id="1074" construction="none" level="0" installation="none" country="it">
+            <army type="infantry" level="1" cards="3" />
+        </area>
+        <area id="1075" construction="airport" level="1" installation="fort" country="it" />
+        <area id="1077" construction="city" level="3" installation="entrenchment" country="de">
+            <army type="heavy tank" level="1" cards="3" />
+        </area>
+        <area id="1078" construction="city" level="3" installation="entrenchment" country="bg">
+            <army type="artillery" level="1" cards="11" />
+        </area>
+        <area id="1083" construction="industry" level="1" installation="fort" country="bg">
+            <army type="infantry" level="1" cards="3" />
+        </area>
+        <area id="1084" construction="none" level="0" installation="fort" country="de">
+            <army type="infantry" level="2" cards="2" />
+        </area>
+        <area id="1085" construction="industry" level="2" installation="fort" country="de">
+            <army type="panzer" level="1" cards="3" />
+        </area>
+        <area id="1087" construction="city" level="4" installation="radar" country="it">
+            <army type="heavy tank" level="0" cards="11" />
+        </area>
+        <area id="1089" construction="none" level="0" installation="fort" country="it">
+            <army type="infantry" level="1" cards="3" />
+        </area>
+        <area id="1091" construction="none" level="0" installation="none" country="am">
+            <army type="battleship" level="2" cards="3" />
+        </area>
+        <area id="1092" construction="city" level="1" installation="fort" country="it">
+            <army type="infantry" level="1" cards="3" />
+        </area>
+        <area id="1094" construction="none" level="0" installation="none" country="gb">
+            <army type="tank" level="2" cards="7" />
+            <army type="panzer" level="1" cards="7" />
+            <army type="artillery" level="1" cards="7" />
+        </area>
+        <area id="1095" construction="none" level="0" installation="fort" country="it">
+            <army type="infantry" level="1" cards="2" />
+        </area>
+        <area id="1096" construction="industry" level="2" installation="none" country="it">
+            <army type="artillery" level="1" cards="3" />
+        </area>
+        <area id="1098" construction="none" level="0" installation="none" country="it">
+            <army type="cruiser" level="1" cards="3" />
+        </area>
+        <area id="1099" construction="industry" level="2" installation="fort" country="de">
+            <army type="artillery" level="2" cards="3" />
+            <army type="infantry" level="2" cards="3" />
+        </area>
+        <area id="1100" construction="city" level="4" installation="fort" country="de">
+            <army type="artillery" level="1" cards="3" />
+        </area>
+        <area id="1101" construction="none" level="0" installation="none" country="de">
+            <army type="infantry" level="1" cards="0" />
+        </area>
+        <area id="1102" construction="none" level="0" installation="none" country="tr">
+            <army type="destroyer" level="1" cards="3" />
+        </area>
+        <area id="1103" construction="city" level="4" installation="fort" country="tr">
+            <army type="tank" level="0" cards="11" />
+        </area>
+        <area id="1104" construction="none" level="0" installation="none" country="tr" />
+        <area id="1105" construction="airport" level="1" installation="radar" country="tr">
+            <army type="infantry" level="2" cards="5" />
+            <army type="infantry" level="1" cards="6" />
+        </area>
+        <area id="1106" construction="none" level="0" installation="none" country="tr" />
+        <area id="1108" construction="airport" level="1" installation="none" country="de">
+            <army type="infantry" level="2" cards="3" />
+        </area>
+        <area id="1110" construction="none" level="0" installation="none" country="gb">
+            <army type="aircraft carrier" level="1" cards="3" />
+        </area>
+        <area id="1111" construction="none" level="0" installation="fort" country="it">
+            <army type="tank" level="2" cards="3" />
+            <army type="artillery" level="1" cards="3" />
+            <army type="infantry" level="1" cards="3" />
+        </area>
+        <area id="1112" construction="city" level="2" installation="none" country="am">
+            <army type="heavy tank" level="1" cards="7" />
+            <army type="tank" level="1" cards="7" />
+            <army type="artillery" level="2" cards="6" />
+            <army type="infantry" level="1" cards="5" />
+        </area>
+        <area id="1116" construction="none" level="0" installation="none" country="am">
+            <army type="infantry" level="2" cards="7" />
+            <army type="infantry" level="2" cards="5" />
+            <army type="infantry" level="1" cards="6" />
+        </area>
+        <area id="1117" construction="industry" level="1" installation="fort" country="de">
+            <army type="tank" level="2" cards="3" />
+            <army type="infantry" level="1" cards="3" />
+        </area>
+        <area id="1118" construction="none" level="0" installation="none" country="de">
+            <army type="infantry" level="2" cards="3" />
+            <army type="infantry" level="2" cards="3" />
+        </area>
+        <area id="1119" construction="none" level="0" installation="none" country="de">
+            <army type="artillery" level="1" cards="3" />
+            <army type="infantry" level="1" cards="3" />
+        </area>
+        <area id="1120" construction="airport" level="1" installation="antiaircraft" country="de">
+            <army type="rocket" level="1" cards="1" />
+        </area>
+        <area id="1121" construction="city" level="4" installation="radar" country="de">
+            <army type="heavy tank" level="2" cards="3" />
+        </area>
+        <area id="1122" construction="none" level="0" installation="none" country="de" />
+        <area id="1123" construction="none" level="0" installation="none" country="de" />
+        <area id="1124" construction="industry" level="2" installation="fort" country="de">
+            <army type="tank" level="1" cards="3" />
+        </area>
+        <area id="1125" construction="none" level="0" installation="none" country="de" />
+        <area id="1126" construction="city" level="3" installation="fort" country="de">
+            <army type="artillery" level="1" cards="2" />
+        </area>
+        <area id="1131" construction="none" level="0" installation="none" country="de">
+            <army type="destroyer" level="1" cards="3" />
+        </area>
+        <area id="1132" construction="industry" level="2" installation="fort" country="de">
+            <army type="infantry" level="1" cards="3" />
+        </area>
+        <area id="1133" construction="none" level="0" installation="none" country="de" />
+        <area id="1134" construction="none" level="0" installation="none" country="de" />
+        <area id="1135" construction="none" level="0" installation="none" country="de" />
+        <area id="1136" construction="none" level="0" installation="none" country="de">
+            <army type="artillery" level="1" cards="2" />
+        </area>
+        <area id="1137" construction="none" level="0" installation="none" country="de" />
+        <area id="1138" construction="industry" level="1" installation="entrenchment" country="de" />
+        <area id="1139" construction="city" level="4" installation="none" country="de" />
+        <area id="1140" construction="city" level="1" installation="none" country="de" />
+        <area id="1141" construction="none" level="0" installation="none" country="de" />
+        <area id="1142" construction="none" level="0" installation="none" country="de" />
+        <area id="1143" construction="none" level="0" installation="none" country="de" />
+        <area id="1147" construction="none" level="0" installation="fort" country="es" />
+        <area id="1148" construction="none" level="0" installation="none" country="es" />
+        <area id="1149" construction="none" level="0" installation="none" country="es">
+            <army type="infantry" level="1" cards="2" />
+        </area>
+        <area id="1150" construction="industry" level="1" installation="none" country="es">
+            <army type="rocket" level="0" cards="3" />
+        </area>
+        <area id="1151" construction="none" level="0" installation="entrenchment" country="es">
+            <army type="artillery" level="1" cards="3" />
+        </area>
+        <area id="1152" construction="none" level="0" installation="entrenchment" country="es">
+            <army type="tank" level="1" cards="3" />
+        </area>
+        <area id="1153" construction="none" level="0" installation="entrenchment" country="de">
+            <army type="tank" level="1" cards="3" />
+        </area>
+        <area id="1154" construction="airport" level="1" installation="none" country="de">
+            <army type="tank" level="1" cards="3" />
+            <army type="rocket" level="0" cards="1" />
+        </area>
+        <area id="1155" construction="none" level="0" installation="none" country="it" />
+        <area id="1156" construction="none" level="0" installation="none" country="it" />
+        <area id="1157" construction="none" level="0" installation="none" country="it" />
+        <area id="1158" construction="none" level="0" installation="none" country="it" />
+        <area id="1159" construction="city" level="2" installation="entrenchment" country="it">
+            <army type="infantry" level="2" cards="2" />
+        </area>
+        <area id="1160" construction="none" level="0" installation="none" country="it" />
+        <area id="1161" construction="city" level="4" installation="entrenchment" country="es">
+            <army type="tank" level="1" cards="3" />
+        </area>
+        <area id="1162" construction="industry" level="1" installation="none" country="es">
+            <army type="infantry" level="1" cards="2" />
+            <army type="infantry" level="1" cards="2" />
+        </area>
+        <area id="1163" construction="none" level="0" installation="none" country="es" />
+        <area id="1164" construction="none" level="0" installation="none" country="es" />
+        <area id="1165" construction="none" level="0" installation="none" country="es" />
+        <area id="1166" construction="industry" level="1" installation="entrenchment" country="pt">
+            <army type="artillery" level="2" cards="3" />
+        </area>
+        <area id="1168" construction="none" level="0" installation="none" country="pt" />
+        <area id="1169" construction="none" level="0" installation="fort" country="pt">
+            <army type="infantry" level="1" cards="3" />
+            <army type="infantry" level="1" cards="3" />
+        </area>
+        <area id="1170" construction="none" level="0" installation="none" country="es" />
+        <area id="1171" construction="city" level="4" installation="radar" country="es">
+            <army type="tank" level="0" cards="11" />
+        </area>
+        <area id="1172" construction="none" level="0" installation="none" country="es" />
+        <area id="1173" construction="industry" level="2" installation="fort" country="es">
+            <army type="infantry" level="2" cards="3" />
+        </area>
+        <area id="1174" construction="none" level="0" installation="none" country="es" />
+        <area id="1177" construction="none" level="0" installation="fort" country="es">
+            <army type="infantry" level="1" cards="3" />
+        </area>
+        <area id="1178" construction="none" level="0" installation="fort" country="es" />
+        <area id="1179" construction="none" level="0" installation="none" country="es" />
+        <area id="1180" construction="none" level="0" installation="none" country="es" />
+        <area id="1181" construction="none" level="0" installation="none" country="es" />
+        <area id="1182" construction="city" level="4" installation="fort" country="pt">
+            <army type="artillery" level="0" cards="11" />
+        </area>
+        <area id="1185" construction="none" level="0" installation="none" country="pt">
+            <army type="panzer" level="1" cards="3" />
+        </area>
+        <area id="1186" construction="none" level="0" installation="none" country="es">
+            <army type="infantry" level="2" cards="3" />
+        </area>
+        <area id="1187" construction="none" level="0" installation="none" country="es" />
+        <area id="1190" construction="none" level="0" installation="none" country="es" />
+    </list>
+    <list name="dialogue" />
+</battle>

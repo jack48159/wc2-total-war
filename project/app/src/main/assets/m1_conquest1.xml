@@ -1,0 +1,8 @@
+<Texture name="m1_conquest1.webp" />
+<Images>
+    <Image name="1325.png" x="1" y="1" w="172" h="155" refx="0" refy="0" />
+    <Image name="1259.png" x="174" y="1" w="174" h="129" refx="0" refy="0" />
+    <Image name="1326.png" x="1" y="157" w="194" h="144" refx="0" refy="0" />
+    <Image name="1201.png" x="1" y="302" w="221" h="154" refx="0" refy="0" />
+    <Image name="1258.png" x="349" y="1" w="130" h="210" refx="0" refy="0" />
+</Images>

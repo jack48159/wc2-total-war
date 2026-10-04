@@ -1,0 +1,2768 @@
+{
+  "version": 1,
+  "commanders": [
+    {
+      "id": "hoi4_ger_georg_von_kuchler",
+      "name": "Georg Von Kuchler",
+      "country": "de",
+      "tier": 2,
+      "cost": 60,
+      "tactic": "战役协同",
+      "mods": {
+        "attack": 0.025,
+        "supportAttack": 0.04
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Georg Von Kuchler，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_ger_alfred_jodl",
+      "name": "Alfred Jodl",
+      "country": "de",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Alfred Jodl，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_ger_alfred_saalwachter",
+      "name": "Alfred Saalwachter",
+      "country": "de",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Alfred Saalwachter，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_ger_ernsteberhard_hell",
+      "name": "Ernsteberhard Hell",
+      "country": "de",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Ernsteberhard Hell，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_ger_erwin_von_witzleben",
+      "name": "Erwin Von Witzleben",
+      "country": "de",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Erwin Von Witzleben，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_ger_ewald_von_kleist",
+      "name": "Ewald Von Kleist",
+      "country": "de",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Ewald Von Kleist，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_ger_friedrich_schulz",
+      "name": "Friedrich Schulz",
+      "country": "de",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Friedrich Schulz，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_ger_georghans_reinhardt",
+      "name": "Georghans Reinhardt",
+      "country": "de",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Georghans Reinhardt，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_ger_gunther_lutjens",
+      "name": "Gunther Lutjens",
+      "country": "de",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Gunther Lutjens，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_ger_gunther_von_kluge",
+      "name": "Gunther Von Kluge",
+      "country": "de",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Gunther Von Kluge，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_ger_hasso_von_manteuffel",
+      "name": "Hasso Von Manteuffel",
+      "country": "de",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Hasso Von Manteuffel，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_ger_hermann_boehm",
+      "name": "Hermann Boehm",
+      "country": "de",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Hermann Boehm，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_ger_johannes_blaskowitz",
+      "name": "Johannes Blaskowitz",
+      "country": "de",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Johannes Blaskowitz，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_ger_kurt_student",
+      "name": "Kurt Student",
+      "country": "de",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Kurt Student，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_ger_maximilian_von_weichs",
+      "name": "Maximilian Von Weichs",
+      "country": "de",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Maximilian Von Weichs，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_ger_paul_hausser",
+      "name": "Paul Hausser",
+      "country": "de",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Paul Hausser，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_ita_alberto_da_zara",
+      "name": "Alberto Da Zara",
+      "country": "it",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Alberto Da Zara，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_ita_benito_mussolini",
+      "name": "Benito Mussolini",
+      "country": "it",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Benito Mussolini，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_ita_carlo_bergamini",
+      "name": "Carlo Bergamini",
+      "country": "it",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Carlo Bergamini，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_ita_emilio_de_bono",
+      "name": "Emilio De Bono",
+      "country": "it",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Emilio De Bono，二战时期的军事将领。",
+      "marshal": true
+    },
+    {
+      "id": "hoi4_ita_inigo_campioni",
+      "name": "Inigo Campioni",
+      "country": "it",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Inigo Campioni，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_ita_italo_balbo",
+      "name": "Italo Balbo",
+      "country": "it",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Italo Balbo，二战时期的军事将领。",
+      "marshal": true
+    },
+    {
+      "id": "hoi4_ita_pietro_badoglio",
+      "name": "Pietro Badoglio",
+      "country": "it",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Pietro Badoglio，二战时期的军事将领。",
+      "marshal": true
+    },
+    {
+      "id": "hoi4_ita_sebastiano_visconti_prasca",
+      "name": "Sebastiano Visconti Prasca",
+      "country": "it",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Sebastiano Visconti Prasca，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_ita_seyoum_mengesha_doppleganger",
+      "name": "Seyoum Mengesha Doppleganger",
+      "country": "it",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Seyoum Mengesha Doppleganger，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_ita_ubaldo_soddu",
+      "name": "Ubaldo Soddu",
+      "country": "it",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Ubaldo Soddu，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_ita_ugo_cavallero",
+      "name": "Ugo Cavallero",
+      "country": "it",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Ugo Cavallero，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_jap_akira_muto",
+      "name": "Akira Muto",
+      "country": "ja",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Akira Muto，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_jap_gengo_hyakutake",
+      "name": "Gengo Hyakutake",
+      "country": "ja",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Gengo Hyakutake，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_jap_harukichi_hyakutake",
+      "name": "Harukichi Hyakutake",
+      "country": "ja",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Harukichi Hyakutake，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_jap_hatazo_adachi",
+      "name": "Hatazo Adachi",
+      "country": "ja",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Hatazo Adachi，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_jap_hiroaki_abe",
+      "name": "Hiroaki Abe",
+      "country": "ja",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Hiroaki Abe，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_jap_iwane_matsui",
+      "name": "Iwane Matsui",
+      "country": "ja",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Iwane Matsui，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_jap_jisaburo_ozawa",
+      "name": "Jisaburo Ozawa",
+      "country": "ja",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Jisaburo Ozawa，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_jap_jo_iimura",
+      "name": "Jo Iimura",
+      "country": "ja",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Jo Iimura，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_jap_kanji_ishiwara",
+      "name": "Kanji Ishiwara",
+      "country": "ja",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Kanji Ishiwara，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_jap_keisuke_fujie",
+      "name": "Keisuke Fujie",
+      "country": "ja",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Keisuke Fujie，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_jap_kenji_doihara",
+      "name": "Kenji Doihara",
+      "country": "ja",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Kenji Doihara，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_jap_kenkichi_ueda",
+      "name": "Kenkichi Ueda",
+      "country": "ja",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Kenkichi Ueda，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_jap_kiichiro_higuchi",
+      "name": "Kiichiro Higuchi",
+      "country": "ja",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Kiichiro Higuchi，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_jap_kiyoshi_hasegawa",
+      "name": "Kiyoshi Hasegawa",
+      "country": "ja",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Kiyoshi Hasegawa，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_jap_kuniaki_koiso",
+      "name": "Kuniaki Koiso",
+      "country": "ja",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Kuniaki Koiso，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_jap_masatane_kanda",
+      "name": "Masatane Kanda",
+      "country": "ja",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Masatane Kanda，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_jap_mineichi_koga",
+      "name": "Mineichi Koga",
+      "country": "ja",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Mineichi Koga，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_jap_naruhiko_higashikuni",
+      "name": "Naruhiko Higashikuni",
+      "country": "ja",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Naruhiko Higashikuni，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_jap_nobutake_kondo",
+      "name": "Nobutake Kondo",
+      "country": "ja",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Nobutake Kondo，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_jap_otozo_yamada",
+      "name": "Otozo Yamada",
+      "country": "ja",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Otozo Yamada，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_jap_rikichi_ando",
+      "name": "Rikichi Ando",
+      "country": "ja",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Rikichi Ando，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_eng_william_platt",
+      "name": "William Platt",
+      "country": "gb",
+      "tier": 2,
+      "cost": 60,
+      "tactic": "战役协同",
+      "mods": {
+        "supportAttack": 0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "William Platt，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_eng_alan_brooke",
+      "name": "Alan Brooke",
+      "country": "gb",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Alan Brooke，二战时期的军事将领。",
+      "marshal": true
+    },
+    {
+      "id": "hoi4_eng_algernon_willis",
+      "name": "Algernon Willis",
+      "country": "gb",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Algernon Willis，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_eng_arthur_percival",
+      "name": "Arthur Percival",
+      "country": "gb",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Arthur Percival，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_eng_arthur_power",
+      "name": "Arthur Power",
+      "country": "gb",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Arthur Power，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_eng_bernard_rawlings",
+      "name": "Bernard Rawlings",
+      "country": "gb",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Bernard Rawlings，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_eng_brian_horrocks",
+      "name": "Brian Horrocks",
+      "country": "gb",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Brian Horrocks，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_eng_bruce_fraser",
+      "name": "Bruce Fraser",
+      "country": "gb",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Bruce Fraser，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_eng_charles_forbes",
+      "name": "Charles Forbes",
+      "country": "gb",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Charles Forbes，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_eng_george_giffard",
+      "name": "George Giffard",
+      "country": "gb",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "George Giffard，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_eng_henry_harwood",
+      "name": "Henry Harwood",
+      "country": "gb",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Henry Harwood，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_eng_henry_pownall",
+      "name": "Henry Pownall",
+      "country": "gb",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Henry Pownall，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_eng_henry_wilson",
+      "name": "Henry Wilson",
+      "country": "gb",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Henry Wilson，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_eng_jackie_smyth",
+      "name": "Jackie Smyth",
+      "country": "gb",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Jackie Smyth，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_eng_james_fownes_somerville",
+      "name": "James Fownes Somerville",
+      "country": "gb",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "James Fownes Somerville，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_eng_jock_campbell",
+      "name": "Jock Campbell",
+      "country": "gb",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Jock Campbell，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_eng_john_tovey",
+      "name": "John Tovey",
+      "country": "gb",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "John Tovey，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_eng_john_vereker",
+      "name": "John Vereker",
+      "country": "gb",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "John Vereker，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_eng_merton_beckwithsmith",
+      "name": "Merton Beckwithsmith",
+      "country": "gb",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Merton Beckwithsmith，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_fra_antoinemariebenoit_besson",
+      "name": "Antoinemariebenoit Besson",
+      "country": "fr",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Antoinemariebenoit Besson，二战时期的军事将领。",
+      "marshal": true
+    },
+    {
+      "id": "hoi4_fra_charles_de_gaulle",
+      "name": "Charles De Gaulle",
+      "country": "fr",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Charles De Gaulle，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_fra_charles_huntziger",
+      "name": "Charles Huntziger",
+      "country": "fr",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Charles Huntziger，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_fra_francois_darlan",
+      "name": "Francois Darlan",
+      "country": "fr",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Francois Darlan，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_fra_gastonhenri_billotte",
+      "name": "Gastonhenri Billotte",
+      "country": "fr",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Gastonhenri Billotte，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_fra_henri_giraud",
+      "name": "Henri Giraud",
+      "country": "fr",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Henri Giraud，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_fra_henry_freydenberg",
+      "name": "Henry Freydenberg",
+      "country": "fr",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Henry Freydenberg，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_fra_jean_de_laborde",
+      "name": "Jean De Laborde",
+      "country": "fr",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Jean De Laborde，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_fra_jean_de_lattre_de_tassigny",
+      "name": "Jean De Lattre De Tassigny",
+      "country": "fr",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Jean De Lattre De Tassigny，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_fra_jeanmarie_charles_abrial",
+      "name": "Jeanmarie Charles Abrial",
+      "country": "fr",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Jeanmarie Charles Abrial，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_fra_jeanpierre_esteva",
+      "name": "Jeanpierre Esteva",
+      "country": "fr",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Jeanpierre Esteva，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_fra_maxime_weygand",
+      "name": "Maxime Weygand",
+      "country": "fr",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Maxime Weygand，二战时期的军事将领。",
+      "marshal": true
+    },
+    {
+      "id": "hoi4_fra_rene_emile_godfroy",
+      "name": "Rene Emile Godfroy",
+      "country": "fr",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Rene Emile Godfroy，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_fra_rene_olry",
+      "name": "Rene Olry",
+      "country": "fr",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Rene Olry，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_bel_georges_timmermans",
+      "name": "Georges Timmermans",
+      "country": "be",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Georges Timmermans，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_bel_mcl_keyaerts",
+      "name": "Mcl Keyaerts",
+      "country": "be",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Mcl Keyaerts，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_nor_carl_gustav_fleischer",
+      "name": "Carl Gustav Fleischer",
+      "country": "no",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Carl Gustav Fleischer，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_nor_carsten_tank_nielsen",
+      "name": "Carsten Tank Nielsen",
+      "country": "no",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Carsten Tank Nielsen，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_nor_edgar_otto",
+      "name": "Edgar Otto",
+      "country": "no",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Edgar Otto，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_nor_elias_corneliussen",
+      "name": "Elias Corneliussen",
+      "country": "no",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Elias Corneliussen，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_nor_henry_diesen",
+      "name": "Henry Diesen",
+      "country": "no",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Henry Diesen，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_nor_jacob_von_der_lippe",
+      "name": "Jacob Von Der Lippe",
+      "country": "no",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Jacob Von Der Lippe，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_nor_lev_trotsky",
+      "name": "Lev Trotsky",
+      "country": "no",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Lev Trotsky，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_sov_aleksandr_gorbatov",
+      "name": "Aleksandr Gorbatov",
+      "country": "ru",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Aleksandr Gorbatov，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_sov_andrey_vlasov",
+      "name": "Andrey Vlasov",
+      "country": "ru",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Andrey Vlasov，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_sov_arseny_golovko",
+      "name": "Arseny Golovko",
+      "country": "ru",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Arseny Golovko，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_sov_boris_shaposhnikov",
+      "name": "Boris Shaposhnikov",
+      "country": "ru",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Boris Shaposhnikov，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_sov_dmitry_lelyushenko",
+      "name": "Dmitry Lelyushenko",
+      "country": "ru",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Dmitry Lelyushenko，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_sov_filipp_oktyabrsky",
+      "name": "Filipp Oktyabrsky",
+      "country": "ru",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Filipp Oktyabrsky，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_sov_georgy_zakharov",
+      "name": "Georgy Zakharov",
+      "country": "ru",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Georgy Zakharov，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_sov_gordey_levchenko",
+      "name": "Gordey Levchenko",
+      "country": "ru",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Gordey Levchenko，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_sov_grigory_kulik",
+      "name": "Grigory Kulik",
+      "country": "ru",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Grigory Kulik，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_sov_ivan_fedyuninsky",
+      "name": "Ivan Fedyuninsky",
+      "country": "ru",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Ivan Fedyuninsky，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_sov_kirill_moskalenko",
+      "name": "Kirill Moskalenko",
+      "country": "ru",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Kirill Moskalenko，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_sov_kliment_voroshilov",
+      "name": "Kliment Voroshilov",
+      "country": "ru",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Kliment Voroshilov，二战时期的军事将领。",
+      "marshal": true
+    },
+    {
+      "id": "hoi4_sov_kuzma_galitsky",
+      "name": "Kuzma Galitsky",
+      "country": "ru",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Kuzma Galitsky，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_sov_maksim_purkayev",
+      "name": "Maksim Purkayev",
+      "country": "ru",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Maksim Purkayev，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_sov_markian_popov",
+      "name": "Markian Popov",
+      "country": "ru",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Markian Popov，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_sov_mikhail_tukhachevsky",
+      "name": "Mikhail Tukhachevsky",
+      "country": "ru",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Mikhail Tukhachevsky，二战时期的军事将领。",
+      "marshal": true
+    },
+    {
+      "id": "hoi4_fin_karl_oesch",
+      "name": "Karl Oesch",
+      "country": "fl",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Karl Oesch，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_usa_alexander_patch",
+      "name": "Alexander Patch",
+      "country": "am",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Alexander Patch，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_usa_arleigh_burke",
+      "name": "Arleigh Burke",
+      "country": "am",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Arleigh Burke，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_usa_charles_m_cooke_jr",
+      "name": "Charles M Cooke Jr",
+      "country": "am",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Charles M Cooke Jr，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_usa_clarence_huebner",
+      "name": "Clarence Huebner",
+      "country": "am",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Clarence Huebner，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_usa_edward_brooks",
+      "name": "Edward Brooks",
+      "country": "am",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Edward Brooks，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_usa_ernest_king",
+      "name": "Ernest King",
+      "country": "am",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Ernest King，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_usa_frank_jack_fletcher",
+      "name": "Frank Jack Fletcher",
+      "country": "am",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Frank Jack Fletcher，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_usa_geoffrey_keyes",
+      "name": "Geoffrey Keyes",
+      "country": "am",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Geoffrey Keyes，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_usa_harold_rainsford_stark",
+      "name": "Harold Rainsford Stark",
+      "country": "am",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Harold Rainsford Stark，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_usa_j_lawton_collins",
+      "name": "J Lawton Collins",
+      "country": "am",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "J Lawton Collins，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_usa_jonathan_wainwright",
+      "name": "Jonathan Wainwright",
+      "country": "am",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Jonathan Wainwright，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_usa_joseph_stilwell",
+      "name": "Joseph Stilwell",
+      "country": "am",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Joseph Stilwell，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_usa_leonard_gerow",
+      "name": "Leonard Gerow",
+      "country": "am",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Leonard Gerow，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_usa_leslie_mcnair",
+      "name": "Leslie Mcnair",
+      "country": "am",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Leslie Mcnair，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_usa_lloyd_fredendall",
+      "name": "Lloyd Fredendall",
+      "country": "am",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Lloyd Fredendall，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_usa_lucian_truscott",
+      "name": "Lucian Truscott",
+      "country": "am",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Lucian Truscott，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_usa_maurice_rose",
+      "name": "Maurice Rose",
+      "country": "am",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Maurice Rose，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_usa_oscar_griswold",
+      "name": "Oscar Griswold",
+      "country": "am",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Oscar Griswold，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_usa_raymond_a_spruance",
+      "name": "Raymond A Spruance",
+      "country": "am",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Raymond A Spruance，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_can_thomas_victor_anderson",
+      "name": "Thomas Victor Anderson",
+      "country": "ca",
+      "tier": 2,
+      "cost": 60,
+      "tactic": "阵地防御",
+      "mods": {
+        "defence": 0.025,
+        "supportAttack": 0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Thomas Victor Anderson，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_can_percival_john_montague",
+      "name": "Percival John Montague",
+      "country": "ca",
+      "tier": 2,
+      "cost": 60,
+      "tactic": "战役协同",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": 0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Percival John Montague，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_can_ht_bailliegrohman",
+      "name": "Ht Bailliegrohman",
+      "country": "ca",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Ht Bailliegrohman，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_mex_lazaro_cardenas",
+      "name": "Lazaro Cardenas",
+      "country": "mx",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Lazaro Cardenas，二战时期的军事将领。",
+      "marshal": true
+    },
+    {
+      "id": "hoi4_prc_lin_biao",
+      "name": "Lin Biao",
+      "country": "cn",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Lin Biao，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_bul_georgi_popov",
+      "name": "Georgi Popov",
+      "country": "bg",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Georgi Popov，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_bul_vasil_boydev",
+      "name": "Vasil Boydev",
+      "country": "bg",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Vasil Boydev，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_gre_markos_drakos",
+      "name": "Markos Drakos",
+      "country": "gr",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Markos Drakos，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_tur_cemil_cahit_toydemir",
+      "name": "Cemil Cahit Toydemir",
+      "country": "tr",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Cemil Cahit Toydemir，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_tur_mehmet_salih_omurtak",
+      "name": "Mehmet Salih Omurtak",
+      "country": "tr",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Mehmet Salih Omurtak，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_tur_nazmi_solok",
+      "name": "Nazmi Solok",
+      "country": "tr",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Nazmi Solok，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_tur_rauf_orbay",
+      "name": "Rauf Orbay",
+      "country": "tr",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Rauf Orbay，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_spr_jose_asensio_torrado",
+      "name": "Jose Asensio Torrado",
+      "country": "es",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Jose Asensio Torrado，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_por_raul_augusto_esteves",
+      "name": "Raul Augusto Esteves",
+      "country": "pt",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Raul Augusto Esteves，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_pol_vladislav_korchits",
+      "name": "Vladislav Korchits",
+      "country": "pl",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Vladislav Korchits，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_pol_wojtek",
+      "name": "Wojtek",
+      "country": "pl",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Wojtek，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_swe_claes_lindstrom",
+      "name": "Claes Lindstrom",
+      "country": "se",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Claes Lindstrom，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_swe_erik_af_edholm",
+      "name": "Erik Af Edholm",
+      "country": "se",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Erik Af Edholm，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_swe_folke_hogberg",
+      "name": "Folke Hogberg",
+      "country": "se",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Folke Hogberg，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_swe_rikard_persson",
+      "name": "Rikard Persson",
+      "country": "se",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Rikard Persson，二战时期的军事将领。",
+      "marshal": false
+    },
+    {
+      "id": "hoi4_per_reza_shah_pahlavi",
+      "name": "Reza Shah Pahlavi",
+      "country": "ir",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "进攻筹划",
+      "mods": {
+        "attack": -0.025,
+        "defence": -0.025,
+        "supportAttack": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Reza Shah Pahlavi，二战时期的军事将领。",
+      "marshal": true
+    },
+    {
+      "id": "hoi4_bra_augusto_rademaker",
+      "name": "Augusto Rademaker",
+      "country": "br",
+      "tier": 1,
+      "cost": 30,
+      "tactic": "海军指挥",
+      "mods": {
+        "navalAttack": 0.025,
+        "defence": -0.02
+      },
+      "years": [
+        1936,
+        1945
+      ],
+      "bio": "Augusto Rademaker，二战时期的军事将领。",
+      "marshal": false
+    }
+  ]
+}

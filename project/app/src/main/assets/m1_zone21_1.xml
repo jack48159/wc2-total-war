@@ -1,0 +1,37 @@
+<Texture name="m1_zone21_1.webp"/>
+<Images>
+    <Image name="1470.png" x="214" y="522" w="210" h="158" refx="0" refy="0"/>
+    <Image name="1471.png" x="213" y="682" w="194" h="137" refx="0" refy="0"/>
+    <Image name="1473.png" x="426" y="522" w="134" h="198" refx="0" refy="0"/>
+    <Image name="1475.png" x="602" y="391" w="210" h="191" refx="0" refy="0"/>
+    <Image name="1476.png" x="228" y="191" w="158" h="221" refx="0" refy="0"/>
+    <Image name="1478.png" x="814" y="571" w="202" h="187" refx="0" refy="0"/>
+    <Image name="1480.png" x="1" y="618" w="210" h="134" refx="0" refy="0"/>
+    <Image name="1483.png" x="202" y="821" w="190" h="166" refx="0" refy="0"/>
+    <Image name="1484.png" x="936" y="1" w="85" h="128" refx="0" refy="0"/>
+    <Image name="1486.png" x="388" y="389" w="212" h="131" refx="0" refy="0"/>
+    <Image name="1487.png" x="754" y="760" w="188" h="183" refx="0" refy="0"/>
+    <Image name="1489.png" x="388" y="238" w="215" h="149" refx="0" refy="0"/>
+    <Image name="1491.png" x="1" y="760" w="199" h="148" refx="0" refy="0"/>
+    <Image name="1496.png" x="1" y="366" w="217" h="147" refx="0" refy="0"/>
+    <Image name="1497.png" x="256" y="1" w="228" h="188" refx="0" refy="0"/>
+    <Image name="1498.png" x="486" y="1" w="223" h="149" refx="0" refy="0"/>
+    <Image name="1500.png" x="562" y="710" w="190" h="133" refx="0" refy="0"/>
+    <Image name="1503.png" x="1" y="515" w="211" h="101" refx="0" refy="0"/>
+    <Image name="1504.png" x="1" y="151" w="225" h="103" refx="0" refy="0"/>
+    <Image name="1505.png" x="605" y="275" w="213" h="114" refx="0" refy="0"/>
+    <Image name="1506.png" x="711" y="1" w="223" h="104" refx="0" refy="0"/>
+    <Image name="1507.png" x="562" y="584" w="194" h="124" refx="0" refy="0"/>
+    <Image name="1509.png" x="1" y="1" w="253" h="148" refx="0" refy="0"/>
+    <Image name="1510.png" x="1" y="256" w="220" h="108" refx="0" refy="0"/>
+    <Image name="1513.png" x="711" y="107" w="222" h="166" refx="0" refy="0"/>
+    <Image name="1515.png" x="409" y="722" w="148" h="189" refx="0" refy="0"/>
+    <Image name="1516.png" x="1" y="910" w="196" h="109" refx="0" refy="0"/>
+    <Image name="1517.png" x="820" y="275" w="203" h="161" refx="0" refy="0"/>
+    <Image name="1518.png" x="814" y="438" w="203" h="131" refx="0" refy="0"/>
+    <Image name="1519.png" x="559" y="845" w="188" h="156" refx="0" refy="0"/>
+    <Image name="1520.png" x="394" y="913" w="160" h="110" refx="0" refy="0"/>
+    <Image name="1525.png" x="749" y="945" w="112" h="68" refx="0" refy="0"/>
+    <Image name="1532.png" x="220" y="414" w="149" h="97" refx="0" refy="0"/>
+    <Image name="1533.png" x="486" y="152" w="222" h="84" refx="0" refy="0"/>
+</Images>

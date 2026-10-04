@@ -1,0 +1,445 @@
+{
+  "diplomacy": {
+    "enabled": true,
+    "allowAlliedAttack": false,
+    "betrayalPolicy": "war",
+    "pacts": {
+      "es_pt": {
+        "type": "nap",
+        "sinceRound": 1,
+        "reason": "iberian_pact"
+      },
+      "de_tr": {
+        "type": "nap",
+        "sinceRound": 1,
+        "reason": "german_turkish_friendship"
+      }
+    },
+    "relations": {
+      "am_gb": "alliance",
+      "am_fr": "alliance",
+      "am_ca": "alliance",
+      "am_ru": "alliance",
+      "am_de": "war",
+      "am_it": "war",
+      "am_ro": "war",
+      "am_bg": "war",
+      "am_hu": "war",
+      "am_fl": "war",
+      "am_se": "peace",
+      "am_ch": "peace",
+      "am_pt": "peace",
+      "am_es": "peace",
+      "am_tr": "peace",
+      "fr_gb": "alliance",
+      "ca_gb": "alliance",
+      "gb_ru": "alliance",
+      "de_gb": "war",
+      "gb_it": "war",
+      "gb_ro": "war",
+      "bg_gb": "war",
+      "gb_hu": "war",
+      "fl_gb": "war",
+      "gb_se": "peace",
+      "ch_gb": "peace",
+      "gb_pt": "peace",
+      "es_gb": "peace",
+      "gb_tr": "peace",
+      "ca_fr": "alliance",
+      "fr_ru": "alliance",
+      "de_fr": "war",
+      "fr_it": "war",
+      "fr_ro": "war",
+      "bg_fr": "war",
+      "fr_hu": "war",
+      "fl_fr": "war",
+      "fr_se": "peace",
+      "ch_fr": "peace",
+      "fr_pt": "peace",
+      "es_fr": "peace",
+      "fr_tr": "peace",
+      "ca_ru": "alliance",
+      "ca_de": "war",
+      "ca_it": "war",
+      "ca_ro": "war",
+      "bg_ca": "war",
+      "ca_hu": "war",
+      "ca_fl": "war",
+      "ca_se": "peace",
+      "ca_ch": "peace",
+      "ca_pt": "peace",
+      "ca_es": "peace",
+      "ca_tr": "peace",
+      "de_ru": "war",
+      "it_ru": "war",
+      "ro_ru": "war",
+      "bg_ru": "war",
+      "hu_ru": "war",
+      "fl_ru": "war",
+      "ru_se": "peace",
+      "ch_ru": "peace",
+      "pt_ru": "peace",
+      "es_ru": "peace",
+      "ru_tr": "peace",
+      "de_it": "alliance",
+      "de_ro": "alliance",
+      "bg_de": "alliance",
+      "de_hu": "alliance",
+      "de_fl": "alliance",
+      "de_se": "peace",
+      "ch_de": "peace",
+      "de_pt": "peace",
+      "de_es": "peace",
+      "de_tr": "peace",
+      "it_ro": "alliance",
+      "bg_it": "alliance",
+      "hu_it": "alliance",
+      "fl_it": "alliance",
+      "it_se": "peace",
+      "ch_it": "peace",
+      "it_pt": "peace",
+      "es_it": "peace",
+      "it_tr": "peace",
+      "bg_ro": "alliance",
+      "hu_ro": "alliance",
+      "fl_ro": "alliance",
+      "ro_se": "peace",
+      "ch_ro": "peace",
+      "pt_ro": "peace",
+      "es_ro": "peace",
+      "ro_tr": "peace",
+      "bg_hu": "alliance",
+      "bg_fl": "alliance",
+      "bg_se": "peace",
+      "bg_ch": "peace",
+      "bg_pt": "peace",
+      "bg_es": "peace",
+      "bg_tr": "peace",
+      "fl_hu": "alliance",
+      "hu_se": "peace",
+      "ch_hu": "peace",
+      "hu_pt": "peace",
+      "es_hu": "peace",
+      "hu_tr": "peace",
+      "fl_se": "peace",
+      "ch_fl": "peace",
+      "fl_pt": "peace",
+      "es_fl": "peace",
+      "fl_tr": "peace",
+      "ch_se": "peace",
+      "pt_se": "peace",
+      "es_se": "peace",
+      "se_tr": "peace",
+      "ch_pt": "peace",
+      "ch_es": "peace",
+      "ch_tr": "peace",
+      "es_pt": "peace",
+      "pt_tr": "peace",
+      "es_tr": "peace"
+    }
+  },
+  "scenarioEvents": {
+    "definitions": [
+      {
+        "id": "atlantic_convoy_support",
+        "type": "notice",
+        "trigger": "roundBegin",
+        "conditions": [
+          {
+            "type": "round",
+            "value": 2,
+            "op": "gte"
+          }
+        ],
+        "title": "大西洋护航战胜利与盟军增援",
+        "body": "美英盟军掌握大西洋制海权，租借法案战略物资与重装装甲部队源源不断运抵不列颠！",
+        "actions": [
+          {
+            "type": "changeMoney",
+            "country": "gb",
+            "amount": 350
+          },
+          {
+            "type": "changeIndustry",
+            "country": "gb",
+            "amount": 150
+          },
+          {
+            "type": "changeMoney",
+            "country": "am",
+            "amount": 300
+          },
+          {
+            "type": "spawnArmy",
+            "area": 21,
+            "armyType": "heavytank"
+          },
+          {
+            "type": "spawnArmy",
+            "area": 26,
+            "armyType": "heavytank"
+          },
+          {
+            "type": "spawnArmy",
+            "area": 11,
+            "armyType": "tank"
+          },
+          {
+            "type": "changeStability",
+            "country": "gb",
+            "amount": 10,
+            "reason": "convoy_victory"
+          }
+        ]
+      },
+      {
+        "id": "battle_of_kursk",
+        "type": "notice",
+        "trigger": "roundBegin",
+        "conditions": [
+          {
+            "type": "round",
+            "value": 3,
+            "op": "gte"
+          }
+        ],
+        "title": "库尔斯克战役爆发",
+        "body": "史上最大规模装甲决战爆发！苏联红军重创德军装甲主力，粉碎堡垒行动，彻底掌握东线战略主动权！",
+        "actions": [
+          {
+            "type": "changeMoney",
+            "country": "ru",
+            "amount": 300
+          },
+          {
+            "type": "changeIndustry",
+            "country": "ru",
+            "amount": 150
+          },
+          {
+            "type": "changeStability",
+            "country": "ru",
+            "amount": 15,
+            "reason": "kursk_victory"
+          },
+          {
+            "type": "changeStability",
+            "country": "de",
+            "amount": -15,
+            "reason": "kursk_defeat"
+          }
+        ]
+      },
+      {
+        "id": "operation_husky",
+        "type": "notice",
+        "trigger": "roundBegin",
+        "conditions": [
+          {
+            "type": "round",
+            "value": 6,
+            "op": "gte"
+          }
+        ],
+        "title": "西西里战役打响",
+        "body": "英美盟军发起哈斯基行动登陆西西里岛，开辟地中海第二战场，轴心国南翼濒临崩溃！",
+        "actions": [
+          {
+            "type": "changeMoney",
+            "country": "gb",
+            "amount": 300
+          },
+          {
+            "type": "changeMoney",
+            "country": "am",
+            "amount": 300
+          },
+          {
+            "type": "changeStability",
+            "country": "de",
+            "amount": -15,
+            "reason": "husky_shock"
+          },
+          {
+            "type": "changeStability",
+            "country": "it",
+            "amount": -15,
+            "reason": "husky_shock"
+          }
+        ]
+      },
+      {
+        "id": "italy_armistice",
+        "type": "notice",
+        "trigger": "roundBegin",
+        "conditions": [
+          {
+            "type": "round",
+            "value": 8,
+            "op": "gte"
+          },
+          {
+            "type": "diplomaticRelation",
+            "first": "it",
+            "second": "de",
+            "state": "alliance"
+          }
+        ],
+        "title": "意大利停战与倒向盟军",
+        "body": "意大利与盟军签署卡西比尔停战协定，正式退出轴心国，对纳粹德国宣战并加入盟军！",
+        "actions": [
+          {
+            "type": "setDiplomacy",
+            "first": "it",
+            "second": "de",
+            "state": "war",
+            "reason": "italy_armistice"
+          },
+          {
+            "type": "setDiplomacy",
+            "first": "it",
+            "second": "gb",
+            "state": "alliance",
+            "reason": "italy_joins_allies"
+          },
+          {
+            "type": "setDiplomacy",
+            "first": "it",
+            "second": "am",
+            "state": "alliance",
+            "reason": "italy_joins_allies"
+          },
+          {
+            "type": "setDiplomacy",
+            "first": "it",
+            "second": "fr",
+            "state": "alliance",
+            "reason": "italy_joins_allies"
+          },
+          {
+            "type": "setDiplomacy",
+            "first": "it",
+            "second": "ru",
+            "state": "alliance",
+            "reason": "italy_joins_allies"
+          },
+          {
+            "type": "changeStability",
+            "country": "de",
+            "amount": -20,
+            "reason": "italy_defection"
+          },
+          {
+            "type": "changeStability",
+            "country": "it",
+            "amount": 10,
+            "reason": "italy_liberation"
+          }
+        ]
+      },
+      {
+        "id": "operation_bagration",
+        "type": "notice",
+        "trigger": "roundBegin",
+        "conditions": [
+          {
+            "type": "round",
+            "value": 18,
+            "op": "gte"
+          }
+        ],
+        "title": "巴格拉季昂行动",
+        "body": "苏联红军发起巴格拉季昂大反攻，彻底击溃德军中央集团军群，解放白俄罗斯并逼近德国本土！",
+        "actions": [
+          {
+            "type": "changeMoney",
+            "country": "ru",
+            "amount": 350
+          },
+          {
+            "type": "changeIndustry",
+            "country": "ru",
+            "amount": 180
+          },
+          {
+            "type": "changeStability",
+            "country": "ru",
+            "amount": 15,
+            "reason": "bagration_triumph"
+          },
+          {
+            "type": "changeStability",
+            "country": "de",
+            "amount": -15,
+            "reason": "bagration_shock"
+          },
+          {
+            "type": "changeStability",
+            "country": "ro",
+            "amount": -15,
+            "reason": "axis_shaken"
+          }
+        ]
+      },
+      {
+        "id": "operation_overlord",
+        "type": "notice",
+        "trigger": "roundBegin",
+        "conditions": [
+          {
+            "type": "round",
+            "value": 14,
+            "op": "gte"
+          }
+        ],
+        "title": "霸王行动：诺曼底登陆",
+        "body": "英美盟军实施历史上最大规模的两栖反攻，开辟欧洲第二战场！",
+        "actions": [
+          {
+            "type": "changeMoney",
+            "country": "gb",
+            "amount": 400
+          },
+          {
+            "type": "changeIndustry",
+            "country": "gb",
+            "amount": 200
+          },
+          {
+            "type": "changeMoney",
+            "country": "am",
+            "amount": 400
+          },
+          {
+            "type": "spawnArmy",
+            "area": 21,
+            "armyType": "heavytank"
+          },
+          {
+            "type": "spawnArmy",
+            "area": 26,
+            "armyType": "heavytank"
+          },
+          {
+            "type": "changeStability",
+            "country": "de",
+            "amount": -20,
+            "reason": "two_front_collapse"
+          },
+          {
+            "type": "changeStability",
+            "country": "gb",
+            "amount": 15,
+            "reason": "liberation_offensive"
+          }
+        ]
+      }
+    ],
+    "variables": {}
+  },
+  "ai_rules": {
+    "war_cooldown": 4,
+    "min_stability": 55,
+    "max_active_major_enemies": 2
+  }
+}

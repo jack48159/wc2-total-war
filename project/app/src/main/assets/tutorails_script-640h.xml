@@ -1,0 +1,123 @@
+<script>
+	<cmd name="moveto area" id="45"/>
+	<cmd name="show text" id="1"/>
+	<cmd name="wait"/>
+	<cmd name="finger at" x="240" y="120"/>
+	<cmd name="finger to" x="48" y="18"/>
+	<cmd name="draw rect" x="0" y="0" w="98" h="26"/>
+	<cmd name="show text" id="2"/>
+	<cmd name="wait"/>
+	<cmd name="clear rect"/>
+	<cmd name="finger to" x="324" y="155"/>
+	<cmd name="sel area" id="45"/>
+	<cmd name="show text" id="3"/>
+	<cmd name="wait"/>
+	<cmd name="finger at" x="294" y="155"/>
+	<cmd name="finger to" x="45" y="62"/>
+	<cmd name="draw rect" x="0" y="22" w="88" h="48"/>
+	<cmd name="wait"/>
+	<cmd name="clear rect"/>
+	<cmd name="hide finger"/>
+	<cmd name="unsel area"/>
+	<cmd name="moveto area" id="47"/>
+	<cmd name="sel area" id="46"/>
+	<cmd name="show text" id="4"/>
+	<cmd name="wait"/>
+	<cmd name="unsel area"/>
+	<cmd name="moveto area" id="66"/>
+	<cmd name="draw rect" x="265" y="30" w="100" h="205"/>
+	<cmd name="show text" id="5"/>
+	<cmd name="wait"/>
+	<cmd name="clear rect"/>
+	<cmd name="draw rect" x="278" y="71" w="20" h="20"/>
+	<cmd name="finger at" x="290" y="90"/>
+	<cmd name="show text" id="6"/>
+	<cmd name="wait"/>
+	<cmd name="clear rect"/>
+	<cmd name="hide finger"/>
+	<cmd name="moveto area" id="45"/>
+	<cmd name="finger at" x="201" y="115"/>
+	<cmd name="draw rect" x="160" y="55" w="75" h="75"/>
+	<cmd name="show text" id="7"/>
+	<cmd name="wait"/>
+	<cmd name="clear rect"/>
+	<cmd name="sel area" id="44"/>
+	<cmd name="draw rect" x="577" y="34" w="63" h="258"/>
+	<cmd name="finger to" x="613" y="190"/>
+	<cmd name="wait"/>
+	<cmd name="unsel area"/>
+	<cmd name="clear rect"/>
+	<cmd name="moveto area" id="54"/>
+	<cmd name="finger to" x="199" y="180"/>
+	<cmd name="draw rect" x="125" y="100" w="150" h="120"/>
+	<cmd name="show text" id="8"/>
+	<cmd name="wait"/>
+	<cdm name="clear rect"/>
+	<cmd name="finger to" x="324" y="162"/>
+	<cmd name="draw rect" x="270" y="90" w="130" h="130"/>
+	<cmd name="sel area" id="54"/>
+	<cdm name="wait"/>
+	<cmd name="unsel area"/>
+	<cmd name="clear rect"/>
+	<cmd name="finger to" x="15" y="300"/>
+	<cmd name="draw rect" x="0" y="290" w="34" h="32"/>
+	<cmd name="show text" id="9"/>
+	<cmd name="wait"/>
+	<cmd name="hide finger"/>
+	<cmd name="clear rect"/>
+	<cmd name="show image" id="1" x="0" y="-23" w="462" h="244"/>
+	<cmd name="draw rect" x="13" y="127" w="108" h="31"/>
+	<cmd name="finger at" x="70" y="145"/>
+	<cmd name="show text" id="10"/>
+	<cmd name="wait"/>
+	<cdm name="hide finger"/>
+	<cmd name="hide image" id="1"/>
+	<cmd name="clear rect"/>
+	<cmd name="moveto area" id="26"/>
+	<cmd name="finger at" x="246" y="145"/>
+	<cmd name="show text" id="11"/>
+	<cmd name="wait"/>
+	<cmd name="finger to" x="316" y="100"/>
+	<cmd name="wait"/>
+	<cmd name="finger to" x="152" y="100"/>
+	<cmd name="wait"/>
+	<cmd name="hide finger"/>
+	<cmd name="show image" id="1" x="-117" y="0" w="462" h="244"/>
+	<cmd name="draw rect" x="213" y="25" w="108" h="156"/>
+	<cmd name="show text" id="12"/>
+	<cmd name="wait"/>
+	<cmd name="draw rect" x="3" y="25" w="106" h="156"/>
+	<cmd name="wait"/>
+	<cmd name="draw rect" x="107" y="25" w="108" h="156"/>
+	<cmd name="show text" id="13"/>
+	<cmd name="wait"/>
+	<cmd name="hide image" id="1"/>
+	<cmd name="clear rect"/>
+	<cmd name="moveto area" id="36"/>
+	<cmd name="draw rect" x="270" y="100" w="100" h="80"/>
+	<cmd name="finger at" x="324" y="165"/>
+	<cmd name="sel area" id="36"/>
+	<cmd name="show text" id="14"/>
+	<cmd name="wait"/>
+	<cmd name="hide finger"/>
+	<cmd name="clear rect"/>
+	<cmd name="sel area" id="26"/>
+	<cmd name="moveto area" id="34"/>
+	<cmd name="show text" id="15"/>
+	<cmd name="wait"/>
+	<cmd name="unsel area"/>
+	<cmd name="moveto area" id="45"/>
+	<cmd name="draw rect" x="606" y="0" w="35" h="32"/>
+	<cmd name="finger at" x="626" y="24"/>
+	<cmd name="show text" id="16"/>
+	<cmd name="wait"/>
+	<cmd name="draw rect" x="606" y="289" w="35" h="32"/>
+	<cmd name="finger to" x="626" y="300"/>
+	<cmd name="show text" id="17"/>
+	<cmd name="wait"/>
+	<cmd name="clear rect"/>
+	<cmd name="hide finger"/>
+	<cmd name="show text" id="18"/>
+	<cmd name="wait"/>
+	<cmd name="exit"/>
+</script>

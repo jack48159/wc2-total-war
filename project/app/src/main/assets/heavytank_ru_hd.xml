@@ -1,0 +1,6 @@
+﻿<Texture name="heavytank_ru_hd.png" />
+<Images>
+    <Image name="补间 32.png" x="1" y="1" w="152" h="9" refx="0" refy="0" />
+    <Image name="补间 31.png" x="1" y="11" w="186" h="97" refx="0" refy="0" />
+    <Image name="补间 33.png" x="1" y="109" w="380" h="150" refx="0" refy="0" />
+</Images>

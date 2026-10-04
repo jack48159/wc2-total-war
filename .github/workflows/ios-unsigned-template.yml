@@ -1,0 +1,24 @@
+name: iOS unsigned template
+on: workflow_dispatch
+jobs:
+  ios:
+    runs-on: macos-latest
+    defaults:
+      run:
+        working-directory: mobile/ios
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install
+      - run: npm run build:web:min
+      - run: if [ ! -d ios ]; then npx cap add ios; fi
+      - run: sh ./configure_native.sh
+      - run: npx cap sync ios
+      - run: xcodebuild -project ios/App/App.xcodeproj -scheme App -configuration Release -sdk iphoneos -derivedDataPath build CODE_SIGNING_ALLOWED=NO build
+      - run: mkdir -p Payload && cp -R build/Build/Products/Release-iphoneos/App.app Payload/ && zip -qr wc2-unsigned.ipa Payload
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wc2-unsigned-ipa
+          path: mobile/ios/wc2-unsigned.ipa

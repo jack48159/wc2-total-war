@@ -1,0 +1,206 @@
+{
+ "de": {
+  "id": "de",
+  "name": "德国",
+  "flag": "sflag_de",
+  "card": "button_de"
+ },
+ "ru": {
+  "id": "ru",
+  "name": "苏联",
+  "flag": "sflag_ru",
+  "card": "button_ru"
+ },
+ "gb": {
+  "id": "gb",
+  "name": "英国",
+  "flag": "sflag_gb",
+  "card": "button_gb"
+ },
+ "fr": {
+  "id": "fr",
+  "name": "法国",
+  "flag": "sflag_fr",
+  "card": "button_fr"
+ },
+ "it": {
+  "id": "it",
+  "name": "意大利",
+  "flag": "sflag_it",
+  "card": "button_it"
+ },
+ "pl": {
+  "id": "pl",
+  "name": "波兰",
+  "flag": "sflag_pl",
+  "card": "button_pl"
+ },
+ "es": {
+  "id": "es",
+  "name": "西班牙",
+  "flag": "sflag_es",
+  "card": "button_es"
+ },
+ "yu": {
+  "id": "yu",
+  "name": "南斯拉夫",
+  "flag": "sflag_yu",
+  "card": "button_yu"
+ },
+ "ro": {
+  "id": "ro",
+  "name": "罗马尼亚",
+  "flag": "sflag_ro",
+  "card": "button_ro"
+ },
+ "gr": {
+  "id": "gr",
+  "name": "希腊",
+  "flag": "sflag_gr",
+  "card": "button_gr"
+ },
+ "bg": {
+  "id": "bg",
+  "name": "保加利亚",
+  "flag": "sflag_bg",
+  "card": "button_bg"
+ },
+ "hu": {
+  "id": "hu",
+  "name": "匈牙利",
+  "flag": "sflag_hu",
+  "card": "button_hu"
+ },
+ "fl": {
+  "id": "fl",
+  "name": "芬兰",
+  "flag": "sflag_fl",
+  "card": "button_fl"
+ },
+ "dk": {
+  "id": "dk",
+  "name": "丹麦",
+  "flag": "sflag_dk",
+  "card": "button_dk"
+ },
+ "nl": {
+  "id": "nl",
+  "name": "荷兰",
+  "flag": "sflag_nl",
+  "card": "button_nl"
+ },
+ "be": {
+  "id": "be",
+  "name": "比利时",
+  "flag": "sflag_be",
+  "card": "button_be"
+ },
+ "no": {
+  "id": "no",
+  "name": "挪威",
+  "flag": "sflag_no",
+  "card": "button_no"
+ },
+ "tr": {
+  "id": "tr",
+  "name": "土耳其",
+  "flag": "sflag_tr",
+  "card": "button_tr"
+ },
+ "pt": {
+  "id": "pt",
+  "name": "葡萄牙",
+  "flag": "sflag_pt",
+  "card": "button_pt"
+ },
+ "se": {
+  "id": "se",
+  "name": "瑞典",
+  "flag": "sflag_se",
+  "card": "button_se"
+ },
+ "ch": {
+  "id": "ch",
+  "name": "瑞士",
+  "flag": "sflag_ch",
+  "card": "button_ch"
+ },
+ "am": {
+  "id": "am",
+  "name": "美国",
+  "flag": "sflag_am",
+  "card": "button_am"
+ },
+ "ja": {
+  "id": "ja",
+  "name": "日本",
+  "flag": "sflag_ja",
+  "card": "button_ja"
+ },
+ "tw": {
+  "id": "tw",
+  "name": "中华民国",
+  "flag": "sflag_tw",
+  "card": "button_tw"
+ },
+ "au": {
+  "id": "au",
+  "name": "澳大利亚",
+  "flag": "sflag_au",
+  "card": "button_au"
+ },
+ "ca": {
+  "id": "ca",
+  "name": "加拿大",
+  "flag": "sflag_ca",
+  "card": "button_ca"
+ },
+ "mx": {
+  "id": "mx",
+  "name": "墨西哥",
+  "flag": "sflag_mx",
+  "card": "button_mx"
+ },
+ "cn": {
+  "id": "cn",
+  "name": "中国",
+  "flag": "sflag_cn",
+  "card": "button_cn"
+ },
+ "nk": {
+  "id": "nk",
+  "name": "朝鲜",
+  "flag": "sflag_nk",
+  "card": "button_nk"
+ },
+ "rk": {
+  "id": "rk",
+  "name": "韩国",
+  "flag": "sflag_rk",
+  "card": "button_rk"
+ },
+ "in": {
+  "id": "in",
+  "name": "印度",
+  "flag": "sflag_in",
+  "card": "button_in"
+ },
+ "dx": {
+  "id": "dx",
+  "name": "德国B（镜像）",
+  "flag": "sflag_de",
+  "card": "button_de"
+ },
+ "de1": {
+  "id": "de1",
+  "name": "德国A",
+  "flag": "sflag_de",
+  "card": "button_de"
+ },
+ "de2": {
+  "id": "de2",
+  "name": "德国B",
+  "flag": "sflag_de",
+  "card": "button_de"
+ }
+}

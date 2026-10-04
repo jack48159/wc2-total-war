@@ -1,0 +1,935 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Infantry</key>
+	<string>步兵</string>
+	<key>Armour</key>
+	<string>裝甲車</string>
+	<key>Artillery</key>
+	<string>大炮</string>
+	<key>Rocket</key>
+	<string>火箭炮</string>
+	<key>Tank</key>
+	<string>坦克</string>
+	<key>Heavy Tank</key>
+	<string>重坦克</string>
+	
+	<key>Destroyer</key>
+	<string>驅逐艦</string>
+	<key>Cruiser</key>
+	<string>巡洋艦</string>
+	<key>BattleShip</key>
+	<string>戰列艦</string>
+	<key>Aircraft Carrier</key>
+	<string>航空母艦</string>
+	
+	<key>Airstrike</key>
+	<string>空襲</string>
+	<key>Bomber</key>
+	<string>轟炸</string>
+	<key>Airborne Force</key>
+	<string>空降兵</string>
+	<key>Nuclear Bomb</key>
+	<string>核彈</string>
+	
+	<key>City</key>
+	<string>城市</string>
+	<key>Industry</key>
+	<string>工業</string>
+	<key>Airport</key>
+	<string>機場</string>
+	<key>Land Fort</key>
+	<string>要塞炮</string>
+	<key>Entrenchment</key>
+	<string>戰壕</string>
+	<key>Antiaircraft</key>
+	<string>防空機槍</string>
+	<key>Radar</key>
+	<string>雷達</string>
+	
+	<key>Research</key>
+	<string>研發</string>
+	<key>Carrier</key>
+	<string>運輸船</string>
+	<key>Assault Art</key>
+	<string>突擊戰術</string>
+	<key>Defend Art</key>
+	<string>防禦戰術</string>
+	<key>Commander</key>
+	<string>指揮官</string>
+	<key>Supply Line</key>
+	<string>補給線</string>
+	<key>Ace Forces</key>
+	<string>王牌部隊</string>
+
+	<key>Infantry Intro</key>
+	<string>最容易組建的部隊，戰場上的主力軍。</string>
+	<key>Armour Intro</key>
+	<string>裝甲車擁有最優越的機動性，它的大口徑機槍可以\n有效的殺傷步兵。</string>
+	<key>Artillery Intro</key>
+	<string>在進攻時可以讓很多部隊無法還擊，但是移動速度\n緩慢。</string>
+	<key>Rocket Intro</key>
+	<string>裝備著威力巨大的火箭裝置，可以給予敵軍遠程打\n擊，但是移動速度緩慢而且沒有裝甲防護。</string>
+	<key>Tank Intro</key>
+	<string>擁有不錯的裝甲和火力。戰壕無法阻擋他的前進，\n全殲敵軍後不耗費移動力。</string>
+	<key>Heavy Tank Intro</key>
+	<string>擁有強大的遠程火力，在大炮攻擊時可以給予反擊。\n戰壕無法阻擋他的前進，全殲敵軍後不耗費移動力。</string>
+	
+	<key>Destroyer Intro</key>
+	<string>最初級的軍艦，通常負責海上護航和巡邏任務。</string>
+	<key>Cruiser Intro</key>
+	<string>海戰中的主力軍艦，有著不錯的裝甲和強大的火力。</string>
+	<key>BattleShip Intro</key>
+	<string>裝備有大口徑艦炮和厚重的裝甲，具有強大攻擊力\n和防護力。</string>
+	<key>Aircraft Carrier Intro</key>
+	<string>航空母艦是海戰的核心，他的艦載飛機可以對目標\n進行轟炸，但是自身防禦力不強。</string>
+	
+	<key>Airstrike Intro</key>
+	<string>戰鬥機上裝備大口徑機槍對敵方區域進行空中打擊。</string>
+	<key>Bomber Intro</key>
+	<string>對敵方區域進行轟炸。被轟炸的區域內所有部隊，\n城市和工業設施都遭受打擊。\n[1個回合使用1次]</string>
+	<key>Airborne Force Intro</key>
+	<string>在指定的陸地區域內空降一支步兵。\n[2個回合使用1次]</string>
+	<key>Nuclear Bomb Intro</key>
+	<string>在一個區域內實施核彈攻擊，徹底摧毀該地區的軍\n隊和設施。\n[3個回合使用1次]</string>
+	
+	<key>City Intro</key>
+	<string>提高城市等級能增加產值和部隊補給，高等級的城\n市能組建步兵。</string>
+	<key>Industry Intro</key>
+	<string>提高工業等級能增加工業值和部隊補給，高等級的\n工業區能組建高等級的機械化部隊。</string>
+	<key>Airport Intro</key>
+	<string>機場是空中打擊敵軍必要的設施並且能給予部隊更\n多的補給。</string>
+	<key>Land Fort Intro</key>
+	<string>提升部隊防禦力。防禦大炮攻擊時可以反擊，防禦\n軍艦進攻可以給予雙倍反擊。</string>
+	<key>Entrenchment Intro</key>
+	<string>增加我方部隊的防禦力並且可以減少進攻方部隊的\n移動力。</string>
+	<key>Antiaircraft Intro</key>
+	<string>防空武器可以很大程度的減少空襲和轟炸帶來的傷\n害。</string>
+	<key>Radar Intro</key>
+	<string>雷達的偵察功能可以有效的減少敵方遠程火力和空\n襲帶來的傷害。</string>
+	
+	<key>Research Intro</key>
+	<string>升級科技需要研發3個回合，當科技研發完成後就可\n以使用該等級的卡片。\n[3個回合使用1次]</string>
+	<key>Carrier Intro</key>
+	<string>在裝備上運輸船後陸軍部隊可以在海洋上移動。</string>
+	<key>Assault Art Intro</key>
+	<string>突擊戰術可以幫助我方部隊增加攻擊力。</string>
+	<key>Defend Art Intro</key>
+	<string>防禦戰術可以幫助我方部隊增加防禦力。</string>
+	<key>Commander Intro</key>
+	<string>使用指揮官後部隊的能力會增加。指揮官軍銜等級\n將決定指揮官的能力。</string>
+	<key>Supply Line Intro</key>
+	<string>對我方單個地區內所有受損部隊完成補給。\n[3個回合使用1次]</string>
+	<key>Ace Forces Intro</key>
+	<string>指定一支部隊給予晉升一級的獎勵。\n[1個回合使用1次]</string>
+	
+	<key>axis battle name 1</key>
+	<string>閃電戰</string>
+	<key>axis battle name 2</key>
+	<string>黃色計劃</string>
+	<key>axis battle name 3</key>
+	<string>海獅計劃</string>
+	<key>axis battle name 4</key>
+	<string>巴爾幹戰役</string>
+	<key>axis battle name 5</key>
+	<string>北非戰役</string>
+	<key>axis battle name 6</key>
+	<string>巴巴羅薩行動</string>
+	<key>axis battle name 7</key>
+	<string>虎！虎！虎！</string>
+	<key>axis battle name 8</key>
+	<string>南亞戰役</string>
+	<key>axis battle name 9</key>
+	<string>中緬印戰場</string>
+	<key>axis battle name 10</key>
+	<string>入侵北美</string>
+    
+	<key>allies battle name 1</key>
+	<string>保衛莫斯科</string>
+	<key>allies battle name 2</key>
+	<string>中途島戰役</string>
+	<key>allies battle name 3</key>
+	<string>阿拉曼戰役</string>
+	<key>allies battle name 4</key>
+	<string>庫爾斯克會戰役</string>
+	<key>allies battle name 5</key>
+	<string>西西裏島登陸戰役</string>
+	<key>allies battle name 6</key>
+	<string>英帕爾戰役</string>
+	<key>allies battle name 7</key>
+	<string>霸王行動</string>
+	<key>allies battle name 8</key>
+	<string>目標柏林</string>
+	<key>allies battle name 9</key>
+	<string>遠東戰役</string>
+	<key>allies battle name 10</key>
+	<string>目標東京</string>
+	
+	<key>wto battle name 1</key>
+	<string>紅色風暴</string>
+	<key>wto battle name 2</key>
+	<string>中印戰爭</string>
+	<key>wto battle name 3</key>
+	<string>中東戰爭</string>
+	<key>wto battle name 4</key>
+	<string>太平洋戰爭</string>
+	<key>wto battle name 5</key>
+	<string>圍攻土耳其</string>
+	<key>wto battle name 6</key>
+	<string>反擊</string>
+	<key>wto battle name 7</key>
+	<string>遠征美洲</string>
+	
+	<key>nato battle name 1</key>
+	<string>導彈危機</string>
+	<key>nato battle name 2</key>
+	<string>紅色陰影</string>
+	<key>nato battle name 3</key>
+	<string>解放非洲</string>
+	<key>nato battle name 4</key>
+	<string>海上之路</string>
+	<key>nato battle name 5</key>
+	<string>爭霸印度洋</string>
+	<key>nato battle name 6</key>
+	<string>南太平洋</string>
+	<key>nato battle name 7</key>
+	<string>榮耀與和平</string>
+    
+	<key>axis battle intro 1</key>
+	<string>元首已經簽署了進攻波蘭的命令，您將率領帝國最精銳的軍團\n迅速擊敗波蘭，古德裏安將軍會與您並肩作戰。指揮官閣下！\n最高指揮部期待您勝利的消息！</string>
+	<key>axis battle intro 2</key>
+	<string>最高統帥部終於擬定了向西進軍的計劃，該計劃分成2個部分：\nA集團軍將繞過法國的馬奇諾防線入侵荷蘭和比利時，最終進\n攻巴黎。B集團軍為了帝國所需要的資源向北歐國家丹麥和挪\n威進軍。古德裏安將軍將與你共同指揮這場戰役。</string>
+	<key>axis battle intro 3</key>
+	<string>我們的軍隊穿過凱旋門時的場景令人振奮，元首非常滿意。但\n是情報顯示英軍和法軍正試圖反擊，請不要給他們任何機會！\n戈林元帥將使用他的王牌空軍協助你作戰。</string>
+	<key>axis battle intro 4</key>
+	<string>德國的幾次軍事行動都獲得了空前的成功，這些都刺激了總理\n閣下向巴爾幹地區擴張的決心。考慮到希臘有英國人的援助我\n們也邀請了保加利亞和羅馬尼亞共同參與此次行動，格拉齊亞\n尼將軍會在海上支援您！</string>
+	<key>axis battle intro 5</key>
+	<string>意大利的軍隊在北非陷入了困境。元首擔心如果非州落到英國\n手裏我們在地中海的補給線就會被切斷，所以必須立刻向非洲\n派遣援軍。指揮官閣下！隆美爾將軍已經休假歸來，他將率領\n精銳的坦克軍團與您一起向北非進軍。</string>
+	<key>axis battle intro 6</key>
+	<string>入侵蘇聯的計劃開始了！俄國人由於准備不足節節敗退。此時\n古德裏安將軍的南方集團軍已經開始圍殲駐守在基輔的蘇軍，\n元首希望你們盡快在莫斯科會師。指揮官閣下！如果你能取勝\n這將是一次最偉大的勝利。</string>
+	<key>axis battle intro 7</key>
+	<string>美國已經切斷了我們需要的能源，還在珍珠港駐紮著龐大的海\n軍，這一切都讓最高指揮部十分不安，消滅珍珠港上的美軍是\n我們目前迫切的目標。山本五十六將軍已經准備好了作戰計劃，\n天皇期待著你們凱旋的消息。</string>
+	<key>axis battle intro 8</key>
+	<string>南太平洋的島國有很多帝國迫切需要的資源。也許美國和英國\n已經注意到這一點，為了抵擋我們的進攻他們做了很多部署，\n而澳大利亞也開始進行全國動員。指揮官閣下！要戰勝他們只\n有勇氣是不夠的。</string>
+	<key>axis battle intro 9</key>
+	<string>我們在亞洲戰場雖然已經取得很多勝利，但還是沒有完成我們\n一開始制定的目標。此時中國人在緬甸和英國聯手向我們發起\n了反擊。指揮官閣下！如果無法阻擋他們的反擊我們將前功盡\n棄。</string>
+	<key>axis battle intro 10</key>
+	<string>根據我們的情報顯示，美國人正在制造一種威力強大的超級武\n器，這無疑令人感到震驚。元首立刻決定將遠征北美的計劃提\n前，並且和意大利還有日本商討聯合進攻的計劃。指揮官閣下！\n我們只有一次機會。</string>
+		
+	<key>allies battle intro 1</key>
+	<string>國家已經到了最危險的時刻，目前朱可夫將軍在基輔對抗古德\n裏安的軍團，而羅科索夫斯基將軍在北方對抗芬蘭和隆美爾軍\n團的聯軍。莫斯科只有依靠您來保衛了。指揮官閣下！您將是\n我們最後的希望。</string>
+	<key>allies battle intro 2</key>
+	<string>指揮官閣下！日本聯合艦隊已經向我們中途島海軍基地發起了\n攻擊。如果日本成功占領中途島，我國西岸就會遭到日本海軍\n的威脅，到那個時候我們是無法向總統閣下交代的。另外尼米\n茲將軍將協助您作戰，以確保我們能擊敗日軍。</string>
+	<key>allies battle intro 3</key>
+	<string>隆美爾的裝甲軍團已經成為我們在北非最強勁的對手。蒙哥馬\n利將軍一直在尋找機會去徹底擊敗他們。指揮官閣下！或許由\n於您的加入會讓這一刻更早的到來。</string>
+	<key>allies battle intro 4</key>
+	<string>指揮官閣下！最高指揮部決心發動一次大規模反擊，把這些該\n死的侵略者徹底趕出家門。這次計劃將由朱可夫將軍、羅科索\n夫斯基將軍和您分別指揮各自的集團軍從3個不同的方向對敵\n軍發起總攻。</string>
+	<key>allies battle intro 5</key>
+	<string>結束了北非戰役後，盟軍指揮部希望將軸心國中最弱的意大利\n徹底擊敗，以迫使他們退出戰爭。指揮官閣下！這次戰役中意\n大利軍隊並不是我們唯一的敵人，駐紮在希臘的德軍才是我們\n需要重視的對手！</string>
+	<key>allies battle intro 6</key>
+	<string>情報顯示日本正在向緬甸地區大量集結軍隊，看來他們准備進\n攻印度了。印度是我們大英帝國在亞洲最後的根據地，我們必\n須提前做好部署。在北部的中國軍隊是我們的盟友，他們會和\n我們並肩作戰的。</string>
+	<key>allies battle intro 7</key>
+	<string>為了支援在東線作戰的蘇聯，使德軍陷入盟軍的包圍中，最高\n指揮部決定登陸歐洲作戰。為了這個目標我們已經准備了很久，\n這可能是您一生中指揮的最龐大也是最艱難的戰役。</string>
+	<key>allies battle intro 8</key>
+	<string>我們的前方就是德國本土，我相信進入德國本土後戰鬥會更加\n激烈，每前進一步就會付出巨大的代價。蘇聯紅軍在東線作戰\n的傷亡數據讓我們非常震驚。指揮官閣下！一旦擊敗德國我們\n將獲得歐洲地區的勝利。</string>
+	<key>allies battle intro 9</key>
+	<string>我們是盟軍在遠東最重要的力量，長期以來我們堅持與侵略者\n鬥爭，我們從來沒有被征服。指揮官閣下！現在是我們反擊的\n時刻了，去奪回我們失去的土地。蘇聯紅軍將在東北協助我們。</string>
+	<key>allies battle intro 10</key>
+	<string>曆史上從來沒有誰能在日本本土進行登陸作戰，就算是成吉思\n汗都無法做到。但是曆史給了我們這個機會，我們必須完成它。\n指揮官閣下！在登陸作戰前您還必須擊敗他們強大的海軍。</string>	
+	
+	<key>wto battle intro 1</key>
+	<string>美國為首的“北約”無法容忍遠東地區完全成為社會主義的陣\n營。於是他們准備幹涉我們統一全國的戰爭，也許我們要思考\n一下如何擊敗他們。指揮官閣下！這絕對不輕松，我們的裝備\n與他們相差太遠了。</string>
+	<key>wto battle intro 2</key>
+	<string>指揮部剛剛接到一個情報：我國西部邊境出現大量裝備精良的\n印度軍隊，他們已經越過我國邊境。指揮官閣下！情況十分緊\n急，您必須馬上趕赴前線准備戰鬥。</string>
+	<key>wto battle intro 3</key>
+	<string>我們必須搶在美國和英國之前獲得中東地區的石油資源，很顯\n然他們也是這樣想的。指揮官閣下！如果我們被他們趕出中東\n地區，我們就失去了和他們抗衡的資本。</string>
+	<key>wto battle intro 4</key>
+	<string>為了緩和其他戰區的壓力，美國和加拿大組建了一支聯合艦隊\n在太平洋上向我們發起攻擊。他們的司令是尼米茲元帥。指揮\n官閣下！我們海軍的力量十分弱小，無法在海面上和他們正面\n抗衡。</string>
+	<key>wto battle intro 5</key>
+	<string>土耳其在獲得美國的軍事援助後向我們的盟友保加利亞發起了\n進攻。指揮官閣下！我們需要您率領部隊增援保加利亞並且迅\n速擊敗土耳其、希臘以及南斯拉夫。如果不能盡早結束戰爭，\n美國的援軍就會趕到，那時候我們將處於被動的局面。</string>
+	<key>wto battle intro 6</key>
+	<string>以美國和英國為首的聯軍已經在短短數周內控制了整個德國，\n而且還跨過了波蘭邊境，同時法國和意大利軍團也向匈牙利發\n起了進攻。指揮官閣下！最高指揮部命令您盡快集合您的軍團\n去前線援助他們，在局面穩定後給予敵人必要的反擊。</string>
+	<key>wto battle intro 7</key>
+	<string>在取得多次對北約作戰的重大勝利後，我們的勢力版圖已經遍\n及歐洲、亞洲和非洲。最高指揮部下一步計劃是突襲南美洲，\n並在那裏建設導彈發射基地以迫使美國和談。指揮官閣下！美\n國不會讓您很輕松達到目的。</string>
+
+	<key>nato battle intro 1</key>
+	<string>蘇聯人已經將導彈發射裝置運送到了古巴，他們隨時可以向我\n們本土發射核彈。指揮官閣下！總統先生命令你不惜一切代價\n將那些威脅我們的武器摧毀，同時將駐紮在南美的蘇聯人趕出\n南美。</string>
+	<key>nato battle intro 2</key>
+	<string>蘇聯向西歐擴張的意圖已經非常明顯，而波蘭、保加利亞、羅\n馬尼亞和匈牙利都將成為蘇聯的軍事同盟。目前他們越過了\n“柏林牆”並且控制了整個德國，歐洲能和他們抗衡的只有英\n國，法國，還有意大利。指揮官閣下！這是最後的防線，您掌\n握著歐洲的命運。</string>
+	<key>nato battle intro 3</key>
+	<string>目前蘇聯和他的同盟國已經控制了非洲。如果我們不盡快采取\n措施增援非洲，他們很快就會控制整個地中海地區隨後進攻歐\n洲。指揮官閣下！法國的戴高樂將軍將作為我們的盟友和我們\n共同作戰。</string>
+	<key>nato battle intro 4</key>
+	<string>最高指揮部決定將下一個作戰計劃是解放中東地區。我們假裝\n從土耳其方向進軍來迷惑蘇聯人，其實真實的作戰計劃是由您\n所在的非洲地區向中東地區進軍。為了這個計劃我們准備了很\n長時間。現在，是時候出擊了！</string>
+	<key>nato battle intro 5</key>
+	<string>如果我們通過印度進入亞洲，將不會遇到任何障礙。在我們准\n備執行這一計劃的時候，印度的態度發生了根本的變化，同時\n蘇聯人的軍團也出現在了印度本土上。指揮官閣下！蘇聯人的\n外交成功了，我們只能通過戰爭才能達成目的！</string>
+	<key>nato battle intro 6</key>
+	<string>蘇聯和中國的關系出現了裂痕，甚至爆發了邊界戰爭。這對我\n們來說是個好消息。指揮官閣下！您能否抓住這個有利的時機，\n將蘇聯的南太平洋補給線給切斷？在這個地區我們的援軍只有\n澳大利亞。</string>
+	<key>nato battle intro 7</key>
+	<string>如果要真正的擊敗蘇聯，必須在本土擊敗他們，顯然您已經具\n備了這個能力。在各方面部隊都到了各自指定的位置後，總攻\n的消息從指揮部傳來。指揮官閣下！小心的前進，蘇聯人的戰\n鬥意志十分堅強！</string>
+
+	<key>alliance name 1</key>
+	<string>軸心國</string>
+	<key>alliance name 2</key>
+	<string>同盟國</string>
+	<key>alliance name 3</key>
+	<string>華約</string>
+	<key>alliance name 4</key>
+	<string>北約</string>
+
+	<key>conquest name 1</key>
+	<string>歐洲 1939</string>
+	<key>conquest name 2</key>
+	<string>太平洋 1942</string>
+	<key>conquest name 3</key>
+	<string>歐洲 1943</string>
+	<key>conquest name 4</key>
+	<string>非洲 1942</string>
+	<key>conquest name 5</key>
+	<string>北美 1945</string>
+	<key>conquest name 6</key>
+	<string>亞洲 1950</string>
+    <key>conquest name 7</key>
+    <string>歐洲 1955</string>
+    <key>conquest name 8</key>
+    <string>能源危機</string>
+    
+	<key>AutoSave</key>
+	<string>自動存檔</string>
+		
+	<key>rank 1</key>
+	<string>列 兵</string>
+	<key>rank 2</key>
+	<string>下 士</string>
+	<key>rank 3</key>
+	<string>中 士</string>
+	<key>rank 4</key>
+	<string>上 士</string>
+	<key>rank 5</key>
+	<string>少 尉</string>
+	<key>rank 6</key>
+	<string>中 尉</string>
+	<key>rank 7</key>
+	<string>上 尉</string>
+	<key>rank 8</key>
+	<string>少 校</string>
+	<key>rank 9</key>
+	<string>中 校</string>
+	<key>rank 10</key>
+	<string>上 校</string>
+	<key>rank 11</key>
+	<string>准 將</string>
+	<key>rank 12</key>
+	<string>少 將</string>
+	<key>rank 13</key>
+	<string>中 將</string>
+	<key>rank 14</key>
+	<string>上 將</string>
+	<key>rank 15</key>
+	<string>元 帥</string>
+
+	<key>rank 1 intro</key>
+	<string>列兵 指揮的部隊 耐久度補給10 耐久度上限+5% \n使用間隔4回合</string>
+	<key>rank 2 intro</key>
+	<string>下士 指揮的部隊 耐久度補給15 耐久度上限+10% \n使用間隔4回合</string>
+	<key>rank 3 intro</key>
+	<string>中士 指揮的部隊 耐久度補給20 耐久度上限+15% \n使用間隔4回合</string>
+	<key>rank 4 intro</key>
+	<string>上士 指揮的部隊 攻擊力+1 耐久度補給25 \n耐久度上限+20% 使用間隔4回合</string>
+	<key>rank 5 intro</key>
+	<string>少尉 指揮的部隊 攻擊力+1 耐久度補給30 \n耐久度上限+25% 使用間隔4回合</string>
+	<key>rank 6 intro</key>
+	<string>中尉 指揮的部隊 攻擊力+1 耐久度補給35 \n每回合耐久度補給+1  耐久度上限+30% \n使用間隔3回合</string>
+	<key>rank 7 intro</key>
+	<string>上尉 指揮的部隊 攻擊力+1 防禦力+1 耐久度\n補給40 每回合耐久度補給+2  耐久度上限+35% \n使用間隔3回合</string>
+	<key>rank 8 intro</key>
+	<string>少校 指揮的部隊 攻擊力+1 防禦力+1 耐久度\n補給45 每回合耐久度補給+3  耐久度上限+40% \n使用間隔3回合</string>
+	<key>rank 9 intro</key>
+	<string>中校 指揮的部隊 攻擊力+1 防禦力+1 耐久度\n補給50 每回合耐久度補給+4  耐久度上限+45% \n使用間隔3回合</string>
+	<key>rank 10 intro</key>
+	<string>上校 指揮的部隊 攻擊力+2 防禦力+1 耐久度\n補給55 每回合耐久度補給+5  耐久度上限+50% \n使用間隔3回合</string>
+	<key>rank 11 intro</key>
+	<string>准將 指揮的部隊 攻擊力+2 防禦力+1 耐久度\n補給60 每回合耐久度補給+6  耐久度上限+55% \n使用間隔2回合</string>
+	<key>rank 12 intro</key>
+	<string>少將 指揮的部隊 攻擊力+2 防禦力+1 耐久度\n補給65 每回合耐久度補給+7  耐久度上限+60% \n使用間隔2回合</string>
+	<key>rank 13 intro</key>
+	<string>中將 指揮的部隊 攻擊力+3 防禦力+1 耐久度\n補給70 每回合耐久度補給+8  耐久度上限+65% \n使用間隔2回合</string>
+	<key>rank 14 intro</key>
+	<string>上將 指揮的部隊 攻擊力+3 防禦力+1 耐久度\n補給75 每回合耐久度補給+9  耐久度上限+70% \n使用間隔2回合</string>
+	<key>rank 15 intro</key>
+	<string>元帥 指揮的部隊 攻擊力+3 防禦力+2 耐久度\n補給80 每回合耐久度補給+10  耐久度上限+75% \n使用間隔2回合</string>
+
+	<key>war medal 1 level 1</key>
+	<string>步兵銅質勳章</string>
+	<key>war medal 1 level 2</key>
+	<string>步兵銀質勳章</string>
+	<key>war medal 1 level 3</key>
+	<string>步兵金質勳章</string>
+
+	<key>war medal 2 level 1</key>
+	<string>空軍銅質勳章</string>
+	<key>war medal 2 level 2</key>
+	<string>空軍銀質勳章</string>
+	<key>war medal 2 level 3</key>
+	<string>空軍金質勳章</string>
+
+	<key>war medal 3 level 1</key>
+	<string>炮兵銅質勳章</string>
+	<key>war medal 3 level 2</key>
+	<string>炮兵銀質勳章</string>
+	<key>war medal 3 level 3</key>
+	<string>炮兵金質勳章</string>
+
+	<key>war medal 4 level 1</key>
+	<string>裝甲銅質勳章</string>
+	<key>war medal 4 level 2</key>
+	<string>裝甲銀質勳章</string>
+	<key>war medal 4 level 3</key>
+	<string>裝甲金質勳章</string>
+
+	<key>war medal 5 level 1</key>
+	<string>海軍銅質勳章</string>
+	<key>war medal 5 level 2</key>
+	<string>海軍銀質勳章</string>
+	<key>war medal 5 level 3</key>
+	<string>海軍金質勳章</string>
+
+	<key>war medal 6 level 1</key>
+	<string>榮譽銅質勳章</string>
+	<key>war medal 6 level 2</key>
+	<string>榮譽銀質勳章</string>
+	<key>war medal 6 level 3</key>
+	<string>榮譽金質勳章</string>
+
+	<key>war medal 1 level 1 intro</key>
+	<string>組建步兵部隊時已經獲得晉升1級。</string>
+	<key>war medal 1 level 2 intro</key>
+	<string>組建步兵部隊時已經獲得晉升2級。</string>
+	<key>war medal 1 level 3 intro</key>
+	<string>組建步兵部隊時已經獲得晉升2級，擁有進攻戰術和\n防禦戰術。</string>
+
+	<key>war medal 2 level 1 intro</key>
+	<string>增強空軍的戰鬥力。</string>
+	<key>war medal 2 level 2 intro</key>
+	<string>增強空軍的戰鬥力，擴大空軍的行動範圍。</string>
+	<key>war medal 2 level 3 intro</key>
+	<string>增強空軍的戰鬥力，擴大空軍的行動範圍，取消空軍\n出動的回合限制。</string>
+
+	<key>war medal 3 level 1 intro</key>
+	<string>組建大炮部隊時已經獲得晉升1級。</string>
+	<key>war medal 3 level 2 intro</key>
+	<string>組建大炮部隊，火箭炮部隊時已經獲得晉升1級。</string>
+	<key>war medal 3 level 3 intro</key>
+	<string>組建大炮部隊，火箭炮部隊時已經獲得晉升1級，擁\n有防禦戰術。</string>
+
+	<key>war medal 4 level 1 intro</key>
+	<string>組建裝甲車部隊時已經獲得晉升1級。</string>
+	<key>war medal 4 level 2 intro</key>
+	<string>組建裝甲車部隊，坦克部隊時已經獲得晉升1級。</string>
+	<key>war medal 4 level 3 intro</key>
+	<string>組建裝甲車部隊，坦克部隊，重坦克部隊時已經獲\n得晉升1級。</string>
+
+	<key>war medal 5 level 1 intro</key>
+	<string>所有陸軍組建時擁有運輸船。</string>
+	<key>war medal 5 level 2 intro</key>
+	<string>所有陸軍組建時擁有運輸船。組建驅逐艦，巡洋艦\n時已經獲得晉升一級。</string>
+	<key>war medal 5 level 3 intro</key>
+	<string>所有陸軍組建時擁有運輸船。組建驅逐艦，巡洋艦，\n戰列艦，航空母艦時已經獲得晉升一級。</string>
+
+	<key>war medal 6 level 1 intro</key>
+	<string>每個回合增加10%的生產值和工業值。</string>
+	<key>war medal 6 level 2 intro</key>
+	<string>每個回合增加20%的生產值和工業值。</string>
+	<key>war medal 6 level 3 intro</key>
+	<string>每個回合增加30%的生產值和工業值。</string>
+
+	<key>next level</key>
+	<string>升到下一級需要</string>
+
+	<key>bank tip</key>
+	<string>每場戰役只有一次貸款的機會。</string>
+
+	<key>tip 1</key>
+	<string>在保留移動力的情況下每個回合結束後部隊可以完成一次補給。在城市，工業區，\n機場，港口可以增加受傷的部隊的耐久度補給。</string>
+	<key>tip 2</key>
+	<string>部隊消滅敵軍後會有概率出現士氣提升的狀態，而被敵軍包圍後的部隊會出現士\n氣下降的狀態。</string>
+	<key>tip 3</key>
+	<string>裝甲車，大炮，火箭炮，坦克還有重坦克需要在工業區才能招募，而海軍需要在\n港口招募，使用空軍作戰需要先建設機場。</string>
+	<key>tip 4</key>
+	<string>步兵最懼怕的就是裝甲車部隊，而要塞炮是防禦海軍進攻的最佳選擇。</string>
+	<key>tip 5</key>
+	<string>壕溝是很廉價而且效果不錯的防禦工事，但是它無法抵擋住坦克的進攻。</string>
+	<key>tip 6</key>
+	<string>敵軍大量聚集在同一個地區時可以考慮空中轟炸。但如果該地區有防空機槍時，\n轟炸的效果就不會很好。</string>
+	<key>tip 7</key>
+	<string>裝甲車是最快的軍事部隊，所以在占領無人防禦的地區時用裝甲車是最佳選擇。</string>
+	<key>tip 8</key>
+	<string>大炮在攻擊敵軍時對手一般無法還擊，除非對方地區有要塞炮。</string>
+	<key>tip 9</key>
+	<string>陸軍要進入海洋只能依靠運輸船，而所有的船只在海上移動的速度是一樣的。</string>
+	<key>tip 10</key>
+	<string>高等級的卡片需要科技等級的支持，在無法使用高等級的卡片時必須先使用研究\n卡升級科技。</string>
+	<key>tip 11</key>
+	<string>不同的國家的士兵的作戰能力是有差異的，美國和德國無論是海軍，陸軍還有空\n軍都很強。他們指揮官的等級也很高。</string>
+	
+	<key>tutorails 1</key>
+	<string>指揮官您好，下面由我來向您介紹如何進行操作。</string>
+	<key>tutorails 2</key>
+	<string>首先生產值和工業值是支撐是我們戰爭的必要支柱，這裏就是我們\n的生產值和工業值。</string>
+	<key>tutorails 3</key>
+	<string>他們主要來源於每個我方地區城市和工業區的產出，觸摸單個區域\n可以看到該地區的生產值和工業值。</string>
+	<key>tutorails 4</key>
+	<string>觸摸我方部隊所在的地區就可以讓部隊行動了。藍色箭頭指向可以\n移動的地區，紅色箭頭指向和敵軍交戰的地區。</string>
+	<key>tutorails 5</key>
+	<string>如果發現部隊底座顏色與我們相同的國家就是我們盟友，請不要去\n攻擊他們。</string>
+	<key>tutorails 6</key>
+	<string>每個部隊都有自己的行動力，當行動力為0後就不能行動了。</string>
+	<key>tutorails 7</key>
+	<string>每個地區最多可以駐紮4個部隊，當然我們可以調整部隊在該地區\n的順序。</string>
+	<key>tutorails 8</key>
+	<string>軍艦可以在海洋中航行，陸軍需要裝備運輸船才可以進入海洋。</string>
+	<key>tutorails 9</key>
+	<string>左下角是戰術卡片按鈕，您所有的戰術操作都將通過這些戰術卡片\n完成。</string>
+	<key>tutorails 10</key>
+	<string>它們分為部隊卡，開發卡，戰略卡。每張卡片都有它獨特的作用，\n使用卡片需要消耗生產值和工業值。</string>
+	<key>tutorails 11</key>
+	<string>只有高級別的城市或者工業區才能招募陸軍單位，而海軍單位只能\n在港口招募。</string>
+	<key>tutorails 12</key>
+	<string>當前科技等級沒有達到卡片的科技要求則不能使用該卡片。這個時\n候您就需要提升自身的科技等級。</string>
+	<key>tutorails 13</key>
+	<string>某些特殊卡在使用後要間隔一段時間才可以繼續使用。</string>
+	<key>tutorails 14</key>
+	<string>指揮官卡只能使用在一個部隊單位上。</string>	
+	<key>tutorails 15</key>
+	<string>建造機場是為了空襲或者轟炸敵軍領地，但是空軍的作戰範圍也是\n有限的。</string>	
+	<key>tutorails 16</key>
+	<string>右上角的系統按鈕可以讓您完成保存遊戲，選項，重新開始和退出\n遊戲等操作。</string>
+	<key>tutorails 17</key>
+	<string>當完成所有的部署後您就可以觸摸右下角的那個等待按鈕，等待下\n回合的開始。</string>
+	<key>tutorails 18</key>
+	<string>指揮官！當您失去所有的陸地領土後您就失敗了，請一定要注意這\n一點。</string>
+
+	<key>defeated</key>
+	<string>戰敗</string>
+
+	<key>commander complain 1</key>
+	<string>指揮官閣下！您這樣做會影響我們之間的友誼。</string>
+	<key>commander complain 2</key>
+	<string>有時候我真不知道你到底是朋友還是敵人！</string>
+
+	<key>commander retreat 1</key>
+	<string>暫時的撤退並不代表失敗。</string>
+	<key>commander retreat 2</key>
+	<string>也許是我突進的太快了，我的部隊需要調整。</string>
+	<key>commander retreat 3</key>
+	<string>我已經奮戰到了最後一刻，但是仍然無法擊退敵軍。</string>
+	<key>commander retreat 4</key>
+	<string>敵軍的頑強超出了我的預期，我需要重新制定戰術。</string>
+	<key>commander retreat 5</key>
+	<string>為了對敵軍反擊，我們必須保存實力。撤退！</string>
+	
+	<key>commander return 1</key>
+	<string>讓敵人在我們的炮火聲中顫抖吧！</string>
+	<key>commander return 2</key>
+	<string>全軍以最快的速度向敵軍的陣地突襲。</string>
+	<key>commander return 3</key>
+	<string>堅持到最後一分鐘，戰鬥到最後一個士兵！</string>
+	<key>commander return 4</key>
+	<string>士兵們！讓敵軍感受一下我們強大的戰鬥力。</string>
+	<key>commander return 5</key>
+	<string>我的部隊無論是進攻還是防禦都能做到最好。</string>
+
+	<key>commander failure 1</key>
+	<string>指揮官閣下！不管您過去的戰績如何，這次失敗使我們的國家陷入\n完全被動。最高指揮部無法接受您關於失敗的解釋，您將被解除一\n切指揮權。</string>
+	<key>commander failure 2</key>
+	<string>指揮官閣下！您沒有在原定的期限內完成目標，使得這次戰役我方\n最終失利。最高指揮部剛剛發來通知，他們已經解除了您的一切指\n揮權。</string>
+
+	<key>commander victory 1</key>
+	<string>最高指揮部無法想象您可以在如此短的時間內戰勝敵軍，你獲得了\n一場完美的勝利！您將獲得50個勳章的額外獎勵。</string>
+	<key>commander victory 2</key>
+	<string>您在這場戰役中顯示出了傑出的軍事才能。您獲得了一次接近完美\n的勝利！您將獲得25個勳章的額外獎勵。</string>
+	<key>commander victory 3</key>
+	<string>您在這場戰役中的優勢是很明顯的，這些敵軍無法對您形成真正的\n威脅。您將獲得15個勳章的額外獎勵。</string>
+	<key>commander victory 4</key>
+	<string>指揮官閣下！敵軍頑強的攻勢一度讓您懷疑是否能夠戰勝他們，不\n過您還是取得了勝利。您將獲得5個勳章的額外獎勵。</string>
+	<key>commander victory 5</key>
+	<string>指揮官閣下！我們直到最後一刻才獲得勝利,這樣的戰績讓最高指\n揮部無法對您進行嘉獎。</string>
+
+	<key>commander victory 1 no award</key>
+	<string>最高指揮部無法想象您可以在如此短的時間內戰勝敵軍，你獲得了\n一場完美的勝利！</string>
+	<key>commander victory 2 no award</key>
+	<string>您在這場戰役中顯示出了傑出的軍事才能。您獲得了一次接近完美\n的勝利！</string>
+	<key>commander victory 3 no award</key>
+	<string>您在這場戰役中的優勢是很明顯的，這些敵軍無法對您形成真正的\n威脅。</string>
+	<key>commander victory 4 no award </key>
+	<string>指揮官閣下！敵軍頑強的攻勢一度讓您懷疑是否能夠戰勝他們，不\n過您還是取得了勝利。</string>
+
+	<key>axis battle 1 Guderian 1</key>
+	<string>為了達到突襲的目的，我的裝甲師會一刻不停的向華沙進軍。</string>
+	<key>axis battle 1 Guderian 2</key>
+	<string>你要盡快占領波蘭其它的城市和地區，如果你的進攻速度夠快，可\n以配合我進攻華沙。</string>
+	<key>axis battle 1 Guderian 3</key>
+	<string>指揮官閣下！盡量在最短的時間內完成這場戰爭，元首不會給我們\n太多時間。</string>
+	<key>axis battle 1 Guderian 4</key>
+	<string>我的裝甲軍團已經突破了外圍防線，現在華沙就在我的前方的不遠\n處。</string>
+	<key>axis battle 1 Guderian 5</key>
+	<string>如果我們能聯合發起攻擊，會加快勝利的速度！</string>
+	
+	<key>axis battle 2 Guderian 1</key>
+	<string>指揮官閣下！這次您的B集團軍將向北歐國家丹麥和挪威發起進攻。</string>
+	<key>axis battle 2 Guderian 2</key>
+	<string>我們已經不是第一次合作了，相信您已經了解我的戰術風格。</string>
+	<key>axis battle 2 Guderian 3</key>
+	<string>我會很快到達法國的巴黎附近，到時候希望您的軍隊也能及時趕到。</string>
+	<key>axis battle 2 Guderian 4</key>
+	<string>我的裝甲軍團正以敵人難以想象的速度前進，我甚至沒有時間俘虜\n敵人。</string>
+	<key>axis battle 2 de Gaulle 1</key>
+	<string>法國已經到了最危險的時刻，士兵們！拿起武器沖向你們的敵人。</string>
+	
+	<key>axis battle 3 Rommel 1</key>
+	<string>指揮官閣下！我的裝甲師正在法國南部掃蕩剩餘的法國軍隊。</string>
+	<key>axis battle 3 Rommel 2</key>
+	<string>在英吉利海峽對岸的英國人就交給你了，戈林元帥會用他的空軍援\n助你。</string>
+	<key>axis battle 3 Goering 1</key>
+	<string>我的空軍已經部署完畢，英國人將不再享有空中優勢。</string>
+	
+	<key>axis battle 4 Graziani 1</key>
+	<string>指揮官閣下！我的戰艦會支援你的行動，我們可以很輕松的戰勝敵\n軍。</string>
+	<key>axis battle 4 Graziani 2</key>
+	<string>敵軍的海岸炮的准確度很高，我的戰艦損毀嚴重。</string>
+	<key>axis battle 4 Guider 1</key>
+	<string>指揮官閣下！如果要獲得這場戰役的最終勝利，必須將敵軍的艦隊\n完全擊敗。</string>
+
+	<key>axis battle 5 Rommel 1</key>
+	<string>意大利軍團的戰鬥力比我們想象的要低，元首只能將我們派遣到北\n非援助他們。</string>
+	<key>axis battle 5 Rommel 2</key>
+	<string>敵人的數量是我們的幾倍，但是戰鬥力並不高，我們只要注意英軍\n和法軍就夠了。</string>
+	<key>axis battle 5 Rommel 3</key>
+	<string>要擋住我的虎式坦克，那是不可能的。</string>
+	<key>axis battle 5 Montgomery 1</key>
+	<string>德軍的裝甲軍團戰鬥力很強，在他們前進時我們只要不丟失陣地就\n是勝利！</string>
+
+	<key>axis battle 6 Guderian 1</key>
+	<string>指揮官閣下！我的軍團正在向基輔方向進軍。</string>
+	<key>axis battle 6 Guderian 2</key>
+	<string>而你的目的是攻陷明斯克。我們最終會在莫斯科會師。</string>
+	<key>axis battle 6 Guderian 3</key>
+	<string>我們的友軍芬蘭和匈牙利會協助我們，但是顯然不能過多的指望他\n們。</string>
+	<key>axis battle 6 Rokossovsky 1</key>
+	<string>士兵們，堅守陣地，保衛祖國。</string>
+	<key>axis battle 6 Zhukov 1</key>
+	<string>如果我們的首都淪陷了，我們就失去繼續作戰的意義。</string>
+
+	<key>axis battle 7 Yamamoto 1</key>
+	<string>指揮官閣下！這次襲擊美國太平洋艦隊的計劃是一次很大的冒險。</string>
+	<key>axis battle 7 Yamamoto 2</key>
+	<string>但是武士刀一旦拔出就沒有收回的道理！全力以赴的去作戰吧。</string>
+	<key>axis battle 7 Nimitz 1</key>
+	<string>全體士兵回到各自崗位，我們遇到了敵人的進攻，這不是演習。</string>
+
+	<key>axis battle 8 Guider 1</key>
+	<string>指揮官閣下！您需要快速占領這些區域，因為帝國需要這裏的資源。</string>
+	<key>axis battle 8 Guider 2</key>
+	<string>需要注意的是英國為了阻止我們繼續前進，已經派遣了一支強大的\n艦隊在那裏等我們。</string>
+	<key>axis battle 8 Guider 3</key>
+	<string>我建議用我們的空軍對他們的艦隊實施打擊。</string>
+
+	<key>axis battle 9 Yamamoto 1</key>
+	<string>指揮官閣下！中國和英國的軍隊正在緬甸集結，他們正試圖反擊。</string>
+	<key>axis battle 9 Yamamoto 2</key>
+	<string>太平洋戰爭耗費了我們過多的力量，我已經沒有辦法向你提供更多\n的援助了。</string>
+	<key>axis battle 9 Zhang 1</key>
+	<string>士兵們！去奪回我們失去的土地。</string>
+	
+	<key>axis battle 10 Goering 1</key>
+	<string>准確的說美國已經掌握了核彈技術，否則元首不會急著在沒有准備\n好的情況下發動這場戰爭。</string>
+	<key>axis battle 10 Goering 2</key>
+	<string>我們說服了意大利和日本共同對北美進行作戰，這樣可以減緩我們\n許多壓力。</string>
+	<key>axis battle 10 Goering 3</key>
+	<string>指揮官閣下！元首和全體人民盼望你得勝回國。</string>
+	<key>axis battle 10 Patton 1</key>
+	<string>士兵們，用我們的坦克把敵人碾碎！</string>
+	<key>axis battle 10 MacArthur 1</key>
+	<string>勇敢點小夥子們！只有不怕死的人才配活著。</string>
+	
+	<key>allies battle 1 Zhukov 1</key>
+	<string>指揮官閣下！目前我們的國家已經到了最危險的時刻。</string>
+	<key>allies battle 1 Zhukov 2</key>
+	<string>我們各自擔任不同地區的防禦工作，但是您的責任顯然是最大的。</string>
+	<key>allies battle 1 Zhukov 3</key>
+	<string>蘇聯雖然很大，但是我們無路可退，我們的背後就是莫斯科。</string>
+	<key>allies battle 1 Rokossovsky 1</key>
+	<string>我已經處決了好幾個企圖退卻的士兵，不用懷疑我對祖國的忠誠。</string>
+	
+	<key>allies battle 2 Nimitz 1</key>
+	<string>為了報複我們空襲東京的行動，日本將中途島作為他們下一個目標。</string>
+	<key>allies battle 2 Nimitz 2</key>
+	<string>中途島是我們在太平洋的重要軍港，他的戰略價值很高，我們要不\n惜一切代價守住它。</string>
+	<key>allies battle 2 Nimitz 3</key>
+	<string>指揮官閣下！我的艦隊將在珍珠港方向全力協助你作戰。</string>
+	<key>allies battle 2 Yamamoto 1</key>
+	<string>這次帝國的海軍幾乎全體出動。</string>
+	<key>allies battle 2 Yamamoto 2</key>
+	<string>這將是決定帝國命運的一次海戰。</string>
+
+	<key>allies battle 3 Montgomery 1</key>
+	<string>德國和意大利的軍隊又開始進軍了，他們的聯軍統帥隆美爾是一個\n極有天賦的指揮官。</string>
+	<key>allies battle 3 Montgomery 2</key>
+	<string>他就像是這沙漠中的一只狐狸，必須要小心防禦他的裝甲兵團。</string>
+	<key>allies battle 3 Rommel 1</key>
+	<string>這片沙漠不太利於我的裝甲軍團實行突擊作戰。</string>
+	
+	<key>allies battle 4 Zhukov 1</key>
+	<string>在最高指揮部中，關於這次戰役的作戰方案一再被修改。</string>
+	<key>allies battle 4 Zhukov 2</key>
+	<string>因為這次作戰的規模實在是太大了，我們幾乎動用了可以動用的所\n有力量。</string>
+	<key>allies battle 4 Rokossovsky 1</key>
+	<string>這次戰役將是決定性的，也是空前的。您需要小心面對。</string>
+	<key>allies battle 4 Guderian 1</key>
+	<string>我的坦克師就像一把尖刀，插入敵人的腹地。</string>
+	<key>allies battle 4 Goering 1</key>
+	<string>我的王牌空軍已經讓敵人感受到了畏懼。</string>
+	
+	<key>allies battle 5 Patton 1</key>
+	<string>指揮官閣下！我們需要盡快擊敗意大利，因為德國人的援軍已經在\n路上了。</string>
+	<key>allies battle 5 Patton 2</key>
+	<string>他們可不會給我們太多時間准備。</string>
+	<key>allies battle 5 Rommel 1</key>
+	<string>根據元首的指示，我們將接管意大利的軍隊和防禦體系。</string>
+
+	<key>allies battle 6 Guider 1</key>
+	<string>情報顯示，日本人的幾個精銳師團正在緬甸集合，不久之後就會向\n印度進軍。</string>
+	<key>allies battle 6 Zhang 1</key>
+	<string>指揮官閣下！我們中國軍隊將在側面幫助你們打擊日本軍隊，我們\n的目的是一樣的。</string>
+	<key>allies battle 6 Yamamoto 1</key>
+	<string>我們的補給出現了很嚴重的問題，疾病也開始蔓延。</string>
+	<key>allies battle 6 Yamamoto 2</key>
+	<string>但是為了天皇陛下，我們無所畏懼。</string>
+	
+	<key>allies battle 7 Nimitz 1</key>
+	<string>盡管我們做了大量的前期工作，但是這麼大規模的登陸作戰還是第\n一次。</string>
+	<key>allies battle 7 Patton 1</key>
+	<string>這次負責防禦的德軍是隆美爾的集團軍，我非常渴望和他交手。</string>
+	<key>allies battle 7 de Gaulle 1</key>
+	<string>我們終於回到了自己的家園，為了法國解放，前進。</string>
+	<key>allies battle 7 Nimitz 2</key>
+	<string>我們的士兵在登陸時遇到很大的困難，我的艦隊將全力掩護這些孩\n子們。</string>
+	<key>allies battle 7 Rommel 1</key>
+	<string>當我的防線出現缺口的時候，我的裝甲軍團會立刻去增援。</string>
+	
+	<key>allies battle 8 MacArthur 1</key>
+	<string>德國人拒絕向我們投降，他們主力軍團已經全部集中到了國內。</string>
+	<key>allies battle 8 MacArthur 2</key>
+	<string>東線的蘇聯已經開始向華沙進軍，波蘭的解放只是時間問題。</string>
+	<key>allies battle 8 Patton 1</key>
+	<string>指揮官閣下！我的坦克會在前面沖鋒，跟上我的步伐，我們會取得\n最後的勝利。</string>
+	<key>allies battle 8 Goering 1</key>
+	<string>偉大的第三帝國絕對不會失敗。</string>
+	<key>allies battle 8 Rommel 1</key>
+	<string>我們的戰士都是好樣的，只是敵人實在是太多了！</string>
+	
+	<key>allies battle 9 Zhang 1</key>
+	<string>軸心國中的德國和意大利都已經投降了，形勢對我們很有利。</string>
+	<key>allies battle 9 Zhang 2</key>
+	<string>最高指揮部決定對日軍發動一次大規模戰役，我們要收複我們失去\n的國土。</string>
+	<key>allies battle 9 Zhang 3</key>
+	<string>蘇聯今天早上已經對駐紮在我國東北的日軍宣戰了，日本將不得不\n面臨雙線作戰。</string>
+	
+	<key>allies battle 10 MacArthur 1</key>
+	<string>日本已經准備好在本土進行防禦戰，他們聲稱將會戰鬥到最後一個\n人。</string>
+	<key>allies battle 10 MacArthur 2</key>
+	<string>我已經可以想象到那些崇尚武士道精神的日軍在守衛國土時的瘋狂。</string>
+	<key>allies battle 10 MacArthur 3</key>
+	<string>指揮官閣下！對他們不需要手軟。必要時可以使用我們的新武器\n-原子彈。</string>
+	<key>allies battle 10 Nimitz 1</key>
+	<string>能和日本海軍對抗的只有我們美國海軍，盟友的運輸船需要我們的\n保護。</string>
+	<key>allies battle 10 Yamamoto 1</key>
+	<string>士兵們！讓我們戰鬥到最後一刻為天皇盡忠！</string>
+	
+	<key>wto battle 1 Peng 1</key>
+	<string>當我們快要統一全國的時候，美軍的艦隊到了我們的沿海地區。</string>
+	<key>wto battle 1 Peng 2</key>
+	<string>指揮官閣下！美國人的裝備比我們要好的多。您需要重新調整戰略。</string>
+	<key>wto battle 1 Peng 3</key>
+	<string>目前我的集團軍沒辦法給你援助，指揮部給我的命令是增援朝鮮盟\n友。</string>
+	<key>wto battle 1 MacArthur 1</key>
+	<string>我們會在聖誕節前結束戰爭，這樣孩子們可以回家過聖誕節。</string>
+	
+	<key>wto battle 2 Guider 1</key>
+	<string>印度軍隊已經深入我們的西藏地區，他們的背後還有英軍的影子。</string>
+	<key>wto battle 2 Guider 2</key>
+	<string>最高指揮部已經同意您的作戰方案。將他們分割包圍後消滅他們。</string>
+	<key>wto battle 2 Guider 3</key>
+	<string>彭將軍的軍團正在以最快的速度趕來配合你作戰。</string>
+	<key>wto battle 2 Peng 1</key>
+	<string>印度顯然是低估了我們的戰鬥力，他們以為有美國援助的武器就可\n以贏。</string>
+	
+	<key>wto battle 3 Zhukov 1</key>
+	<string>阿拉伯地區的石油資源，關系到整個戰爭的勝負。</string>
+	<key>wto battle 3 Zhukov 2</key>
+	<string>我們必須快速突襲該地區，搶在美國人之前占領他們。</string>
+	
+	<key>wto battle 4 Rokossovsky 1</key>
+	<string>不要奢望我們能在海面上擊敗他們艦隊。</string>
+	<key>wto battle 4 Rokossovsky 2</key>
+	<string>我們目前能做的就是多修建一些海岸炮來等待他們。</string>
+	<key>wto battle 4 Rokossovsky 3</key>
+	<string>我們絕對不能讓他們的陸軍登陸，否則戰局會非常不利。</string>
+	
+	<key>wto battle 5 Guider 1</key>
+	<string>指揮官閣下！目前保加利亞正處於比較危險的境地。</string>
+	<key>wto battle 5 Guider 2</key>
+	<string>最高指揮部意識到必須立刻派您去援助他們。</string>
+	
+	<key>wto battle 6 Rokossovsky 1</key>
+	<string>指揮官閣下！我們的聯盟正面臨最嚴峻的考驗。敵人已經向我們發\n起全面進攻。</string>
+	<key>wto battle 6 Rokossovsky 2</key>
+	<string>最高指揮部命令我們從不同的方向對敵軍進行有效的反擊。</string>
+	
+	
+	<key>wto battle 7 Guider 1</key>
+	<string>美國人的情報人員已經知道我們入侵南美洲的計劃。</string>
+	<key>wto battle 7 Guider 2</key>
+	<string>他們的軍隊開始在南美洲進行部署。指揮官閣下！迅速擊敗他們。</string>
+	<key>wto battle 7 Guider 3</key>
+	<string>我們需要將導彈發射裝置運送到指定地點，這次計劃的成功對於我\n們有著重要的意義。</string>
+	
+	<key>nato battle 1 Patton 1</key>
+	<string>指揮官閣下！蘇聯已經在古巴已經建造了的核彈基地。</string>
+	<key>nato battle 1 Patton 2</key>
+	<string>目前他們的核彈可以攻擊整個北美地區，我們無法再沉默下去了。</string>
+	<key>nato battle 1 Patton 3</key>
+	<string>目前我們要做的就是將他們趕出南美以解除核威脅。</string>
+	<key>nato battle 1 Patton 4</key>
+	<string>我們需要加快速度，他們隨時會向我們發射核彈。</string>
+	
+	<key>nato battle 2 Montgomery 1</key>
+	<string>紅色勢力對歐洲的入侵已經開始了。</string>
+	<key>nato battle 2 Montgomery 2</key>
+	<string>指揮官閣下！我希望您能利用那些防禦工事盡量多堅持幾天。</string>
+	<key>nato battle 2 Montgomery 3</key>
+	<string>我的軍隊會以最快的速度趕到歐洲大陸來增援你們。</string>
+	<key>nato battle 2 Zhukov 1</key>
+	<string>很快整個歐洲都會變成紅色，第一書記同志非常期待這一天的到來。</string>
+	
+	<key>nato battle 3 de Gaulle 1</key>
+	<string>我正在和他們的波蘭軍團交戰，我很擔心我旁邊匈牙利軍團從後方\n襲擊我。</string>
+	<key>nato battle 3 de Gaulle 2</key>
+	<string>當然他們身後的蘇聯軍團才是我們真正的敵人。</string>
+	<key>nato battle 3 Patton 1</key>
+	<string>指揮官閣下！最高指揮部把我從歐洲戰場調到非洲來援助您。</string>
+	<key>nato battle 3 Patton 2</key>
+	<string>從美國把我的坦克運過來費了他們不少事。</string>
+	<key>nato battle 3 Patton 3</key>
+	<string>相信我的坦克師會對你非常有用。</string>
+	
+	<key>nato battle 4 Nimitz 1</key>
+	<string>目前阿拉伯的那些油田被蘇聯人控制著，我們需要奪回他們。</string>
+	<key>nato battle 4 Nimitz 2</key>
+	<string>目前我的軍隊從土耳其方向進攻成功的吸引了他們的主力部隊。</string>
+	<key>nato battle 4 Nimitz 3</key>
+	<string>您需要依靠這個機會快速穿越海峽，我在海峽裏的戰艦會掩護您。</string>
+	
+	<key>nato battle 5 MacArthur 1</key>
+	<string>印度顯然已經倒向了蘇聯那一邊，這意味著我們登陸亞洲作戰困難\n重重。</string>
+	<key>nato battle 5 MacArthur 2</key>
+	<string>指揮官閣下！這是一場硬仗。我的海軍在印度洋將配合您作戰。</string>
+	<key>nato battle 5 MacArthur 3</key>
+	<string>您那裏怎麼樣？我這裏的處境也許更糟糕。</string>	
+	
+	<key>nato battle 6 MacArthur 1</key>
+	<string>指揮官閣下！目前我的軍團在日本海區域防禦蘇聯和北韓的入侵。</string>
+	<key>nato battle 6 MacArthur 2</key>
+	<string>在南太平洋地區的戰鬥只能依賴你了。相信澳大利亞軍團也能幫上\n你很多忙。</string>
+	
+	<key>nato battle 7 Guider 1</key>
+	<string>指揮官閣下！我不得不向您報告一個令人沮喪的消息。</string>
+	<key>nato battle 7 Guider 2</key>
+	<string>其他指揮官的軍團都沒有移動到指定區域，看來敵軍的頑強超出了\n最高指揮部的想象。</string>
+	<key>nato battle 7 Guider 3</key>
+	<string>雖然這非常困難，但是最後的攻擊只能由您來完成。</string>	
+	<key>nato battle 7 Guider 4</key>
+	<string>不用急於進攻，最高指揮部這次給了您充分的作戰時間。</string>	
+	
+	<key>victory</key>
+	<string>勝利</string>
+	<key>great victory</key>
+	<string>重大勝利</string>
+	<key>victory days2</key>
+	<string>日內獲勝</string>
+	
+	<key>victory axis</key>
+	<string>您出色的指揮幫助我們軸心國陣營獲得輝煌的勝利。指揮官閣下！祝賀您有\n一個史詩般的軍事生涯。</string>
+	<key>victory allies</key>
+	<string>我們終於獲得了最後的勝利，同時我們也付出了很多代價。指揮官閣下！我\n相信您高超的指揮藝術一定會載入史冊，同時也鼓勵著每一個熱愛和平的人。</string>
+	<key>victory wto</key>
+	<string>在核武器的威脅下美國終於願意坐下來與我們和談。為了這一天您和您身後\n的戰士都付出了很多，也許是您改變了整個世界的格局！曆史會記住您的！</string>
+	<key>victory nato</key>
+	<string>由於戰爭的失利，蘇聯內部爆發了一場巨大的變革。當蘇聯紅旗從克裏姆林\n宮上緩緩降落時標志著龐大的蘇聯解體了，蘇聯也變成了曆史名詞。也許這\n一刻和平真的到了！您多年的努力終於獲得了回報，祖國不會忘記您的！</string>
+
+	<key>locked warning</key>
+	<string>完成軸心國戰役或同盟國戰役後\n可以進行華約和北約的戰役。</string>
+
+	<key>connecting</key>
+	<string>連接中 ...</string>
+	
+	<key>warning title 1</key>
+	<string>沒有網絡</string>
+	<key>warning text 1</key>
+	<string>要玩多人遊戲，請設備的設置裏面啟動藍牙或者Wi-Fi。</string>
+	
+	<key>warning title 2</key>
+	<string>無法連接</string>
+	<key>warning text 2</key>
+	<string>無法連接遊戲，請再試一次。</string>
+	
+	<key>warning title 3</key>
+	<string>警告！</string>
+	<key>warning text 3</key>
+	<string>退出遊戲後其他玩家將不能繼續遊戲，確定要退出嗎？</string>
+	
+	<key>warning title 4</key>
+	<string>警告！</string>
+	<key>warning text 4</key>
+	<string>有玩家離開了遊戲，遊戲無法繼續。</string>
+	
+	<key>warning title 5</key>
+	<string>斷線</string>
+	<key>warning text 5</key>
+	<string>已經斷線，遊戲無法繼續。</string>
+	
+	<key>newgame1_service_1</key>
+	<string>蘇州樂志軟件科技有限公司致力於設計與研發\n最出色的軍事策略戰棋遊戲！</string>
+	<key>newgame1_service_2</key>
+	<string>&#160;</string>
+	<key>newgame1_version</key>
+	<string>應用版本：</string>
+	
+	<key>newgame2_txt_1</key>
+	<string>尊敬的指揮官閣下，感謝您長期以來的支\n持。</string>
+	<key>newgame2_txt_2</key>
+	<string>為了更好的體驗遊戲，我們誠摯邀請您參\n與此次改進計劃，提供您的寶貴意見和建\n議，讓您的軍事生涯更輝煌！</string>
+	
+	<key>newgame3_website</key>
+	<string>Website</string>
+	<key>newgame3_facebook</key>
+	<string>Facebook</string>
+	<key>newgame3_youtube</key>
+	<string>YouTube</string>
+	<key>newgame3_download</key>
+	<string>立即下載</string>
+	<key>newgame3_join</key>
+	<string>立即參與</string>
+	<key>newgame3_mail</key>
+	<string>發送郵件</string>
+	
+	<key>newgame4_survey</key>
+	<string>問卷</string>
+	<key>newgame4_recommend</key>
+	<string>推薦</string>
+	<key>newgame4_service</key>
+	<string>客服</string>
+	<key>newgame4_iab_event</key>
+	<string>活動</string>
+</dict>
+</plist>

@@ -1,0 +1,31 @@
+<Texture name="m1_zone17_1.webp"/>
+<Images>
+    <Image name="1197.png" x="439" y="619" w="139" h="133" refx="0" refy="0"/>
+    <Image name="1199.png" x="779" y="655" w="183" h="150" refx="0" refy="0"/>
+    <Image name="1200.png" x="254" y="166" w="199" h="231" refx="0" refy="0"/>
+    <Image name="1201.png" x="228" y="399" w="221" h="154" refx="0" refy="0"/>
+    <Image name="1202.png" x="628" y="174" w="154" h="223" refx="0" refy="0"/>
+    <Image name="1203.png" x="798" y="1" w="163" h="241" refx="0" refy="0"/>
+    <Image name="1204.png" x="1" y="164" w="251" h="151" refx="0" refy="0"/>
+    <Image name="1205.png" x="549" y="1" w="247" h="171" refx="0" refy="0"/>
+    <Image name="1206.png" x="870" y="807" w="143" h="173" refx="0" refy="0"/>
+    <Image name="1207.png" x="593" y="782" w="133" h="184" refx="0" refy="0"/>
+    <Image name="1212.png" x="398" y="762" w="193" h="146" refx="0" refy="0"/>
+    <Image name="1215.png" x="398" y="910" w="147" h="112" refx="0" refy="0"/>
+    <Image name="1222.png" x="276" y="1" w="271" h="163" refx="0" refy="0"/>
+    <Image name="1223.png" x="455" y="174" w="171" h="223" refx="0" refy="0"/>
+    <Image name="1225.png" x="784" y="244" w="193" h="222" refx="0" refy="0"/>
+    <Image name="1231.png" x="1" y="753" w="198" h="128" refx="0" refy="0"/>
+    <Image name="1232.png" x="796" y="468" w="151" h="185" refx="0" refy="0"/>
+    <Image name="1233.png" x="1" y="586" w="210" h="165" refx="0" refy="0"/>
+    <Image name="1234.png" x="1" y="883" w="193" h="118" refx="0" refy="0"/>
+    <Image name="1239.png" x="593" y="629" w="184" h="151" refx="0" refy="0"/>
+    <Image name="1240.png" x="1" y="317" w="225" h="138" refx="0" refy="0"/>
+    <Image name="1242.png" x="224" y="555" w="213" h="205" refx="0" refy="0"/>
+    <Image name="1243.png" x="451" y="399" w="154" h="218" refx="0" refy="0"/>
+    <Image name="1244.png" x="1" y="457" w="221" h="127" refx="0" refy="0"/>
+    <Image name="1246.png" x="1" y="1" w="273" h="161" refx="0" refy="0"/>
+    <Image name="1247.png" x="607" y="468" w="187" h="159" refx="0" refy="0"/>
+    <Image name="1248.png" x="201" y="762" w="195" h="166" refx="0" refy="0"/>
+    <Image name="1249.png" x="728" y="807" w="140" h="183" refx="0" refy="0"/>
+</Images>

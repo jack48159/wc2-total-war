@@ -1,0 +1,12 @@
+<Texture name="battlebg2_640hd.pkm" />
+<Images>
+    <Image name="port_battleship.png" x="1" y="1" w="640" h="640" refx="0" refy="0" />
+    <Image name="port_carrier.png" x="642" y="1" w="640" h="640" refx="0" refy="0" />
+    <Image name="port_cruiser.png" x="1283" y="1" w="640" h="640" refx="0" refy="0" />
+    <Image name="port_destroyer.png" x="1" y="642" w="640" h="640" refx="0" refy="0" />
+    <Image name="sea_aircraft.png" x="642" y="642" w="640" h="640" refx="0" refy="0" />
+    <Image name="sea_battleship.png" x="1283" y="642" w="640" h="640" refx="0" refy="0" />
+    <Image name="sea_carrier.png" x="1" y="1283" w="640" h="640" refx="0" refy="0" />
+    <Image name="sea_cruiser.png" x="642" y="1283" w="640" h="640" refx="0" refy="0" />
+    <Image name="sea_destroyer.png" x="1283" y="1283" w="640" h="640" refx="0" refy="0" />
+</Images>

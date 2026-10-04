@@ -1,0 +1,35 @@
+<Texture name="flag_hd.webp" />
+<Images>
+    <Image name="flag_am.png" x="1" y="1" w="100" h="68" refx="4" refy="4" />
+    <Image name="flag_au.png" x="102" y="1" w="100" h="68" refx="4" refy="4" />
+    <Image name="flag_be.png" x="1" y="70" w="100" h="68" refx="4" refy="4" />
+    <Image name="flag_bg.png" x="102" y="70" w="100" h="68" refx="4" refy="4" />
+    <Image name="flag_ca.png" x="1" y="139" w="100" h="68" refx="4" refy="4" />
+    <Image name="flag_ch.png" x="102" y="139" w="100" h="68" refx="4" refy="4" />
+    <Image name="flag_cn.png" x="203" y="1" w="100" h="68" refx="4" refy="4" />
+    <Image name="flag_de.png" x="203" y="70" w="100" h="68" refx="4" refy="4" />
+    <Image name="flag_dk.png" x="304" y="1" w="100" h="68" refx="4" refy="4" />
+    <Image name="flag_es.png" x="203" y="139" w="100" h="68" refx="4" refy="4" />
+    <Image name="flag_fl.png" x="304" y="70" w="100" h="68" refx="4" refy="4" />
+    <Image name="flag_fr.png" x="405" y="1" w="100" h="68" refx="4" refy="4" />
+    <Image name="flag_gb.png" x="304" y="139" w="100" h="68" refx="4" refy="4" />
+    <Image name="flag_gr.png" x="405" y="70" w="100" h="68" refx="4" refy="4" />
+    <Image name="flag_hu.png" x="405" y="139" w="100" h="68" refx="4" refy="4" />
+    <Image name="flag_in.png" x="1" y="208" w="100" h="68" refx="4" refy="4" />
+    <Image name="flag_it.png" x="102" y="208" w="100" h="68" refx="4" refy="4" />
+    <Image name="flag_ja.png" x="1" y="277" w="100" h="68" refx="4" refy="4" />
+    <Image name="flag_mx.png" x="1" y="346" w="100" h="68" refx="4" refy="4" />
+    <Image name="flag_nk.png" x="203" y="208" w="100" h="68" refx="4" refy="4" />
+    <Image name="flag_nl.png" x="102" y="277" w="100" h="68" refx="4" refy="4" />
+    <Image name="flag_no.png" x="1" y="415" w="100" h="68" refx="4" refy="4" />
+    <Image name="flag_pl.png" x="102" y="346" w="100" h="68" refx="4" refy="4" />
+    <Image name="flag_pt.png" x="203" y="277" w="100" h="68" refx="4" refy="4" />
+    <Image name="flag_rk.png" x="304" y="208" w="100" h="68" refx="4" refy="4" />
+    <Image name="flag_ro.png" x="102" y="415" w="100" h="68" refx="4" refy="4" />
+    <Image name="flag_ru.png" x="203" y="346" w="100" h="68" refx="4" refy="4" />
+    <Image name="flag_se.png" x="405" y="208" w="100" h="68" refx="4" refy="4" />
+    <Image name="flag_tr.png" x="304" y="277" w="100" h="68" refx="4" refy="4" />
+    <Image name="flag_tw.png" x="203" y="415" w="100" h="68" refx="4" refy="4" />
+    <Image name="flag_yu.png" x="304" y="346" w="100" h="68" refx="4" refy="4" />
+    <Image name="flag_test.png" x="1" y="1" w="100" h="68" refx="4" refy="4" />
+</Images>

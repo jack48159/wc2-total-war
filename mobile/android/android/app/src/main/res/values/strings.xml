@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">世界征服者:总体战</string>
+    <string name="title_activity_main">世界征服者:总体战</string>
+    <string name="package_name">com.tomaka.wc2remake</string>
+    <string name="custom_url_scheme">com.tomaka.wc2remake</string>
+</resources>

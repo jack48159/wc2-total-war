@@ -1,0 +1,37 @@
+<Texture name="m1_zone19_2.webp"/>
+<Images>
+    <Image name="1325.png" x="352" y="159" w="172" h="155" refx="0" refy="0"/>
+    <Image name="1327.png" x="481" y="456" w="158" h="140" refx="0" refy="0"/>
+    <Image name="1328.png" x="1" y="319" w="171" h="73" refx="0" refy="0"/>
+    <Image name="1332.png" x="799" y="333" w="159" h="101" refx="0" refy="0"/>
+    <Image name="1337.png" x="160" y="495" w="100" h="146" refx="0" refy="0"/>
+    <Image name="1338.png" x="1" y="394" w="157" h="137" refx="0" refy="0"/>
+    <Image name="1341.png" x="705" y="1" w="121" h="174" refx="0" refy="0"/>
+    <Image name="1343.png" x="174" y="341" w="117" h="152" refx="0" refy="0"/>
+    <Image name="1344.png" x="407" y="750" w="140" h="103" refx="0" refy="0"/>
+    <Image name="1347.png" x="352" y="1" w="175" h="156" refx="0" refy="0"/>
+    <Image name="1348.png" x="529" y="133" w="173" h="157" refx="0" refy="0"/>
+    <Image name="1349.png" x="529" y="1" w="174" h="130" refx="0" refy="0"/>
+    <Image name="1350.png" x="139" y="643" w="107" h="136" refx="0" refy="0"/>
+    <Image name="1351.png" x="1" y="680" w="104" h="131" refx="0" refy="0"/>
+    <Image name="1353.png" x="293" y="478" w="151" h="131" refx="0" refy="0"/>
+    <Image name="1354.png" x="130" y="855" w="106" h="124" refx="0" refy="0"/>
+    <Image name="1356.png" x="175" y="167" w="142" h="172" refx="0" refy="0"/>
+    <Image name="1357.png" x="585" y="614" w="132" h="140" refx="0" refy="0"/>
+    <Image name="1359.png" x="1" y="1" w="172" h="175" refx="0" refy="0"/>
+    <Image name="1360.png" x="641" y="456" w="154" h="156" refx="0" refy="0"/>
+    <Image name="1361.png" x="655" y="292" w="142" h="161" refx="0" refy="0"/>
+    <Image name="1362.png" x="526" y="292" w="127" h="162" refx="0" refy="0"/>
+    <Image name="1363.png" x="1" y="533" w="136" h="145" refx="0" refy="0"/>
+    <Image name="1364.png" x="797" y="596" w="148" h="123" refx="0" refy="0"/>
+    <Image name="1365.png" x="175" y="1" w="175" h="164" refx="0" refy="0"/>
+    <Image name="1366.png" x="446" y="598" w="137" h="150" refx="0" refy="0"/>
+    <Image name="1367.png" x="1" y="178" w="172" h="139" refx="0" refy="0"/>
+    <Image name="1369.png" x="828" y="168" w="156" h="163" refx="0" refy="0"/>
+    <Image name="1374.png" x="704" y="177" w="115" h="102" refx="0" refy="0"/>
+    <Image name="1382.png" x="1" y="855" w="127" h="138" refx="0" refy="0"/>
+    <Image name="1389.png" x="799" y="436" w="157" h="158" refx="0" refy="0"/>
+    <Image name="1391.png" x="262" y="611" w="143" h="142" refx="0" refy="0"/>
+    <Image name="1393.png" x="319" y="316" w="160" h="160" refx="0" refy="0"/>
+    <Image name="1394.png" x="828" y="1" w="160" h="165" refx="0" refy="0"/>
+</Images>

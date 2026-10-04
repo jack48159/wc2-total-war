@@ -1,0 +1,9 @@
+<Texture name="battlebg2_iPad.pkm" />
+<Images>
+    <Image name="normal1.png" x="0" y="0" w="512" h="320" refx="0" refy="0" />
+    <Image name="normal2.png" x="512" y="0" w="512" h="320" refx="0" refy="0" />
+    <Image name="port_aircraft.png" x="0" y="320" w="512" h="320" refx="0" refy="0" />
+    <Image name="port_battleship.png" x="512" y="320" w="512" h="320" refx="0" refy="0" />
+    <Image name="port_carrier.png" x="0" y="640" w="512" h="320" refx="0" refy="0" />
+    <Image name="port_cruiser.png" x="512" y="640" w="512" h="320" refx="0" refy="0" />
+</Images>

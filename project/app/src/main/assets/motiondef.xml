@@ -1,0 +1,235 @@
+﻿<Units>
+	<Unit name="infantry" res="infantry" fireeffect="effect_gunfire.xml">
+		<Motions>
+			<Motion name="attack1" type="standby"/>
+			<Motion name="attack2" type="standby" index="1"/>
+			<Motion name="attack3" type="standby" index="2"/>
+			<Motion name="attack4" type="standby" index="3"/>
+			<Motion name="attack1" type="attack" at="0.125" firex="39" firey="-65"/>
+			<Motion name="attack2" type="attack" at="0.24"  firex="40" firey="-55" index="1"/>
+			<Motion name="attack3" type="attack" at="0.25"  firex="33" firey="-56" index="2"/>
+			<Motion name="attack4" type="attack" at="0.179"  firex="27" firey="-41" index="3"/>
+		</Motions>
+	</Unit>
+	<Unit name="panzer" res="panzer" fireeffect="effect_mgunfire.xml" dir="-1">
+		<Motions>
+			<Motion name="attack" type="standby"/>
+			<Motion name="attack" type="attack" at="0.4" firex="35" firey="-39"/>
+		</Motions>
+	</Unit>
+	<Unit name="panzer am" res="panzer" fireeffect="effect_mgunfire.xml" dir="-1">
+		<Motions>
+			<Motion name="attack" type="standby"/>
+			<Motion name="attack" type="attack" at="0.4" firex="39" firey="-52"/>
+		</Motions>
+	</Unit>
+	<Unit name="panzer de" res="panzer" fireeffect="effect_mgunfire.xml" dir="-1">
+		<Motions>
+			<Motion name="attack" type="standby"/>
+			<Motion name="attack" type="attack" at="0.4" firex="45" firey="-40"/>
+		</Motions>
+	</Unit>
+	<Unit name="panzer fr" res="panzer" fireeffect="effect_mgunfire.xml" dir="-1">
+		<Motions>
+			<Motion name="attack" type="standby"/>
+			<Motion name="attack" type="attack" at="0.4" firex="21" firey="-50"/>
+		</Motions>
+	</Unit>
+	<Unit name="panzer gb" res="panzer" fireeffect="effect_mgunfire.xml" dir="-1">
+		<Motions>
+			<Motion name="attack" type="standby"/>
+			<Motion name="attack" type="attack" at="0.4" firex="16" firey="-56"/>
+		</Motions>
+	</Unit>
+	<Unit name="panzer it" res="panzer" fireeffect="effect_mgunfire.xml" dir="-1">
+		<Motions>
+			<Motion name="attack" type="standby"/>
+			<Motion name="attack" type="attack" at="0.4" firex="23" firey="-44"/>
+		</Motions>
+	</Unit>
+	<Unit name="panzer ja" res="panzer" fireeffect="effect_mgunfire.xml" dir="-1">
+		<Motions>
+			<Motion name="attack" type="standby"/>
+			<Motion name="attack" type="attack" at="0.4" firex="51" firey="-26"/>
+		</Motions>
+	</Unit>
+	<Unit name="panzer ru" res="panzer" fireeffect="effect_mgunfire.xml" dir="-1">
+		<Motions>
+			<Motion name="attack" type="standby"/>
+			<Motion name="attack" type="attack" at="0.4" firex="18" firey="-44"/>
+		</Motions>
+	</Unit>
+
+
+	<Unit name="artillery" res="artillery" fireeffect="effect_tankfire.xml" dir="-1">
+		<Motions>
+			<Motion name="standby" type="standby"/>
+			<Motion name="attack" type="attack" at="0.246" firex="35" firey="-28"/>
+		</Motions>
+	</Unit>
+	<Unit name="artillery am" res="artillery" fireeffect="effect_tankfire.xml" dir="-1">
+		<Motions>
+			<Motion name="standby" type="standby"/>
+			<Motion name="attack" type="attack" at="0.21" firex="80" firey="-37"/>
+		</Motions>
+	</Unit>
+	<Unit name="artillery de" res="artillery" fireeffect="effect_tankfire.xml" dir="-1">
+		<Motions>
+			<Motion name="standby" type="standby"/>
+			<Motion name="attack" type="attack" at="0.21" firex="82" firey="-32"/>
+		</Motions>
+	</Unit>
+	<Unit name="artillery fr" res="artillery" fireeffect="effect_tankfire.xml" dir="-1">
+		<Motions>
+			<Motion name="standby" type="standby"/>
+			<Motion name="attack" type="attack" at="0.21" firex="46" firey="-35"/>
+		</Motions>
+	</Unit>
+	<Unit name="artillery gb" res="artillery" fireeffect="effect_tankfire.xml" dir="-1">
+		<Motions>
+			<Motion name="standby" type="standby"/>
+			<Motion name="attack" type="attack" at="0.21" firex="46" firey="-35"/>
+		</Motions>
+	</Unit>
+	<Unit name="artillery ru" res="artillery" fireeffect="effect_tankfire.xml" dir="-1">
+		<Motions>
+			<Motion name="standby" type="standby"/>
+			<Motion name="attack" type="attack" at="0.21" firex="86" firey="-32"/>
+		</Motions>
+	</Unit>
+
+	<Unit name="rocket" res="rocketlauncher" fireeffect="" dir="-1">
+		<Motions>
+			<Motion name="standby" type="standby"/>
+			<Motion name="attack" type="attack" at="0.32" firex="38" firey="-83"/>
+		</Motions>
+	</Unit>
+
+	<Unit name="tank" res="tank" fireeffect="effect_tankfire.xml" dir="-1">
+		<Motions>
+			<Motion name="standby" type="standby"/>
+			<Motion name="attack" type="attack" at="0.32" firex="66" firey="-50"/>
+		</Motions>
+	</Unit>
+	<Unit name="tank am" res="tank" fireeffect="effect_tankfire.xml" dir="-1">
+		<Motions>
+			<Motion name="standby" type="standby"/>
+			<Motion name="attack" type="attack" at="0.32" firex="72" firey="-46"/>
+		</Motions>
+	</Unit>
+	<Unit name="tank de" res="tank" fireeffect="effect_tankfire.xml" dir="-1">
+		<Motions>
+			<Motion name="standby" type="standby"/>
+			<Motion name="attack" type="attack" at="0.32" firex="59" firey="-47"/>
+		</Motions>
+	</Unit>
+	<Unit name="tank fr" res="tank" fireeffect="effect_tankfire.xml" dir="-1">
+		<Motions>
+			<Motion name="standby" type="standby"/>
+			<Motion name="attack" type="attack" at="0.32" firex="37" firey="-57"/>
+		</Motions>
+	</Unit>
+	<Unit name="tank gb" res="tank" fireeffect="effect_tankfire.xml" dir="-1">
+		<Motions>
+			<Motion name="standby" type="standby"/>
+			<Motion name="attack" type="attack" at="0.32" firex="65" firey="-41"/>
+		</Motions>
+	</Unit>
+	<Unit name="tank it" res="tank" fireeffect="effect_tankfire.xml" dir="-1">
+		<Motions>
+			<Motion name="standby" type="standby"/>
+			<Motion name="attack" type="attack" at="0.32" firex="69" firey="-52"/>
+		</Motions>
+	</Unit>
+	<Unit name="tank ja" res="tank" fireeffect="effect_tankfire.xml" dir="-1">
+		<Motions>
+			<Motion name="standby" type="standby"/>
+			<Motion name="attack" type="attack" at="0.32" firex="54" firey="-47"/>
+		</Motions>
+	</Unit>
+	<Unit name="tank ru" res="tank" fireeffect="effect_tankfire.xml" dir="-1">
+		<Motions>
+			<Motion name="standby" type="standby"/>
+			<Motion name="attack" type="attack" at="0.32" firex="65" firey="-49"/>
+		</Motions>
+	</Unit>
+
+
+	<Unit name="heavytank" res="heavytank" fireeffect="effect_tankfire.xml" dir="-1">
+		<Motions>
+			<Motion name="standby" type="standby"/>
+			<Motion name="attack" type="attack" at="0.25" firex="113" firey="-58"/>
+		</Motions>
+	</Unit>
+	<Unit name="heavytank am" res="heavytank" fireeffect="effect_tankfire.xml" dir="-1">
+		<Motions>
+			<Motion name="standby" type="standby"/>
+			<Motion name="attack" type="attack" at="0.25" firex="123" firey="-43"/>
+		</Motions>
+	</Unit>
+	<Unit name="heavytank de" res="heavytank" fireeffect="effect_tankfire.xml" dir="-1">
+		<Motions>
+			<Motion name="standby" type="standby"/>
+			<Motion name="attack" type="attack" at="0.25" firex="131" firey="-51"/>
+		</Motions>
+	</Unit>
+	<Unit name="heavytank fr" res="heavytank" fireeffect="effect_tankfire.xml" dir="-1">
+		<Motions>
+			<Motion name="standby" type="standby"/>
+			<Motion name="attack" type="attack" at="0.25" firex="119" firey="-45"/>
+		</Motions>
+	</Unit>
+	<Unit name="heavytank gb" res="heavytank" fireeffect="effect_tankfire.xml" dir="-1">
+		<Motions>
+			<Motion name="standby" type="standby"/>
+			<Motion name="attack" type="attack" at="0.25" firex="91" firey="-54"/>
+		</Motions>
+	</Unit>
+	<Unit name="heavytank ja" res="heavytank" fireeffect="effect_tankfire.xml" dir="-1">
+		<Motions>
+			<Motion name="standby" type="standby"/>
+			<Motion name="attack" type="attack" at="0.25" firex="98" firey="-40"/>
+		</Motions>
+	</Unit>
+	<Unit name="heavytank ru" res="heavytank" fireeffect="effect_tankfire.xml" dir="-1">
+		<Motions>
+			<Motion name="standby" type="standby"/>
+			<Motion name="attack" type="attack" at="0.25" firex="126" firey="-46"/>
+		</Motions>
+	</Unit>
+
+	<Unit name="destroyer" res="destroyer" fireeffect="effect_shipfire.xml">
+		<Motions>
+			<Motion name="standby" type="standby"/>
+			<Motion name="attack" type="attack" at="0.4" firex="59" firey="-26"/>
+			<Motion name="destroyed" type="destroyed"/>
+		</Motions>
+	</Unit>
+	<Unit name="cruiser" res="cruiser" fireeffect="effect_shipfire.xml">
+		<Motions>
+			<Motion name="standby" type="standby"/>
+			<Motion name="attack" type="attack" at="0.4" firex="56" firey="-10"/>
+			<Motion name="destroyed" type="destroyed"/>
+		</Motions>
+	</Unit>
+	<Unit name="battleship" res="battleship" fireeffect="effect_shipfire.xml">
+		<Motions>
+			<Motion name="standby" type="standby"/>
+			<Motion name="attack" type="attack" at="0.25" firex="48" firey="-16"/>
+			<Motion name="destroyed" type="destroyed"/>
+		</Motions>
+	</Unit>
+	<Unit name="aircraftcarrier" res="aircraftcarrier" fireeffect="effect_shipfire.xml">
+		<Motions>
+			<Motion name="standby" type="standby"/>
+			<Motion name="attack" type="attack" at="0.4" firex="42" firey="-16"/>
+			<Motion name="destroyed" type="destroyed"/>
+		</Motions>
+	</Unit>
+	<Unit name="fort" res="aircraftcarrier" fireeffect="effect_shipfire.xml">
+		<Motions>
+			<Motion name="standby" type="standby"/>
+			<Motion name="attack" type="attack" at="0.4" firex="42" firey="-16"/>
+		</Motions>
+	</Unit>
+</Units>

@@ -1,0 +1,19 @@
+<Texture name="mui_hd.webp" />
+<Images>
+    <Image name="button_allies.png" x="322" y="221" w="424" h="151" refx="3" refy="2" />
+    <Image name="button_axis.png" x="1" y="441" w="424" h="151" refx="3" refy="2" />
+    <Image name="button_conquest1.png" x="1" y="1" w="320" h="109" refx="2" refy="2" />
+    <Image name="button_conquest2.png" x="1" y="111" w="320" h="109" refx="2" refy="2" />
+    <Image name="button_conquest3.png" x="1" y="221" w="320" h="109" refx="2" refy="2" />
+    <Image name="button_conquest4.png" x="1" y="331" w="320" h="109" refx="2" refy="2" />
+    <Image name="button_conquest5.png" x="322" y="1" w="320" h="109" refx="2" refy="2" />
+    <Image name="button_conquest6.png" x="322" y="111" w="320" h="109" refx="2" refy="2" />
+    <Image name="button_global.png" x="1" y="593" w="424" h="151" refx="2" refy="2" />
+    <Image name="button_host.png" x="1" y="745" w="424" h="151" refx="2" refy="2" />
+    <Image name="button_join.png" x="426" y="373" w="424" h="151" refx="2" refy="2" />
+    <Image name="button_local.png" x="426" y="525" w="424" h="151" refx="2" refy="2" />
+    <Image name="button_mainmenu.png" x="643" y="83" w="217" h="81" refx="4" refy="3" />
+    <Image name="button_moregame.png" x="643" y="1" w="121" h="81" refx="0" refy="4" />
+    <Image name="button_nato.png" x="426" y="677" w="424" h="151" refx="3" refy="2" />
+    <Image name="button_wto.png" x="426" y="829" w="424" h="151" refx="3" refy="2" />
+</Images>

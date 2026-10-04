@@ -1,0 +1,26 @@
+<Texture name="ui_iPad.png" />
+<Images>
+    <Image name="blue_big.png" x="1" y="1" w="135" h="72" refx="2" refy="2" />
+    <Image name="buttonboard_blue.png" x="45" y="74" w="47" h="41" refx="0" refy="3" />
+    <Image name="buttonboard_gray.png" x="137" y="43" w="47" h="41" refx="0" refy="3" />
+    <Image name="buttonboard_green.png" x="137" y="1" w="43" h="41" refx="3" refy="3" />
+    <Image name="buttonboard_red.png" x="1" y="74" w="43" h="45" refx="3" refy="0" />
+    <Image name="buttontext_back.png" x="185" y="28" w="25" h="21" refx="-5" refy="-10" />
+    <Image name="buttontext_back_press.png" x="211" y="27" w="21" h="18" refx="-6" refy="-11" />
+    <Image name="buttontext_cancel.png" x="205" y="50" w="22" h="20" refx="-20" refy="-6" />
+    <Image name="buttontext_cancel_press.png" x="147" y="109" w="18" h="16" refx="-23" refy="-8" />
+    <Image name="buttontext_next.png" x="189" y="93" w="23" h="16" refx="-11" refy="-14" />
+    <Image name="buttontext_next_press.png" x="166" y="107" w="19" h="14" refx="-13" refy="-15" />
+    <Image name="buttontext_ok.png" x="205" y="71" w="25" h="21" refx="-10" refy="-11" />
+    <Image name="buttontext_ok_press.png" x="228" y="46" w="19" h="17" refx="-13" refy="-13" />
+    <Image name="check_ok.png" x="93" y="85" w="53" h="42" refx="0" refy="-6" />
+    <Image name="gamebutton_card_normal.png" x="207" y="1" w="26" h="25" refx="-4" refy="-10" />
+    <Image name="gamebutton_card_press.png" x="166" y="85" w="22" h="21" refx="-5" refy="-12" />
+    <Image name="gamebutton_cardremove_normal.png" x="181" y="1" w="25" h="26" refx="-4" refy="-9" />
+    <Image name="gamebutton_cardremove_press.png" x="234" y="1" w="21" h="22" refx="-6" refy="-11" />
+    <Image name="gamebutton_pause_normal.png" x="147" y="85" w="18" h="23" refx="-14" refy="-6" />
+    <Image name="gamebutton_pause_press.png" x="231" y="64" w="14" h="18" refx="-16" refy="-9" />
+    <Image name="gamebutton_round_normal.png" x="185" y="50" w="19" h="23" refx="-14" refy="-11" />
+    <Image name="gamebutton_round_press.png" x="234" y="24" w="15" h="19" refx="-15" refy="-13" />
+    <Image name="progressbar.png" x="186" y="110" w="25" h="15" refx="2" refy="2" />
+</Images>

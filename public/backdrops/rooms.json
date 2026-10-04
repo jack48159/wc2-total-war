@@ -1,0 +1,101 @@
+[
+  {
+    "id": "de_a",
+    "name": "德式会议室",
+    "wall": "backdrops/room_de.jpg",
+    "thumb": "backdrops/room_de_thumb.jpg",
+    "floor": "backdrops/floor_de.jpg",
+    "floorRow": 790,
+    "wallHeightMM": 3600
+  },
+  {
+    "id": "de_b",
+    "name": "德式会议室 II",
+    "wall": "backdrops/room_de_b.jpg",
+    "thumb": "backdrops/room_de_b_thumb.jpg",
+    "floor": "backdrops/floor_de.jpg",
+    "floorRow": 830,
+    "wallHeightMM": 3600
+  },
+  {
+    "id": "gb",
+    "name": "英式地下作战室",
+    "wall": "backdrops/w_gb.png",
+    "thumb": "backdrops/w_gb_thumb.jpg",
+    "floor": "backdrops/f_lino.png",
+    "floorRow": 743,
+    "wallHeightMM": 3600
+  },
+  {
+    "id": "ru",
+    "name": "苏式指挥大厅",
+    "wall": "backdrops/w_ru.png",
+    "thumb": "backdrops/w_ru_thumb.jpg",
+    "floor": "backdrops/f_oak.png",
+    "floorRow": 773,
+    "wallHeightMM": 3600
+  },
+  {
+    "id": "us",
+    "name": "美式作战部",
+    "wall": "backdrops/w_us.png",
+    "thumb": "backdrops/w_us_thumb.jpg",
+    "floor": "backdrops/f_oak.png",
+    "floorRow": 763,
+    "wallHeightMM": 3600
+  },
+  {
+    "id": "bunker",
+    "name": "混凝土地堡",
+    "wall": "backdrops/w_bunker.png",
+    "thumb": "backdrops/w_bunker_thumb.jpg",
+    "floor": "backdrops/f_concrete.png",
+    "floorRow": 819,
+    "wallHeightMM": 3600
+  },
+  {
+    "id": "whitehouse",
+    "name": "白宫椭圆办公室",
+    "wall": "backdrops/w_whitehouse.png",
+    "thumb": "backdrops/w_whitehouse_thumb.jpg",
+    "floor": "backdrops/f_carpet_blue.png",
+    "floorRow": 824,
+    "wallHeightMM": 3600
+  },
+  {
+    "id": "chancellery",
+    "name": "元首官邸书房",
+    "wall": "backdrops/w_chancellery.png",
+    "thumb": "backdrops/w_chancellery_thumb.jpg",
+    "floor": "backdrops/f_carpet_red.png",
+    "floorRow": 886,
+    "wallHeightMM": 3600
+  },
+  {
+    "id": "chongqing",
+    "name": "重庆黄山官邸（风格再现）",
+    "wall": "backdrops/w_chongqing.jpg",
+    "thumb": "backdrops/w_chongqing_thumb.jpg",
+    "floor": "backdrops/f_concrete.png",
+    "floorRow": 750,
+    "wallHeightMM": 3400
+  },
+  {
+    "id": "japan_staff",
+    "name": "日式大本营作战室",
+    "wall": "backdrops/w_japan_staff.jpg",
+    "thumb": "backdrops/w_japan_staff_thumb.jpg",
+    "floor": "backdrops/f_oak.png",
+    "floorRow": 748,
+    "wallHeightMM": 3400
+  },
+  {
+    "id": "france_staff",
+    "name": "法式总参谋部",
+    "wall": "backdrops/w_france_staff.jpg",
+    "thumb": "backdrops/w_france_staff_thumb.jpg",
+    "floor": "backdrops/f_oak.png",
+    "floorRow": 755,
+    "wallHeightMM": 3400
+  }
+]

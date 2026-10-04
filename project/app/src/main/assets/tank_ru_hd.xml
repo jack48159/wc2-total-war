@@ -1,0 +1,4 @@
+<Texture name="tank_ru_hd.png" />
+<Images>
+    <Image name="tank_am.png" x="1" y="1" w="284" h="170" refx="0" refy="0" />
+</Images>

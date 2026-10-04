@@ -1,0 +1,21 @@
+﻿<Texture name="infantry_de_hd.png" />
+<Images>
+    <Image name="身体.png" x="1" y="1" w="53" h="70" refx="0" refy="0" />
+    <Image name="机枪.png" x="1" y="72" w="37" h="51" refx="0" refy="0" />
+    <Image name="前小腿.png" x="39" y="72" w="18" h="48" refx="0" refy="0" />
+    <Image name="后小腿.png" x="55" y="1" w="18" h="46" refx="0" refy="0" />
+    <Image name="前大腿.png" x="74" y="1" w="27" h="40" refx="0" refy="0" />
+    <Image name="后大腿.png" x="74" y="42" w="27" h="39" refx="0" refy="0" />
+    <Image name="步枪.png" x="102" y="1" w="107" h="20" refx="0" refy="0" />
+    <Image name="影子.png" x="102" y="22" w="138" h="32" refx="0" refy="0" />
+    <Image name="头.png" x="102" y="55" w="24" h="31" refx="0" refy="0" />
+    <Image name="前小胳膊.png" x="58" y="82" w="25" h="25" refx="0" refy="0" />
+    <Image name="前鞋.png" x="210" y="1" w="23" h="17" refx="0" refy="0" />
+    <Image name="后大胳膊.png" x="127" y="55" w="26" h="20" refx="0" refy="0" />
+    <Image name="后鞋.png" x="58" y="108" w="26" h="13" refx="0" refy="0" />
+    <Image name="后小胳膊.png" x="85" y="87" w="27" h="24" refx="0" refy="0" />
+    <Image name="元件 19.png" x="113" y="87" w="69" h="16" refx="0" refy="0" />
+    <Image name="前大胳膊.png" x="241" y="1" w="12" h="29" refx="0" refy="0" />
+    <Image name="前手.png" x="55" y="48" w="14" h="14" refx="0" refy="0" />
+    <Image name="后手.png" x="113" y="104" w="16" h="11" refx="0" refy="0" />
+</Images>

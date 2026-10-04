@@ -1,0 +1,9 @@
+<Texture name="battlebg3_iPad.pkm" />
+<Images>
+    <Image name="port_destroyer.png" x="0" y="0" w="512" h="320" refx="0" refy="0" />
+    <Image name="sea_aircraft.png" x="512" y="0" w="512" h="320" refx="0" refy="0" />
+    <Image name="sea_battleship.png" x="0" y="320" w="512" h="320" refx="0" refy="0" />
+    <Image name="sea_carrier.png" x="512" y="320" w="512" h="320" refx="0" refy="0" />
+    <Image name="sea_cruiser.png" x="0" y="640" w="512" h="320" refx="0" refy="0" />
+    <Image name="sea_destroyer.png" x="512" y="640" w="512" h="320" refx="0" refy="0" />
+</Images>

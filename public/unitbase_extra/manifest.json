@@ -1,0 +1,50 @@
+{
+  "colors": {
+    "amber": {
+      "hex": "#d18a1f",
+      "source": "gray"
+    }
+  },
+  "frames": [
+    {
+      "name": "unitbase_amber_1",
+      "file": "unitbase_amber_1.png",
+      "rx": 50,
+      "ry": 31,
+      "w": 108,
+      "h": 66
+    },
+    {
+      "name": "unitbase_amber_2",
+      "file": "unitbase_amber_2.png",
+      "rx": 52,
+      "ry": 40,
+      "w": 108,
+      "h": 74
+    },
+    {
+      "name": "unitbase_amber_3",
+      "file": "unitbase_amber_3.png",
+      "rx": 50,
+      "ry": 41,
+      "w": 108,
+      "h": 74
+    },
+    {
+      "name": "unitbase_amber_4",
+      "file": "unitbase_amber_4.png",
+      "rx": 50,
+      "ry": 43,
+      "w": 108,
+      "h": 77
+    },
+    {
+      "name": "mark_carriers_amber",
+      "file": "mark_carriers_amber.png",
+      "rx": 28,
+      "ry": 74,
+      "w": 64,
+      "h": 86
+    }
+  ]
+}

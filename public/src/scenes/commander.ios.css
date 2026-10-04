@@ -1,0 +1,29 @@
+/* 指挥官名册 · iOS 版布局(横屏手机)。Windows 版布局在 commander.css，两套互不影响；本文件只在 iOS 上加载。 */
+/* ---- iOS 横屏紧凑布局：指挥官名册(DOM 页面) ---- */
+html[data-platform="ios"] .commander-screen {padding:calc(6px + env(safe-area-inset-top)) calc(12px + env(safe-area-inset-right)) calc(6px + env(safe-area-inset-bottom)) calc(12px + env(safe-area-inset-left));-webkit-overflow-scrolling:touch;touch-action:pan-y;}
+html[data-platform="ios"] .commander-top {padding-bottom:6px;margin-bottom:8px;gap:8px;}
+html[data-platform="ios"] .commander-heading small {display:none;}
+html[data-platform="ios"] .commander-heading h1 {font-size:20px;}
+html[data-platform="ios"] .commander-back {padding:6px 12px;white-space:nowrap;}
+html[data-platform="ios"] .commander-medals strong {font-size:16px;}
+html[data-platform="ios"] .commander-split {grid-template-columns:210px minmax(0,1fr);gap:10px;height:calc(100dvh - 64px - env(safe-area-inset-top) - env(safe-area-inset-bottom));min-height:0;}
+html[data-platform="ios"] .commander-dossier-scroll {padding:10px;overflow-y:auto;}
+html[data-platform="ios"] .commander-photo-col {width:38%;margin:0 auto 6px;}
+html[data-platform="ios"] .commander-toolbar {padding:6px 10px;gap:8px;}
+html[data-platform="ios"] .commander-grid {grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:8px;padding:8px;touch-action:pan-y;}
+html[data-platform="ios"] .commander-roster,html[data-platform="ios"] .commander-dossier-scroll {touch-action:pan-y;}
+
+/* ---- iOS 横屏矮屏(高度<=460)：联机页头部合并成一行，把高度还给内容区 ---- */
+@media (max-height:460px) {
+  html[data-platform="ios"] .mp-header {display:flex;flex-wrap:nowrap;align-items:center;gap:8px;padding-bottom:4px;}
+  html[data-platform="ios"] .mp-header-left {display:flex;flex-wrap:nowrap;align-items:center;gap:8px;flex:1 1 auto;min-width:0;}
+  html[data-platform="ios"] .mp-header-right {display:flex;flex:none;align-items:center;gap:6px;}
+  html[data-platform="ios"] .mp-kicker {display:none;}
+  html[data-platform="ios"] .mp-title {font-size:18px;white-space:nowrap;margin:0;}
+  html[data-platform="ios"] .mp-back-btn {white-space:nowrap;padding:0 10px;}
+  html[data-platform="ios"] .mp-nav-tabs {flex:1 1 auto;min-width:0;}
+  html[data-platform="ios"] .mp-screen button {min-height:34px!important;padding-top:2px;padding-bottom:2px;font-size:13px;white-space:nowrap;}
+  html[data-platform="ios"] .mp-stat-pill {padding:2px 8px;font-size:12px;}
+  html[data-platform="ios"] .mp-step-nav {height:auto;padding:2px;}
+  html[data-platform="ios"] .mp-step-btn {padding-left:8px;padding-right:8px;}
+}

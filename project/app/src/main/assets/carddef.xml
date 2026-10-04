@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<cards>
+	<country call="others">
+		<card name="Infantry" id="0" type="army" price="75" industry="0" round="0" tech="1" relatedArmyId="0" baseimage="card_infantry.png" intro="Infantry Intro"/>
+		<card name="Armour" id="1" type="army" price="140" industry="50" round="0" tech="2" relatedArmyId="1" image="card_armour.png" intro="Armour Intro"/>
+		<card name="Artillery" id="2" type="army" price="125" industry="40" round="0" tech="2" relatedArmyId="2" image="card_artillery.png" intro="Artillery Intro"/>
+		<card name="Rocket" id="3" type="army" price="240" industry="70" round="0" tech="4" relatedArmyId="3"image="card_rocketlaunch.png" intro="Rocket Intro"/>
+		<card name="Tank" id="4" type="army" price="220" industry="80" round="0" tech="3" relatedArmyId="4" image="card_tank.png" intro="Tank Intro"/>
+		<card name="Heavy Tank" id="5" type="army" price="300" industry="100" round="0" tech="4" relatedArmyId="5" image="card_heavytank.png" intro="Heavy Tank Intro"/>
+		<card name="Elite Infantry" id="28" type="army" price="120" industry="60" round="0" tech="3" relatedArmyId="15"  image="card_infantry.png" intro="Elite Infantry Intro"/>
+
+		<card name="Destroyer" id="6" type="navy" price="250" industry="60" round="0" tech="1" relatedArmyId="6" image="card_destroyer.png" intro="Destroyer Intro"/>
+		<card name="Cruiser" id="7" type="navy" price="350" industry="100" round="0" tech="2" relatedArmyId="7" image="card_cruiser.png" intro="Cruiser Intro"/>
+		<card name="BattleShip" id="8" type="navy" price="450" industry="150" round="0" tech="3"  relatedArmyId="8" image="card_battleship.png" intro="BattleShip Intro"/>
+		<card name="Aircraft Carrier" id="9" type="navy" price="600" industry="240" round="0" relatedArmyId="9" tech="4" image="card_aircraftcarriers.png" intro="Aircraft Carrier Intro"/>
+	
+		<card name="Airstrike" id="10" type="airforce" price="90" industry="40" round="0" tech="2" image="card_airstrike.png" intro="Airstrike Intro"/>
+		<card name="Bomber" id="11" type="airforce" price="180" industry="90" round="1" tech="3" image="card_bomber.png" intro="Bomber Intro"/>
+		<card name="Airborne Force" id="12" type="airforce" price="200" industry="100" round="2" tech="3" image="card_airborneforce.png" intro="Airborne Force Intro"/>
+		<card name="Nuclear Bomb" id="13" type="airforce" price="450" industry="260" round="3" tech="5" image="card_nuclearbomb.png" intro="Nuclear Bomb Intro"/>
+
+		<card name="City" id="14" type="development" price="60" industry="0" round="0" tech="1" image="card_city.png" intro="City Intro"/>
+		<card name="Industry" id="15" type="development" price="50" industry="10" round="0" tech="1" image="card_industry.png" intro="Industry Intro"/>
+		<card name="Airport" id="16" type="development" price="50" industry="20" round="0" tech="2" image="card_airport.png" intro="Airport Intro"/>
+		<card name="Land Fort" id="17" type="development" price="60" industry="30" round="0" tech="2" image="card_landfort.png" intro="Land Fort Intro"/>
+		<card name="Entrenchment" id="18" type="development" price="35" industry="15" round="0" tech="1" image="card_entrenchment.png" intro="Entrenchment Intro"/>
+		<card name="Antiaircraft" id="19" type="development" price="25" industry="10" round="0" tech="3" image="card_antiaircraft.png" intro="Antiaircraft Intro"/>
+		<card name="Radar" id="20" type="development" price="40" industry="30" round="0" tech="4" image="card_radar.png" intro="Radar Intro"/>
+	
+		<card name="Research" id="21" type="strategy" price="120" industry="60" round="3" tech="1" image="card_research.png" intro="Research Intro"/>
+		<card name="Carrier" id="22" type="strategy" price="40" industry="0" round="0" tech="1" image="card_carrier.png" intro="Carrier Intro"/>
+		<card name="Assault Art" id="23" type="strategy" price="30" industry="0" round="0" tech="1" image="card_assaultart.png" intro="Assault Art Intro"/>
+		<card name="Defend Art" id="24" type="strategy" price="35" industry="0" round="0" tech="1" image="card_defendart.png" intro="Defend Art Intro"/>
+		<card name="Commander" id="25" type="strategy" price="10" industry="0" round="0" tech="1" image="card_commander.png" intro="Commander Intro"/>
+		<card name="Supply Line" id="26" type="strategy" price="180" industry="80" round="3" tech="1" image="card_supplyline.png" intro="Supply Line Intro"/>
+		<card name="Ace Forces" id="27" type="strategy" price="80" industry="40" round="1" tech="3" image="card_aceforce.png" intro="Ace Forces Intro"/>
+        </country>
+
+       <country call="cn">
+		<card name="Infantry" id="0" type="army" price="50" industry="-5" round="0" tech="1" image="card_infantry.png" intro="Infantry Intro"/>
+	</country>
+
+       <country call="de">
+		<card name="De Elite Infantry" id="28" type="army" price="120" industry="60" round="0" tech="3" relatedArmyId="15"  image="card_infantry.png" intro="De Elite Infantry Intro"/>
+        </country>
+    <country call="tw"></country>
+</cards>

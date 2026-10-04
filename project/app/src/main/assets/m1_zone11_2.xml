@@ -1,0 +1,29 @@
+<Texture name="m1_zone11_2.webp"/>
+<Images>
+    <Image name="0714.png" x="139" y="554" w="129" h="103" refx="0" refy="0"/>
+    <Image name="0715.png" x="860" y="535" w="159" h="113" refx="0" refy="0"/>
+    <Image name="0716.png" x="184" y="1" w="158" h="180" refx="0" refy="0"/>
+    <Image name="0717.png" x="701" y="127" w="175" h="128" refx="0" refy="0"/>
+    <Image name="0718.png" x="338" y="309" w="158" h="136" refx="0" refy="0"/>
+    <Image name="0721.png" x="522" y="153" w="174" h="147" refx="0" refy="0"/>
+    <Image name="0722.png" x="1" y="658" w="125" h="72" refx="0" refy="0"/>
+    <Image name="0724.png" x="522" y="1" w="177" h="150" refx="0" refy="0"/>
+    <Image name="0727.png" x="689" y="407" w="169" h="133" refx="0" refy="0"/>
+    <Image name="0731.png" x="701" y="1" w="176" h="124" refx="0" refy="0"/>
+    <Image name="0732.png" x="1" y="269" w="168" h="123" refx="0" refy="0"/>
+    <Image name="0737.png" x="1" y="1" w="181" h="152" refx="0" refy="0"/>
+    <Image name="0738.png" x="168" y="408" w="140" h="144" refx="0" refy="0"/>
+    <Image name="0739.png" x="518" y="302" w="169" h="150" refx="0" refy="0"/>
+    <Image name="0740.png" x="1" y="394" w="165" h="134" refx="0" refy="0"/>
+    <Image name="0742.png" x="171" y="269" w="165" h="137" refx="0" refy="0"/>
+    <Image name="0745.png" x="310" y="447" w="136" h="117" refx="0" refy="0"/>
+    <Image name="0746.png" x="1" y="530" w="136" h="126" refx="0" refy="0"/>
+    <Image name="0752.png" x="344" y="182" w="172" h="125" refx="0" refy="0"/>
+    <Image name="0753.png" x="879" y="1" w="131" h="169" refx="0" refy="0"/>
+    <Image name="0754.png" x="1" y="155" w="180" h="112" refx="0" refy="0"/>
+    <Image name="0755.png" x="698" y="257" w="171" h="148" refx="0" refy="0"/>
+    <Image name="0756.png" x="344" y="1" w="176" h="179" refx="0" refy="0"/>
+    <Image name="0765.png" x="860" y="407" w="160" h="126" refx="0" refy="0"/>
+    <Image name="0767.png" x="878" y="172" w="145" h="107" refx="0" refy="0"/>
+    <Image name="0768.png" x="871" y="281" w="145" h="75" refx="0" refy="0"/>
+</Images>

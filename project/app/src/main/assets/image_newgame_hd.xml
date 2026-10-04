@@ -1,0 +1,38 @@
+<Texture name="image_newgame_hd.png" />
+<Images>
+    <Image name="new_game_logo.png" x="1" y="1" w="248" h="248" refx="0" refy="0" />
+    <Image name="button_mail.png" x="250" y="1" w="121" h="81" refx="0" refy="3" />
+    <Image name="new_game_left_bg.png" x="250" y="83" w="64" h="64" refx="0" refy="0" />
+    <Image name="new_game_right_bg.png" x="372" y="1" w="64" h="64" refx="0" refy="0" />
+    <Image name="new_game_sheet_bg.png" x="250" y="148" w="120" h="44" refx="0" refy="0" />
+    <Image name="new_game_survey_txt.png" x="315" y="83" w="156" h="46" refx="0" refy="0" />
+    <Image name="new_game_iab_event.png" x="250" y="193" w="186" h="44" refx="0" refy="0" />
+    <Image name="new_game_iab_event_sel.png" x="1" y="250" w="186" h="44" refx="0" refy="0" />
+    <Image name="new_game_recommend.png" x="1" y="295" w="186" h="44" refx="0" refy="0" />
+    <Image name="new_game_recommend_sel.png" x="1" y="340" w="186" h="44" refx="0" refy="0" />
+    <Image name="new_game_service.png" x="1" y="385" w="186" h="44" refx="0" refy="0" />
+    <Image name="new_game_service_sel.png" x="1" y="430" w="186" h="44" refx="0" refy="0" />
+    <Image name="new_game_survey.png" x="188" y="250" w="186" h="44" refx="0" refy="0" />
+    <Image name="new_game_survey_sel.png" x="188" y="295" w="186" h="44" refx="0" refy="0" />
+    <Image name="new_game_btn_dl.png" x="188" y="340" w="208" h="46" refx="0" refy="0" />
+    <Image name="new_game_btn_1.png" x="188" y="387" w="258" h="60" refx="0" refy="0" />
+    <Image name="new_game_btn_2.png" x="188" y="448" w="258" h="60" refx="0" refy="0" />
+    <Image name="new_game_btn_3.png" x="437" y="1" w="258" h="60" refx="0" refy="0" />
+    <Image name="new_game_facebook.png" x="371" y="130" w="38" h="38" refx="0" refy="0" />
+    <Image name="new_game_tieba.png" x="472" y="62" w="38" h="38" refx="0" refy="0" />
+    <Image name="new_game_weibo.png" x="410" y="130" w="38" h="38" refx="0" refy="0" />
+    <Image name="new_game_youtube.png" x="437" y="169" w="38" h="38" refx="0" refy="0" />
+    <Image name="new_game_close.png" x="1" y="475" w="22" h="22" refx="0" refy="0" />
+    <Image name="new_game_copy.png" x="437" y="62" w="18" h="20" refx="0" refy="0" />
+    <Image name="new_game_wechat_id.png" x="24" y="475" w="118" h="20" refx="0" refy="0" />
+    <Image name="new_game_red_dot.png" x="372" y="66" w="16" h="16" refx="0" refy="0" />
+    <Image name="new_game_tip.png" x="389" y="66" w="38" h="16" refx="0" refy="0" />
+    <Image name="new_game_website.png" x="449" y="130" w="38" h="38" refx="0" refy="0" />
+    <Image name="new_game_dot.png" x="315" y="130" w="14" h="14" refx="0" refy="0" />
+    <Image name="new_game_line_b.png" x="250" y="238" w="42" h="6" refx="0" refy="0" />
+    <Image name="new_game_wechat_biz.png" x="371" y="169" w="60" h="20" refx="0" refy="0" />
+    <Image name="new_game_easytech_txt.png" x="24" y="496" w="78" h="14" refx="0" refy="0" />
+    <Image name="new_game_line.png" x="293" y="238" w="436" h="2" refx="0" refy="0" />
+    <Image name="new_game_line_1.png" x="250" y="245" w="490" h="2" refx="0" refy="0" />
+    <Image name="new_game_line_2.png" x="511" y="62" w="2" h="66" refx="0" refy="0" />
+</Images>

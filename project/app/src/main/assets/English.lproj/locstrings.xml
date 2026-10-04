@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>language</key>
+	<string>en</string>
+	
+	<key>stringtable</key>
+	<string>stringtable_en.xml</string>
+
+	<key>stringtable iPad</key>
+	<string>stringtable_en_iPad.xml</string>
+
+	<key>font1</key>
+	<string>font1_en.fnt</string>
+	<key>font2</key>
+	<string>font2_en.fnt</string>
+	<key>font3</key>
+	<string>font3_en.fnt</string>
+	<key>font4</key>
+	<string>font4_en.fnt</string>
+	<key>font5</key>
+	<string>font5_en.fnt</string>
+	<key>font6</key>
+	<string>font6_en.fnt</string>
+	<key>font7</key>
+	<string>font7_en.fnt</string>
+</dict>
+</plist>

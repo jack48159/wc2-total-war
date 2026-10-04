@@ -1,0 +1,30 @@
+<Texture name="m1_zone22_1.webp"/>
+<Images>
+    <Image name="1537.png" x="789" y="296" w="233" h="148" refx="0" refy="0"/>
+    <Image name="1538.png" x="508" y="460" w="245" h="117" refx="0" refy="0"/>
+    <Image name="1541.png" x="734" y="597" w="220" h="123" refx="0" refy="0"/>
+    <Image name="1543.png" x="547" y="1" w="270" h="141" refx="0" refy="0"/>
+    <Image name="1544.png" x="535" y="296" w="252" h="162" refx="0" refy="0"/>
+    <Image name="1548.png" x="1" y="1" w="272" h="166" refx="0" refy="0"/>
+    <Image name="1550.png" x="819" y="1" w="198" h="218" refx="0" refy="0"/>
+    <Image name="1552.png" x="755" y="460" w="235" h="135" refx="0" refy="0"/>
+    <Image name="1553.png" x="1" y="169" w="256" h="140" refx="0" refy="0"/>
+    <Image name="1556.png" x="1" y="311" w="255" h="180" refx="0" refy="0"/>
+    <Image name="1557.png" x="275" y="150" w="258" h="167" refx="0" refy="0"/>
+    <Image name="1558.png" x="448" y="880" w="219" h="109" refx="0" refy="0"/>
+    <Image name="1559.png" x="909" y="722" w="110" h="105" refx="0" refy="0"/>
+    <Image name="1564.png" x="547" y="144" w="268" h="150" refx="0" refy="0"/>
+    <Image name="1565.png" x="1" y="689" w="224" h="134" refx="0" refy="0"/>
+    <Image name="1568.png" x="241" y="625" w="227" h="129" refx="0" refy="0"/>
+    <Image name="1569.png" x="470" y="721" w="219" h="157" refx="0" refy="0"/>
+    <Image name="1570.png" x="882" y="878" w="138" h="141" refx="0" refy="0"/>
+    <Image name="1571.png" x="258" y="468" w="239" h="155" refx="0" refy="0"/>
+    <Image name="1572.png" x="669" y="880" w="211" h="138" refx="0" refy="0"/>
+    <Image name="1573.png" x="225" y="825" w="221" h="178" refx="0" refy="0"/>
+    <Image name="1574.png" x="1" y="825" w="222" h="196" refx="0" refy="0"/>
+    <Image name="1575.png" x="691" y="722" w="216" h="154" refx="0" refy="0"/>
+    <Image name="1576.png" x="275" y="1" w="270" h="147" refx="0" refy="0"/>
+    <Image name="1578.png" x="258" y="319" w="248" h="147" refx="0" refy="0"/>
+    <Image name="1580.png" x="499" y="579" w="233" h="140" refx="0" refy="0"/>
+    <Image name="1581.png" x="1" y="493" w="238" h="194" refx="0" refy="0"/>
+</Images>

@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mainHud version="1">
+  <element id="round" visible="1" asset="">
+    <layout mode="normal" x="448" y="290" width="32" height="30"/>
+    <layout mode="wide" x="984" y="730" width="40" height="38"/>
+  </element>
+  <element id="card" visible="1" asset="">
+    <layout mode="normal" x="0" y="290" width="32" height="30"/>
+    <layout mode="wide" x="0" y="730" width="40" height="38"/>
+  </element>
+  <element id="pause" visible="1" asset="">
+    <layout mode="normal" x="448" y="0" width="32" height="30"/>
+    <layout mode="wide" x="984" y="0" width="40" height="38"/>
+  </element>
+  <element id="resources" visible="1" asset="">
+    <layout mode="normal" x="0" y="0" width="104" height="38"/>
+    <layout mode="wide" x="0" y="0" width="104" height="38"/>
+  </element>
+  <element id="tileInfo" visible="1" asset="">
+    <layout mode="normal" x="0" y="0" width="104" height="38"/>
+    <layout mode="wide" x="0" y="0" width="104" height="38"/>
+  </element>
+  <element id="armySelector" visible="1" asset="">
+    <layout mode="normal" x="420" y="40" width="60" height="240"/>
+    <layout mode="wide" x="964" y="264" width="60" height="240"/>
+  </element>
+  <element id="roundPopupBoard" visible="1" asset="">
+    <layout mode="normal" x="0" y="0" width="193" height="282"/>
+    <layout mode="wide" x="0" y="0" width="193" height="282"/>
+  </element>
+  <element id="roundPopupRoundText" visible="1" asset="">
+    <layout mode="normal" x="47" y="45" width="82" height="19"/>
+    <layout mode="wide" x="47" y="45" width="82" height="19"/>
+  </element>
+  <element id="roundPopupMoneyText" visible="1" asset="">
+    <layout mode="normal" x="77" y="108" width="29" height="19"/>
+    <layout mode="wide" x="77" y="108" width="29" height="19"/>
+  </element>
+  <element id="roundPopupIndustryText" visible="1" asset="">
+    <layout mode="normal" x="77" y="135" width="20" height="19"/>
+    <layout mode="wide" x="77" y="135" width="20" height="19"/>
+  </element>
+  <element id="roundPopupMedals" visible="1" asset="">
+    <layout mode="normal" x="33" y="180" width="144" height="24"/>
+    <layout mode="wide" x="33" y="180" width="144" height="24"/>
+  </element>
+  <element id="roundPopupBank" visible="1" asset="">
+    <layout mode="normal" x="10" y="237" width="64" height="32"/>
+    <layout mode="wide" x="10" y="237" width="64" height="32"/>
+  </element>
+  <element id="roundPopupConfirm" visible="1" asset="">
+    <layout mode="normal" x="117" y="237" width="64" height="32"/>
+    <layout mode="wide" x="117" y="237" width="64" height="32"/>
+  </element>
+  <element id="pausePopupBoard" visible="1" asset="">
+    <layout mode="normal" x="223" y="31" width="197" height="299"/>
+    <layout mode="wide" x="223" y="31" width="197" height="299"/>
+  </element>
+  <element id="pausePopupResume" visible="1" asset="">
+    <layout mode="normal" x="260" y="90" width="117" height="40"/>
+    <layout mode="wide" x="260" y="90" width="117" height="40"/>
+  </element>
+  <element id="pausePopupSave" visible="1" asset="">
+    <layout mode="normal" x="260" y="133" width="117" height="40"/>
+    <layout mode="wide" x="260" y="133" width="117" height="40"/>
+  </element>
+  <element id="pausePopupOptions" visible="1" asset="">
+    <layout mode="normal" x="260" y="176" width="117" height="40"/>
+    <layout mode="wide" x="260" y="176" width="117" height="40"/>
+  </element>
+  <element id="pausePopupRestart" visible="1" asset="">
+    <layout mode="normal" x="260" y="219" width="117" height="40"/>
+    <layout mode="wide" x="260" y="219" width="117" height="40"/>
+  </element>
+  <element id="pausePopupQuit" visible="1" asset="">
+    <layout mode="normal" x="260" y="262" width="117" height="40"/>
+    <layout mode="wide" x="260" y="262" width="117" height="40"/>
+  </element>
+  <element id="saveScreenBackground" visible="1" asset="">
+    <layout mode="normal" x="0" y="0" width="640" height="360"/>
+    <layout mode="wide" x="0" y="0" width="640" height="360"/>
+  </element>
+  <element id="saveScreenAutoSlot" visible="1" asset="">
+    <layout mode="normal" x="259" y="51" width="123" height="232"/>
+    <layout mode="wide" x="259" y="51" width="123" height="232"/>
+  </element>
+  <element id="saveScreenLeftTop" visible="1" asset="">
+    <layout mode="normal" x="47" y="13" width="204" height="97"/>
+    <layout mode="wide" x="47" y="13" width="204" height="97"/>
+  </element>
+  <element id="saveScreenLeftMiddle" visible="1" asset="">
+    <layout mode="normal" x="47" y="118" width="204" height="97"/>
+    <layout mode="wide" x="47" y="118" width="204" height="97"/>
+  </element>
+  <element id="saveScreenLeftBottom" visible="1" asset="">
+    <layout mode="normal" x="47" y="223" width="204" height="97"/>
+    <layout mode="wide" x="47" y="223" width="204" height="97"/>
+  </element>
+  <element id="saveScreenRightTop" visible="1" asset="">
+    <layout mode="normal" x="389" y="13" width="204" height="97"/>
+    <layout mode="wide" x="389" y="13" width="204" height="97"/>
+  </element>
+  <element id="saveScreenRightMiddle" visible="1" asset="">
+    <layout mode="normal" x="389" y="118" width="204" height="97"/>
+    <layout mode="wide" x="389" y="118" width="204" height="97"/>
+  </element>
+  <element id="saveScreenRightBottom" visible="1" asset="">
+    <layout mode="normal" x="389" y="223" width="204" height="97"/>
+    <layout mode="wide" x="389" y="223" width="204" height="97"/>
+  </element>
+  <element id="saveScreenBack" visible="1" asset="">
+    <layout mode="normal" x="0" y="327" width="34" height="33"/>
+    <layout mode="wide" x="0" y="327" width="34" height="33"/>
+  </element>
+  <element id="saveScreenConfirm" visible="1" asset="">
+    <layout mode="normal" x="606" y="327" width="34" height="33"/>
+    <layout mode="wide" x="606" y="327" width="34" height="33"/>
+  </element>
+  <element id="optionsScreenBackground" visible="1" asset="">
+    <layout mode="normal" x="0" y="0" width="640" height="360"/>
+    <layout mode="wide" x="0" y="0" width="640" height="360"/>
+  </element>
+  <element id="optionsScreenBoard" visible="1" asset="main_hud/options_screen_board.png">
+    <layout mode="normal" x="0" y="0" width="640" height="360"/>
+    <layout mode="wide" x="0" y="0" width="640" height="360"/>
+  </element>
+  <element id="optionsScreenMusic" visible="0" asset="">
+    <layout mode="normal" x="119" y="31" width="165" height="75"/>
+    <layout mode="wide" x="119" y="31" width="165" height="75"/>
+  </element>
+  <element id="optionsScreenEffects" visible="0" asset="">
+    <layout mode="normal" x="345" y="39" width="165" height="75"/>
+    <layout mode="wide" x="345" y="39" width="165" height="75"/>
+  </element>
+  <element id="optionsScreenAnimation" visible="0" asset="">
+    <layout mode="normal" x="147" y="142" width="291" height="32"/>
+    <layout mode="wide" x="147" y="142" width="291" height="32"/>
+  </element>
+  <element id="optionsScreenHighDefinition" visible="0" asset="">
+    <layout mode="normal" x="147" y="178" width="291" height="32"/>
+    <layout mode="wide" x="147" y="178" width="291" height="32"/>
+  </element>
+  <element id="optionsScreenSpeed" visible="0" asset="">
+    <layout mode="normal" x="150" y="225" width="350" height="45"/>
+    <layout mode="wide" x="150" y="225" width="350" height="45"/>
+  </element>
+  <element id="optionsScreenBack" visible="1" asset="">
+    <layout mode="normal" x="0" y="327" width="34" height="33"/>
+    <layout mode="wide" x="0" y="327" width="34" height="33"/>
+  </element>
+  <element id="optionsScreenConfirm" visible="1" asset="">
+    <layout mode="normal" x="606" y="327" width="34" height="33"/>
+    <layout mode="wide" x="606" y="327" width="34" height="33"/>
+  </element>
+  <element id="commanderScreenBackground" visible="1" asset="">
+    <layout mode="normal" x="0" y="0" width="640" height="360"/>
+    <layout mode="wide" x="0" y="0" width="640" height="360"/>
+  </element>
+  <element id="commanderScreenPortrait" visible="1" asset="">
+    <layout mode="normal" x="0" y="6" width="240" height="354"/>
+    <layout mode="wide" x="0" y="6" width="240" height="354"/>
+  </element>
+  <element id="commanderScreenInfoBoard" visible="1" asset="">
+    <layout mode="normal" x="235" y="0" width="396" height="173"/>
+    <layout mode="wide" x="235" y="0" width="396" height="173"/>
+  </element>
+  <element id="commanderScreenWoodenBox" visible="1" asset="">
+    <layout mode="normal" x="274" y="179" width="334" height="181"/>
+    <layout mode="wide" x="274" y="179" width="334" height="181"/>
+  </element>
+  <element id="commanderScreenIntroBoard" visible="0" asset="">
+    <layout mode="normal" x="280" y="20" width="240" height="113"/>
+    <layout mode="wide" x="280" y="20" width="240" height="113"/>
+  </element>
+  <element id="commanderScreenRankMedal" visible="1" asset="">
+    <layout mode="normal" x="283" y="188" width="102" height="135"/>
+    <layout mode="wide" x="283" y="188" width="102" height="135"/>
+  </element>
+  <element id="commanderScreenWarMedals" visible="1" asset="">
+    <layout mode="normal" x="390" y="178" width="188" height="142"/>
+    <layout mode="wide" x="390" y="178" width="188" height="142"/>
+  </element>
+  <element id="commanderScreenMedalCounter" visible="1" asset="">
+    <layout mode="normal" x="40" y="330" width="116" height="30"/>
+    <layout mode="wide" x="40" y="330" width="116" height="30"/>
+  </element>
+  <element id="commanderScreenUpgrade" visible="0" asset="">
+    <layout mode="normal" x="121" y="330" width="35" height="30"/>
+    <layout mode="wide" x="121" y="330" width="35" height="30"/>
+  </element>
+  <element id="commanderScreenBack" visible="1" asset="">
+    <layout mode="normal" x="0" y="327" width="34" height="33"/>
+    <layout mode="wide" x="0" y="327" width="34" height="33"/>
+  </element>
+  <element id="countrySelectMap" visible="1" asset="">
+    <layout mode="normal" x="0" y="0" width="640" height="360"/>
+    <layout mode="wide" x="0" y="0" width="640" height="360"/>
+  </element>
+  <element id="countrySelectFlags" visible="1" asset="">
+    <layout mode="normal" x="0" y="0" width="640" height="360"/>
+    <layout mode="wide" x="0" y="0" width="640" height="360"/>
+  </element>
+  <element id="countrySelectIntroBoard" visible="1" asset="">
+    <layout mode="normal" x="548" y="0" width="92" height="360"/>
+    <layout mode="wide" x="548" y="0" width="92" height="360"/>
+  </element>
+  <element id="countrySelectList" visible="1" asset="">
+    <layout mode="normal" x="548" y="0" width="92" height="327"/>
+    <layout mode="wide" x="548" y="0" width="92" height="327"/>
+  </element>
+  <element id="countrySelectMedalCounter" visible="1" asset="">
+    <layout mode="normal" x="40" y="330" width="116" height="30"/>
+    <layout mode="wide" x="40" y="330" width="116" height="30"/>
+  </element>
+  <element id="countrySelectBack" visible="1" asset="">
+    <layout mode="normal" x="0" y="327" width="34" height="33"/>
+    <layout mode="wide" x="0" y="327" width="34" height="33"/>
+  </element>
+  <element id="countrySelectConfirm" visible="1" asset="">
+    <layout mode="normal" x="606" y="327" width="34" height="33"/>
+    <layout mode="wide" x="606" y="327" width="34" height="33"/>
+  </element>
+  <element id="countrySelectNewBackground" visible="1" asset="">
+    <layout mode="normal" x="0" y="0" width="640" height="360"/>
+    <layout mode="wide" x="0" y="0" width="640" height="360"/>
+  </element>
+  <element id="countrySelectNewFlagStrip" visible="1" asset="">
+    <layout mode="normal" x="0" y="0" width="640" height="132"/>
+    <layout mode="wide" x="0" y="0" width="640" height="132"/>
+  </element>
+  <element id="countrySelectNewPortrait" visible="1" asset="">
+    <layout mode="normal" x="18" y="150" width="210" height="204"/>
+    <layout mode="wide" x="18" y="150" width="210" height="204"/>
+  </element>
+  <element id="countrySelectNewDescriptionBoard" visible="1" asset="">
+    <layout mode="normal" x="240" y="145" width="382" height="208"/>
+    <layout mode="wide" x="240" y="145" width="382" height="208"/>
+  </element>
+  <element id="countrySelectNewDescriptionImage" visible="0" asset="">
+    <layout mode="normal" x="258" y="164" width="132" height="112"/>
+    <layout mode="wide" x="258" y="164" width="132" height="112"/>
+  </element>
+  <element id="countrySelectNewTitleText" visible="1" asset="">
+    <layout mode="normal" x="278" y="162" width="306" height="24"/>
+    <layout mode="wide" x="278" y="162" width="306" height="24"/>
+  </element>
+  <element id="countrySelectNewDescriptionText" visible="1" asset="">
+    <layout mode="normal" x="278" y="197" width="306" height="141"/>
+    <layout mode="wide" x="278" y="197" width="306" height="141"/>
+  </element>
+  <element id="victoryResultBackground" visible="1" asset="">
+    <layout mode="normal" x="0" y="0" width="640" height="360"/>
+    <layout mode="wide" x="0" y="0" width="640" height="360"/>
+  </element>
+  <element id="victoryResultBoard" visible="1" asset="">
+    <layout mode="normal" x="257" y="0" width="383" height="306"/>
+    <layout mode="wide" x="257" y="0" width="383" height="306"/>
+  </element>
+  <element id="victoryResultCommander" visible="1" asset="">
+    <layout mode="normal" x="0" y="6" width="241" height="354"/>
+    <layout mode="wide" x="0" y="6" width="241" height="354"/>
+  </element>
+  <element id="victoryResultRankStars" visible="1" asset="">
+    <layout mode="normal" x="413" y="141" width="69" height="21"/>
+    <layout mode="wide" x="413" y="141" width="69" height="21"/>
+  </element>
+  <element id="victoryResultMedal" visible="1" asset="">
+    <layout mode="normal" x="541" y="142" width="18" height="87"/>
+    <layout mode="wide" x="541" y="142" width="18" height="87"/>
+  </element>
+  <element id="victoryResultBack" visible="1" asset="">
+    <layout mode="normal" x="0" y="326" width="36" height="34"/>
+    <layout mode="wide" x="0" y="326" width="36" height="34"/>
+  </element>
+  <element id="victoryResultNext" visible="1" asset="">
+    <layout mode="normal" x="604" y="326" width="36" height="34"/>
+    <layout mode="wide" x="604" y="326" width="36" height="34"/>
+  </element>
+  <element id="victoryResultRestart" visible="1" asset="">
+    <layout mode="normal" x="265" y="315" width="110" height="38"/>
+    <layout mode="wide" x="265" y="315" width="110" height="38"/>
+  </element>
+  <element id="battleIntroBoard" visible="1" asset="">
+    <layout mode="normal" x="0" y="0" width="480" height="320"/>
+    <layout mode="wide" x="0" y="0" width="480" height="320"/>
+  </element>
+  <element id="battleIntroConfirm" visible="1" asset="">
+    <layout mode="normal" x="206" y="280" width="68" height="36"/>
+    <layout mode="wide" x="206" y="280" width="68" height="36"/>
+  </element>
+  <element id="loadingScreenBackground" visible="1" asset="">
+    <layout mode="normal" x="0" y="0" width="480" height="320"/>
+    <layout mode="wide" x="0" y="0" width="1024" height="768"/>
+  </element>
+  <element id="loadingScreenTitleDefault" visible="1" asset="">
+    <layout mode="normal" x="0" y="0" width="214" height="59"/>
+    <layout mode="wide" x="0" y="0" width="428" height="118"/>
+  </element>
+  <element id="loadingScreenTitleCn" visible="1" asset="">
+    <layout mode="normal" x="0" y="0" width="214" height="59"/>
+    <layout mode="wide" x="0" y="0" width="428" height="118"/>
+  </element>
+  <element id="loadingScreenIndicatorDefault" visible="1" asset="">
+    <layout mode="normal" x="394" y="300" width="78" height="11"/>
+    <layout mode="wide" x="850" y="730" width="156" height="22"/>
+  </element>
+  <element id="loadingScreenIndicatorCn" visible="1" asset="">
+    <layout mode="normal" x="394" y="300" width="78" height="11"/>
+    <layout mode="wide" x="850" y="730" width="156" height="22"/>
+  </element>
+  <element id="loadingScreenTip" visible="1" asset="">
+    <layout mode="normal" x="30" y="150" width="420" height="90"/>
+    <layout mode="wide" x="50" y="370" width="924" height="180"/>
+  </element>
+  <element id="bankScreenBackground" visible="1" asset="">
+    <layout mode="normal" x="0" y="0" width="640" height="360"/>
+    <layout mode="wide" x="0" y="0" width="640" height="360"/>
+  </element>
+  <element id="bankScreenTitle" visible="1" asset="">
+    <layout mode="normal" x="291" y="79" width="54" height="22"/>
+    <layout mode="wide" x="291" y="79" width="54" height="22"/>
+  </element>
+  <element id="bankScreenMoney20" visible="1" asset="">
+    <layout mode="normal" x="165" y="123" width="110" height="35"/>
+    <layout mode="wide" x="165" y="123" width="110" height="35"/>
+  </element>
+  <element id="bankScreenMoney100" visible="1" asset="">
+    <layout mode="normal" x="363" y="123" width="110" height="35"/>
+    <layout mode="wide" x="363" y="123" width="110" height="35"/>
+  </element>
+  <element id="bankScreenIndustrial10" visible="1" asset="">
+    <layout mode="normal" x="165" y="179" width="110" height="35"/>
+    <layout mode="wide" x="165" y="179" width="110" height="35"/>
+  </element>
+  <element id="bankScreenIndustrial50" visible="1" asset="">
+    <layout mode="normal" x="363" y="179" width="110" height="35"/>
+    <layout mode="wide" x="363" y="179" width="110" height="35"/>
+  </element>
+  <element id="bankScreenAssetCounter" visible="1" asset="">
+    <layout mode="normal" x="0" y="0" width="114" height="33"/>
+    <layout mode="wide" x="0" y="0" width="114" height="33"/>
+  </element>
+  <element id="bankScreenMedalCounter" visible="1" asset="">
+    <layout mode="normal" x="41" y="334" width="79" height="26"/>
+    <layout mode="wide" x="41" y="334" width="79" height="26"/>
+  </element>
+  <element id="bankScreenMedalAdd" visible="1" asset="">
+    <layout mode="normal" x="121" y="332" width="36" height="28"/>
+    <layout mode="wide" x="121" y="332" width="36" height="28"/>
+  </element>
+  <element id="bankScreenTip" visible="1" asset="">
+    <layout mode="normal" x="220" y="241" width="200" height="21"/>
+    <layout mode="wide" x="220" y="241" width="200" height="21"/>
+  </element>
+  <element id="bankScreenBack" visible="1" asset="">
+    <layout mode="normal" x="0" y="326" width="36" height="34"/>
+    <layout mode="wide" x="0" y="326" width="36" height="34"/>
+  </element>
+  <element id="floatingOverlayAutoPlayButton" visible="1" asset="">
+    <layout mode="normal" x="588" y="64" width="52" height="52"/>
+    <layout mode="wide" x="588" y="64" width="52" height="52"/>
+  </element>
+  <element id="floatingOverlayDiplomacyButton" visible="1" asset="">
+    <layout mode="normal" x="588" y="124" width="52" height="52"/>
+    <layout mode="wide" x="588" y="124" width="52" height="52"/>
+  </element>
+  <element id="floatingOverlayWarEventButton" visible="1" asset="">
+    <layout mode="normal" x="588" y="184" width="52" height="52"/>
+    <layout mode="wide" x="588" y="184" width="52" height="52"/>
+  </element>
+  <element id="floatingOverlaySituationButton" visible="1" asset="">
+    <layout mode="normal" x="588" y="244" width="52" height="52"/>
+    <layout mode="wide" x="588" y="244" width="52" height="52"/>
+  </element>
+  <element id="floatingOverlaySituationBackground" visible="1" asset="">
+    <layout mode="normal" x="0" y="0" width="640" height="360"/>
+    <layout mode="wide" x="0" y="0" width="640" height="360"/>
+  </element>
+  <element id="floatingOverlayAutoPlayBackground" visible="1" asset="">
+    <layout mode="normal" x="0" y="0" width="640" height="360"/>
+    <layout mode="wide" x="0" y="0" width="640" height="360"/>
+  </element>
+  <element id="floatingOverlayDiplomacyBackground" visible="1" asset="">
+    <layout mode="normal" x="0" y="0" width="640" height="360"/>
+    <layout mode="wide" x="0" y="0" width="640" height="360"/>
+  </element>
+  <element id="floatingOverlayWarEventBackground" visible="1" asset="">
+    <layout mode="normal" x="0" y="0" width="640" height="360"/>
+    <layout mode="wide" x="0" y="0" width="640" height="360"/>
+  </element>
+  <element id="floatingOverlayAutoPlayCloseButton" visible="1" asset="">
+    <layout mode="normal" x="0" y="0" width="52" height="52"/>
+    <layout mode="wide" x="0" y="0" width="52" height="52"/>
+  </element>
+  <element id="floatingOverlayDiplomacyCloseButton" visible="1" asset="">
+    <layout mode="normal" x="0" y="0" width="52" height="52"/>
+    <layout mode="wide" x="0" y="0" width="52" height="52"/>
+  </element>
+  <element id="floatingOverlayWarEventCloseButton" visible="1" asset="">
+    <layout mode="normal" x="0" y="0" width="52" height="52"/>
+    <layout mode="wide" x="0" y="0" width="52" height="52"/>
+  </element>
+  <element id="floatingOverlaySituationCloseButton" visible="1" asset="">
+    <layout mode="normal" x="0" y="0" width="52" height="52"/>
+    <layout mode="wide" x="0" y="0" width="52" height="52"/>
+  </element>
+  <element id="floatingOverlayCommandStatus" visible="1" asset="">
+    <layout mode="normal" x="155" y="159" width="330" height="42"/>
+    <layout mode="wide" x="155" y="159" width="330" height="42"/>
+  </element>
+  <element id="floatingOverlayAutoPlayStatusBar" visible="1" asset="">
+    <layout mode="normal" x="125" y="18" width="390" height="34"/>
+    <layout mode="wide" x="125" y="18" width="390" height="34"/>
+  </element>
+  <countrySelectNewPage starCount="3" descriptionVisible="1" descriptionText="">
+  </countrySelectNewPage>
+  <floatingOverlay autoPlay="0" diplomacy="1" warEvent="1" situation="1"/>
+</mainHud>

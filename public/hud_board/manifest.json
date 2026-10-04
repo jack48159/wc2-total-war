@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "file": "resource_board.png",
+  "file2x": "resource_board@2x.png",
+  "width": 482,
+  "height": 58,
+  "referenceWidth": 202,
+  "centerY": 25,
+  "capStart": 450,
+  "slotEndGap": 8,
+  "slots": {
+    "money": {
+      "iconCenterX": 18,
+      "left": 34,
+      "right": 155
+    },
+    "industry": {
+      "iconCenterX": 176,
+      "left": 199,
+      "right": 294
+    },
+    "stability": {
+      "iconCenterX": 317,
+      "left": 336,
+      "right": 446
+    }
+  },
+  "provenance": "Built-in image_gen outpaint of scratch/board_original_202x58.png; candidate B; transparent margins cropped and resized with Pillow. Coordinates are native 1x pixels."
+}

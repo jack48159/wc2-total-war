@@ -1,0 +1,28 @@
+<Texture name="m1_zone23_2.webp"/>
+<Images>
+    <Image name="1582.png" x="489" y="146" w="71" h="107" refx="0" refy="0"/>
+    <Image name="1583.png" x="586" y="814" w="130" h="129" refx="0" refy="0"/>
+    <Image name="1585.png" x="480" y="814" w="104" h="135" refx="0" refy="0"/>
+    <Image name="1586.png" x="186" y="181" w="161" h="168" refx="0" refy="0"/>
+    <Image name="1587.png" x="328" y="780" w="150" h="150" refx="0" refy="0"/>
+    <Image name="1588.png" x="315" y="645" w="154" h="133" refx="0" refy="0"/>
+    <Image name="1589.png" x="480" y="719" w="136" h="93" refx="0" refy="0"/>
+    <Image name="1590.png" x="343" y="351" w="144" h="122" refx="0" refy="0"/>
+    <Image name="1592.png" x="172" y="368" w="169" h="128" refx="0" refy="0"/>
+    <Image name="1593.png" x="174" y="498" w="162" h="145" refx="0" refy="0"/>
+    <Image name="1596.png" x="1" y="659" w="147" h="164" refx="0" refy="0"/>
+    <Image name="1602.png" x="150" y="659" w="163" h="129" refx="0" refy="0"/>
+    <Image name="1603.png" x="1" y="825" w="164" h="127" refx="0" refy="0"/>
+    <Image name="1605.png" x="341" y="1" w="166" h="143" refx="0" refy="0"/>
+    <Image name="1606.png" x="1" y="546" w="171" h="111" refx="0" refy="0"/>
+    <Image name="1607.png" x="167" y="917" w="145" h="98" refx="0" refy="0"/>
+    <Image name="1611.png" x="1" y="1" w="167" h="188" refx="0" refy="0"/>
+    <Image name="1617.png" x="170" y="1" w="169" h="178" refx="0" refy="0"/>
+    <Image name="1621.png" x="1" y="368" w="169" h="176" refx="0" refy="0"/>
+    <Image name="1624.png" x="471" y="611" w="140" h="106" refx="0" refy="0"/>
+    <Image name="1625.png" x="338" y="498" w="93" h="145" refx="0" refy="0"/>
+    <Image name="1626.png" x="167" y="790" w="159" h="125" refx="0" refy="0"/>
+    <Image name="1627.png" x="349" y="146" w="138" h="125" refx="0" refy="0"/>
+    <Image name="1635.png" x="1" y="191" w="183" h="175" refx="0" refy="0"/>
+    <Image name="1638.png" x="433" y="475" w="143" h="134" refx="0" refy="0"/>
+</Images>

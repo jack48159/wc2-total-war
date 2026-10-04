@@ -1,0 +1,16 @@
+{
+    "appId":  "com.tomaka.wc2remake",
+    "appName":  "世界征服者:总体战",
+    "webDir":  "../../dist/ios_web",
+    "server":  {
+                   "cleartext":  true
+               },
+    "android":  {
+                    "allowMixedContent":  true
+                },
+    "plugins":  {
+                    "CapacitorHttp":  {
+                                          "enabled":  true
+                                      }
+                }
+}

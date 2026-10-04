@@ -1,0 +1,312 @@
+{
+  "diplomacy": {
+    "enabled": true,
+    "allowAlliedAttack": false,
+    "betrayalPolicy": "war",
+    "pacts": {
+      "am_ru": {
+        "type": "nap",
+        "sinceRound": 1,
+        "reason": "cold_war_detente"
+      }
+    },
+    "relations": {
+      "am_gb": "alliance",
+      "am_fr": "alliance",
+      "am_it": "alliance",
+      "am_gr": "alliance",
+      "am_dk": "alliance",
+      "am_tr": "alliance",
+      "am_no": "alliance",
+      "am_nl": "alliance",
+      "am_be": "alliance",
+      "am_ru": "peace",
+      "am_pl": "peace",
+      "am_ro": "peace",
+      "am_bg": "peace",
+      "am_hu": "peace",
+      "am_yu": "peace",
+      "am_se": "peace",
+      "am_ch": "peace",
+      "am_fl": "peace",
+      "fr_gb": "alliance",
+      "gb_it": "alliance",
+      "gb_gr": "alliance",
+      "dk_gb": "alliance",
+      "gb_tr": "alliance",
+      "gb_no": "alliance",
+      "gb_nl": "alliance",
+      "be_gb": "alliance",
+      "gb_ru": "peace",
+      "gb_pl": "peace",
+      "gb_ro": "peace",
+      "bg_gb": "peace",
+      "gb_hu": "peace",
+      "gb_yu": "peace",
+      "gb_se": "peace",
+      "ch_gb": "peace",
+      "fl_gb": "peace",
+      "fr_it": "alliance",
+      "fr_gr": "alliance",
+      "dk_fr": "alliance",
+      "fr_tr": "alliance",
+      "fr_no": "alliance",
+      "fr_nl": "alliance",
+      "be_fr": "alliance",
+      "fr_ru": "peace",
+      "fr_pl": "peace",
+      "fr_ro": "peace",
+      "bg_fr": "peace",
+      "fr_hu": "peace",
+      "fr_yu": "peace",
+      "fr_se": "peace",
+      "ch_fr": "peace",
+      "fl_fr": "peace",
+      "gr_it": "alliance",
+      "dk_it": "alliance",
+      "it_tr": "alliance",
+      "it_no": "alliance",
+      "it_nl": "alliance",
+      "be_it": "alliance",
+      "it_ru": "peace",
+      "it_pl": "peace",
+      "it_ro": "peace",
+      "bg_it": "peace",
+      "hu_it": "peace",
+      "it_yu": "peace",
+      "it_se": "peace",
+      "ch_it": "peace",
+      "fl_it": "peace",
+      "dk_gr": "alliance",
+      "gr_tr": "alliance",
+      "gr_no": "alliance",
+      "gr_nl": "alliance",
+      "be_gr": "alliance",
+      "gr_ru": "peace",
+      "gr_pl": "peace",
+      "gr_ro": "peace",
+      "bg_gr": "peace",
+      "gr_hu": "peace",
+      "gr_yu": "peace",
+      "gr_se": "peace",
+      "ch_gr": "peace",
+      "fl_gr": "peace",
+      "dk_tr": "alliance",
+      "dk_no": "alliance",
+      "dk_nl": "alliance",
+      "be_dk": "alliance",
+      "dk_ru": "peace",
+      "dk_pl": "peace",
+      "dk_ro": "peace",
+      "bg_dk": "peace",
+      "dk_hu": "peace",
+      "dk_yu": "peace",
+      "dk_se": "peace",
+      "ch_dk": "peace",
+      "dk_fl": "peace",
+      "no_tr": "alliance",
+      "nl_tr": "alliance",
+      "be_tr": "alliance",
+      "ru_tr": "peace",
+      "pl_tr": "peace",
+      "ro_tr": "peace",
+      "bg_tr": "peace",
+      "hu_tr": "peace",
+      "tr_yu": "peace",
+      "se_tr": "peace",
+      "ch_tr": "peace",
+      "fl_tr": "peace",
+      "nl_no": "alliance",
+      "be_no": "alliance",
+      "no_ru": "peace",
+      "no_pl": "peace",
+      "no_ro": "peace",
+      "bg_no": "peace",
+      "hu_no": "peace",
+      "no_yu": "peace",
+      "no_se": "peace",
+      "ch_no": "peace",
+      "fl_no": "peace",
+      "be_nl": "alliance",
+      "nl_ru": "peace",
+      "nl_pl": "peace",
+      "nl_ro": "peace",
+      "bg_nl": "peace",
+      "hu_nl": "peace",
+      "nl_yu": "peace",
+      "nl_se": "peace",
+      "ch_nl": "peace",
+      "fl_nl": "peace",
+      "be_ru": "peace",
+      "be_pl": "peace",
+      "be_ro": "peace",
+      "be_bg": "peace",
+      "be_hu": "peace",
+      "be_yu": "peace",
+      "be_se": "peace",
+      "be_ch": "peace",
+      "be_fl": "peace",
+      "pl_ru": "alliance",
+      "ro_ru": "alliance",
+      "bg_ru": "alliance",
+      "hu_ru": "alliance",
+      "ru_yu": "peace",
+      "ru_se": "peace",
+      "ch_ru": "peace",
+      "fl_ru": "peace",
+      "pl_ro": "alliance",
+      "bg_pl": "alliance",
+      "hu_pl": "alliance",
+      "pl_yu": "peace",
+      "pl_se": "peace",
+      "ch_pl": "peace",
+      "fl_pl": "peace",
+      "bg_ro": "alliance",
+      "hu_ro": "alliance",
+      "ro_yu": "peace",
+      "ro_se": "peace",
+      "ch_ro": "peace",
+      "fl_ro": "peace",
+      "bg_hu": "alliance",
+      "bg_yu": "peace",
+      "bg_se": "peace",
+      "bg_ch": "peace",
+      "bg_fl": "peace",
+      "hu_yu": "peace",
+      "hu_se": "peace",
+      "ch_hu": "peace",
+      "fl_hu": "peace",
+      "se_yu": "peace",
+      "ch_yu": "peace",
+      "fl_yu": "peace",
+      "ch_se": "peace",
+      "fl_se": "peace",
+      "ch_fl": "peace"
+    }
+  },
+  "scenarioEvents": {
+    "definitions": [
+      {
+        "id": "berlin_crisis_escalation",
+        "type": "notice",
+        "trigger": "roundBegin",
+        "conditions": [
+          {
+            "type": "round",
+            "value": 6,
+            "op": "gte"
+          }
+        ],
+        "title": "柏林查理检查站危机",
+        "body": "美苏装甲坦克在柏林查理检查站近距离对峙，冷战局势空前紧绷，全欧进入一级战备！",
+        "actions": [
+          {
+            "type": "changeMoney",
+            "country": "am",
+            "amount": 200
+          },
+          {
+            "type": "changeMoney",
+            "country": "ru",
+            "amount": 200
+          },
+          {
+            "type": "changeStability",
+            "country": "am",
+            "amount": -10,
+            "reason": "berlin_alert"
+          },
+          {
+            "type": "changeStability",
+            "country": "ru",
+            "amount": -10,
+            "reason": "berlin_alert"
+          }
+        ]
+      },
+      {
+        "id": "cold_war_turns_hot",
+        "type": "notice",
+        "trigger": "roundBegin",
+        "conditions": [
+          {
+            "type": "round",
+            "value": 12,
+            "op": "gte"
+          },
+          {
+            "type": "diplomaticRelation",
+            "first": "ru",
+            "second": "am",
+            "state": "peace"
+          }
+        ],
+        "title": "第三次世界大战爆发：富尔达缺口交火",
+        "body": "欧洲中段富尔达缺口突发武装交火，北约与华约阵营瞬间升级为全面战争，第三次世界大战爆发！",
+        "actions": [
+          {
+            "type": "setDiplomacy",
+            "first": "ru",
+            "second": "am",
+            "state": "war",
+            "reason": "ww3_outbreak"
+          },
+          {
+            "type": "changeStability",
+            "country": "ru",
+            "amount": 10,
+            "reason": "ww3_mobilization"
+          },
+          {
+            "type": "changeStability",
+            "country": "am",
+            "amount": 10,
+            "reason": "ww3_mobilization"
+          }
+        ]
+      },
+      {
+        "id": "non_aligned_summit",
+        "type": "notice",
+        "trigger": "roundBegin",
+        "conditions": [
+          {
+            "type": "round",
+            "value": 16,
+            "op": "gte"
+          }
+        ],
+        "title": "不结盟国家首脑会议宣言",
+        "body": "南斯拉夫与中立国在首脑峰会上重申和平共处五项原则，坚决拒绝加入东西方军事集团，捍卫中立！",
+        "actions": [
+          {
+            "type": "changeStability",
+            "country": "yu",
+            "amount": 15,
+            "reason": "non_aligned_solidarity"
+          },
+          {
+            "type": "changeStability",
+            "country": "se",
+            "amount": 10,
+            "reason": "neutrality_upheld"
+          },
+          {
+            "type": "changeStability",
+            "country": "ch",
+            "amount": 10,
+            "reason": "neutrality_upheld"
+          }
+        ]
+      }
+    ],
+    "variables": {}
+  },
+  "ai_rules": {
+    "war_cooldown": 4,
+    "min_stability": 55,
+    "max_active_major_enemies": 2,
+    "min_war_round": 12,
+    "permanent_neutrals": ["ch", "se", "fl", "yu"]
+  }
+}

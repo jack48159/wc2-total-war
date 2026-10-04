@@ -1,0 +1,11 @@
+<mainMenuLayout version="1" width="1136" height="640">
+    <element id="title" x="170" y="36" width="989" height="204" visible="false" />
+    <element id="campaign" x="922" y="196" width="217" height="81" visible="true" />
+    <element id="conquest" x="922" y="270" width="217" height="81" visible="true" />
+    <element id="tutorial" x="922" y="344" width="217" height="81" visible="false" />
+    <element id="commander" x="922" y="418" width="217" height="81" visible="false" />
+    <element id="options" x="924" y="351" width="217" height="81" visible="true" />
+    <element id="quitGame" x="922" y="566" width="217" height="81" visible="false" />
+    <element id="moreGame" x="0" y="574" width="121" height="81" visible="true" />
+    <element id="mail" x="116" y="574" width="121" height="81" visible="false" />
+</mainMenuLayout>

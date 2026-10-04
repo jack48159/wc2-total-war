@@ -1,0 +1,5 @@
+<Texture name="mui2_hd.png" />
+<Images>
+    <Image name="button_conquest7.png" x="1" y="1" w="320" h="109" refx="3" refy="2" />
+    <Image name="button_conquest8.png" x="1" y="111" w="320" h="109" refx="3" refy="2" />
+</Images>

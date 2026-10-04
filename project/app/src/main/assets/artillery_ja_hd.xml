@@ -1,0 +1,20 @@
+﻿<Texture name="artillery_ja_hd.png" />
+<Images>
+    <Image name="补间 4.png" x="1" y="1" w="214" h="126" refx="0" refy="0" />
+    <Image name="元件 5.png" x="1" y="128" w="47" h="79" refx="0" refy="0" />
+    <Image name="补间 1.png" x="49" y="128" w="172" h="51" refx="0" refy="0" />
+    <Image name="元件 11.png" x="216" y="1" w="16" h="40" refx="0" refy="0" />
+    <Image name="元件 12.png" x="1" y="208" w="15" h="37" refx="0" refy="0" />
+    <Image name="元件 10.png" x="49" y="180" w="22" h="33" refx="0" refy="0" />
+    <Image name="元件 9.png" x="17" y="208" w="22" h="32" refx="0" refy="0" />
+    <Image name="元件 6.png" x="222" y="42" w="14" h="29" refx="0" refy="0" />
+    <Image name="元件 2.png" x="72" y="180" w="22" h="27" refx="0" refy="0" />
+    <Image name="元件 1.png" x="40" y="214" w="23" h="20" refx="0" refy="0" />
+    <Image name="元件 4.png" x="216" y="72" w="27" h="21" refx="0" refy="0" />
+    <Image name="元件 25.png" x="64" y="214" w="62" h="22" refx="0" refy="0" />
+    <Image name="元件 7.png" x="233" y="1" w="21" h="21" refx="0" refy="0" />
+    <Image name="元件 14.png" x="233" y="23" w="19" h="15" refx="0" refy="0" />
+    <Image name="元件 13.png" x="17" y="241" w="22" h="11" refx="0" refy="0" />
+    <Image name="元件 3.png" x="40" y="235" w="10" h="14" refx="0" refy="0" />
+    <Image name="元件 8.png" x="95" y="180" w="15" h="10" refx="0" refy="0" />
+</Images>

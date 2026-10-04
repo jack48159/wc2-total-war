@@ -1,0 +1,33 @@
+<Texture name="m1_zone8_2.webp"/>
+<Images>
+    <Image name="0492.png" x="244" y="657" w="157" h="143" refx="0" refy="0"/>
+    <Image name="0502.png" x="323" y="802" w="134" h="154" refx="0" refy="0"/>
+    <Image name="0503.png" x="325" y="331" w="155" h="142" refx="0" refy="0"/>
+    <Image name="0505.png" x="1" y="182" w="169" h="176" refx="0" refy="0"/>
+    <Image name="0506.png" x="487" y="147" w="138" h="139" refx="0" refy="0"/>
+    <Image name="0511.png" x="1" y="1" w="173" h="179" refx="0" refy="0"/>
+    <Image name="0513.png" x="1" y="534" w="153" h="171" refx="0" refy="0"/>
+    <Image name="0517.png" x="316" y="516" w="157" h="89" refx="0" refy="0"/>
+    <Image name="0519.png" x="403" y="607" w="132" h="154" refx="0" refy="0"/>
+    <Image name="0520.png" x="1" y="360" w="152" h="172" refx="0" refy="0"/>
+    <Image name="0521.png" x="341" y="152" w="144" h="142" refx="0" refy="0"/>
+    <Image name="0524.png" x="456" y="1" w="114" h="144" refx="0" refy="0"/>
+    <Image name="0525.png" x="459" y="763" w="153" h="153" refx="0" refy="0"/>
+    <Image name="0526.png" x="155" y="360" w="168" h="154" refx="0" refy="0"/>
+    <Image name="0529.png" x="572" y="1" w="121" h="130" refx="0" refy="0"/>
+    <Image name="0532.png" x="1" y="872" w="160" h="114" refx="0" refy="0"/>
+    <Image name="0535.png" x="163" y="871" w="158" h="150" refx="0" refy="0"/>
+    <Image name="0536.png" x="475" y="475" w="147" h="120" refx="0" refy="0"/>
+    <Image name="0538.png" x="156" y="516" w="158" h="139" refx="0" refy="0"/>
+    <Image name="0539.png" x="341" y="1" w="113" h="149" refx="0" refy="0"/>
+    <Image name="0540.png" x="537" y="597" w="134" h="146" refx="0" refy="0"/>
+    <Image name="0541.png" x="482" y="296" w="99" h="144" refx="0" refy="0"/>
+    <Image name="0542.png" x="172" y="182" w="167" h="147" refx="0" refy="0"/>
+    <Image name="0544.png" x="176" y="1" w="163" h="147" refx="0" refy="0"/>
+    <Image name="0545.png" x="610" y="918" w="135" h="99" refx="0" refy="0"/>
+    <Image name="0546.png" x="614" y="745" w="130" h="107" refx="0" refy="0"/>
+    <Image name="0550.png" x="111" y="707" w="131" h="162" refx="0" refy="0"/>
+    <Image name="0551.png" x="1" y="707" w="108" h="163" refx="0" refy="0"/>
+    <Image name="0552.png" x="459" y="918" w="149" h="94" refx="0" refy="0"/>
+    <Image name="0555.png" x="583" y="288" w="121" h="107" refx="0" refy="0"/>
+</Images>

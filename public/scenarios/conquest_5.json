@@ -1,0 +1,170 @@
+{
+  "diplomacy": {
+    "enabled": true,
+    "allowAlliedAttack": false,
+    "betrayalPolicy": "war",
+    "relations": {
+      "de_ja": "alliance",
+      "de_it": "alliance",
+      "am_de": "war",
+      "ca_de": "war",
+      "de_mx": "war",
+      "it_ja": "alliance",
+      "am_ja": "war",
+      "ca_ja": "war",
+      "ja_mx": "war",
+      "am_it": "war",
+      "ca_it": "war",
+      "it_mx": "war",
+      "am_ca": "alliance",
+      "am_mx": "alliance",
+      "ca_mx": "alliance"
+    }
+  },
+  "scenarioEvents": {
+    "definitions": [
+      {
+        "id": "pan_american_mobilization",
+        "type": "notice",
+        "trigger": "roundBegin",
+        "conditions": [
+          {
+            "type": "round",
+            "value": 3,
+            "op": "gte"
+          }
+        ],
+        "title": "泛美联合防御全面动员",
+        "body": "美加墨三国签署《泛美大陆共同防卫协定》，全面实施战时总动员，民主兵工厂产能全开！",
+        "actions": [
+          {
+            "type": "changeMoney",
+            "country": "am",
+            "amount": 400
+          },
+          {
+            "type": "changeMoney",
+            "country": "ca",
+            "amount": 250
+          },
+          {
+            "type": "changeMoney",
+            "country": "mx",
+            "amount": 200
+          },
+          {
+            "type": "changeIndustry",
+            "country": "am",
+            "amount": 200
+          },
+          {
+            "type": "changeIndustry",
+            "country": "ca",
+            "amount": 100
+          },
+          {
+            "type": "changeStability",
+            "country": "am",
+            "amount": 15,
+            "reason": "pan_american_defense"
+          },
+          {
+            "type": "changeStability",
+            "country": "ca",
+            "amount": 15,
+            "reason": "pan_american_defense"
+          }
+        ]
+      },
+      {
+        "id": "manhattan_project_breakthrough",
+        "type": "notice",
+        "trigger": "roundBegin",
+        "conditions": [
+          {
+            "type": "round",
+            "value": 12,
+            "op": "gte"
+          }
+        ],
+        "title": "曼哈顿战略工程重大突破",
+        "body": "北美防卫司令部掌握战略杀伤技术，前线火力与后勤补给获得压倒性提升，入侵轴心部队军心震动！",
+        "actions": [
+          {
+            "type": "changeMoney",
+            "country": "am",
+            "amount": 450
+          },
+          {
+            "type": "changeIndustry",
+            "country": "am",
+            "amount": 250
+          },
+          {
+            "type": "changeStability",
+            "country": "am",
+            "amount": 15,
+            "reason": "strategic_superiority"
+          },
+          {
+            "type": "changeStability",
+            "country": "de",
+            "amount": -20,
+            "reason": "manhattan_shock"
+          },
+          {
+            "type": "changeStability",
+            "country": "ja",
+            "amount": -20,
+            "reason": "manhattan_shock"
+          }
+        ]
+      },
+      {
+        "id": "homeland_defense_counteroffensive",
+        "type": "notice",
+        "trigger": "roundBegin",
+        "conditions": [
+          {
+            "type": "round",
+            "value": 20,
+            "op": "gte"
+          }
+        ],
+        "title": "北美本土全面战略大反攻",
+        "body": "泛美盟军全线转入战略反攻，沿东西海岸与五大湖防线向入侵桥头堡实施毁灭性合围打击！",
+        "actions": [
+          {
+            "type": "changeMoney",
+            "country": "am",
+            "amount": 300
+          },
+          {
+            "type": "changeStability",
+            "country": "am",
+            "amount": 10,
+            "reason": "continent_liberation"
+          },
+          {
+            "type": "changeStability",
+            "country": "de",
+            "amount": -15,
+            "reason": "axis_retreat"
+          },
+          {
+            "type": "changeStability",
+            "country": "ja",
+            "amount": -15,
+            "reason": "axis_retreat"
+          }
+        ]
+      }
+    ],
+    "variables": {}
+  },
+  "ai_rules": {
+    "war_cooldown": 4,
+    "min_stability": 55,
+    "max_active_major_enemies": 2
+  }
+}

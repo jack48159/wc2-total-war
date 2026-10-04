@@ -1,0 +1,26 @@
+<Texture name="eff.png" />
+<Images>
+    <Image name="Parachute.png" x="1" y="130" w="90" h="123" refx="43" refy="67" />
+    <Image name="blurline.png" x="1" y="456" w="112" h="4" refx="17" refy="1" />
+    <Image name="cloud.png" x="130" y="323" w="64" h="64" refx="31" refy="32" />
+    <Image name="cloud1.png" x="388" y="65" w="64" h="64" refx="32" refy="25" />
+    <Image name="cloud2.png" x="263" y="195" w="64" h="64" refx="31" refy="28" />
+    <Image name="cloud4.png" x="130" y="388" w="64" h="64" refx="30" refy="27" />
+    <Image name="crater1.png" x="195" y="323" w="120" h="52" refx="63" refy="25" />
+    <Image name="crater2.png" x="130" y="250" w="132" h="72" refx="60" refy="36" />
+    <Image name="fragment1.png" x="197" y="196" w="41" h="21" refx="22" refy="11" />
+    <Image name="fragment2.png" x="453" y="1" w="52" h="27" refx="25" refy="12" />
+    <Image name="fragment3.png" x="197" y="171" w="45" h="24" refx="25" refy="8" />
+    <Image name="gunflash1.png" x="324" y="1" w="128" h="63" refx="1" refy="33" />
+    <Image name="gunflashsmoke1.png" x="259" y="66" w="128" h="128" refx="62" refy="69" />
+    <Image name="image01.png" x="1" y="254" w="128" h="72" refx="22" refy="26" />
+    <Image name="intense center.png" x="1" y="327" w="128" h="128" refx="72" refy="75" />
+    <Image name="nitu.png" x="92" y="130" w="104" h="119" refx="48" refy="60" />
+    <Image name="ray0000.png" x="1" y="461" w="120" h="38" refx="11" refy="17" />
+    <Image name="ray0001.png" x="388" y="130" w="120" h="39" refx="17" refy="18" />
+    <Image name="ring.png" x="263" y="260" w="156" h="32" refx="72" refy="5" />
+    <Image name="smoke.png" x="1" y="1" w="128" h="128" refx="67" refy="70" />
+    <Image name="spark.png" x="197" y="130" w="40" h="40" refx="21" refy="22" />
+    <Image name="sparkles.png" x="130" y="1" w="128" h="128" refx="63" refy="70" />
+    <Image name="star.png" x="259" y="1" w="64" h="64" refx="34" refy="34" />
+</Images>

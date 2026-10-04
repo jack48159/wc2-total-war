@@ -1,0 +1,3596 @@
+{
+  "schemaVersion": 1,
+  "status": "design_only_not_loaded_by_runtime",
+  "parameterVersion": "2026-09-29.1",
+  "default": {
+    "id": "small_defence",
+    "parameters": {
+      "initiative": 0.35,
+      "mainEffort": 0.45,
+      "encirclement": 0.4,
+      "exploitation": 0.3,
+      "elasticDefence": 0.45,
+      "retreat": 0.45,
+      "peaceBias": 0.5,
+      "quality": 0.45,
+      "industry": 0.5,
+      "city": 0.5,
+      "fortification": 0.6,
+      "concentration": 0.45,
+      "armorMass": 0.35,
+      "firePreparation": 0.5,
+      "attritionTolerance": 0.4,
+      "amphibious": 0.2,
+      "navalPriority": 0.25,
+      "terrainUse": 0.6,
+      "allyCoordination": 0.5,
+      "reserve": 0.3,
+      "airBudgetShare": 0.08,
+      "airRoles": {
+        "groundSupport": 0.6,
+        "strategicBombing": 0.15,
+        "airSuperiority": 0.25
+      },
+      "targetUnitMix": {
+        "infantry": 0.5,
+        "armor": 0.12,
+        "artillery": 0.18,
+        "rocket": 0.03,
+        "elite": 0.12,
+        "navy": 0.05
+      }
+    }
+  },
+  "selection": {
+    "validYearMin": 1900,
+    "validYearMaxExclusive": 2000,
+    "missingYear": "default",
+    "outsideRange": "default",
+    "advanceYearsByRounds": false,
+    "countryKey": "countryInfo.flag",
+    "periodBounds": "fromYear <= year < toYearExclusive",
+    "mergeOrder": [
+      "default",
+      "countryPeriod",
+      "optInSmallCountryAlignmentDelta",
+      "scenarioCountryParameters"
+    ]
+  },
+  "unitCategories": {
+    "infantry": [
+      "infantry"
+    ],
+    "armor": [
+      "panzer",
+      "tank",
+      "heavytank"
+    ],
+    "artillery": [
+      "artillery"
+    ],
+    "rocket": [
+      "rocket"
+    ],
+    "elite": [
+      "eliteinfantry"
+    ],
+    "navy": [
+      "destroyer",
+      "cruiser",
+      "battleship",
+      "aircraftcarrier"
+    ]
+  },
+  "airCards": [
+    10,
+    11
+  ],
+  "nonAirForceCards": [
+    12,
+    13
+  ],
+  "smallCountryAlignmentDeltas": {
+    "axis": {
+      "initiative": 0.1,
+      "allyCoordination": 0.15
+    },
+    "allies": {
+      "firePreparation": 0.1,
+      "allyCoordination": 0.15
+    },
+    "neutral": {
+      "initiative": -0.15,
+      "fortification": 0.1
+    }
+  },
+  "blocTemplates": {
+    "cw_soviet": {
+      "fromYear": 1946,
+      "toYearExclusive": 2000,
+      "parameters": {
+        "initiative": 0.7,
+        "mainEffort": 0.9,
+        "encirclement": 0.9,
+        "exploitation": 0.9,
+        "elasticDefence": 0.65,
+        "retreat": 0.6,
+        "peaceBias": 0.5,
+        "quality": 0.6,
+        "industry": 0.85,
+        "city": 0.5,
+        "fortification": 0.6,
+        "concentration": 0.9,
+        "armorMass": 0.95,
+        "firePreparation": 0.95,
+        "attritionTolerance": 0.8,
+        "amphibious": 0.2,
+        "navalPriority": 0.25,
+        "terrainUse": 0.6,
+        "allyCoordination": 0.5,
+        "reserve": 0.85,
+        "airBudgetShare": 0.14,
+        "airRoles": {
+          "groundSupport": 0.6,
+          "strategicBombing": 0.15,
+          "airSuperiority": 0.25
+        },
+        "targetUnitMix": {
+          "infantry": 0.28,
+          "armor": 0.32,
+          "artillery": 0.19,
+          "rocket": 0.1,
+          "elite": 0.06,
+          "navy": 0.05
+        }
+      }
+    },
+    "cw_nato_early": {
+      "fromYear": 1946,
+      "toYearExclusive": 1976,
+      "parameters": {
+        "initiative": 0.4,
+        "mainEffort": 0.65,
+        "encirclement": 0.7,
+        "exploitation": 0.45,
+        "elasticDefence": 0.55,
+        "retreat": 0.35,
+        "peaceBias": 0.5,
+        "quality": 0.75,
+        "industry": 0.95,
+        "city": 0.85,
+        "fortification": 0.75,
+        "concentration": 0.7,
+        "armorMass": 0.75,
+        "firePreparation": 0.95,
+        "attritionTolerance": 0.25,
+        "amphibious": 0.55,
+        "navalPriority": 0.85,
+        "terrainUse": 0.6,
+        "allyCoordination": 0.8,
+        "reserve": 0.65,
+        "airBudgetShare": 0.2,
+        "airRoles": {
+          "groundSupport": 0.45,
+          "strategicBombing": 0.25,
+          "airSuperiority": 0.3
+        },
+        "targetUnitMix": {
+          "infantry": 0.28,
+          "armor": 0.27,
+          "artillery": 0.21,
+          "rocket": 0.04,
+          "elite": 0.07,
+          "navy": 0.13
+        }
+      }
+    },
+    "cw_nato_active": {
+      "fromYear": 1976,
+      "toYearExclusive": 1982,
+      "parameters": {
+        "initiative": 0.4,
+        "mainEffort": 0.8,
+        "encirclement": 0.7,
+        "exploitation": 0.45,
+        "elasticDefence": 0.7,
+        "retreat": 0.35,
+        "peaceBias": 0.5,
+        "quality": 0.75,
+        "industry": 0.95,
+        "city": 0.85,
+        "fortification": 0.75,
+        "concentration": 0.7,
+        "armorMass": 0.85,
+        "firePreparation": 0.95,
+        "attritionTolerance": 0.25,
+        "amphibious": 0.55,
+        "navalPriority": 0.85,
+        "terrainUse": 0.6,
+        "allyCoordination": 0.8,
+        "reserve": 0.65,
+        "airBudgetShare": 0.2,
+        "airRoles": {
+          "groundSupport": 0.45,
+          "strategicBombing": 0.25,
+          "airSuperiority": 0.3
+        },
+        "targetUnitMix": {
+          "infantry": 0.28,
+          "armor": 0.27,
+          "artillery": 0.21,
+          "rocket": 0.04,
+          "elite": 0.07,
+          "navy": 0.13
+        }
+      }
+    },
+    "cw_nato_airland": {
+      "fromYear": 1982,
+      "toYearExclusive": 2000,
+      "parameters": {
+        "initiative": 0.6,
+        "mainEffort": 0.8,
+        "encirclement": 0.75,
+        "exploitation": 0.8,
+        "elasticDefence": 0.85,
+        "retreat": 0.5,
+        "peaceBias": 0.5,
+        "quality": 0.75,
+        "industry": 0.95,
+        "city": 0.85,
+        "fortification": 0.75,
+        "concentration": 0.7,
+        "armorMass": 0.85,
+        "firePreparation": 0.95,
+        "attritionTolerance": 0.25,
+        "amphibious": 0.55,
+        "navalPriority": 0.85,
+        "terrainUse": 0.6,
+        "allyCoordination": 0.8,
+        "reserve": 0.65,
+        "airBudgetShare": 0.28,
+        "airRoles": {
+          "groundSupport": 0.55,
+          "strategicBombing": 0.15,
+          "airSuperiority": 0.3
+        },
+        "targetUnitMix": {
+          "infantry": 0.28,
+          "armor": 0.27,
+          "artillery": 0.21,
+          "rocket": 0.04,
+          "elite": 0.07,
+          "navy": 0.13
+        }
+      }
+    }
+  },
+  "scenarios": {
+    "conquest_1": {
+      "year": 1939,
+      "yearStatus": "catalog"
+    },
+    "conquest_2": {
+      "year": 1942,
+      "yearStatus": "catalog"
+    },
+    "conquest_3": {
+      "year": 1943,
+      "yearStatus": "catalog"
+    },
+    "conquest_4": {
+      "year": 1942,
+      "yearStatus": "catalog"
+    },
+    "conquest_5": {
+      "year": 1945,
+      "yearStatus": "catalog",
+      "alternateHistory": true
+    },
+    "conquest_6": {
+      "year": 1950,
+      "yearStatus": "catalog"
+    },
+    "conquest_7": {
+      "year": 1955,
+      "yearStatus": "catalog"
+    },
+    "conquest_8": {
+      "year": 1973,
+      "yearStatus": "design_fallback_unverified"
+    },
+    "battle_axis1": {
+      "year": 1939,
+      "month": 9,
+      "yearStatus": "catalog",
+      "alternateHistory": false
+    },
+    "battle_axis2": {
+      "year": 1940,
+      "month": 3,
+      "yearStatus": "catalog",
+      "alternateHistory": false
+    },
+    "battle_axis3": {
+      "year": 1940,
+      "month": 6,
+      "yearStatus": "catalog",
+      "alternateHistory": false
+    },
+    "battle_axis4": {
+      "year": 1940,
+      "month": 10,
+      "yearStatus": "catalog",
+      "alternateHistory": false
+    },
+    "battle_axis5": {
+      "year": 1941,
+      "month": 2,
+      "yearStatus": "catalog",
+      "alternateHistory": false
+    },
+    "battle_axis6": {
+      "year": 1941,
+      "month": 6,
+      "yearStatus": "catalog",
+      "alternateHistory": false
+    },
+    "battle_axis7": {
+      "year": 1941,
+      "month": 12,
+      "yearStatus": "catalog",
+      "alternateHistory": false
+    },
+    "battle_axis8": {
+      "year": 1942,
+      "month": 3,
+      "yearStatus": "catalog",
+      "alternateHistory": false
+    },
+    "battle_axis9": {
+      "year": 1943,
+      "month": 7,
+      "yearStatus": "catalog",
+      "alternateHistory": false
+    },
+    "battle_axis10": {
+      "year": 1944,
+      "month": 5,
+      "yearStatus": "catalog",
+      "alternateHistory": false
+    },
+    "battle_allies1": {
+      "year": 1941,
+      "month": 1,
+      "yearStatus": "catalog",
+      "alternateHistory": false
+    },
+    "battle_allies2": {
+      "year": 1942,
+      "month": 4,
+      "yearStatus": "catalog",
+      "alternateHistory": false
+    },
+    "battle_allies3": {
+      "year": 1942,
+      "month": 10,
+      "yearStatus": "catalog",
+      "alternateHistory": false
+    },
+    "battle_allies4": {
+      "year": 1943,
+      "month": 7,
+      "yearStatus": "catalog",
+      "alternateHistory": false
+    },
+    "battle_allies5": {
+      "year": 1943,
+      "month": 8,
+      "yearStatus": "catalog",
+      "alternateHistory": false
+    },
+    "battle_allies6": {
+      "year": 1944,
+      "month": 3,
+      "yearStatus": "catalog",
+      "alternateHistory": false
+    },
+    "battle_allies7": {
+      "year": 1944,
+      "month": 6,
+      "yearStatus": "catalog",
+      "alternateHistory": false
+    },
+    "battle_allies8": {
+      "year": 1945,
+      "month": 1,
+      "yearStatus": "catalog",
+      "alternateHistory": false
+    },
+    "battle_allies9": {
+      "year": 1945,
+      "month": 5,
+      "yearStatus": "catalog",
+      "alternateHistory": false
+    },
+    "battle_allies10": {
+      "year": 1945,
+      "month": 10,
+      "yearStatus": "catalog",
+      "alternateHistory": false
+    },
+    "battle_wto1": {
+      "year": 1947,
+      "month": 5,
+      "yearStatus": "catalog",
+      "alternateHistory": true
+    },
+    "battle_wto2": {
+      "year": 1950,
+      "month": 11,
+      "yearStatus": "catalog",
+      "alternateHistory": true
+    },
+    "battle_wto3": {
+      "year": 1951,
+      "month": 3,
+      "yearStatus": "catalog",
+      "alternateHistory": true
+    },
+    "battle_wto4": {
+      "year": 1951,
+      "month": 12,
+      "yearStatus": "catalog",
+      "alternateHistory": true
+    },
+    "battle_wto5": {
+      "year": 1952,
+      "month": 5,
+      "yearStatus": "catalog",
+      "alternateHistory": true
+    },
+    "battle_wto6": {
+      "year": 1952,
+      "month": 11,
+      "yearStatus": "catalog",
+      "alternateHistory": true
+    },
+    "battle_wto7": {
+      "year": 1953,
+      "month": 1,
+      "yearStatus": "catalog",
+      "alternateHistory": true
+    },
+    "battle_nato1": {
+      "year": 1951,
+      "month": 8,
+      "yearStatus": "catalog",
+      "alternateHistory": true
+    },
+    "battle_nato2": {
+      "year": 1952,
+      "month": 11,
+      "yearStatus": "catalog",
+      "alternateHistory": true
+    },
+    "battle_nato3": {
+      "year": 1954,
+      "month": 8,
+      "yearStatus": "catalog",
+      "alternateHistory": true
+    },
+    "battle_nato4": {
+      "year": 1955,
+      "month": 12,
+      "yearStatus": "catalog",
+      "alternateHistory": true
+    },
+    "battle_nato5": {
+      "year": 1958,
+      "month": 4,
+      "yearStatus": "catalog",
+      "alternateHistory": true
+    },
+    "battle_nato6": {
+      "year": 1969,
+      "month": 6,
+      "yearStatus": "catalog",
+      "alternateHistory": true
+    },
+    "battle_nato7": {
+      "year": 1969,
+      "month": 9,
+      "yearStatus": "catalog",
+      "alternateHistory": true
+    }
+  },
+  "countries": {
+    "de": {
+      "periods": [
+        {
+          "id": "de_mobile",
+          "fromYear": 1900,
+          "toYearExclusive": 1943,
+          "parameters": {
+            "initiative": 0.9,
+            "mainEffort": 0.95,
+            "encirclement": 0.95,
+            "exploitation": 0.9,
+            "elasticDefence": 0.65,
+            "retreat": 0.45,
+            "peaceBias": 0.45,
+            "quality": 0.8,
+            "industry": 0.8,
+            "city": 0.45,
+            "fortification": 0.25,
+            "concentration": 0.9,
+            "armorMass": 0.95,
+            "firePreparation": 0.6,
+            "attritionTolerance": 0.5,
+            "amphibious": 0.2,
+            "navalPriority": 0.2,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.5,
+            "reserve": 0.3,
+            "airBudgetShare": 0.16,
+            "airRoles": {
+              "groundSupport": 0.8,
+              "strategicBombing": 0.1,
+              "airSuperiority": 0.1
+            },
+            "targetUnitMix": {
+              "infantry": 0.29,
+              "armor": 0.32,
+              "artillery": 0.16,
+              "rocket": 0.03,
+              "elite": 0.14,
+              "navy": 0.06
+            }
+          }
+        },
+        {
+          "id": "de_counter",
+          "fromYear": 1943,
+          "toYearExclusive": 1944,
+          "parameters": {
+            "initiative": 0.5,
+            "mainEffort": 0.95,
+            "encirclement": 0.95,
+            "exploitation": 0.5,
+            "elasticDefence": 0.9,
+            "retreat": 0.7,
+            "peaceBias": 0.45,
+            "quality": 0.8,
+            "industry": 0.8,
+            "city": 0.45,
+            "fortification": 0.7,
+            "concentration": 0.9,
+            "armorMass": 0.95,
+            "firePreparation": 0.75,
+            "attritionTolerance": 0.5,
+            "amphibious": 0.2,
+            "navalPriority": 0.2,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.5,
+            "reserve": 0.65,
+            "airBudgetShare": 0.16,
+            "airRoles": {
+              "groundSupport": 0.8,
+              "strategicBombing": 0.1,
+              "airSuperiority": 0.1
+            },
+            "targetUnitMix": {
+              "infantry": 0.3,
+              "armor": 0.28,
+              "artillery": 0.2,
+              "rocket": 0.04,
+              "elite": 0.14,
+              "navy": 0.04
+            }
+          }
+        },
+        {
+          "id": "de_last",
+          "fromYear": 1944,
+          "toYearExclusive": 1946,
+          "parameters": {
+            "initiative": 0.3,
+            "mainEffort": 0.95,
+            "encirclement": 0.95,
+            "exploitation": 0.5,
+            "elasticDefence": 0.55,
+            "retreat": 0.3,
+            "peaceBias": 0.45,
+            "quality": 0.65,
+            "industry": 0.8,
+            "city": 0.45,
+            "fortification": 0.9,
+            "concentration": 0.9,
+            "armorMass": 0.95,
+            "firePreparation": 0.75,
+            "attritionTolerance": 0.5,
+            "amphibious": 0.2,
+            "navalPriority": 0.2,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.5,
+            "reserve": 0.65,
+            "airBudgetShare": 0.08,
+            "airRoles": {
+              "groundSupport": 0.8,
+              "strategicBombing": 0.1,
+              "airSuperiority": 0.1
+            },
+            "targetUnitMix": {
+              "infantry": 0.3,
+              "armor": 0.28,
+              "artillery": 0.2,
+              "rocket": 0.04,
+              "elite": 0.14,
+              "navy": 0.04
+            }
+          }
+        },
+        {
+          "id": "cw_nato_early",
+          "fromYear": 1946,
+          "toYearExclusive": 1976,
+          "parameters": {
+            "initiative": 0.4,
+            "mainEffort": 0.65,
+            "encirclement": 0.7,
+            "exploitation": 0.45,
+            "elasticDefence": 0.55,
+            "retreat": 0.35,
+            "peaceBias": 0.5,
+            "quality": 0.75,
+            "industry": 0.95,
+            "city": 0.85,
+            "fortification": 0.75,
+            "concentration": 0.7,
+            "armorMass": 0.75,
+            "firePreparation": 0.95,
+            "attritionTolerance": 0.25,
+            "amphibious": 0.25,
+            "navalPriority": 0.3,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.8,
+            "reserve": 0.65,
+            "airBudgetShare": 0.2,
+            "airRoles": {
+              "groundSupport": 0.45,
+              "strategicBombing": 0.25,
+              "airSuperiority": 0.3
+            },
+            "targetUnitMix": {
+              "infantry": 0.37,
+              "armor": 0.27,
+              "artillery": 0.21,
+              "rocket": 0.04,
+              "elite": 0.07,
+              "navy": 0.04
+            }
+          }
+        },
+        {
+          "id": "cw_nato_active",
+          "fromYear": 1976,
+          "toYearExclusive": 1982,
+          "parameters": {
+            "initiative": 0.4,
+            "mainEffort": 0.8,
+            "encirclement": 0.7,
+            "exploitation": 0.45,
+            "elasticDefence": 0.7,
+            "retreat": 0.35,
+            "peaceBias": 0.5,
+            "quality": 0.75,
+            "industry": 0.95,
+            "city": 0.85,
+            "fortification": 0.75,
+            "concentration": 0.7,
+            "armorMass": 0.85,
+            "firePreparation": 0.95,
+            "attritionTolerance": 0.25,
+            "amphibious": 0.25,
+            "navalPriority": 0.3,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.8,
+            "reserve": 0.65,
+            "airBudgetShare": 0.2,
+            "airRoles": {
+              "groundSupport": 0.45,
+              "strategicBombing": 0.25,
+              "airSuperiority": 0.3
+            },
+            "targetUnitMix": {
+              "infantry": 0.37,
+              "armor": 0.27,
+              "artillery": 0.21,
+              "rocket": 0.04,
+              "elite": 0.07,
+              "navy": 0.04
+            }
+          }
+        },
+        {
+          "id": "cw_nato_airland",
+          "fromYear": 1982,
+          "toYearExclusive": 2000,
+          "parameters": {
+            "initiative": 0.6,
+            "mainEffort": 0.8,
+            "encirclement": 0.75,
+            "exploitation": 0.8,
+            "elasticDefence": 0.85,
+            "retreat": 0.5,
+            "peaceBias": 0.5,
+            "quality": 0.75,
+            "industry": 0.95,
+            "city": 0.85,
+            "fortification": 0.75,
+            "concentration": 0.7,
+            "armorMass": 0.85,
+            "firePreparation": 0.95,
+            "attritionTolerance": 0.25,
+            "amphibious": 0.25,
+            "navalPriority": 0.3,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.8,
+            "reserve": 0.65,
+            "airBudgetShare": 0.28,
+            "airRoles": {
+              "groundSupport": 0.55,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.3
+            },
+            "targetUnitMix": {
+              "infantry": 0.37,
+              "armor": 0.27,
+              "artillery": 0.21,
+              "rocket": 0.04,
+              "elite": 0.07,
+              "navy": 0.04
+            }
+          }
+        }
+      ]
+    },
+    "ru": {
+      "periods": [
+        {
+          "id": "ru_rebuild",
+          "fromYear": 1900,
+          "toYearExclusive": 1941,
+          "parameters": {
+            "initiative": 0.6,
+            "mainEffort": 0.65,
+            "encirclement": 0.55,
+            "exploitation": 0.5,
+            "elasticDefence": 0.5,
+            "retreat": 0.7,
+            "peaceBias": 0.5,
+            "quality": 0.25,
+            "industry": 0.7,
+            "city": 0.5,
+            "fortification": 0.6,
+            "concentration": 0.7,
+            "armorMass": 0.6,
+            "firePreparation": 0.65,
+            "attritionTolerance": 0.8,
+            "amphibious": 0.2,
+            "navalPriority": 0.25,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.5,
+            "reserve": 0.45,
+            "airBudgetShare": 0.08,
+            "airRoles": {
+              "groundSupport": 0.6,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.25
+            },
+            "targetUnitMix": {
+              "infantry": 0.5,
+              "armor": 0.19,
+              "artillery": 0.17,
+              "rocket": 0.04,
+              "elite": 0.07,
+              "navy": 0.03
+            }
+          }
+        },
+        {
+          "id": "ru_crisis",
+          "fromYear": 1941,
+          "toYearExclusive": 1943,
+          "parameters": {
+            "initiative": 0.4,
+            "mainEffort": 0.65,
+            "encirclement": 0.55,
+            "exploitation": 0.35,
+            "elasticDefence": 0.5,
+            "retreat": 0.85,
+            "peaceBias": 0.5,
+            "quality": 0.25,
+            "industry": 0.7,
+            "city": 0.5,
+            "fortification": 0.75,
+            "concentration": 0.7,
+            "armorMass": 0.6,
+            "firePreparation": 0.65,
+            "attritionTolerance": 0.8,
+            "amphibious": 0.2,
+            "navalPriority": 0.25,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.5,
+            "reserve": 0.45,
+            "airBudgetShare": 0.08,
+            "airRoles": {
+              "groundSupport": 0.6,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.25
+            },
+            "targetUnitMix": {
+              "infantry": 0.52,
+              "armor": 0.15,
+              "artillery": 0.2,
+              "rocket": 0.05,
+              "elite": 0.06,
+              "navy": 0.02
+            }
+          }
+        },
+        {
+          "id": "ru_deep",
+          "fromYear": 1943,
+          "toYearExclusive": 1946,
+          "parameters": {
+            "initiative": 0.85,
+            "mainEffort": 0.9,
+            "encirclement": 0.9,
+            "exploitation": 0.9,
+            "elasticDefence": 0.65,
+            "retreat": 0.6,
+            "peaceBias": 0.5,
+            "quality": 0.5,
+            "industry": 0.85,
+            "city": 0.5,
+            "fortification": 0.6,
+            "concentration": 0.9,
+            "armorMass": 0.85,
+            "firePreparation": 0.95,
+            "attritionTolerance": 0.8,
+            "amphibious": 0.2,
+            "navalPriority": 0.25,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.5,
+            "reserve": 0.65,
+            "airBudgetShare": 0.14,
+            "airRoles": {
+              "groundSupport": 0.6,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.25
+            },
+            "targetUnitMix": {
+              "infantry": 0.34,
+              "armor": 0.25,
+              "artillery": 0.23,
+              "rocket": 0.09,
+              "elite": 0.06,
+              "navy": 0.03
+            }
+          }
+        },
+        {
+          "id": "cw_soviet",
+          "fromYear": 1946,
+          "toYearExclusive": 2000,
+          "parameters": {
+            "initiative": 0.7,
+            "mainEffort": 0.9,
+            "encirclement": 0.9,
+            "exploitation": 0.9,
+            "elasticDefence": 0.65,
+            "retreat": 0.6,
+            "peaceBias": 0.5,
+            "quality": 0.6,
+            "industry": 0.85,
+            "city": 0.5,
+            "fortification": 0.6,
+            "concentration": 0.9,
+            "armorMass": 0.95,
+            "firePreparation": 0.95,
+            "attritionTolerance": 0.8,
+            "amphibious": 0.2,
+            "navalPriority": 0.25,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.5,
+            "reserve": 0.85,
+            "airBudgetShare": 0.14,
+            "airRoles": {
+              "groundSupport": 0.6,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.25
+            },
+            "targetUnitMix": {
+              "infantry": 0.28,
+              "armor": 0.32,
+              "artillery": 0.19,
+              "rocket": 0.1,
+              "elite": 0.06,
+              "navy": 0.05
+            }
+          }
+        }
+      ]
+    },
+    "ja": {
+      "periods": [
+        {
+          "id": "ja_expansion",
+          "fromYear": 1900,
+          "toYearExclusive": 1944,
+          "parameters": {
+            "initiative": 0.8,
+            "mainEffort": 0.75,
+            "encirclement": 0.65,
+            "exploitation": 0.7,
+            "elasticDefence": 0.25,
+            "retreat": 0.2,
+            "peaceBias": 0.5,
+            "quality": 0.55,
+            "industry": 0.65,
+            "city": 0.4,
+            "fortification": 0.4,
+            "concentration": 0.7,
+            "armorMass": 0.2,
+            "firePreparation": 0.35,
+            "attritionTolerance": 0.85,
+            "amphibious": 0.95,
+            "navalPriority": 0.9,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.5,
+            "reserve": 0.3,
+            "airBudgetShare": 0.18,
+            "airRoles": {
+              "groundSupport": 0.65,
+              "strategicBombing": 0.05,
+              "airSuperiority": 0.3
+            },
+            "targetUnitMix": {
+              "infantry": 0.37,
+              "armor": 0.06,
+              "artillery": 0.12,
+              "rocket": 0.01,
+              "elite": 0.15,
+              "navy": 0.29
+            }
+          }
+        },
+        {
+          "id": "ja_island",
+          "fromYear": 1944,
+          "toYearExclusive": 1946,
+          "parameters": {
+            "initiative": 0.25,
+            "mainEffort": 0.75,
+            "encirclement": 0.65,
+            "exploitation": 0.2,
+            "elasticDefence": 0.25,
+            "retreat": 0.1,
+            "peaceBias": 0.5,
+            "quality": 0.55,
+            "industry": 0.65,
+            "city": 0.4,
+            "fortification": 0.95,
+            "concentration": 0.7,
+            "armorMass": 0.2,
+            "firePreparation": 0.65,
+            "attritionTolerance": 0.85,
+            "amphibious": 0.3,
+            "navalPriority": 0.6,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.5,
+            "reserve": 0.3,
+            "airBudgetShare": 0.1,
+            "airRoles": {
+              "groundSupport": 0.65,
+              "strategicBombing": 0.05,
+              "airSuperiority": 0.3
+            },
+            "targetUnitMix": {
+              "infantry": 0.48,
+              "armor": 0.05,
+              "artillery": 0.2,
+              "rocket": 0.02,
+              "elite": 0.13,
+              "navy": 0.12
+            }
+          }
+        },
+        {
+          "id": "small_defence",
+          "fromYear": 1946,
+          "toYearExclusive": 2000,
+          "parameters": {
+            "initiative": 0.15,
+            "mainEffort": 0.45,
+            "encirclement": 0.4,
+            "exploitation": 0.3,
+            "elasticDefence": 0.45,
+            "retreat": 0.45,
+            "peaceBias": 0.5,
+            "quality": 0.45,
+            "industry": 0.5,
+            "city": 0.5,
+            "fortification": 0.8,
+            "concentration": 0.45,
+            "armorMass": 0.35,
+            "firePreparation": 0.5,
+            "attritionTolerance": 0.4,
+            "amphibious": 0.2,
+            "navalPriority": 0.55,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.5,
+            "reserve": 0.3,
+            "airBudgetShare": 0.12,
+            "airRoles": {
+              "groundSupport": 0.6,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.25
+            },
+            "targetUnitMix": {
+              "infantry": 0.5,
+              "armor": 0.12,
+              "artillery": 0.18,
+              "rocket": 0.03,
+              "elite": 0.12,
+              "navy": 0.05
+            }
+          }
+        }
+      ]
+    },
+    "it": {
+      "periods": [
+        {
+          "id": "it_coalition",
+          "fromYear": 1900,
+          "toYearExclusive": 1943,
+          "parameters": {
+            "initiative": 0.45,
+            "mainEffort": 0.55,
+            "encirclement": 0.4,
+            "exploitation": 0.3,
+            "elasticDefence": 0.45,
+            "retreat": 0.45,
+            "peaceBias": 0.5,
+            "quality": 0.3,
+            "industry": 0.6,
+            "city": 0.55,
+            "fortification": 0.65,
+            "concentration": 0.45,
+            "armorMass": 0.35,
+            "firePreparation": 0.6,
+            "attritionTolerance": 0.35,
+            "amphibious": 0.4,
+            "navalPriority": 0.6,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.95,
+            "reserve": 0.3,
+            "airBudgetShare": 0.08,
+            "airRoles": {
+              "groundSupport": 0.6,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.25
+            },
+            "targetUnitMix": {
+              "infantry": 0.45,
+              "armor": 0.1,
+              "artillery": 0.21,
+              "rocket": 0.01,
+              "elite": 0.08,
+              "navy": 0.15
+            }
+          }
+        },
+        {
+          "id": "it_defensive",
+          "fromYear": 1943,
+          "toYearExclusive": 1946,
+          "parameters": {
+            "initiative": 0.25,
+            "mainEffort": 0.55,
+            "encirclement": 0.4,
+            "exploitation": 0.3,
+            "elasticDefence": 0.45,
+            "retreat": 0.65,
+            "peaceBias": 0.5,
+            "quality": 0.3,
+            "industry": 0.6,
+            "city": 0.55,
+            "fortification": 0.8,
+            "concentration": 0.45,
+            "armorMass": 0.35,
+            "firePreparation": 0.6,
+            "attritionTolerance": 0.35,
+            "amphibious": 0.4,
+            "navalPriority": 0.6,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.95,
+            "reserve": 0.5,
+            "airBudgetShare": 0.08,
+            "airRoles": {
+              "groundSupport": 0.6,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.25
+            },
+            "targetUnitMix": {
+              "infantry": 0.45,
+              "armor": 0.1,
+              "artillery": 0.21,
+              "rocket": 0.01,
+              "elite": 0.08,
+              "navy": 0.15
+            }
+          }
+        },
+        {
+          "id": "cw_nato_early",
+          "fromYear": 1946,
+          "toYearExclusive": 1976,
+          "parameters": {
+            "initiative": 0.4,
+            "mainEffort": 0.65,
+            "encirclement": 0.7,
+            "exploitation": 0.45,
+            "elasticDefence": 0.55,
+            "retreat": 0.35,
+            "peaceBias": 0.5,
+            "quality": 0.75,
+            "industry": 0.95,
+            "city": 0.85,
+            "fortification": 0.75,
+            "concentration": 0.7,
+            "armorMass": 0.75,
+            "firePreparation": 0.95,
+            "attritionTolerance": 0.25,
+            "amphibious": 0.25,
+            "navalPriority": 0.3,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.8,
+            "reserve": 0.65,
+            "airBudgetShare": 0.2,
+            "airRoles": {
+              "groundSupport": 0.45,
+              "strategicBombing": 0.25,
+              "airSuperiority": 0.3
+            },
+            "targetUnitMix": {
+              "infantry": 0.37,
+              "armor": 0.27,
+              "artillery": 0.21,
+              "rocket": 0.04,
+              "elite": 0.07,
+              "navy": 0.04
+            }
+          }
+        },
+        {
+          "id": "cw_nato_active",
+          "fromYear": 1976,
+          "toYearExclusive": 1982,
+          "parameters": {
+            "initiative": 0.4,
+            "mainEffort": 0.8,
+            "encirclement": 0.7,
+            "exploitation": 0.45,
+            "elasticDefence": 0.7,
+            "retreat": 0.35,
+            "peaceBias": 0.5,
+            "quality": 0.75,
+            "industry": 0.95,
+            "city": 0.85,
+            "fortification": 0.75,
+            "concentration": 0.7,
+            "armorMass": 0.85,
+            "firePreparation": 0.95,
+            "attritionTolerance": 0.25,
+            "amphibious": 0.25,
+            "navalPriority": 0.3,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.8,
+            "reserve": 0.65,
+            "airBudgetShare": 0.2,
+            "airRoles": {
+              "groundSupport": 0.45,
+              "strategicBombing": 0.25,
+              "airSuperiority": 0.3
+            },
+            "targetUnitMix": {
+              "infantry": 0.37,
+              "armor": 0.27,
+              "artillery": 0.21,
+              "rocket": 0.04,
+              "elite": 0.07,
+              "navy": 0.04
+            }
+          }
+        },
+        {
+          "id": "cw_nato_airland",
+          "fromYear": 1982,
+          "toYearExclusive": 2000,
+          "parameters": {
+            "initiative": 0.6,
+            "mainEffort": 0.8,
+            "encirclement": 0.75,
+            "exploitation": 0.8,
+            "elasticDefence": 0.85,
+            "retreat": 0.5,
+            "peaceBias": 0.5,
+            "quality": 0.75,
+            "industry": 0.95,
+            "city": 0.85,
+            "fortification": 0.75,
+            "concentration": 0.7,
+            "armorMass": 0.85,
+            "firePreparation": 0.95,
+            "attritionTolerance": 0.25,
+            "amphibious": 0.25,
+            "navalPriority": 0.3,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.8,
+            "reserve": 0.65,
+            "airBudgetShare": 0.28,
+            "airRoles": {
+              "groundSupport": 0.55,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.3
+            },
+            "targetUnitMix": {
+              "infantry": 0.37,
+              "armor": 0.27,
+              "artillery": 0.21,
+              "rocket": 0.04,
+              "elite": 0.07,
+              "navy": 0.04
+            }
+          }
+        }
+      ]
+    },
+    "es": {
+      "periods": [
+        {
+          "id": "small_defence",
+          "fromYear": 1900,
+          "toYearExclusive": 2000,
+          "parameters": {
+            "initiative": 0.35,
+            "mainEffort": 0.45,
+            "encirclement": 0.4,
+            "exploitation": 0.3,
+            "elasticDefence": 0.45,
+            "retreat": 0.45,
+            "peaceBias": 0.5,
+            "quality": 0.45,
+            "industry": 0.5,
+            "city": 0.5,
+            "fortification": 0.6,
+            "concentration": 0.45,
+            "armorMass": 0.35,
+            "firePreparation": 0.5,
+            "attritionTolerance": 0.4,
+            "amphibious": 0.2,
+            "navalPriority": 0.25,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.5,
+            "reserve": 0.3,
+            "airBudgetShare": 0.08,
+            "airRoles": {
+              "groundSupport": 0.6,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.25
+            },
+            "targetUnitMix": {
+              "infantry": 0.5,
+              "armor": 0.12,
+              "artillery": 0.18,
+              "rocket": 0.03,
+              "elite": 0.12,
+              "navy": 0.05
+            }
+          }
+        }
+      ],
+      "basis": "Generic gameplay fallback unless a country-specific profile is present; not a claim of identical historical doctrine."
+    },
+    "ro": {
+      "periods": [
+        {
+          "id": "small_defence",
+          "fromYear": 1900,
+          "toYearExclusive": 1946,
+          "parameters": {
+            "initiative": 0.35,
+            "mainEffort": 0.45,
+            "encirclement": 0.4,
+            "exploitation": 0.3,
+            "elasticDefence": 0.45,
+            "retreat": 0.45,
+            "peaceBias": 0.5,
+            "quality": 0.45,
+            "industry": 0.5,
+            "city": 0.5,
+            "fortification": 0.6,
+            "concentration": 0.45,
+            "armorMass": 0.35,
+            "firePreparation": 0.5,
+            "attritionTolerance": 0.4,
+            "amphibious": 0.2,
+            "navalPriority": 0.25,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.5,
+            "reserve": 0.3,
+            "airBudgetShare": 0.08,
+            "airRoles": {
+              "groundSupport": 0.6,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.25
+            },
+            "targetUnitMix": {
+              "infantry": 0.5,
+              "armor": 0.12,
+              "artillery": 0.18,
+              "rocket": 0.03,
+              "elite": 0.12,
+              "navy": 0.05
+            }
+          }
+        },
+        {
+          "id": "cw_soviet",
+          "fromYear": 1946,
+          "toYearExclusive": 2000,
+          "parameters": {
+            "initiative": 0.7,
+            "mainEffort": 0.9,
+            "encirclement": 0.9,
+            "exploitation": 0.9,
+            "elasticDefence": 0.65,
+            "retreat": 0.6,
+            "peaceBias": 0.5,
+            "quality": 0.6,
+            "industry": 0.85,
+            "city": 0.5,
+            "fortification": 0.6,
+            "concentration": 0.9,
+            "armorMass": 0.95,
+            "firePreparation": 0.95,
+            "attritionTolerance": 0.8,
+            "amphibious": 0.25,
+            "navalPriority": 0.3,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.5,
+            "reserve": 0.85,
+            "airBudgetShare": 0.14,
+            "airRoles": {
+              "groundSupport": 0.6,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.25
+            },
+            "targetUnitMix": {
+              "infantry": 0.29,
+              "armor": 0.32,
+              "artillery": 0.19,
+              "rocket": 0.1,
+              "elite": 0.06,
+              "navy": 0.04
+            }
+          }
+        }
+      ]
+    },
+    "hu": {
+      "periods": [
+        {
+          "id": "small_defence",
+          "fromYear": 1900,
+          "toYearExclusive": 1946,
+          "parameters": {
+            "initiative": 0.35,
+            "mainEffort": 0.45,
+            "encirclement": 0.4,
+            "exploitation": 0.3,
+            "elasticDefence": 0.45,
+            "retreat": 0.45,
+            "peaceBias": 0.5,
+            "quality": 0.45,
+            "industry": 0.5,
+            "city": 0.5,
+            "fortification": 0.6,
+            "concentration": 0.45,
+            "armorMass": 0.35,
+            "firePreparation": 0.5,
+            "attritionTolerance": 0.4,
+            "amphibious": 0.2,
+            "navalPriority": 0.25,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.5,
+            "reserve": 0.3,
+            "airBudgetShare": 0.08,
+            "airRoles": {
+              "groundSupport": 0.6,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.25
+            },
+            "targetUnitMix": {
+              "infantry": 0.5,
+              "armor": 0.12,
+              "artillery": 0.18,
+              "rocket": 0.03,
+              "elite": 0.12,
+              "navy": 0.05
+            }
+          }
+        },
+        {
+          "id": "cw_soviet",
+          "fromYear": 1946,
+          "toYearExclusive": 2000,
+          "parameters": {
+            "initiative": 0.7,
+            "mainEffort": 0.9,
+            "encirclement": 0.9,
+            "exploitation": 0.9,
+            "elasticDefence": 0.65,
+            "retreat": 0.6,
+            "peaceBias": 0.5,
+            "quality": 0.6,
+            "industry": 0.85,
+            "city": 0.5,
+            "fortification": 0.6,
+            "concentration": 0.9,
+            "armorMass": 0.95,
+            "firePreparation": 0.95,
+            "attritionTolerance": 0.8,
+            "amphibious": 0.25,
+            "navalPriority": 0.3,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.5,
+            "reserve": 0.85,
+            "airBudgetShare": 0.14,
+            "airRoles": {
+              "groundSupport": 0.6,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.25
+            },
+            "targetUnitMix": {
+              "infantry": 0.29,
+              "armor": 0.32,
+              "artillery": 0.19,
+              "rocket": 0.1,
+              "elite": 0.06,
+              "navy": 0.04
+            }
+          }
+        }
+      ]
+    },
+    "pl": {
+      "periods": [
+        {
+          "id": "pl_forward",
+          "fromYear": 1900,
+          "toYearExclusive": 1940,
+          "parameters": {
+            "initiative": 0.25,
+            "mainEffort": 0.25,
+            "encirclement": 0.4,
+            "exploitation": 0.25,
+            "elasticDefence": 0.3,
+            "retreat": 0.2,
+            "peaceBias": 0.5,
+            "quality": 0.35,
+            "industry": 0.4,
+            "city": 0.5,
+            "fortification": 0.75,
+            "concentration": 0.3,
+            "armorMass": 0.25,
+            "firePreparation": 0.6,
+            "attritionTolerance": 0.5,
+            "amphibious": 0.2,
+            "navalPriority": 0.25,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.9,
+            "reserve": 0.3,
+            "airBudgetShare": 0.05,
+            "airRoles": {
+              "groundSupport": 0.6,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.25
+            },
+            "targetUnitMix": {
+              "infantry": 0.57,
+              "armor": 0.08,
+              "artillery": 0.19,
+              "rocket": 0.01,
+              "elite": 0.13,
+              "navy": 0.02
+            }
+          }
+        },
+        {
+          "id": "pl_exile",
+          "fromYear": 1940,
+          "toYearExclusive": 1946,
+          "parameters": {
+            "initiative": 0.55,
+            "mainEffort": 0.65,
+            "encirclement": 0.7,
+            "exploitation": 0.75,
+            "elasticDefence": 0.45,
+            "retreat": 0.45,
+            "peaceBias": 0.5,
+            "quality": 0.75,
+            "industry": 0.6,
+            "city": 0.85,
+            "fortification": 0.45,
+            "concentration": 0.7,
+            "armorMass": 0.75,
+            "firePreparation": 0.95,
+            "attritionTolerance": 0.25,
+            "amphibious": 0.5,
+            "navalPriority": 0.35,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.95,
+            "reserve": 0.5,
+            "airBudgetShare": 0.08,
+            "airRoles": {
+              "groundSupport": 0.45,
+              "strategicBombing": 0.25,
+              "airSuperiority": 0.3
+            },
+            "targetUnitMix": {
+              "infantry": 0.36,
+              "armor": 0.24,
+              "artillery": 0.23,
+              "rocket": 0.02,
+              "elite": 0.13,
+              "navy": 0.02
+            }
+          }
+        },
+        {
+          "id": "cw_soviet",
+          "fromYear": 1946,
+          "toYearExclusive": 2000,
+          "parameters": {
+            "initiative": 0.7,
+            "mainEffort": 0.9,
+            "encirclement": 0.9,
+            "exploitation": 0.9,
+            "elasticDefence": 0.65,
+            "retreat": 0.6,
+            "peaceBias": 0.5,
+            "quality": 0.6,
+            "industry": 0.85,
+            "city": 0.5,
+            "fortification": 0.6,
+            "concentration": 0.9,
+            "armorMass": 0.95,
+            "firePreparation": 0.95,
+            "attritionTolerance": 0.8,
+            "amphibious": 0.25,
+            "navalPriority": 0.3,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.5,
+            "reserve": 0.85,
+            "airBudgetShare": 0.14,
+            "airRoles": {
+              "groundSupport": 0.6,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.25
+            },
+            "targetUnitMix": {
+              "infantry": 0.29,
+              "armor": 0.32,
+              "artillery": 0.19,
+              "rocket": 0.1,
+              "elite": 0.06,
+              "navy": 0.04
+            }
+          }
+        }
+      ]
+    },
+    "bg": {
+      "periods": [
+        {
+          "id": "small_defence",
+          "fromYear": 1900,
+          "toYearExclusive": 1946,
+          "parameters": {
+            "initiative": 0.35,
+            "mainEffort": 0.45,
+            "encirclement": 0.4,
+            "exploitation": 0.3,
+            "elasticDefence": 0.45,
+            "retreat": 0.45,
+            "peaceBias": 0.5,
+            "quality": 0.45,
+            "industry": 0.5,
+            "city": 0.5,
+            "fortification": 0.6,
+            "concentration": 0.45,
+            "armorMass": 0.35,
+            "firePreparation": 0.5,
+            "attritionTolerance": 0.4,
+            "amphibious": 0.2,
+            "navalPriority": 0.25,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.5,
+            "reserve": 0.3,
+            "airBudgetShare": 0.08,
+            "airRoles": {
+              "groundSupport": 0.6,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.25
+            },
+            "targetUnitMix": {
+              "infantry": 0.5,
+              "armor": 0.12,
+              "artillery": 0.18,
+              "rocket": 0.03,
+              "elite": 0.12,
+              "navy": 0.05
+            }
+          }
+        },
+        {
+          "id": "cw_soviet",
+          "fromYear": 1946,
+          "toYearExclusive": 2000,
+          "parameters": {
+            "initiative": 0.7,
+            "mainEffort": 0.9,
+            "encirclement": 0.9,
+            "exploitation": 0.9,
+            "elasticDefence": 0.65,
+            "retreat": 0.6,
+            "peaceBias": 0.5,
+            "quality": 0.6,
+            "industry": 0.85,
+            "city": 0.5,
+            "fortification": 0.6,
+            "concentration": 0.9,
+            "armorMass": 0.95,
+            "firePreparation": 0.95,
+            "attritionTolerance": 0.8,
+            "amphibious": 0.25,
+            "navalPriority": 0.3,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.5,
+            "reserve": 0.85,
+            "airBudgetShare": 0.14,
+            "airRoles": {
+              "groundSupport": 0.6,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.25
+            },
+            "targetUnitMix": {
+              "infantry": 0.29,
+              "armor": 0.32,
+              "artillery": 0.19,
+              "rocket": 0.1,
+              "elite": 0.06,
+              "navy": 0.04
+            }
+          }
+        }
+      ]
+    },
+    "gr": {
+      "periods": [
+        {
+          "id": "small_defence",
+          "fromYear": 1900,
+          "toYearExclusive": 2000,
+          "parameters": {
+            "initiative": 0.35,
+            "mainEffort": 0.45,
+            "encirclement": 0.4,
+            "exploitation": 0.3,
+            "elasticDefence": 0.45,
+            "retreat": 0.45,
+            "peaceBias": 0.5,
+            "quality": 0.45,
+            "industry": 0.5,
+            "city": 0.5,
+            "fortification": 0.6,
+            "concentration": 0.45,
+            "armorMass": 0.35,
+            "firePreparation": 0.5,
+            "attritionTolerance": 0.4,
+            "amphibious": 0.2,
+            "navalPriority": 0.25,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.5,
+            "reserve": 0.3,
+            "airBudgetShare": 0.08,
+            "airRoles": {
+              "groundSupport": 0.6,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.25
+            },
+            "targetUnitMix": {
+              "infantry": 0.5,
+              "armor": 0.12,
+              "artillery": 0.18,
+              "rocket": 0.03,
+              "elite": 0.12,
+              "navy": 0.05
+            }
+          }
+        }
+      ],
+      "basis": "Generic gameplay fallback unless a country-specific profile is present; not a claim of identical historical doctrine."
+    },
+    "yu": {
+      "periods": [
+        {
+          "id": "small_defence",
+          "fromYear": 1900,
+          "toYearExclusive": 2000,
+          "parameters": {
+            "initiative": 0.35,
+            "mainEffort": 0.45,
+            "encirclement": 0.4,
+            "exploitation": 0.3,
+            "elasticDefence": 0.45,
+            "retreat": 0.45,
+            "peaceBias": 0.5,
+            "quality": 0.45,
+            "industry": 0.5,
+            "city": 0.5,
+            "fortification": 0.6,
+            "concentration": 0.45,
+            "armorMass": 0.35,
+            "firePreparation": 0.5,
+            "attritionTolerance": 0.4,
+            "amphibious": 0.2,
+            "navalPriority": 0.25,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.5,
+            "reserve": 0.3,
+            "airBudgetShare": 0.08,
+            "airRoles": {
+              "groundSupport": 0.6,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.25
+            },
+            "targetUnitMix": {
+              "infantry": 0.5,
+              "armor": 0.12,
+              "artillery": 0.18,
+              "rocket": 0.03,
+              "elite": 0.12,
+              "navy": 0.05
+            }
+          }
+        }
+      ],
+      "basis": "Generic gameplay fallback unless a country-specific profile is present; not a claim of identical historical doctrine."
+    },
+    "tr": {
+      "periods": [
+        {
+          "id": "small_defence",
+          "fromYear": 1900,
+          "toYearExclusive": 2000,
+          "parameters": {
+            "initiative": 0.35,
+            "mainEffort": 0.45,
+            "encirclement": 0.4,
+            "exploitation": 0.3,
+            "elasticDefence": 0.45,
+            "retreat": 0.45,
+            "peaceBias": 0.5,
+            "quality": 0.45,
+            "industry": 0.5,
+            "city": 0.5,
+            "fortification": 0.6,
+            "concentration": 0.45,
+            "armorMass": 0.35,
+            "firePreparation": 0.5,
+            "attritionTolerance": 0.4,
+            "amphibious": 0.2,
+            "navalPriority": 0.25,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.5,
+            "reserve": 0.3,
+            "airBudgetShare": 0.08,
+            "airRoles": {
+              "groundSupport": 0.6,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.25
+            },
+            "targetUnitMix": {
+              "infantry": 0.5,
+              "armor": 0.12,
+              "artillery": 0.18,
+              "rocket": 0.03,
+              "elite": 0.12,
+              "navy": 0.05
+            }
+          }
+        }
+      ],
+      "basis": "Generic gameplay fallback unless a country-specific profile is present; not a claim of identical historical doctrine."
+    },
+    "pt": {
+      "periods": [
+        {
+          "id": "small_defence",
+          "fromYear": 1900,
+          "toYearExclusive": 2000,
+          "parameters": {
+            "initiative": 0.35,
+            "mainEffort": 0.45,
+            "encirclement": 0.4,
+            "exploitation": 0.3,
+            "elasticDefence": 0.45,
+            "retreat": 0.45,
+            "peaceBias": 0.5,
+            "quality": 0.45,
+            "industry": 0.5,
+            "city": 0.5,
+            "fortification": 0.6,
+            "concentration": 0.45,
+            "armorMass": 0.35,
+            "firePreparation": 0.5,
+            "attritionTolerance": 0.4,
+            "amphibious": 0.2,
+            "navalPriority": 0.25,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.5,
+            "reserve": 0.3,
+            "airBudgetShare": 0.08,
+            "airRoles": {
+              "groundSupport": 0.6,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.25
+            },
+            "targetUnitMix": {
+              "infantry": 0.5,
+              "armor": 0.12,
+              "artillery": 0.18,
+              "rocket": 0.03,
+              "elite": 0.12,
+              "navy": 0.05
+            }
+          }
+        }
+      ],
+      "basis": "Generic gameplay fallback unless a country-specific profile is present; not a claim of identical historical doctrine."
+    },
+    "fl": {
+      "periods": [
+        {
+          "id": "fl_motti",
+          "fromYear": 1900,
+          "toYearExclusive": 2000,
+          "parameters": {
+            "initiative": 0.3,
+            "mainEffort": 0.6,
+            "encirclement": 0.9,
+            "exploitation": 0.35,
+            "elasticDefence": 0.95,
+            "retreat": 0.75,
+            "peaceBias": 0.5,
+            "quality": 0.7,
+            "industry": 0.35,
+            "city": 0.5,
+            "fortification": 0.65,
+            "concentration": 0.35,
+            "armorMass": 0.1,
+            "firePreparation": 0.55,
+            "attritionTolerance": 0.2,
+            "amphibious": 0.2,
+            "navalPriority": 0.25,
+            "terrainUse": 1,
+            "allyCoordination": 0.5,
+            "reserve": 0.3,
+            "airBudgetShare": 0.04,
+            "airRoles": {
+              "groundSupport": 0.6,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.25
+            },
+            "targetUnitMix": {
+              "infantry": 0.55,
+              "armor": 0.03,
+              "artillery": 0.2,
+              "rocket": 0.01,
+              "elite": 0.19,
+              "navy": 0.02
+            }
+          }
+        }
+      ],
+      "basis": "Generic gameplay fallback unless a country-specific profile is present; not a claim of identical historical doctrine."
+    },
+    "gb": {
+      "periods": [
+        {
+          "id": "gb_maritime",
+          "fromYear": 1900,
+          "toYearExclusive": 1943,
+          "parameters": {
+            "initiative": 0.4,
+            "mainEffort": 0.65,
+            "encirclement": 0.5,
+            "exploitation": 0.4,
+            "elasticDefence": 0.65,
+            "retreat": 0.65,
+            "peaceBias": 0.5,
+            "quality": 0.8,
+            "industry": 0.75,
+            "city": 0.8,
+            "fortification": 0.65,
+            "concentration": 0.65,
+            "armorMass": 0.55,
+            "firePreparation": 0.85,
+            "attritionTolerance": 0.25,
+            "amphibious": 0.7,
+            "navalPriority": 0.95,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.9,
+            "reserve": 0.55,
+            "airBudgetShare": 0.22,
+            "airRoles": {
+              "groundSupport": 0.3,
+              "strategicBombing": 0.4,
+              "airSuperiority": 0.3
+            },
+            "targetUnitMix": {
+              "infantry": 0.27,
+              "armor": 0.14,
+              "artillery": 0.2,
+              "rocket": 0.02,
+              "elite": 0.1,
+              "navy": 0.27
+            }
+          }
+        },
+        {
+          "id": "gb_offensive",
+          "fromYear": 1943,
+          "toYearExclusive": 1946,
+          "parameters": {
+            "initiative": 0.6,
+            "mainEffort": 0.65,
+            "encirclement": 0.5,
+            "exploitation": 0.6,
+            "elasticDefence": 0.65,
+            "retreat": 0.65,
+            "peaceBias": 0.5,
+            "quality": 0.8,
+            "industry": 0.75,
+            "city": 0.8,
+            "fortification": 0.65,
+            "concentration": 0.65,
+            "armorMass": 0.55,
+            "firePreparation": 0.95,
+            "attritionTolerance": 0.25,
+            "amphibious": 0.85,
+            "navalPriority": 0.95,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.9,
+            "reserve": 0.55,
+            "airBudgetShare": 0.22,
+            "airRoles": {
+              "groundSupport": 0.3,
+              "strategicBombing": 0.4,
+              "airSuperiority": 0.3
+            },
+            "targetUnitMix": {
+              "infantry": 0.25,
+              "armor": 0.19,
+              "artillery": 0.22,
+              "rocket": 0.03,
+              "elite": 0.1,
+              "navy": 0.21
+            }
+          }
+        },
+        {
+          "id": "cw_nato_early",
+          "fromYear": 1946,
+          "toYearExclusive": 1976,
+          "parameters": {
+            "initiative": 0.4,
+            "mainEffort": 0.65,
+            "encirclement": 0.7,
+            "exploitation": 0.45,
+            "elasticDefence": 0.55,
+            "retreat": 0.35,
+            "peaceBias": 0.5,
+            "quality": 0.75,
+            "industry": 0.95,
+            "city": 0.85,
+            "fortification": 0.75,
+            "concentration": 0.7,
+            "armorMass": 0.75,
+            "firePreparation": 0.95,
+            "attritionTolerance": 0.25,
+            "amphibious": 0.55,
+            "navalPriority": 0.85,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.9,
+            "reserve": 0.65,
+            "airBudgetShare": 0.2,
+            "airRoles": {
+              "groundSupport": 0.45,
+              "strategicBombing": 0.25,
+              "airSuperiority": 0.3
+            },
+            "targetUnitMix": {
+              "infantry": 0.28,
+              "armor": 0.27,
+              "artillery": 0.21,
+              "rocket": 0.04,
+              "elite": 0.07,
+              "navy": 0.13
+            }
+          }
+        },
+        {
+          "id": "cw_nato_active",
+          "fromYear": 1976,
+          "toYearExclusive": 1982,
+          "parameters": {
+            "initiative": 0.4,
+            "mainEffort": 0.8,
+            "encirclement": 0.7,
+            "exploitation": 0.45,
+            "elasticDefence": 0.7,
+            "retreat": 0.35,
+            "peaceBias": 0.5,
+            "quality": 0.75,
+            "industry": 0.95,
+            "city": 0.85,
+            "fortification": 0.75,
+            "concentration": 0.7,
+            "armorMass": 0.85,
+            "firePreparation": 0.95,
+            "attritionTolerance": 0.25,
+            "amphibious": 0.55,
+            "navalPriority": 0.85,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.9,
+            "reserve": 0.65,
+            "airBudgetShare": 0.2,
+            "airRoles": {
+              "groundSupport": 0.45,
+              "strategicBombing": 0.25,
+              "airSuperiority": 0.3
+            },
+            "targetUnitMix": {
+              "infantry": 0.28,
+              "armor": 0.27,
+              "artillery": 0.21,
+              "rocket": 0.04,
+              "elite": 0.07,
+              "navy": 0.13
+            }
+          }
+        },
+        {
+          "id": "cw_nato_airland",
+          "fromYear": 1982,
+          "toYearExclusive": 2000,
+          "parameters": {
+            "initiative": 0.6,
+            "mainEffort": 0.8,
+            "encirclement": 0.75,
+            "exploitation": 0.8,
+            "elasticDefence": 0.85,
+            "retreat": 0.5,
+            "peaceBias": 0.5,
+            "quality": 0.75,
+            "industry": 0.95,
+            "city": 0.85,
+            "fortification": 0.75,
+            "concentration": 0.7,
+            "armorMass": 0.85,
+            "firePreparation": 0.95,
+            "attritionTolerance": 0.25,
+            "amphibious": 0.55,
+            "navalPriority": 0.85,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.9,
+            "reserve": 0.65,
+            "airBudgetShare": 0.28,
+            "airRoles": {
+              "groundSupport": 0.55,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.3
+            },
+            "targetUnitMix": {
+              "infantry": 0.28,
+              "armor": 0.27,
+              "artillery": 0.21,
+              "rocket": 0.04,
+              "elite": 0.07,
+              "navy": 0.13
+            }
+          }
+        }
+      ]
+    },
+    "fr": {
+      "periods": [
+        {
+          "id": "fr_methodical",
+          "fromYear": 1900,
+          "toYearExclusive": 1941,
+          "parameters": {
+            "initiative": 0.2,
+            "mainEffort": 0.55,
+            "encirclement": 0.25,
+            "exploitation": 0.15,
+            "elasticDefence": 0.25,
+            "retreat": 0.25,
+            "peaceBias": 0.5,
+            "quality": 0.65,
+            "industry": 0.6,
+            "city": 0.65,
+            "fortification": 0.95,
+            "concentration": 0.55,
+            "armorMass": 0.3,
+            "firePreparation": 0.95,
+            "attritionTolerance": 0.25,
+            "amphibious": 0.2,
+            "navalPriority": 0.4,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.5,
+            "reserve": 0.55,
+            "airBudgetShare": 0.1,
+            "airRoles": {
+              "groundSupport": 0.6,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.25
+            },
+            "targetUnitMix": {
+              "infantry": 0.4,
+              "armor": 0.15,
+              "artillery": 0.26,
+              "rocket": 0.01,
+              "elite": 0.1,
+              "navy": 0.08
+            }
+          }
+        },
+        {
+          "id": "fr_reconstituted",
+          "fromYear": 1941,
+          "toYearExclusive": 1946,
+          "parameters": {
+            "initiative": 0.55,
+            "mainEffort": 0.65,
+            "encirclement": 0.7,
+            "exploitation": 0.75,
+            "elasticDefence": 0.45,
+            "retreat": 0.45,
+            "peaceBias": 0.5,
+            "quality": 0.75,
+            "industry": 0.6,
+            "city": 0.85,
+            "fortification": 0.45,
+            "concentration": 0.7,
+            "armorMass": 0.75,
+            "firePreparation": 0.95,
+            "attritionTolerance": 0.25,
+            "amphibious": 0.5,
+            "navalPriority": 0.35,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.8,
+            "reserve": 0.5,
+            "airBudgetShare": 0.12,
+            "airRoles": {
+              "groundSupport": 0.45,
+              "strategicBombing": 0.25,
+              "airSuperiority": 0.3
+            },
+            "targetUnitMix": {
+              "infantry": 0.31,
+              "armor": 0.26,
+              "artillery": 0.23,
+              "rocket": 0.03,
+              "elite": 0.12,
+              "navy": 0.05
+            }
+          }
+        },
+        {
+          "id": "cw_nato_early",
+          "fromYear": 1946,
+          "toYearExclusive": 1976,
+          "parameters": {
+            "initiative": 0.4,
+            "mainEffort": 0.65,
+            "encirclement": 0.7,
+            "exploitation": 0.45,
+            "elasticDefence": 0.55,
+            "retreat": 0.35,
+            "peaceBias": 0.5,
+            "quality": 0.75,
+            "industry": 0.95,
+            "city": 0.85,
+            "fortification": 0.75,
+            "concentration": 0.7,
+            "armorMass": 0.75,
+            "firePreparation": 0.95,
+            "attritionTolerance": 0.25,
+            "amphibious": 0.25,
+            "navalPriority": 0.3,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.8,
+            "reserve": 0.65,
+            "airBudgetShare": 0.2,
+            "airRoles": {
+              "groundSupport": 0.45,
+              "strategicBombing": 0.25,
+              "airSuperiority": 0.3
+            },
+            "targetUnitMix": {
+              "infantry": 0.37,
+              "armor": 0.27,
+              "artillery": 0.21,
+              "rocket": 0.04,
+              "elite": 0.07,
+              "navy": 0.04
+            }
+          }
+        },
+        {
+          "id": "cw_nato_active",
+          "fromYear": 1976,
+          "toYearExclusive": 1982,
+          "parameters": {
+            "initiative": 0.4,
+            "mainEffort": 0.8,
+            "encirclement": 0.7,
+            "exploitation": 0.45,
+            "elasticDefence": 0.7,
+            "retreat": 0.35,
+            "peaceBias": 0.5,
+            "quality": 0.75,
+            "industry": 0.95,
+            "city": 0.85,
+            "fortification": 0.75,
+            "concentration": 0.7,
+            "armorMass": 0.85,
+            "firePreparation": 0.95,
+            "attritionTolerance": 0.25,
+            "amphibious": 0.25,
+            "navalPriority": 0.3,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.8,
+            "reserve": 0.65,
+            "airBudgetShare": 0.2,
+            "airRoles": {
+              "groundSupport": 0.45,
+              "strategicBombing": 0.25,
+              "airSuperiority": 0.3
+            },
+            "targetUnitMix": {
+              "infantry": 0.37,
+              "armor": 0.27,
+              "artillery": 0.21,
+              "rocket": 0.04,
+              "elite": 0.07,
+              "navy": 0.04
+            }
+          }
+        },
+        {
+          "id": "cw_nato_airland",
+          "fromYear": 1982,
+          "toYearExclusive": 2000,
+          "parameters": {
+            "initiative": 0.6,
+            "mainEffort": 0.8,
+            "encirclement": 0.75,
+            "exploitation": 0.8,
+            "elasticDefence": 0.85,
+            "retreat": 0.5,
+            "peaceBias": 0.5,
+            "quality": 0.75,
+            "industry": 0.95,
+            "city": 0.85,
+            "fortification": 0.75,
+            "concentration": 0.7,
+            "armorMass": 0.85,
+            "firePreparation": 0.95,
+            "attritionTolerance": 0.25,
+            "amphibious": 0.25,
+            "navalPriority": 0.3,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.8,
+            "reserve": 0.65,
+            "airBudgetShare": 0.28,
+            "airRoles": {
+              "groundSupport": 0.55,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.3
+            },
+            "targetUnitMix": {
+              "infantry": 0.37,
+              "armor": 0.27,
+              "artillery": 0.21,
+              "rocket": 0.04,
+              "elite": 0.07,
+              "navy": 0.04
+            }
+          }
+        }
+      ]
+    },
+    "am": {
+      "periods": [
+        {
+          "id": "am_mobilize",
+          "fromYear": 1900,
+          "toYearExclusive": 1943,
+          "parameters": {
+            "initiative": 0.35,
+            "mainEffort": 0.65,
+            "encirclement": 0.4,
+            "exploitation": 0.5,
+            "elasticDefence": 0.45,
+            "retreat": 0.45,
+            "peaceBias": 0.5,
+            "quality": 0.75,
+            "industry": 0.95,
+            "city": 0.85,
+            "fortification": 0.45,
+            "concentration": 0.7,
+            "armorMass": 0.65,
+            "firePreparation": 0.85,
+            "attritionTolerance": 0.25,
+            "amphibious": 0.8,
+            "navalPriority": 0.85,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.8,
+            "reserve": 0.5,
+            "airBudgetShare": 0.2,
+            "airRoles": {
+              "groundSupport": 0.45,
+              "strategicBombing": 0.25,
+              "airSuperiority": 0.3
+            },
+            "targetUnitMix": {
+              "infantry": 0.27,
+              "armor": 0.2,
+              "artillery": 0.19,
+              "rocket": 0.03,
+              "elite": 0.09,
+              "navy": 0.22
+            }
+          }
+        },
+        {
+          "id": "am_firepower",
+          "fromYear": 1943,
+          "toYearExclusive": 1946,
+          "parameters": {
+            "initiative": 0.7,
+            "mainEffort": 0.65,
+            "encirclement": 0.7,
+            "exploitation": 0.75,
+            "elasticDefence": 0.45,
+            "retreat": 0.45,
+            "peaceBias": 0.5,
+            "quality": 0.75,
+            "industry": 0.95,
+            "city": 0.85,
+            "fortification": 0.45,
+            "concentration": 0.7,
+            "armorMass": 0.75,
+            "firePreparation": 0.95,
+            "attritionTolerance": 0.25,
+            "amphibious": 0.95,
+            "navalPriority": 0.85,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.8,
+            "reserve": 0.5,
+            "airBudgetShare": 0.25,
+            "airRoles": {
+              "groundSupport": 0.45,
+              "strategicBombing": 0.25,
+              "airSuperiority": 0.3
+            },
+            "targetUnitMix": {
+              "infantry": 0.24,
+              "armor": 0.23,
+              "artillery": 0.2,
+              "rocket": 0.04,
+              "elite": 0.08,
+              "navy": 0.21
+            }
+          }
+        },
+        {
+          "id": "cw_nato_early",
+          "fromYear": 1946,
+          "toYearExclusive": 1976,
+          "parameters": {
+            "initiative": 0.4,
+            "mainEffort": 0.65,
+            "encirclement": 0.7,
+            "exploitation": 0.45,
+            "elasticDefence": 0.55,
+            "retreat": 0.35,
+            "peaceBias": 0.5,
+            "quality": 0.75,
+            "industry": 0.95,
+            "city": 0.85,
+            "fortification": 0.75,
+            "concentration": 0.7,
+            "armorMass": 0.75,
+            "firePreparation": 0.95,
+            "attritionTolerance": 0.25,
+            "amphibious": 0.55,
+            "navalPriority": 0.85,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.8,
+            "reserve": 0.65,
+            "airBudgetShare": 0.2,
+            "airRoles": {
+              "groundSupport": 0.45,
+              "strategicBombing": 0.25,
+              "airSuperiority": 0.3
+            },
+            "targetUnitMix": {
+              "infantry": 0.28,
+              "armor": 0.27,
+              "artillery": 0.21,
+              "rocket": 0.04,
+              "elite": 0.07,
+              "navy": 0.13
+            }
+          }
+        },
+        {
+          "id": "cw_nato_active",
+          "fromYear": 1976,
+          "toYearExclusive": 1982,
+          "parameters": {
+            "initiative": 0.4,
+            "mainEffort": 0.8,
+            "encirclement": 0.7,
+            "exploitation": 0.45,
+            "elasticDefence": 0.7,
+            "retreat": 0.35,
+            "peaceBias": 0.5,
+            "quality": 0.75,
+            "industry": 0.95,
+            "city": 0.85,
+            "fortification": 0.75,
+            "concentration": 0.7,
+            "armorMass": 0.85,
+            "firePreparation": 0.95,
+            "attritionTolerance": 0.25,
+            "amphibious": 0.55,
+            "navalPriority": 0.85,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.8,
+            "reserve": 0.65,
+            "airBudgetShare": 0.2,
+            "airRoles": {
+              "groundSupport": 0.45,
+              "strategicBombing": 0.25,
+              "airSuperiority": 0.3
+            },
+            "targetUnitMix": {
+              "infantry": 0.28,
+              "armor": 0.27,
+              "artillery": 0.21,
+              "rocket": 0.04,
+              "elite": 0.07,
+              "navy": 0.13
+            }
+          }
+        },
+        {
+          "id": "cw_nato_airland",
+          "fromYear": 1982,
+          "toYearExclusive": 2000,
+          "parameters": {
+            "initiative": 0.6,
+            "mainEffort": 0.8,
+            "encirclement": 0.75,
+            "exploitation": 0.8,
+            "elasticDefence": 0.85,
+            "retreat": 0.5,
+            "peaceBias": 0.5,
+            "quality": 0.75,
+            "industry": 0.95,
+            "city": 0.85,
+            "fortification": 0.75,
+            "concentration": 0.7,
+            "armorMass": 0.85,
+            "firePreparation": 0.95,
+            "attritionTolerance": 0.25,
+            "amphibious": 0.55,
+            "navalPriority": 0.85,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.8,
+            "reserve": 0.65,
+            "airBudgetShare": 0.28,
+            "airRoles": {
+              "groundSupport": 0.55,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.3
+            },
+            "targetUnitMix": {
+              "infantry": 0.28,
+              "armor": 0.27,
+              "artillery": 0.21,
+              "rocket": 0.04,
+              "elite": 0.07,
+              "navy": 0.13
+            }
+          }
+        }
+      ]
+    },
+    "be": {
+      "periods": [
+        {
+          "id": "small_defence",
+          "fromYear": 1900,
+          "toYearExclusive": 2000,
+          "parameters": {
+            "initiative": 0.35,
+            "mainEffort": 0.45,
+            "encirclement": 0.4,
+            "exploitation": 0.3,
+            "elasticDefence": 0.45,
+            "retreat": 0.45,
+            "peaceBias": 0.5,
+            "quality": 0.45,
+            "industry": 0.5,
+            "city": 0.5,
+            "fortification": 0.6,
+            "concentration": 0.45,
+            "armorMass": 0.35,
+            "firePreparation": 0.5,
+            "attritionTolerance": 0.4,
+            "amphibious": 0.2,
+            "navalPriority": 0.25,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.5,
+            "reserve": 0.3,
+            "airBudgetShare": 0.08,
+            "airRoles": {
+              "groundSupport": 0.6,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.25
+            },
+            "targetUnitMix": {
+              "infantry": 0.5,
+              "armor": 0.12,
+              "artillery": 0.18,
+              "rocket": 0.03,
+              "elite": 0.12,
+              "navy": 0.05
+            }
+          }
+        }
+      ],
+      "basis": "Generic gameplay fallback unless a country-specific profile is present; not a claim of identical historical doctrine."
+    },
+    "nl": {
+      "periods": [
+        {
+          "id": "small_defence",
+          "fromYear": 1900,
+          "toYearExclusive": 2000,
+          "parameters": {
+            "initiative": 0.35,
+            "mainEffort": 0.45,
+            "encirclement": 0.4,
+            "exploitation": 0.3,
+            "elasticDefence": 0.45,
+            "retreat": 0.45,
+            "peaceBias": 0.5,
+            "quality": 0.45,
+            "industry": 0.5,
+            "city": 0.5,
+            "fortification": 0.6,
+            "concentration": 0.45,
+            "armorMass": 0.35,
+            "firePreparation": 0.5,
+            "attritionTolerance": 0.4,
+            "amphibious": 0.2,
+            "navalPriority": 0.25,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.5,
+            "reserve": 0.3,
+            "airBudgetShare": 0.08,
+            "airRoles": {
+              "groundSupport": 0.6,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.25
+            },
+            "targetUnitMix": {
+              "infantry": 0.5,
+              "armor": 0.12,
+              "artillery": 0.18,
+              "rocket": 0.03,
+              "elite": 0.12,
+              "navy": 0.05
+            }
+          }
+        }
+      ],
+      "basis": "Generic gameplay fallback unless a country-specific profile is present; not a claim of identical historical doctrine."
+    },
+    "dk": {
+      "periods": [
+        {
+          "id": "small_defence",
+          "fromYear": 1900,
+          "toYearExclusive": 2000,
+          "parameters": {
+            "initiative": 0.35,
+            "mainEffort": 0.45,
+            "encirclement": 0.4,
+            "exploitation": 0.3,
+            "elasticDefence": 0.45,
+            "retreat": 0.45,
+            "peaceBias": 0.5,
+            "quality": 0.45,
+            "industry": 0.5,
+            "city": 0.5,
+            "fortification": 0.6,
+            "concentration": 0.45,
+            "armorMass": 0.35,
+            "firePreparation": 0.5,
+            "attritionTolerance": 0.4,
+            "amphibious": 0.2,
+            "navalPriority": 0.25,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.5,
+            "reserve": 0.3,
+            "airBudgetShare": 0.08,
+            "airRoles": {
+              "groundSupport": 0.6,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.25
+            },
+            "targetUnitMix": {
+              "infantry": 0.5,
+              "armor": 0.12,
+              "artillery": 0.18,
+              "rocket": 0.03,
+              "elite": 0.12,
+              "navy": 0.05
+            }
+          }
+        }
+      ],
+      "basis": "Generic gameplay fallback unless a country-specific profile is present; not a claim of identical historical doctrine."
+    },
+    "no": {
+      "periods": [
+        {
+          "id": "small_defence",
+          "fromYear": 1900,
+          "toYearExclusive": 2000,
+          "parameters": {
+            "initiative": 0.35,
+            "mainEffort": 0.45,
+            "encirclement": 0.4,
+            "exploitation": 0.3,
+            "elasticDefence": 0.45,
+            "retreat": 0.45,
+            "peaceBias": 0.5,
+            "quality": 0.45,
+            "industry": 0.5,
+            "city": 0.5,
+            "fortification": 0.6,
+            "concentration": 0.45,
+            "armorMass": 0.35,
+            "firePreparation": 0.5,
+            "attritionTolerance": 0.4,
+            "amphibious": 0.2,
+            "navalPriority": 0.25,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.5,
+            "reserve": 0.3,
+            "airBudgetShare": 0.08,
+            "airRoles": {
+              "groundSupport": 0.6,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.25
+            },
+            "targetUnitMix": {
+              "infantry": 0.5,
+              "armor": 0.12,
+              "artillery": 0.18,
+              "rocket": 0.03,
+              "elite": 0.12,
+              "navy": 0.05
+            }
+          }
+        }
+      ],
+      "basis": "Generic gameplay fallback unless a country-specific profile is present; not a claim of identical historical doctrine."
+    },
+    "se": {
+      "periods": [
+        {
+          "id": "small_defence",
+          "fromYear": 1900,
+          "toYearExclusive": 2000,
+          "parameters": {
+            "initiative": 0.35,
+            "mainEffort": 0.45,
+            "encirclement": 0.4,
+            "exploitation": 0.3,
+            "elasticDefence": 0.45,
+            "retreat": 0.45,
+            "peaceBias": 0.5,
+            "quality": 0.45,
+            "industry": 0.5,
+            "city": 0.5,
+            "fortification": 0.6,
+            "concentration": 0.45,
+            "armorMass": 0.35,
+            "firePreparation": 0.5,
+            "attritionTolerance": 0.4,
+            "amphibious": 0.2,
+            "navalPriority": 0.25,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.5,
+            "reserve": 0.3,
+            "airBudgetShare": 0.08,
+            "airRoles": {
+              "groundSupport": 0.6,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.25
+            },
+            "targetUnitMix": {
+              "infantry": 0.5,
+              "armor": 0.12,
+              "artillery": 0.18,
+              "rocket": 0.03,
+              "elite": 0.12,
+              "navy": 0.05
+            }
+          }
+        }
+      ],
+      "basis": "Generic gameplay fallback unless a country-specific profile is present; not a claim of identical historical doctrine."
+    },
+    "ch": {
+      "periods": [
+        {
+          "id": "small_defence",
+          "fromYear": 1900,
+          "toYearExclusive": 2000,
+          "parameters": {
+            "initiative": 0.35,
+            "mainEffort": 0.45,
+            "encirclement": 0.4,
+            "exploitation": 0.3,
+            "elasticDefence": 0.45,
+            "retreat": 0.45,
+            "peaceBias": 0.5,
+            "quality": 0.45,
+            "industry": 0.5,
+            "city": 0.5,
+            "fortification": 0.6,
+            "concentration": 0.45,
+            "armorMass": 0.35,
+            "firePreparation": 0.5,
+            "attritionTolerance": 0.4,
+            "amphibious": 0.2,
+            "navalPriority": 0.25,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.5,
+            "reserve": 0.3,
+            "airBudgetShare": 0.08,
+            "airRoles": {
+              "groundSupport": 0.6,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.25
+            },
+            "targetUnitMix": {
+              "infantry": 0.5,
+              "armor": 0.12,
+              "artillery": 0.18,
+              "rocket": 0.03,
+              "elite": 0.12,
+              "navy": 0.05
+            }
+          }
+        }
+      ],
+      "basis": "Generic gameplay fallback unless a country-specific profile is present; not a claim of identical historical doctrine."
+    },
+    "ca": {
+      "periods": [
+        {
+          "id": "gb_offensive",
+          "fromYear": 1900,
+          "toYearExclusive": 1946,
+          "parameters": {
+            "initiative": 0.6,
+            "mainEffort": 0.65,
+            "encirclement": 0.5,
+            "exploitation": 0.6,
+            "elasticDefence": 0.65,
+            "retreat": 0.65,
+            "peaceBias": 0.5,
+            "quality": 0.8,
+            "industry": 0.75,
+            "city": 0.8,
+            "fortification": 0.65,
+            "concentration": 0.65,
+            "armorMass": 0.55,
+            "firePreparation": 0.95,
+            "attritionTolerance": 0.25,
+            "amphibious": 0.85,
+            "navalPriority": 0.95,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.9,
+            "reserve": 0.55,
+            "airBudgetShare": 0.22,
+            "airRoles": {
+              "groundSupport": 0.3,
+              "strategicBombing": 0.4,
+              "airSuperiority": 0.3
+            },
+            "targetUnitMix": {
+              "infantry": 0.25,
+              "armor": 0.19,
+              "artillery": 0.22,
+              "rocket": 0.03,
+              "elite": 0.1,
+              "navy": 0.21
+            }
+          }
+        },
+        {
+          "id": "cw_nato_early",
+          "fromYear": 1946,
+          "toYearExclusive": 1976,
+          "parameters": {
+            "initiative": 0.4,
+            "mainEffort": 0.65,
+            "encirclement": 0.7,
+            "exploitation": 0.45,
+            "elasticDefence": 0.55,
+            "retreat": 0.35,
+            "peaceBias": 0.5,
+            "quality": 0.75,
+            "industry": 0.95,
+            "city": 0.85,
+            "fortification": 0.75,
+            "concentration": 0.7,
+            "armorMass": 0.75,
+            "firePreparation": 0.95,
+            "attritionTolerance": 0.25,
+            "amphibious": 0.55,
+            "navalPriority": 0.85,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.9,
+            "reserve": 0.65,
+            "airBudgetShare": 0.2,
+            "airRoles": {
+              "groundSupport": 0.45,
+              "strategicBombing": 0.25,
+              "airSuperiority": 0.3
+            },
+            "targetUnitMix": {
+              "infantry": 0.28,
+              "armor": 0.27,
+              "artillery": 0.21,
+              "rocket": 0.04,
+              "elite": 0.07,
+              "navy": 0.13
+            }
+          }
+        },
+        {
+          "id": "cw_nato_active",
+          "fromYear": 1976,
+          "toYearExclusive": 1982,
+          "parameters": {
+            "initiative": 0.4,
+            "mainEffort": 0.8,
+            "encirclement": 0.7,
+            "exploitation": 0.45,
+            "elasticDefence": 0.7,
+            "retreat": 0.35,
+            "peaceBias": 0.5,
+            "quality": 0.75,
+            "industry": 0.95,
+            "city": 0.85,
+            "fortification": 0.75,
+            "concentration": 0.7,
+            "armorMass": 0.85,
+            "firePreparation": 0.95,
+            "attritionTolerance": 0.25,
+            "amphibious": 0.55,
+            "navalPriority": 0.85,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.9,
+            "reserve": 0.65,
+            "airBudgetShare": 0.2,
+            "airRoles": {
+              "groundSupport": 0.45,
+              "strategicBombing": 0.25,
+              "airSuperiority": 0.3
+            },
+            "targetUnitMix": {
+              "infantry": 0.28,
+              "armor": 0.27,
+              "artillery": 0.21,
+              "rocket": 0.04,
+              "elite": 0.07,
+              "navy": 0.13
+            }
+          }
+        },
+        {
+          "id": "cw_nato_airland",
+          "fromYear": 1982,
+          "toYearExclusive": 2000,
+          "parameters": {
+            "initiative": 0.6,
+            "mainEffort": 0.8,
+            "encirclement": 0.75,
+            "exploitation": 0.8,
+            "elasticDefence": 0.85,
+            "retreat": 0.5,
+            "peaceBias": 0.5,
+            "quality": 0.75,
+            "industry": 0.95,
+            "city": 0.85,
+            "fortification": 0.75,
+            "concentration": 0.7,
+            "armorMass": 0.85,
+            "firePreparation": 0.95,
+            "attritionTolerance": 0.25,
+            "amphibious": 0.55,
+            "navalPriority": 0.85,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.9,
+            "reserve": 0.65,
+            "airBudgetShare": 0.28,
+            "airRoles": {
+              "groundSupport": 0.55,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.3
+            },
+            "targetUnitMix": {
+              "infantry": 0.28,
+              "armor": 0.27,
+              "artillery": 0.21,
+              "rocket": 0.04,
+              "elite": 0.07,
+              "navy": 0.13
+            }
+          }
+        }
+      ]
+    },
+    "au": {
+      "periods": [
+        {
+          "id": "gb_offensive",
+          "fromYear": 1900,
+          "toYearExclusive": 1946,
+          "parameters": {
+            "initiative": 0.6,
+            "mainEffort": 0.65,
+            "encirclement": 0.5,
+            "exploitation": 0.6,
+            "elasticDefence": 0.65,
+            "retreat": 0.65,
+            "peaceBias": 0.5,
+            "quality": 0.8,
+            "industry": 0.75,
+            "city": 0.8,
+            "fortification": 0.65,
+            "concentration": 0.65,
+            "armorMass": 0.55,
+            "firePreparation": 0.95,
+            "attritionTolerance": 0.25,
+            "amphibious": 0.85,
+            "navalPriority": 0.95,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.9,
+            "reserve": 0.55,
+            "airBudgetShare": 0.22,
+            "airRoles": {
+              "groundSupport": 0.3,
+              "strategicBombing": 0.4,
+              "airSuperiority": 0.3
+            },
+            "targetUnitMix": {
+              "infantry": 0.25,
+              "armor": 0.19,
+              "artillery": 0.22,
+              "rocket": 0.03,
+              "elite": 0.1,
+              "navy": 0.21
+            }
+          }
+        },
+        {
+          "id": "cw_nato_early",
+          "fromYear": 1946,
+          "toYearExclusive": 1976,
+          "parameters": {
+            "initiative": 0.4,
+            "mainEffort": 0.65,
+            "encirclement": 0.7,
+            "exploitation": 0.45,
+            "elasticDefence": 0.55,
+            "retreat": 0.35,
+            "peaceBias": 0.5,
+            "quality": 0.75,
+            "industry": 0.95,
+            "city": 0.85,
+            "fortification": 0.75,
+            "concentration": 0.7,
+            "armorMass": 0.75,
+            "firePreparation": 0.95,
+            "attritionTolerance": 0.25,
+            "amphibious": 0.55,
+            "navalPriority": 0.85,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.9,
+            "reserve": 0.65,
+            "airBudgetShare": 0.2,
+            "airRoles": {
+              "groundSupport": 0.45,
+              "strategicBombing": 0.25,
+              "airSuperiority": 0.3
+            },
+            "targetUnitMix": {
+              "infantry": 0.28,
+              "armor": 0.27,
+              "artillery": 0.21,
+              "rocket": 0.04,
+              "elite": 0.07,
+              "navy": 0.13
+            }
+          }
+        },
+        {
+          "id": "cw_nato_active",
+          "fromYear": 1976,
+          "toYearExclusive": 1982,
+          "parameters": {
+            "initiative": 0.4,
+            "mainEffort": 0.8,
+            "encirclement": 0.7,
+            "exploitation": 0.45,
+            "elasticDefence": 0.7,
+            "retreat": 0.35,
+            "peaceBias": 0.5,
+            "quality": 0.75,
+            "industry": 0.95,
+            "city": 0.85,
+            "fortification": 0.75,
+            "concentration": 0.7,
+            "armorMass": 0.85,
+            "firePreparation": 0.95,
+            "attritionTolerance": 0.25,
+            "amphibious": 0.55,
+            "navalPriority": 0.85,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.9,
+            "reserve": 0.65,
+            "airBudgetShare": 0.2,
+            "airRoles": {
+              "groundSupport": 0.45,
+              "strategicBombing": 0.25,
+              "airSuperiority": 0.3
+            },
+            "targetUnitMix": {
+              "infantry": 0.28,
+              "armor": 0.27,
+              "artillery": 0.21,
+              "rocket": 0.04,
+              "elite": 0.07,
+              "navy": 0.13
+            }
+          }
+        },
+        {
+          "id": "cw_nato_airland",
+          "fromYear": 1982,
+          "toYearExclusive": 2000,
+          "parameters": {
+            "initiative": 0.6,
+            "mainEffort": 0.8,
+            "encirclement": 0.75,
+            "exploitation": 0.8,
+            "elasticDefence": 0.85,
+            "retreat": 0.5,
+            "peaceBias": 0.5,
+            "quality": 0.75,
+            "industry": 0.95,
+            "city": 0.85,
+            "fortification": 0.75,
+            "concentration": 0.7,
+            "armorMass": 0.85,
+            "firePreparation": 0.95,
+            "attritionTolerance": 0.25,
+            "amphibious": 0.55,
+            "navalPriority": 0.85,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.9,
+            "reserve": 0.65,
+            "airBudgetShare": 0.28,
+            "airRoles": {
+              "groundSupport": 0.55,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.3
+            },
+            "targetUnitMix": {
+              "infantry": 0.28,
+              "armor": 0.27,
+              "artillery": 0.21,
+              "rocket": 0.04,
+              "elite": 0.07,
+              "navy": 0.13
+            }
+          }
+        }
+      ]
+    },
+    "mx": {
+      "periods": [
+        {
+          "id": "small_defence",
+          "fromYear": 1900,
+          "toYearExclusive": 2000,
+          "parameters": {
+            "initiative": 0.35,
+            "mainEffort": 0.45,
+            "encirclement": 0.4,
+            "exploitation": 0.3,
+            "elasticDefence": 0.45,
+            "retreat": 0.45,
+            "peaceBias": 0.5,
+            "quality": 0.45,
+            "industry": 0.5,
+            "city": 0.5,
+            "fortification": 0.6,
+            "concentration": 0.45,
+            "armorMass": 0.35,
+            "firePreparation": 0.5,
+            "attritionTolerance": 0.4,
+            "amphibious": 0.2,
+            "navalPriority": 0.25,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.5,
+            "reserve": 0.3,
+            "airBudgetShare": 0.08,
+            "airRoles": {
+              "groundSupport": 0.6,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.25
+            },
+            "targetUnitMix": {
+              "infantry": 0.5,
+              "armor": 0.12,
+              "artillery": 0.18,
+              "rocket": 0.03,
+              "elite": 0.12,
+              "navy": 0.05
+            }
+          }
+        }
+      ],
+      "basis": "Generic gameplay fallback unless a country-specific profile is present; not a claim of identical historical doctrine."
+    },
+    "cn": {
+      "periods": [
+        {
+          "id": "cn_guerrilla",
+          "fromYear": 1900,
+          "toYearExclusive": 1946,
+          "parameters": {
+            "initiative": 0.3,
+            "mainEffort": 0.4,
+            "encirclement": 0.75,
+            "exploitation": 0.25,
+            "elasticDefence": 0.9,
+            "retreat": 0.9,
+            "peaceBias": 0.5,
+            "quality": 0.2,
+            "industry": 0.35,
+            "city": 0.55,
+            "fortification": 0.4,
+            "concentration": 0.3,
+            "armorMass": 0.15,
+            "firePreparation": 0.25,
+            "attritionTolerance": 0.45,
+            "amphibious": 0.2,
+            "navalPriority": 0.25,
+            "terrainUse": 0.95,
+            "allyCoordination": 0.75,
+            "reserve": 0.3,
+            "airBudgetShare": 0.01,
+            "airRoles": {
+              "groundSupport": 0.6,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.25
+            },
+            "targetUnitMix": {
+              "infantry": 0.73,
+              "armor": 0.01,
+              "artillery": 0.12,
+              "rocket": 0.01,
+              "elite": 0.12,
+              "navy": 0.01
+            }
+          }
+        },
+        {
+          "id": "cn_mobile",
+          "fromYear": 1946,
+          "toYearExclusive": 1960,
+          "parameters": {
+            "initiative": 0.65,
+            "mainEffort": 0.8,
+            "encirclement": 0.75,
+            "exploitation": 0.25,
+            "elasticDefence": 0.9,
+            "retreat": 0.9,
+            "peaceBias": 0.5,
+            "quality": 0.2,
+            "industry": 0.5,
+            "city": 0.55,
+            "fortification": 0.4,
+            "concentration": 0.8,
+            "armorMass": 0.15,
+            "firePreparation": 0.55,
+            "attritionTolerance": 0.7,
+            "amphibious": 0.2,
+            "navalPriority": 0.25,
+            "terrainUse": 0.95,
+            "allyCoordination": 0.75,
+            "reserve": 0.5,
+            "airBudgetShare": 0.01,
+            "airRoles": {
+              "groundSupport": 0.6,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.25
+            },
+            "targetUnitMix": {
+              "infantry": 0.58,
+              "armor": 0.08,
+              "artillery": 0.21,
+              "rocket": 0.03,
+              "elite": 0.09,
+              "navy": 0.01
+            }
+          }
+        },
+        {
+          "id": "cn_modernize",
+          "fromYear": 1960,
+          "toYearExclusive": 2000,
+          "parameters": {
+            "initiative": 0.65,
+            "mainEffort": 0.8,
+            "encirclement": 0.75,
+            "exploitation": 0.25,
+            "elasticDefence": 0.9,
+            "retreat": 0.9,
+            "peaceBias": 0.5,
+            "quality": 0.45,
+            "industry": 0.8,
+            "city": 0.55,
+            "fortification": 0.4,
+            "concentration": 0.8,
+            "armorMass": 0.55,
+            "firePreparation": 0.75,
+            "attritionTolerance": 0.7,
+            "amphibious": 0.2,
+            "navalPriority": 0.25,
+            "terrainUse": 0.95,
+            "allyCoordination": 0.75,
+            "reserve": 0.5,
+            "airBudgetShare": 0.1,
+            "airRoles": {
+              "groundSupport": 0.6,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.25
+            },
+            "targetUnitMix": {
+              "infantry": 0.43,
+              "armor": 0.19,
+              "artillery": 0.23,
+              "rocket": 0.06,
+              "elite": 0.06,
+              "navy": 0.03
+            }
+          }
+        }
+      ]
+    },
+    "tw": {
+      "periods": [
+        {
+          "id": "tw_resistance",
+          "fromYear": 1900,
+          "toYearExclusive": 1950,
+          "parameters": {
+            "initiative": 0.3,
+            "mainEffort": 0.5,
+            "encirclement": 0.5,
+            "exploitation": 0.25,
+            "elasticDefence": 0.65,
+            "retreat": 0.9,
+            "peaceBias": 0.5,
+            "quality": 0.2,
+            "industry": 0.35,
+            "city": 0.55,
+            "fortification": 0.75,
+            "concentration": 0.5,
+            "armorMass": 0.15,
+            "firePreparation": 0.5,
+            "attritionTolerance": 0.7,
+            "amphibious": 0.2,
+            "navalPriority": 0.25,
+            "terrainUse": 0.85,
+            "allyCoordination": 0.75,
+            "reserve": 0.3,
+            "airBudgetShare": 0.04,
+            "airRoles": {
+              "groundSupport": 0.6,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.25
+            },
+            "targetUnitMix": {
+              "infantry": 0.64,
+              "armor": 0.04,
+              "artillery": 0.17,
+              "rocket": 0.01,
+              "elite": 0.12,
+              "navy": 0.02
+            }
+          }
+        },
+        {
+          "id": "tw_island",
+          "fromYear": 1950,
+          "toYearExclusive": 2000,
+          "parameters": {
+            "initiative": 0.2,
+            "mainEffort": 0.5,
+            "encirclement": 0.5,
+            "exploitation": 0.25,
+            "elasticDefence": 0.65,
+            "retreat": 0.25,
+            "peaceBias": 0.5,
+            "quality": 0.6,
+            "industry": 0.65,
+            "city": 0.55,
+            "fortification": 0.9,
+            "concentration": 0.5,
+            "armorMass": 0.15,
+            "firePreparation": 0.5,
+            "attritionTolerance": 0.7,
+            "amphibious": 0.2,
+            "navalPriority": 0.65,
+            "terrainUse": 0.85,
+            "allyCoordination": 0.75,
+            "reserve": 0.3,
+            "airBudgetShare": 0.18,
+            "airRoles": {
+              "groundSupport": 0.6,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.25
+            },
+            "targetUnitMix": {
+              "infantry": 0.4,
+              "armor": 0.16,
+              "artillery": 0.2,
+              "rocket": 0.03,
+              "elite": 0.07,
+              "navy": 0.14
+            }
+          }
+        }
+      ]
+    },
+    "nk": {
+      "periods": [
+        {
+          "id": "small_defence",
+          "fromYear": 1900,
+          "toYearExclusive": 2000,
+          "parameters": {
+            "initiative": 0.35,
+            "mainEffort": 0.45,
+            "encirclement": 0.4,
+            "exploitation": 0.3,
+            "elasticDefence": 0.45,
+            "retreat": 0.45,
+            "peaceBias": 0.5,
+            "quality": 0.45,
+            "industry": 0.5,
+            "city": 0.5,
+            "fortification": 0.6,
+            "concentration": 0.45,
+            "armorMass": 0.35,
+            "firePreparation": 0.5,
+            "attritionTolerance": 0.4,
+            "amphibious": 0.2,
+            "navalPriority": 0.25,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.5,
+            "reserve": 0.3,
+            "airBudgetShare": 0.08,
+            "airRoles": {
+              "groundSupport": 0.6,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.25
+            },
+            "targetUnitMix": {
+              "infantry": 0.5,
+              "armor": 0.12,
+              "artillery": 0.18,
+              "rocket": 0.03,
+              "elite": 0.12,
+              "navy": 0.05
+            }
+          }
+        }
+      ],
+      "basis": "Generic gameplay fallback unless a country-specific profile is present; not a claim of identical historical doctrine."
+    },
+    "rk": {
+      "periods": [
+        {
+          "id": "small_defence",
+          "fromYear": 1900,
+          "toYearExclusive": 2000,
+          "parameters": {
+            "initiative": 0.35,
+            "mainEffort": 0.45,
+            "encirclement": 0.4,
+            "exploitation": 0.3,
+            "elasticDefence": 0.45,
+            "retreat": 0.45,
+            "peaceBias": 0.5,
+            "quality": 0.45,
+            "industry": 0.5,
+            "city": 0.5,
+            "fortification": 0.6,
+            "concentration": 0.45,
+            "armorMass": 0.35,
+            "firePreparation": 0.5,
+            "attritionTolerance": 0.4,
+            "amphibious": 0.2,
+            "navalPriority": 0.25,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.5,
+            "reserve": 0.3,
+            "airBudgetShare": 0.08,
+            "airRoles": {
+              "groundSupport": 0.6,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.25
+            },
+            "targetUnitMix": {
+              "infantry": 0.5,
+              "armor": 0.12,
+              "artillery": 0.18,
+              "rocket": 0.03,
+              "elite": 0.12,
+              "navy": 0.05
+            }
+          }
+        }
+      ],
+      "basis": "Generic gameplay fallback unless a country-specific profile is present; not a claim of identical historical doctrine."
+    },
+    "in": {
+      "periods": [
+        {
+          "id": "small_defence",
+          "fromYear": 1900,
+          "toYearExclusive": 2000,
+          "parameters": {
+            "initiative": 0.35,
+            "mainEffort": 0.45,
+            "encirclement": 0.4,
+            "exploitation": 0.3,
+            "elasticDefence": 0.45,
+            "retreat": 0.45,
+            "peaceBias": 0.5,
+            "quality": 0.45,
+            "industry": 0.5,
+            "city": 0.5,
+            "fortification": 0.6,
+            "concentration": 0.45,
+            "armorMass": 0.35,
+            "firePreparation": 0.5,
+            "attritionTolerance": 0.4,
+            "amphibious": 0.2,
+            "navalPriority": 0.25,
+            "terrainUse": 0.6,
+            "allyCoordination": 0.5,
+            "reserve": 0.3,
+            "airBudgetShare": 0.08,
+            "airRoles": {
+              "groundSupport": 0.6,
+              "strategicBombing": 0.15,
+              "airSuperiority": 0.25
+            },
+            "targetUnitMix": {
+              "infantry": 0.5,
+              "armor": 0.12,
+              "artillery": 0.18,
+              "rocket": 0.03,
+              "elite": 0.12,
+              "navy": 0.05
+            }
+          }
+        }
+      ],
+      "basis": "Generic gameplay fallback unless a country-specific profile is present; not a claim of identical historical doctrine."
+    }
+  },
+  "runtimeStateContract": {
+    "perCountry": [
+      "resolvedDoctrine",
+      "resolvedYear",
+      "periodId",
+      "mainObjectiveId",
+      "planRound",
+      "spentByCategory",
+      "budgetAtBeginCountry",
+      "frontAssignments",
+      "preparedTargets",
+      "attemptedDoctrineCommands",
+      "parameterVersion",
+      "savingWaitByCategory",
+      "breakthroughAreaIds",
+      "purchaseActionCycle",
+      "reserveReleasedRound"
+    ],
+    "persist": [
+      "resolvedDoctrine",
+      "resolvedYear",
+      "periodId",
+      "mainObjectiveId",
+      "planRound",
+      "spentByCategory",
+      "budgetAtBeginCountry",
+      "frontAssignments",
+      "preparedTargets",
+      "attemptedDoctrineCommands",
+      "parameterVersion",
+      "savingWaitByCategory",
+      "breakthroughAreaIds",
+      "purchaseActionCycle",
+      "reserveReleasedRound"
+    ]
+  }
+}

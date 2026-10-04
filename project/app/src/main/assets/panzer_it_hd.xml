@@ -1,0 +1,4 @@
+<Texture name="panzer_it_hd.png" />
+<Images>
+    <Image name="panzer.png" x="1" y="1" w="278" h="182" refx="0" refy="0" />
+</Images>

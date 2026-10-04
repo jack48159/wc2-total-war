@@ -1,0 +1,19 @@
+<commanders>
+	<commander name="Rommel" country="de" rank="13" infantry="2" airforce="1" artillery="2" armour="3" navy="0" honour="3"/>
+	<commander name="Goering" country="de" rank="14" infantry="1" airforce="3" artillery="1" armour="1" navy="1" honour="3"/>
+	<commander name="Guderian" country="de" rank="13" infantry="2" airforce="1" artillery="1" armour="3" navy="1" honour="2"/>
+	<commander name="MacArthur" country="am" rank="14" infantry="1" airforce="3" artillery="0" armour="1" navy="2" honour="3"/>
+	<commander name="Patton" country="am" rank="13" infantry="2" airforce="1" artillery="2" armour="3" navy="0" honour="2"/>
+	<commander name="Nimitz" country="am" rank="14" infantry="1" airforce="2" artillery="1" armour="0" navy="3" honour="3"/>
+	<commander name="Zhukov" country="ru" rank="14" infantry="3" airforce="1" artillery="2" armour="2" navy="0" honour="3"/>
+	<commander name="Rokossovsky" country="ru" rank="13" infantry="2" airforce="0" artillery="3" armour="2" navy="0" honour="2"/>
+	<commander name="Montgomery" country="gb" rank="13" infantry="1" airforce="2" artillery="1" armour="2" navy="1" honour="2"/>
+	<commander name="de Gaulle" country="fr" rank="12" infantry="2" airforce="1" artillery="1" armour="1" navy="2" honour="2"/>
+	<commander name="Yamamoto" country="ja" rank="13" infantry="1" airforce="3" artillery="1" armour="0" navy="3" honour="2"/>
+	<commander name="Graziani" country="it" rank="12" infantry="1" airforce="1" artillery="1" armour="1" navy="2" honour="2"/>
+	<commander name="Zhang" country="tw" rank="12" infantry="1" airforce="1" artillery="1" armour="0" navy="1" honour="2"/>
+	<commander name="Peng" country="cn" rank="12" infantry="3" airforce="0" artillery="3" armour="0" navy="0" honour="2"/>
+	<commander name="common1" country="common" rank="10" infantry="1" airforce="1" artillery="1" armour="1" navy="1" honour="1"/>
+	<commander name="common2" country="common" rank="9" infantry="1" airforce="0" artillery="1" armour="0" navy="1" honour="1"/>
+	<commander name="common3" country="common" rank="8" infantry="0" airforce="0" artillery="0" armour="0" navy="0" honour="0"/>
+</commanders>

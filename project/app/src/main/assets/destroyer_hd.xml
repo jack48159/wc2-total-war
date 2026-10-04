@@ -1,0 +1,6 @@
+﻿<Texture name="destroyer_hd.png" />
+<Images>
+    <Image name="炮台.png" x="1" y="1" w="121" h="96" refx="0" refy="0" />
+    <Image name="摧毁.png" x="1" y="98" w="139" h="96" refx="0" refy="0" />
+    <Image name="炮管.png" x="123" y="1" w="57" h="11" refx="0" refy="0" />
+</Images>

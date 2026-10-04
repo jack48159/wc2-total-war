@@ -1,0 +1,26 @@
+<effect name="fire">
+	<emitter name="fire" life="0.1">
+		<param name="settings" mode="once" type="point"/>
+		<param name="image" file="ray0000.png" blend="add" width="60" height="14"/>	
+		<param name="life" min="0.17" max="0.2"/>
+		<param name="angle" min="0.0" max="0.0"/>
+		<param name="rotangle" type="random" min="-1.0" max="1.0"/>
+		<param name="speed" min="0.0" max="0.0"/>
+		<param name="gravity" min="0.0" max="0.0"/>
+		<param name="scale" min="1.0" max="1.0"/>
+		<param name="rotspeed" min="0.0" max="0.0"/>
+		<param name="r" min="217" max="248"/>
+		<param name="g" min="167" max="202"/>
+		<param name="b" min="94" max="168"/>
+		<param name="a" min="255" max="255"/>	
+		<param name="timetrack">
+			<track time="0.0" quantity="50.0"/>
+			<track time="0.3" quantity="0.0"/>
+		</param>
+		<param name="lifetrack">
+			<track life="0.0" speed="0.0" gravity="0.0" scale="1.0" rotspeed="1.0" r="1.0" g="1.0" b="1.0" a="0.8"/>
+			<track life="0.4" speed="0.0" gravity="0.0" scale="1.0" rotspeed="1.0" r="1.0" g="1.0" b="1.0" a="1.0"/>
+			<track life="1.0" speed="0.0" gravity="0.0" scale="1.0" rotspeed="1.0" r="1.0" g="1.0" b="1.0" a="0.0"/>
+		</param>
+	</emitter>
+</effect>

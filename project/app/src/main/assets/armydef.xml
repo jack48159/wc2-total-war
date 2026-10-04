@@ -1,0 +1,173 @@
+﻿
+<armies>
+	<country name="others">
+		<army type="infantry" strength="60" movement="2" minatk="1" maxatk="6"/>
+		<army type="panzer" strength="90" movement="3" minatk="1" maxatk="7"/>
+		<army type="artillery" strength="60" movement="1" minatk="1" maxatk="9"/>
+		<army type="rocket" strength="60" movement="1" minatk="1" maxatk="10"/>
+		<army type="tank" strength="120" movement="2" minatk="2" maxatk="9"/>
+		<army type="heavytank" strength="140" movement="2" minatk="3" maxatk="9"/>
+		<army type="destroyer" strength="160" movement="1" minatk="2" maxatk="9"/>
+		<army type="cruiser" strength="240" movement="1" minatk="3" maxatk="10"/>
+		<army type="battleship" strength="320" movement="1" minatk="4" maxatk="11"/>
+		<army type="aircraftcarrier" strength="220" movement="1" minatk="2" maxatk="9"/>
+		<army type="carrier" strength="0" movement="1" minatk="0" maxatk="0"/>
+		<army type="airstrike" strength="0" movement="1" minatk="3" maxatk="6"/>
+		<army type="bomber" strength="0" movement="1" minatk="3" maxatk="7"/>
+		<army type="airborne" strength="0" movement="1" minatk="1" maxatk="7"/>
+		<army type="nuclearbomb" strength="0" movement="1" minatk="2" maxatk="8"/>
+	</country>
+	<country name="am">
+		<army type="infantry" strength="60" movement="2" minatk="2" maxatk="6"/>
+		<army type="panzer" strength="90" movement="3" minatk="2" maxatk="8"/>
+		<army type="artillery" strength="60" movement="1" minatk="2" maxatk="10"/>
+		<army type="rocket" strength="60" movement="1" minatk="3" maxatk="10"/>
+		<army type="tank" strength="120" movement="2" minatk="3" maxatk="9"/>
+		<army type="heavytank" strength="140" movement="2" minatk="4" maxatk="10"/>
+		<army type="destroyer" strength="160" movement="1" minatk="2" maxatk="9"/>
+		<army type="cruiser" strength="240" movement="1" minatk="3" maxatk="10"/>
+		<army type="battleship" strength="320" movement="1" minatk="4" maxatk="11"/>
+		<army type="aircraftcarrier" strength="220" movement="1" minatk="2" maxatk="9"/>
+		<army type="carrier" strength="0" movement="1" minatk="0" maxatk="0"/>
+		<army type="airstrike" strength="0" movement="1" minatk="3" maxatk="8"/>
+		<army type="bomber" strength="0" movement="1" minatk="3" maxatk="9"/>
+		<army type="airborne" strength="0" movement="1" minatk="1" maxatk="7"/>
+		<army type="nuclearbomb" strength="0" movement="1" minatk="2" maxatk="8"/>
+	</country>
+	<country name="de">
+		<army type="infantry" strength="60" movement="2" minatk="2" maxatk="7"/>
+		<army type="panzer" strength="90" movement="3" minatk="2" maxatk="7"/>
+		<army type="artillery" strength="60" movement="1" minatk="2" maxatk="10"/>
+		<army type="rocket" strength="60" movement="1" minatk="2" maxatk="11"/>
+		<army type="tank" strength="120" movement="2" minatk="3" maxatk="10"/>
+		<army type="heavytank" strength="140" movement="2" minatk="3" maxatk="11"/>
+		<army type="destroyer" strength="160" movement="1" minatk="2" maxatk="9"/>
+		<army type="cruiser" strength="240" movement="1" minatk="3" maxatk="10"/>
+		<army type="battleship" strength="320" movement="1" minatk="4" maxatk="11"/>
+		<army type="aircraftcarrier" strength="220" movement="1" minatk="2" maxatk="9"/>
+		<army type="carrier" strength="0" movement="1" minatk="0" maxatk="0"/>
+		<army type="airstrike" strength="0" movement="1" minatk="4" maxatk="7"/>
+		<army type="bomber" strength="0" movement="1" minatk="4" maxatk="8"/>
+		<army type="airborne" strength="0" movement="1" minatk="1" maxatk="7"/>
+		<army type="nuclearbomb" strength="0" movement="1" minatk="2" maxatk="8"/>
+	</country>
+	<country name="gb">
+		<army type="infantry" strength="60" movement="2" minatk="2" maxatk="6"/>
+		<army type="panzer" strength="90" movement="3" minatk="1" maxatk="8"/>
+		<army type="artillery" strength="60" movement="1" minatk="2" maxatk="9"/>
+		<army type="rocket" strength="60" movement="1" minatk="2" maxatk="10"/>
+		<army type="tank" strength="120" movement="2" minatk="3" maxatk="9"/>
+		<army type="heavytank" strength="140" movement="2" minatk="3" maxatk="9"/>
+		<army type="destroyer" strength="160" movement="1" minatk="2" maxatk="9"/>
+		<army type="cruiser" strength="240" movement="1" minatk="3" maxatk="10"/>
+		<army type="battleship" strength="320" movement="1" minatk="4" maxatk="11"/>
+		<army type="aircraftcarrier" strength="220" movement="1" minatk="2" maxatk="9"/>
+		<army type="carrier" strength="0" movement="1" minatk="0" maxatk="0"/>
+		<army type="airstrike" strength="0" movement="1" minatk="4" maxatk="7"/>
+		<army type="bomber" strength="0" movement="1" minatk="4" maxatk="8"/>
+		<army type="airborne" strength="0" movement="1" minatk="1" maxatk="7"/>
+		<army type="nuclearbomb" strength="0" movement="1" minatk="2" maxatk="8"/>
+	</country>
+	<country name="fr">
+		<army type="infantry" strength="60" movement="2" minatk="2" maxatk="6"/>
+		<army type="panzer" strength="90" movement="3" minatk="2" maxatk="7"/>
+		<army type="artillery" strength="60" movement="1" minatk="1" maxatk="10"/>
+		<army type="rocket" strength="60" movement="1" minatk="1" maxatk="10"/>
+		<army type="tank" strength="120" movement="2" minatk="2" maxatk="10"/>
+		<army type="heavytank" strength="140" movement="2" minatk="3" maxatk="10"/>
+		<army type="destroyer" strength="160" movement="1" minatk="2" maxatk="9"/>
+		<army type="cruiser" strength="240" movement="1" minatk="3" maxatk="10"/>
+		<army type="battleship" strength="320" movement="1" minatk="4" maxatk="11"/>
+		<army type="aircraftcarrier" strength="220" movement="1" minatk="2" maxatk="9"/>
+		<army type="carrier" strength="0" movement="1" minatk="0" maxatk="0"/>
+		<army type="airstrike" strength="0" movement="1" minatk="3" maxatk="7"/>
+		<army type="bomber" strength="0" movement="1" minatk="3" maxatk="8"/>
+		<army type="airborne" strength="0" movement="1" minatk="1" maxatk="7"/>
+		<army type="nuclearbomb" strength="0" movement="1" minatk="2" maxatk="8"/>
+	</country>
+	<country name="it">
+		<army type="infantry" strength="60" movement="2" minatk="1" maxatk="6"/>
+		<army type="panzer" strength="90" movement="3" minatk="2" maxatk="7"/>
+		<army type="artillery" strength="60" movement="1" minatk="1" maxatk="9"/>
+		<army type="rocket" strength="60" movement="1" minatk="1" maxatk="10"/>
+		<army type="tank" strength="120" movement="2" minatk="3" maxatk="9"/>
+		<army type="heavytank" strength="140" movement="2" minatk="3" maxatk="9"/>
+		<army type="destroyer" strength="160" movement="1" minatk="2" maxatk="9"/>
+		<army type="cruiser" strength="240" movement="1" minatk="3" maxatk="10"/>
+		<army type="battleship" strength="320" movement="1" minatk="4" maxatk="11"/>
+		<army type="aircraftcarrier" strength="220" movement="1" minatk="2" maxatk="9"/>
+		<army type="carrier" strength="0" movement="1" minatk="0" maxatk="0"/>
+		<army type="airstrike" strength="0" movement="1" minatk="4" maxatk="6"/>
+		<army type="bomber" strength="0" movement="1" minatk="4" maxatk="7"/>
+		<army type="airborne" strength="0" movement="1" minatk="1" maxatk="7"/>
+		<army type="nuclearbomb" strength="0" movement="1" minatk="2" maxatk="8"/>
+	</country>
+	<country name="ja">
+		<army type="infantry" strength="60" movement="2" minatk="1" maxatk="8"/>
+		<army type="panzer" strength="90" movement="3" minatk="1" maxatk="8"/>
+		<army type="artillery" strength="60" movement="1" minatk="1" maxatk="10"/>
+		<army type="rocket" strength="60" movement="1" minatk="1" maxatk="10"/>
+		<army type="tank" strength="120" movement="2" minatk="2" maxatk="9"/>
+		<army type="heavytank" strength="140" movement="2" minatk="3" maxatk="9"/>
+		<army type="destroyer" strength="160" movement="1" minatk="2" maxatk="9"/>
+		<army type="cruiser" strength="240" movement="1" minatk="3" maxatk="10"/>
+		<army type="battleship" strength="320" movement="1" minatk="4" maxatk="11"/>
+		<army type="aircraftcarrier" strength="220" movement="1" minatk="2" maxatk="9"/>
+		<army type="carrier" strength="0" movement="1" minatk="0" maxatk="0"/>
+		<army type="airstrike" strength="0" movement="1" minatk="4" maxatk="7"/>
+		<army type="bomber" strength="0" movement="1" minatk="4" maxatk="8"/>
+		<army type="airborne" strength="0" movement="1" minatk="1" maxatk="7"/>
+		<army type="nuclearbomb" strength="0" movement="1" minatk="2" maxatk="8"/>
+	</country>
+	<country name="ru">
+		<army type="infantry" strength="60" movement="2" minatk="1" maxatk="7"/>
+		<army type="panzer" strength="90" movement="3" minatk="2" maxatk="7"/>
+		<army type="artillery" strength="60" movement="1" minatk="1" maxatk="11"/>
+		<army type="rocket" strength="60" movement="1" minatk="1" maxatk="12"/>
+		<army type="tank" strength="120" movement="2" minatk="2" maxatk="10"/>
+		<army type="heavytank" strength="140" movement="2" minatk="4" maxatk="10"/>
+		<army type="destroyer" strength="160" movement="1" minatk="2" maxatk="9"/>
+		<army type="cruiser" strength="240" movement="1" minatk="3" maxatk="10"/>
+		<army type="battleship" strength="320" movement="1" minatk="4" maxatk="11"/>
+		<army type="aircraftcarrier" strength="220" movement="1" minatk="2" maxatk="9"/>
+		<army type="carrier" strength="0" movement="1" minatk="0" maxatk="0"/>
+		<army type="airstrike" strength="0" movement="1" minatk="3" maxatk="7"/>
+		<army type="bomber" strength="0" movement="1" minatk="3" maxatk="8"/>
+		<army type="airborne" strength="0" movement="1" minatk="1" maxatk="7"/>
+		<army type="nuclearbomb" strength="0" movement="1" minatk="2" maxatk="8"/>
+	</country>
+	<country name="tw">
+		<army type="infantry" strength="60" movement="2" minatk="1" maxatk="6"/>
+		<army type="panzer" strength="90" movement="3" minatk="1" maxatk="7"/>
+		<army type="artillery" strength="60" movement="1" minatk="1" maxatk="9"/>
+		<army type="rocket" strength="60" movement="1" minatk="1" maxatk="10"/>
+		<army type="tank" strength="120" movement="2" minatk="2" maxatk="9"/>
+		<army type="heavytank" strength="140" movement="2" minatk="3" maxatk="9"/>
+		<army type="destroyer" strength="160" movement="1" minatk="2" maxatk="9"/>
+		<army type="cruiser" strength="240" movement="1" minatk="3" maxatk="10"/>
+		<army type="battleship" strength="320" movement="1" minatk="4" maxatk="11"/>
+		<army type="aircraftcarrier" strength="220" movement="1" minatk="2" maxatk="9"/>
+		<army type="carrier" strength="0" movement="1" minatk="0" maxatk="0"/>
+		<army type="airstrike" strength="0" movement="1" minatk="3" maxatk="6"/>
+		<army type="bomber" strength="0" movement="1" minatk="3" maxatk="7"/>
+		<army type="airborne" strength="0" movement="1" minatk="1" maxatk="7"/>
+		<army type="nuclearbomb" strength="0" movement="1" minatk="2" maxatk="8"/>
+	</country>
+	<country name="cn">
+		<army type="infantry" strength="60" movement="2" minatk="1" maxatk="7"/>
+		<army type="panzer" strength="90" movement="3" minatk="1" maxatk="7"/>
+		<army type="artillery" strength="60" movement="1" minatk="2" maxatk="10"/>
+		<army type="rocket" strength="60" movement="1" minatk="1" maxatk="10"/>
+		<army type="tank" strength="120" movement="2" minatk="2" maxatk="9"/>
+		<army type="heavytank" strength="140" movement="2" minatk="3" maxatk="9"/>
+		<army type="destroyer" strength="160" movement="1" minatk="2" maxatk="9"/>
+		<army type="cruiser" strength="240" movement="1" minatk="3" maxatk="10"/>
+		<army type="battleship" strength="320" movement="1" minatk="4" maxatk="11"/>
+		<army type="aircraftcarrier" strength="220" movement="1" minatk="2" maxatk="9"/>
+		<army type="carrier" strength="0" movement="1" minatk="0" maxatk="0"/>
+		<army type="airstrike" strength="0" movement="1" minatk="3" maxatk="6"/>
+		<army type="bomber" strength="0" movement="1" minatk="3" maxatk="7"/>
+		<army type="airborne" strength="0" movement="1" minatk="1" maxatk="7"/>
+		<army type="nuclearbomb" strength="0" movement="1" minatk="2" maxatk="8"/>
+	</country>
+</armies>

@@ -1,0 +1,37 @@
+<Texture name="battlename_cn_hd.png" />
+<Images>
+    <Image name="text_allies_01.png" x="222" y="225" w="136" h="30" refx="-109" refy="15" />
+    <Image name="text_allies_02.png" x="326" y="33" w="133" h="31" refx="-115" refy="15" />
+    <Image name="text_allies_03.png" x="339" y="65" w="134" h="31" refx="-115" refy="15" />
+    <Image name="text_allies_04.png" x="1" y="283" w="162" h="31" refx="-92" refy="15" />
+    <Image name="text_allies_05.png" x="1" y="315" w="163" h="27" refx="-79" refy="15" />
+    <Image name="text_allies_06.png" x="222" y="193" w="134" h="31" refx="-105" refy="15" />
+    <Image name="text_allies_07.png" x="107" y="65" w="107" h="29" refx="-114" refy="15" />
+    <Image name="text_allies_08.png" x="1" y="94" w="105" h="30" refx="-115" refy="15" />
+    <Image name="text_allies_09.png" x="1" y="220" w="109" h="31" refx="-113" refy="15" />
+    <Image name="text_allies_10.png" x="1" y="63" w="104" h="30" refx="-116" refy="15" />
+    <Image name="text_axis_01.png" x="1" y="31" w="91" h="31" refx="-122" refy="15" />
+    <Image name="text_axis_02.png" x="215" y="65" w="123" h="31" refx="-108" refy="15" />
+    <Image name="text_axis_03.png" x="312" y="1" w="123" h="31" refx="-109" refy="15" />
+    <Image name="text_axis_04.png" x="221" y="129" w="133" h="31" refx="-105" refy="15" />
+    <Image name="text_axis_05.png" x="1" y="125" w="108" h="31" refx="-115" refy="15" />
+    <Image name="text_axis_06.png" x="1" y="252" w="158" h="30" refx="-85" refy="15" />
+    <Image name="text_axis_07.png" x="357" y="193" w="145" h="31" refx="-96" refy="15" />
+    <Image name="text_axis_08.png" x="1" y="157" w="108" h="31" refx="-116" refy="15" />
+    <Image name="text_axis_09.png" x="221" y="97" w="132" h="31" refx="-105" refy="15" />
+    <Image name="text_axis_10.png" x="107" y="95" w="107" h="29" refx="-115" refy="15" />
+    <Image name="text_nato_01.png" x="200" y="1" w="111" h="31" refx="-115" refy="15" />
+    <Image name="text_nato_02.png" x="110" y="156" w="110" h="31" refx="-116" refy="15" />
+    <Image name="text_nato_03.png" x="110" y="125" w="109" h="30" refx="-116" refy="15" />
+    <Image name="text_nato_04.png" x="214" y="33" w="111" h="31" refx="-116" refy="15" />
+    <Image name="text_nato_05.png" x="355" y="129" w="136" h="31" refx="-105" refy="15" />
+    <Image name="text_nato_06.png" x="110" y="188" w="110" h="31" refx="-112" refy="15" />
+    <Image name="text_nato_07.png" x="355" y="161" w="136" h="31" refx="-105" refy="15" />
+    <Image name="text_wto_01.png" x="1" y="189" w="108" h="30" refx="-114" refy="15" />
+    <Image name="text_wto_02.png" x="93" y="1" w="106" h="31" refx="-115" refy="15" />
+    <Image name="text_wto_03.png" x="107" y="33" w="106" h="31" refx="-114" refy="15" />
+    <Image name="text_wto_04.png" x="354" y="97" w="135" h="31" refx="-105" refy="15" />
+    <Image name="text_wto_05.png" x="221" y="161" w="133" h="31" refx="-105" refy="15" />
+    <Image name="text_wto_06.png" x="1" y="1" w="77" h="29" refx="-124" refy="15" />
+    <Image name="text_wto_07.png" x="111" y="220" w="110" h="29" refx="-115" refy="15" />
+</Images>

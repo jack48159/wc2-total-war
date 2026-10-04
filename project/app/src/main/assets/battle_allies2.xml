@@ -1,0 +1,104 @@
+<battle map="1" areasenable="battle_allies2.bin">
+    <list name="country">
+        <country id="am1" name="am" commander="common1" ai="0" defeated="land" taxfactor="1.000000" money="300" industry="150" techlevel="4" alliance="b" r="162" g="255" b="64" a="90" />
+        <country id="ja" name="ja" commander="Yamamoto" ai="1" defeated="land" taxfactor="1.200000" money="300" industry="150" techlevel="4" alliance="a" r="255" g="128" b="0" a="90" />
+        <country id="am2" name="am" commander="Nimitz" ai="1" defeated="army" taxfactor="1.200000" money="300" industry="150" techlevel="4" alliance="b" r="64" g="255" b="64" a="90" />
+    </list>
+    <list name="area">
+        <area id="756" construction="none" level="0" installation="none" country="am2">
+            <army type="cruiser" level="1" cards="3" />
+        </area>
+        <area id="764" construction="none" level="0" installation="none" country="am2">
+            <army type="aircraft carrier" level="0" cards="11" />
+        </area>
+        <area id="765" construction="none" level="0" installation="none" country="am2">
+            <army type="destroyer" level="2" cards="3" />
+        </area>
+        <area id="766" construction="none" level="0" installation="none" country="am2">
+            <army type="battleship" level="1" cards="3" />
+        </area>
+        <area id="767" construction="none" level="0" installation="none" country="am2">
+            <army type="cruiser" level="1" cards="3" />
+        </area>
+        <area id="768" construction="none" level="0" installation="fort" country="am2">
+            <army type="artillery" level="3" cards="3" />
+        </area>
+        <area id="847" construction="industry" level="3" installation="fort" country="ja">
+            <army type="infantry" level="2" cards="2" />
+        </area>
+        <area id="848" construction="airport" level="1" installation="antiaircraft" country="ja">
+            <army type="artillery" level="2" cards="2" />
+        </area>
+        <area id="849" construction="none" level="0" installation="none" country="ja">
+            <army type="aircraft carrier" level="1" cards="11" />
+        </area>
+        <area id="850" construction="city" level="4" installation="fort" country="ja">
+            <army type="tank" level="1" cards="2" />
+        </area>
+        <area id="851" construction="none" level="0" installation="none" country="ja">
+            <army type="cruiser" level="1" cards="3" />
+        </area>
+        <area id="854" construction="none" level="0" installation="none" country="ja">
+            <army type="cruiser" level="2" cards="3" />
+        </area>
+        <area id="857" construction="none" level="0" installation="none" country="ja">
+            <army type="battleship" level="1" cards="3" />
+        </area>
+        <area id="858" construction="none" level="0" installation="none" country="ja">
+            <army type="cruiser" level="1" cards="3" />
+        </area>
+        <area id="1481" construction="none" level="0" installation="none" country="ja">
+            <army type="destroyer" level="1" cards="3" />
+        </area>
+        <area id="1483" construction="none" level="0" installation="none" country="ja">
+            <army type="aircraft carrier" level="1" cards="2" />
+        </area>
+        <area id="1484" construction="none" level="0" installation="fort" country="ja">
+            <army type="infantry" level="2" cards="7" />
+        </area>
+        <area id="1493" construction="industry" level="1" installation="none" country="ja">
+            <army type="infantry" level="2" cards="7" />
+        </area>
+        <area id="1494" construction="none" level="0" installation="none" country="ja">
+            <army type="aircraft carrier" level="1" cards="3" />
+        </area>
+        <area id="1495" construction="none" level="0" installation="none" country="ja">
+            <army type="battleship" level="1" cards="1" />
+        </area>
+        <area id="1500" construction="none" level="0" installation="none" country="ja">
+            <army type="cruiser" level="1" cards="3" />
+        </area>
+        <area id="1501" construction="city" level="2" installation="fort" country="ja">
+            <army type="infantry" level="2" cards="7" />
+        </area>
+        <area id="1502" construction="none" level="0" installation="none" country="ja" />
+        <area id="1549" construction="none" level="0" installation="none" country="am1">
+            <army type="cruiser" level="1" cards="1" />
+        </area>
+        <area id="1550" construction="none" level="0" installation="none" country="am1">
+            <army type="battleship" level="1" cards="3" />
+        </area>
+        <area id="1553" construction="none" level="0" installation="none" country="am1">
+            <army type="aircraft carrier" level="0" cards="9" />
+        </area>
+        <area id="1559" construction="city" level="3" installation="fort" country="am1">
+            <army type="rocket" level="1" cards="3" />
+        </area>
+        <area id="1560" construction="industry" level="2" installation="fort" country="am1">
+            <army type="heavy tank" level="1" cards="3" />
+        </area>
+        <area id="1561" construction="none" level="0" installation="none" country="am1">
+            <army type="cruiser" level="2" cards="1" />
+        </area>
+        <area id="1565" construction="none" level="0" installation="none" country="am1">
+            <army type="destroyer" level="1" cards="2" />
+        </area>
+    </list>
+    <list name="dialogue">
+        <dialogue commander="Nimitz" index="1" atround="1" left="1" />
+        <dialogue commander="Nimitz" index="2" atround="1" left="1" />
+        <dialogue commander="Nimitz" index="3" atround="1" left="1" />
+        <dialogue commander="Yamamoto" index="1" atround="3" left="1" />
+        <dialogue commander="Yamamoto" index="2" atround="3" left="1" />
+    </list>
+</battle>
