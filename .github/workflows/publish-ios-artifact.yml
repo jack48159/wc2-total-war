@@ -1,0 +1,27 @@
+name: Publish built iOS IPA
+on:
+  workflow_dispatch:
+    inputs:
+      run_id:
+        required: true
+        type: string
+      release_tag:
+        required: true
+        type: string
+permissions:
+  actions: read
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: wc2-unsigned-ipa
+          run-id: ${{ inputs.run_id }}
+          github-token: ${{ github.token }}
+          path: ipa
+      - name: Upload signed-container-ready IPA
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload '${{ inputs.release_tag }}' ipa/wc2-unsigned.ipa --clobber --repo "$GITHUB_REPOSITORY"
