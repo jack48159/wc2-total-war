@@ -252,6 +252,28 @@ export function evaluateOpponentThreat(game, stage, targetCountry, myCountry) {
  * @param {string|object} myCountry - Own country identifier or object
  * @returns {Array<object>} Sorted list of target candidates
  */
+// Expansion priorities never replace the military feasibility check.
+export function canAffordExpansionWar(game, model, targetId) {
+  const me = model.me;
+  const ownPower = countryPower(game, me).power;
+  const targetPower = countryPower(game, targetId).power;
+  const currentEnemies = Array.from(model.st.countries.values())
+    .filter(c => !c.eliminated && c.id !== targetId && model.rel(c.id) === 'enemy');
+  const committedPower = currentEnemies.reduce((sum, c) => sum + countryPower(game, c.id).power, 0);
+  const extraPower = warCascade(game, me, targetId)
+    .filter(id => id !== targetId && !currentEnemies.some(c => c.id === id))
+    .reduce((sum, id) => sum + countryPower(game, id).power, 0);
+  if (ownPower < targetPower * 1.2 + committedPower * 0.6 + extraPower * 0.75) return false;
+  const border = model.mine.filter(a => a.land && a.adj.some(id => model.area(id)?.owner === targetId));
+  if (!border.length) return false;
+  const assembled = model.units.mine.filter(u => border.some(a => model.dist(u.area, a.id) <= 2))
+    .reduce((sum, u) => sum + u.hp, 0);
+  const opposing = model.st.areas.filter(a => a.country === targetId && !a.sea &&
+    border.some(b => model.dist(a.id, b.id) <= 2))
+    .reduce((sum, a) => sum + (a.armies || []).reduce((hp, u) => hp + (u.hp || 0), 0), 0);
+  return assembled > 0 && assembled >= opposing * 1.1;
+}
+
 export function rankDeclareWarTargets(game, model, myCountry) {
   const myId = typeof myCountry === 'string' ? myCountry : myCountry?.id || model?.me;
   if (!game || !myId) return [];
@@ -376,7 +398,7 @@ function coalitionWarCandidate(game, model, ranked, capitalThreat) {
       border.some(b => model.dist(a.id, b.id) <= 2))
       .reduce((sum, a) => sum + (a.armies || []).reduce((hp, u) => hp + (u.hp || 0), 0), 0);
     // A diplomatic opportunity still needs troops ready on the actual frontier.
-    if (!assembled || assembled < opposing * 0.75) continue;
+    if (!assembled || assembled < opposing) continue;
     let engagedPower = 0, opponents = 0, alliedOpponent = false;
     for (const c of stage.countries.values()) {
       if (c.eliminated || c.id === me || c.id === candidate.country) continue;
@@ -389,7 +411,7 @@ function coalitionWarCandidate(game, model, ranked, capitalThreat) {
     }
     const industrialThreat = candidate.threatEval.details.industrialPotential >= 20;
     if (!alliedOpponent && !(opponents >= 2 && industrialThreat)) continue;
-    if (ownPower < candidate.tPower * 0.65) continue;
+    if (ownPower < candidate.tPower * 0.85) continue;
     const extraEnemies = warCascade(game, me, candidate.country)
       .filter(id => id !== candidate.country && model.rel(id) !== 'enemy')
       .reduce((sum, id) => sum + countryPower(game, id).power, 0);
@@ -751,7 +773,7 @@ export function decideDiplomacy(model, staffState = {}) {
   }
 
   // 获取多维度宣战目标优先级排序 (S > A > B > C)
-  const ranked = freshRanked;
+  const ranked = freshRanked.filter(candidate => canAffordExpansionWar(game, model, candidate.country));
 
   if (ranked.length === 0) return commands;
 

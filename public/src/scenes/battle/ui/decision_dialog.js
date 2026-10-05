@@ -33,12 +33,17 @@ export class DecisionDialog {
 
   pick(choiceId) {
     E.playSfx('btn.wav');
-    if (this.hooks.onChoice) { this.hooks.onChoice(choiceId); if (this.hooks.close) this.hooks.close(); return; }
-    this.game.apply({
+    const result = this.hooks.onChoice ? this.hooks.onChoice(choiceId) : this.game.apply({
       type: 'resolveEventDecision',
+      country: this.game.player,
       eventId: this.event.id,
       choiceId,
     });
+    if (result?.ok === false) {
+      this.errorText = '??????' + (result.reason || '???');
+      return;
+    }
+    this.errorText = '';
     if (this.hooks.close) this.hooks.close();
   }
 

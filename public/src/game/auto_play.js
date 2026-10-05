@@ -69,7 +69,8 @@ export class AutoPlayer {
       if (this.diplomacyPending !== request) return;
       const choice = event.choices?.find(item => item.id === choiceId);
       if (!choice) return;
-      const result = this.perform(game, { type: 'resolveEventDecision', eventId: event.id, choiceId });
+      const result = this.perform(game, { type: 'resolveEventDecision', country: game.player, eventId: event.id, choiceId });
+      if (!result?.ok) return result;
       if (result?.ok) reportTakeoverChoice(game, `${event.title || '事件'}：玩家选择${choice.text}`, [game.player]);
       this.diplomacyPending = null;
       this.statusText = '自动游玩中';
@@ -117,12 +118,14 @@ export class AutoPlayer {
 
     // 1. If there are pending scenario notices or decisions, resolve automatically to prevent blocking
     if (game.scenarioEvents?.pending?.length > 0) {
-      const topEv = game.scenarioEvents.pending[0];
+      const topEv = game.scenarioEvents.pending.find(event => !event.targetCountry || event.targetCountry === game.player);
+      if (!topEv) return null;
       if (topEv.type === 'decision' && topEv.choices?.length > 0) {
         if (this.promptEvent(game, topEv)) return { ok: true, pending: true };
         const choice = topEv.choices[0];
         const res = this.perform(game, {
           type: 'resolveEventDecision',
+          country: game.player,
           eventId: topEv.id,
           choiceId: choice.id,
         });
