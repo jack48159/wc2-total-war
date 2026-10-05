@@ -25,8 +25,15 @@ class Home extends Page {
     E.playSfx('main_interface.wav');
   }
   onBack() {}
-  onShow() { void Updates.check(); }
-  dispose() { Updates.hide(); this.account?.remove(); this.account = null; }
+  onShow() {
+    if (!this.updateButton) {
+      const button = this.updateButton = document.createElement('button');
+      button.textContent = '\u68c0\u67e5\u66f4\u65b0';
+      Object.assign(button.style, {position:'fixed',left:'16px',top:'max(16px,env(safe-area-inset-top))',zIndex:50,padding:'8px 12px',background:'#eee7d6',color:'#302518',border:'1px solid #987c45',borderRadius:'6px'});
+      button.onclick = () => { void Updates.check({force:true}); }; document.body.append(button);
+    }
+ void Updates.check(); }
+  dispose() { this.updateButton?.remove(); this.updateButton = null; Updates.hide(); this.account?.remove(); this.account = null; }
   exitGame() {
     try { window.close(); } catch (e) {}
     if (!window.closed) this.notice('浏览器阻止了自动关闭窗口，请手动关闭此标签页。');

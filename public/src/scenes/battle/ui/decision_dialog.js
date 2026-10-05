@@ -40,7 +40,7 @@ export class DecisionDialog {
       choiceId,
     });
     if (result?.ok === false) {
-      this.errorText = '??????' + (result.reason || '???');
+      this.errorText = '\u51b3\u7b56\u672a\u63d0\u4ea4\uff1a' + (result.reason || '\u8bf7\u91cd\u8bd5');
       return;
     }
     this.errorText = '';

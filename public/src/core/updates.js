@@ -19,17 +19,45 @@ function adapter() {
 export const Updates = {
   hide() { banner?.remove(); banner = null; },
   async ready() { try { await adapter()?.ready(); } catch {} },
-  async check() {
-    if (!window.WC2_CONFIG?.updateSupport || (platform.id === 'ios' && platform.isPackaged && !window.WC2_CONFIG?.iosUpdateSupport) || checking || Date.now() - checkAt < 60000) return;
+  notify(message) {
+    this.hide();
+    banner = document.createElement('aside');
+    Object.assign(banner.style, {position:'fixed',left:'16px',bottom:'20px',zIndex:10000,maxWidth:'85vw',padding:'16px',background:'#eee7d6',color:'#302518',font:'14px/1.5 sans-serif'});
+    const text = document.createElement('span'); text.textContent = message;
+    const close = document.createElement('button'); close.textContent = '\u5173\u95ed'; close.style.marginLeft = '12px'; close.onclick = () => this.hide();
+    banner.append(text, close); document.body.append(banner);
+  },
+  async check({force = false} = {}) {
+    if (!window.WC2_CONFIG?.updateSupport || (platform.id === 'ios' && platform.isPackaged && !window.WC2_CONFIG?.iosUpdateSupport) || checking || (!force && Date.now() - checkAt < 60000)) return;
     checking = true; checkAt = Date.now();
     try {
-      const response = await fetch(URL, { cache: 'no-store', signal: AbortSignal.timeout(15000) });
-      if (!response.ok) return;
-      const envelope = await response.json(), payload = bytes(envelope.payload);
-      const key = await crypto.subtle.importKey('spki', bytes(SPKI), { name: 'RSASSA-PKCS1-v1_5', hash: 'SHA-256' }, false, ['verify']);
-      if (!await crypto.subtle.verify('RSASSA-PKCS1-v1_5', key, bytes(envelope.signature), payload)) return;
-      const m = JSON.parse(new TextDecoder().decode(payload));
-      if (!/^\d{14}$/.test(m.release) || m.release <= (window.WC2_CONFIG.release || '') || !home()) return;
+      if (force) this.notify('\u6b63\u5728\u68c0\u67e5\u66f4\u65b0...');
+      let m;
+      if (platform.id === 'ios' && platform.isPackaged) {
+        const native = adapter();
+        if (!native?.check) throw Error('\u9700\u8981\u5b89\u88c5\u4fee\u590d\u66f4\u65b0\u5165\u53e3\u7684 IPA');
+        m = await native.check();
+        if (!m.verified) throw Error('Invalid update signature');
+      } else {
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 15000);
+        let envelope;
+        try {
+          const response = await fetch(URL, { cache: 'no-store', signal: controller.signal });
+          if (!response.ok) throw Error('Update server: ' + response.status);
+          envelope = await response.json();
+        } finally { clearTimeout(timeout); }
+        const payload = bytes(envelope.payload);
+        const key = await crypto.subtle.importKey('spki', bytes(SPKI), { name: 'RSASSA-PKCS1-v1_5', hash: 'SHA-256' }, false, ['verify']);
+        if (!await crypto.subtle.verify('RSASSA-PKCS1-v1_5', key, bytes(envelope.signature), payload)) throw Error('Invalid update signature');
+        m = JSON.parse(new TextDecoder().decode(payload));
+      }
+      if (!/^\d{14}$/.test(m.release)) throw Error('Invalid update release');
+      if (m.release <= (window.WC2_CONFIG.release || '')) {
+        if (force) this.notify('\u5df2\u662f\u6700\u65b0\u7248\u672c ' + (window.WC2_CONFIG.version || ''));
+        return;
+      }
+      if (!home()) return;
       this.hide();
       banner = document.createElement('aside');
       Object.assign(banner.style, { position: 'fixed', left: '16px', bottom: '20px', zIndex: 50, maxWidth: 'min(410px,85vw)', padding: '16px', background: '#eee7d6', color: '#302518', border: '1px solid #987c45', borderRadius: '8px', font: '14px/1.5 sans-serif', boxShadow: '0 4px 20px #0008' });
@@ -57,6 +85,6 @@ export const Updates = {
           action.onclick = async () => { if (!home()) return; action.disabled = true; try { await native.activate(); if (!platform.isPackaged) location.reload(); } catch (e) { detail.textContent = e.message; action.disabled = false; } };
         } catch (e) { detail.textContent = e.message + '，当前版本仍可使用。'; action.disabled = false; }
       };
-    } catch {} finally { checking = false; }
+    } catch (error) { console.warn("Update check failed", error); if (force && home()) this.notify(error.message || "Update check failed"); } finally { checking = false; }
   }
 };

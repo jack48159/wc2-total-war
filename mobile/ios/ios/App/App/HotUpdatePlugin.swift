@@ -28,14 +28,14 @@ class Wc2BridgeViewController: CAPBridgeViewController {
 public class HotUpdatePlugin: CAPPlugin, CAPBridgedPlugin {
     public let identifier = "HotUpdatePlugin"
     public let jsName = "Wc2Updater"
-    public let pluginMethods: [CAPPluginMethod] = ["status", "prepare", "activate", "ready"].map { CAPPluginMethod(name: $0, returnType: CAPPluginReturnPromise) }
+    public let pluginMethods: [CAPPluginMethod] = ["check", "status", "prepare", "activate", "ready"].map { CAPPluginMethod(name: $0, returnType: CAPPluginReturnPromise) }
     private let lock = NSLock()
     private var running = false, done = 0, total = 0, downloaded = 0
     private var failure: String?
     private let key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtwfLjT9ZSRBF0haS4Kl6H8VsYtecwjFp6xC1WkpHYxBRiPCWWOBATugSDK6Y/nIMb+6wdt60i2xkYbN8E6I7MOBGzvTquoqMLwQ7vTgTRktMU3MaDq4zeSWfXGqkJiVuvBMJjQ0R5x/6SknPsIwW/HolFAkiRgRyLx4LF5e9JpRlQg9pTw3pfLOMtnAFq6X4zfN4b9Ut+crd+wCz72VZwZ4kDEa+SVbkY/mj05hPJR5WxVzQKY9Py/vUvIKIwxLQGpHBkwqOWp/7ON2r4GM2HUspULeTw/ItQqCalKFt8MSAu2Lww/wVhL2zKbQZNKZq3DOVx0hgJ7cRRU+MgddTWQIDAQAB"
     private struct Manifest: Decodable {
         struct File: Decodable { let path: String; let size: Int; let sha256: String }
-        let release: String; let shell: Int; let `protocol`: String; let base: String; let files: [File]
+        let version: String?; let notes: String?; let release: String; let shell: Int; let `protocol`: String; let base: String; let files: [File]
     }
     private struct Envelope: Decodable { let payload: String; let signature: String }
     private func error(_ message: String) -> NSError { NSError(domain: "WC2Update", code: 1, userInfo: [NSLocalizedDescriptionKey: message]) }
@@ -70,6 +70,15 @@ public class HotUpdatePlugin: CAPPlugin, CAPBridgedPlugin {
         }
         guard sum <= 2_000_000_000, names.contains("index.html"), names.contains("runtime-config.js") else { throw error("更新不完整") }
         return m
+    }
+    @objc func check(_ call: CAPPluginCall) {
+        Task { [self] in
+            do {
+                let m = try await manifest()
+                call.resolve(["release": m.release, "version": m.version ?? m.release,
+                              "notes": m.notes ?? "", "shell": m.shell, "verified": true])
+            } catch { call.reject(error.localizedDescription) }
+        }
     }
     @objc func status(_ call: CAPPluginCall) {
         lock.lock(); defer { lock.unlock() }
