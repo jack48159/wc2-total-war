@@ -28,7 +28,11 @@ export const Updates = {
     banner.append(text, close); document.body.append(banner);
   },
   async check({force = false} = {}) {
-    if (!window.WC2_CONFIG?.updateSupport || (platform.id === 'ios' && platform.isPackaged && !window.WC2_CONFIG?.iosUpdateSupport) || checking || (!force && Date.now() - checkAt < 60000)) return;
+    if (!window.WC2_CONFIG?.updateSupport || (platform.id === 'ios' && platform.isPackaged && !window.WC2_CONFIG?.iosUpdateSupport) || (!force && Date.now() - checkAt < 60000)) return;
+    if (checking) {
+      if (force) this.notify('\u6b63\u5728\u68c0\u67e5\u66f4\u65b0\uff0c\u8bf7\u7a0d\u5019...');
+      return;
+    }
     checking = true; checkAt = Date.now();
     try {
       if (force) this.notify('\u6b63\u5728\u68c0\u67e5\u66f4\u65b0...');
@@ -36,7 +40,12 @@ export const Updates = {
       if (platform.id === 'ios' && platform.isPackaged) {
         const native = adapter();
         if (!native?.check) throw Error('\u9700\u8981\u5b89\u88c5\u4fee\u590d\u66f4\u65b0\u5165\u53e3\u7684 IPA');
-        m = await native.check();
+        let timeout;
+        try {
+          m = await Promise.race([native.check(), new Promise((_, reject) => {
+            timeout = setTimeout(() => reject(Error('\u66f4\u65b0\u68c0\u67e5\u8d85\u65f6\uff0c\u8bf7\u68c0\u67e5\u7f51\u7edc\u540e\u91cd\u8bd5')), 20000);
+          })]);
+        } finally { clearTimeout(timeout); }
         if (!m.verified) throw Error('Invalid update signature');
       } else {
         const controller = new AbortController();
@@ -85,6 +94,6 @@ export const Updates = {
           action.onclick = async () => { if (!home()) return; action.disabled = true; try { await native.activate(); if (!platform.isPackaged) location.reload(); } catch (e) { detail.textContent = e.message; action.disabled = false; } };
         } catch (e) { detail.textContent = e.message + '，当前版本仍可使用。'; action.disabled = false; }
       };
-    } catch (error) { console.warn("Update check failed", error); if (force && home()) this.notify(error.message || "Update check failed"); } finally { checking = false; }
+    } catch (error) { console.warn("Update check failed", error); if (home()) this.notify(error.message || "Update check failed"); } finally { checking = false; }
   }
 };
