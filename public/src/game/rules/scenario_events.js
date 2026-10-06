@@ -1,3 +1,4 @@
+import { sandboxAction } from '../sandbox_actions.js';
 // Port of formwork's Scenario Events system (scenario_events/ Notices.cpp, Execution.cpp, Actions.cpp, Conditions.cpp)
 // Handles event notices and branching decisions.
 
@@ -10,6 +11,7 @@ export function initScenarioEvents(config = null) {
     definitions: Array.isArray(config?.definitions) ? JSON.parse(JSON.stringify(config.definitions)) : [],
     history: Array.isArray(config?.history) ? [...config.history] : [],
     variables: { ...(config?.variables || {}) },
+    scheduled: structuredClone(config?.scheduled||[]),
     occurrences: { ...(config?.occurrences || {}) },
     pending: Array.isArray(config?.pending) ? JSON.parse(JSON.stringify(config.pending)) : [],
   };
@@ -60,6 +62,7 @@ export function evaluateCondition(game, cond) {
   }
   if (cond.type === 'countryDefeated') {
     const c = game.stage.countries.get(cond.country);
+    if(c?.dormant&&!game.sandboxState?.activated?.[cond.country])return false;
     if (!c || c.eliminated) return true;
     const lands = game.stage.areas.filter(a => a.country === cond.country && !a.sea).length;
     return lands === 0;
@@ -99,6 +102,7 @@ export function evaluateEvents(game, triggerType = 'roundBegin') {
   try{return evaluateEventsPass(game,triggerType);}finally{game._evaluatingScenarioEvents=false;}
 }
 function evaluateEventsPass(game, triggerType = 'roundBegin') {
+  if(triggerType==='roundBegin'&&game.scenarioEvents?.scheduled){const due=game.scenarioEvents.scheduled.filter(e=>e.round<=game.round);game.scenarioEvents.scheduled=game.scenarioEvents.scheduled.filter(e=>e.round>game.round);for(const e of due)for(const action of e.actions)applyAction(game,action);}
   const se = game.scenarioEvents;
   if (!se || !se.definitions || !se.definitions.length) return [];
 
@@ -151,6 +155,7 @@ function evaluateEventsPass(game, triggerType = 'roundBegin') {
 export function applyAction(game, action) {
   if (!action) return;
   const st = game.stage;
+  if(sandboxAction(game,action))return;
 
   if (action.type === 'changeMoney') {
     const targetCountry = action.country || game.player;
@@ -170,9 +175,9 @@ export function applyAction(game, action) {
     }
   } else if (action.type === 'spawnArmy') {
     const area = st.st(action.area);
-    if (area && action.armyType) {
-      const army = game.spawnArmy(area, action.armyType);
-      if (action.level) army.level = action.level;
+    if (area && action.armyType && area.country===(action.country||area.country) && area.armies.length<st.maxArmies(area) && ['destroyer','cruiser','battleship','aircraftcarrier'].includes(action.armyType)===!!area.sea) {
+      const army = game.spawnArmy(area, action.armyType, action.templateId);
+      if (action.level) {army.level = action.level;army.hp=army.maxHp=Math.round(army.maxHp*(1+.15*action.level));}
       if (action.morale) army.morale = action.morale;
       army.active = false;
       game.emit(EV.UNIT_DEPLOYED, {

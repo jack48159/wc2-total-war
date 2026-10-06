@@ -52,7 +52,7 @@ function orderEntry(entry) {
 }
 
 function unitStats(game, country, unit) {
-  const def = game.stage.armyDef(country, unit.type) || {};
+  const def = game.stage.armyDef(country, unit) || {};
   return { minAttack: def.minAttack ?? null, maxAttack: def.maxAttack ?? null, defence: def.defence ?? null,
     movement: def.movement ?? null, attackRange: def.attackRange ?? def.range ?? 1,
     attackMultiplier: def.attackMultiplier ?? 1, receivedDamageMultiplier: def.receivedDamageMultiplier ?? 1,
@@ -63,7 +63,7 @@ function unitStats(game, country, unit) {
 
 function unitView(game, country, row) {
   const unit = row.unit || row.army;
-  const def = game.stage.armyDef(country, unit.type) || {};
+  const def = game.stage.armyDef(country, unit) || {};
   const moves = [], attacks = [], blockedMoves=[], blockedAttacks=[];
   if (game.activeCountry === country && game.stage.canAct(unit) && unit.movement > 0) {
     for (const area of game.stage.areas) {

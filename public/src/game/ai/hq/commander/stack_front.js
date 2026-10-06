@@ -15,7 +15,7 @@ export function scoreStackFrontArmy(army, area, stage, country, threats = [], pa
   const maxHp = Math.max(1, army.maxHp ?? 100);
   const hpRatio = Math.min(1.0, hp / maxHp);
 
-  const defDef = stage.armyDef(country, army.type) || {};
+  const defDef = stage.armyDef(country, army) || {};
   const level = Math.max(0, Math.min(4, Math.trunc(army.level || 0)));
 
   // 1. 防御力加成计算（与 combatModel.js 对齐）

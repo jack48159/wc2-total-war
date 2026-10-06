@@ -86,7 +86,7 @@ function baseTaskValue(task, order, model) {
 
     // 兵种优势利用1：坦克斩杀链（retainMovementOnKill）。当能斩杀目标且地块清空时，保留机动力继续行动
     const isTank = unit.type === 'tank' || unit.type === 'heavytank' ||
-      !!model.game.stage.armyDef(unit.country || model.me, unit.type)?.retainMovementOnKill;
+      !!model.game.stage.armyDef(unit.country || model.me, unit)?.retainMovementOnKill;
     const isSingleDefender = (targetArea?.armies?.length || 0) === 1;
     const canKill = front && (e.dmgDef >= front.hp || (e.pKillFront || 0) >= 0.5);
     const killProb = e.pClear > 0 ? e.pClear : (canKill ? 1 : 0);
@@ -111,7 +111,7 @@ function baseTaskValue(task, order, model) {
       gain += supportEffect(order, model, order.primaryBid).delta *
         Math.min(1, (e.dmgDef || 0) / Math.max(1, front?.hp || 1));
     }
-    const occupiable = model.game.stage.armyDef(unit.country || model.me, unit.type)?.canOccupy !== false;
+    const occupiable = model.game.stage.armyDef(unit.country || model.me, unit)?.canOccupy !== false;
     const capture = occupiable ? e.pClear : 0;
     const exposure = capture * model.pLoseAfterCapture?.(task.to, [unit]) * (target + own) || 0;
     const rawLoss = ((e.dmgAtt || 0) / Math.max(1, unit.maxHp) + DEATH_WEIGHT * (e.pAttackerDies || 0)) * own + (e.splashLoss || 0);
@@ -209,7 +209,7 @@ export function auctionTasks(tasks, order, model) {
       const proposed = [...packageTasks, task];
       const outcome = sequenceOutcome(model, proposed.map(t => ({ unit: t.unit, from: t.staging })), target);
       const areaValue = model.areaValue?.(target) ?? 1;
-      const occupants = proposed.filter(t => model.game.stage.armyDef(t.unit.country || model.me, t.unit.type)?.canOccupy !== false)
+      const occupants = proposed.filter(t => model.game.stage.armyDef(t.unit.country || model.me, t.unit)?.canOccupy !== false)
         .map(t => t.unit);
       const exposure = outcome.pCapture * (model.pLoseAfterCapture?.(target, occupants) || 0) *
         (areaValue + occupants.reduce((n, unit) => n + (model.unitValue?.(unit) ?? unit.maxHp ?? 0), 0));

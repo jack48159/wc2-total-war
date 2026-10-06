@@ -114,6 +114,7 @@ export class WarNoticeDialog {
     this.animT = 0;
     this.hoverBtn = null;
 
+    if(this.event.imageUrl)E.image(this.event.imageUrl).then(img=>{this.portrait=img;}).catch(()=>{});
     if (this.event.image) {
       E.image(`assets/${this.event.image}`).then(img => { this.portrait = img; }).catch(() => {});
     }

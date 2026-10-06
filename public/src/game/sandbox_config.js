@@ -1,3 +1,4 @@
+import { validateFeatures } from './sandbox_validation.js';
 import { validateCondition } from './sandbox_conditions.js';
 import { World } from './world.js';
 
@@ -6,6 +7,7 @@ export function validateSandbox(config) {
   if (!config || !Array.isArray(config.areas) || !Array.isArray(config.countries)) throw Error('沙盒数据不完整');
   const countries = new Set(config.countries.map(c => c.id));
   if (countries.size !== config.countries.length || countries.size < 2 || !countries.has(config.player)) throw Error('至少保留两个不同的参战国，并选择有效的玩家国家');
+  validateFeatures(config,validateSandbox);
   const ids = new Set();
   for (const a of config.areas) {
     if (!World.areas[a.id] || ids.has(a.id)) throw Error('存在无效或重复地块');
@@ -13,6 +15,7 @@ export function validateSandbox(config) {
     if (a.country && !countries.has(a.country)) throw Error('地块归属必须是参战国或无主');
     if (!Array.isArray(a.armies) || a.armies.length > (World.areas[a.id].unitCapacity || 4)) throw Error(`地块 ${a.id} 超过驻军容量`);
     for (const army of a.armies) {
+      if (army.templateId && !(config.features?.units||[]).some(u=>u.id===army.templateId&&u.base===army.type)) throw Error('自定义兵种不存在或基础兵种不匹配');
       if (!SANDBOX_UNITS.includes(army.type) || !Number.isInteger(army.level) || army.level < 0 || army.level > 5) throw Error('兵种或等级无效');
       if (!a.country) throw Error('无主地块不能部署军队');
       if (['destroyer','cruiser','battleship','aircraftcarrier'].includes(army.type) !== (World.areas[a.id].f === 1)) throw Error('陆军只能部署在陆地，海军只能部署在海域');
@@ -24,14 +27,24 @@ export function validateSandbox(config) {
     if (sides.length !== 2 || sides[0] === sides[1] || sides.some(c => !countries.has(c)) || !['war','peace','alliance'].includes(state)) throw Error('外交关系无效');
   }
   const eventIds = new Set();
-  const checkActions = actions => {
+  const checkActions = (actions,depth=0) => {
+    if(depth>4||!Array.isArray(actions||[])||(actions||[]).length>32)throw Error('事件效果过多或嵌套过深');
     for (const a of actions || []) {
-      if (!['changeMoney','changeIndustry','changeStability','setDiplomacy','spawnArmy','captureArea','setVariable'].includes(a.type)) throw Error('事件包含不支持的效果');
+      if(a.type==='delay'){if(!Number.isInteger(a.rounds)||a.rounds<1||a.rounds>100)throw Error('延迟需为 1 至 100 回合');checkActions(a.actions,depth+1);continue;}
+      if(['healArmy','damageArmy','revealArea','falseIntel'].includes(a.type)&&(!ids.has(a.area)||!countries.has(a.country)))throw Error('战场效果的目标无效');
+      if(['healArmy','damageArmy'].includes(a.type)&&(!Number.isFinite(a.amount)||a.amount<0||a.amount>10000))throw Error('效果数值无效');
+      if(a.type==='activateCountry'&&!countries.has(a.country))throw Error('入场国家无效');
+      if(a.type==='triggerEvent'&&!config.scenarioEvents?.definitions?.some(e=>e.id===a.eventId))throw Error('触发的事件不存在');
+      if (!['changeMoney','changeIndustry','changeStability','setDiplomacy','spawnArmy','captureArea','setVariable','delay','healArmy','damageArmy','revealArea','falseIntel','activateCountry','triggerEvent'].includes(a.type)) throw Error('事件包含不支持的效果');
       if (a.country && !countries.has(a.country)) throw Error('事件目标国不在参战国中');
       if (['spawnArmy','captureArea'].includes(a.type) && !ids.has(a.area)) throw Error('事件目标地块不在战区内');
       if (a.type === 'setDiplomacy' && (!countries.has(a.first) || !countries.has(a.second) || a.first === a.second || !['war','peace','alliance'].includes(a.state))) throw Error('事件外交效果无效');
+      if(a.templateId&&!(config.features?.units||[]).some(u=>u.id===a.templateId&&u.base===a.armyType))throw Error('增援自定义兵种无效');
+      if(a.type==='spawnArmy'&&a.level!=null&&(!Number.isInteger(a.level)||a.level<0||a.level>5))throw Error('增援等级需为 0 至 5');
+      if(['revealArea','falseIntel'].includes(a.type)&&a.rounds!=null&&(!Number.isInteger(a.rounds)||a.rounds<1||a.rounds>100))throw Error('情报持续回合需为 1 至 100');
+      if(a.type==='revealArea'&&a.range!=null&&(!Number.isInteger(a.range)||a.range<0||a.range>3))throw Error('侦察范围需为 0 至 3');
       if (a.type === 'spawnArmy' && !SANDBOX_UNITS.includes(a.armyType)) throw Error('事件兵种无效');
-      if (a.amount != null && !Number.isFinite(a.amount)) throw Error('事件数值无效');
+      if (a.amount != null && (!Number.isFinite(a.amount)||Math.abs(a.amount)>1000000)) throw Error('事件数值无效');
     }
   };
   for (const e of config.scenarioEvents?.definitions || []) {
@@ -57,6 +70,7 @@ export function validateSandbox(config) {
 
 export function applySandboxConfig(data, config) {
   validateSandbox(config);
+  data.sandboxFeatures=structuredClone(config.features||{});
   data.areas = structuredClone(config.areas);
   data.enabled = data.areas.map(a => a.id);
   data.countries = structuredClone(config.countries);
@@ -66,5 +80,5 @@ export function applySandboxConfig(data, config) {
   data.scenarioEvents = structuredClone(config.scenarioEvents || {definitions:[]});
   for (const event of data.scenarioEvents.definitions) event.body = event.text;
   delete data.events; delete data.ai_rules;
-  for (const c of data.countries) { c.alliance = c.id; c.ai = c.id !== data.player; }
+  for (const c of data.countries) { c.eliminated=!!c.dormant; c.alliance = c.id; c.ai = c.id !== data.player; }
 }

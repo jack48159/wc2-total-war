@@ -16,7 +16,7 @@ export class ResultDialog {
     return [
       { x, y: E.H / 2 + 30, w, h, action: this.actions.review },
       { x, y: E.H / 2 + 104, w, h, action: this.actions.replay },
-      { x, y: E.H / 2 + 178, w, h, action: this.actions.quit },
+      { x, y: E.H / 2 + 178, w, h, action: this.actions.next || this.actions.quit },
     ];
   }
 
@@ -45,11 +45,11 @@ export class ResultDialog {
     const buttons = this.buttons();
     for (let i = 0; i < buttons.length; i++) {
       const b = buttons[i], frame = this.ui1[i < 2 ? 'longgreen_normal' : 'longred_normal'];
-      E.layout.group({...b,layoutInput:true,label:['查看战场','看海模式','返回主页'][i]}, 'battle/result_dialog/button', () => {
+      E.layout.group({...b,layoutInput:true,label:['查看战场','看海模式',this.actions.next?'下一章':'返回主页'][i]}, 'battle/result_dialog/button', () => {
       const s = Math.min(b.w / frame.w, b.h / frame.h);
       E.drawFrame(frame, b.x + (b.w - frame.w * s) / 2 + frame.rx * s,
         b.y + (b.h - frame.h * s) / 2 + frame.ry * s, { scale: s });
-      E.text(['查看战场', '看海模式', '返回主页'][i], b.x + b.w / 2, b.y + b.h / 2,
+      E.text(['查看战场', '看海模式', this.actions.next?'下一章':'返回主页'][i], b.x + b.w / 2, b.y + b.h / 2,
         { size: 30, color: '#f4ecd6', stroke: '#342214', strokeW: 5, align: 'center' });
       });
     }

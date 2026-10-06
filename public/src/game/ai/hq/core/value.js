@@ -146,7 +146,7 @@ export function areaValue(model, areaId, opts = {}) {
 export function unitValue(model, unit) {
   if (!unit) return 0;
   const u = unit.army || unit;
-  const def = u.def || (model?.st?.armyDef ? model.st.armyDef(u.country || model.me, u.type) : {}) || {};
+  const def = u.def || (model?.st?.armyDef ? model.st.armyDef(u.country || model.me, u) : {}) || {};
   const costMoney = u.cost?.money || def.price || def.cost?.money || 75;
   const costInd = u.cost?.industry || def.industry || def.cost?.industry || 0;
   const wI = model?.wI ?? DEFAULT_WI_ESTIMATE;

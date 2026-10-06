@@ -14,7 +14,7 @@ export function expectedExchange(model, attacker, fromAreaId, defAreaId, opts = 
   const key = `${source.id}|${source.hp}|${source.level}|${source.cards}|${fromAreaId}|${defAreaId}|${front.id}|${front.hp}`;
   if (memo.has(key)) return memo.get(key);
   const result = estimateAttack(game, source, front.army || front, from, to, attacker.country || source.country, model.encirclementMemo);
-  const attackerDef = game.stage.armyDef(attacker.country || source.country || from.country, source.type);
+  const attackerDef = game.stage.armyDef(attacker.country || source.country || from.country, source);
   let splashGain = 0, splashLoss = 0;
   const unitDamageValue = (unit, damage) => Math.min(unit.hp, damage) / Math.max(1, unit.maxHp) * (model.unitValue?.(unit) ?? unit.maxHp);
   const falloff = Number(attackerDef.stackSplashFalloff || 0);
@@ -58,7 +58,7 @@ export function sequenceOutcome(model, attackers, defAreaId) {
   const hasOccupier = ordered.some(entry => {
     const unit = entry.unit.army || entry.unit;
     const from = model.game.stage.st(entry.from);
-    return from && canOccupyAfterAttack(unit, from, to, model.game.stage.armyDef(from.country, unit.type));
+    return from && canOccupyAfterAttack(unit, from, to, model.game.stage.armyDef(from.country, unit));
   });
   const pCapture = clamp(hasOccupier ? (remaining.get(0) || 0) : 0);
   const expectedDamage = [...remaining].reduce((sum, [rest, chance]) => sum + (hp - rest) * chance, 0);

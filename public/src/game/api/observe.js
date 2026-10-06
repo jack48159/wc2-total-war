@@ -120,7 +120,7 @@ export function getPlayerView(game, country = game.player, opts = {}) {
           maxHp: army.maxHp,
           rank: army.level || 0,
           movement: army.movement || 0,
-          maxMovement: army.maxMovement || stage.armyDef(country, army.type)?.movement || 0,
+          maxMovement: army.maxMovement || stage.armyDef(country, army)?.movement || 0,
           canAct: stage.canAct(army) && (army.movement || 0) > 0,
           morale: army.morale || 0,
           isFront: index === 0,

@@ -1,3 +1,4 @@
+import { customArmyDef } from './sandbox_features.js';
 // One stage's map state and the movement / attack rules on it (ports of CScene::CheckMoveable / CheckAttackable /
 // SetSelAreaTargets). Pure logic: no canvas, no UI. Targets are returned as area id -> kind, see TARGET.
 import { facingToward } from './direction.js';
@@ -79,6 +80,7 @@ export class Stage {
   // opts.player: country id the human plays (conquest scenarios have no fixed player: every country is AI in the data)
   static async load(name, areasOverride = null, opts = {}) {
     const [, data, defs, commanderRanks] = await Promise.all([World.load(), getJson(`data/stages/${name}.json`), loadArmyDefs(), loadCommanderRanks()]);
+    if (opts.sandboxFeatures) data.sandboxFeatures=structuredClone(opts.sandboxFeatures);
     if (data.mapPatch) World.applyPatch(data.mapPatch, data.mirror);
     if (areasOverride) data.areas = JSON.parse(JSON.stringify(areasOverride));
     if (areasOverride && (opts.sandboxBattle || opts.sandboxCustom)) data.enabled = data.areas.map(a => a.id);
@@ -182,6 +184,7 @@ export class Stage {
       if (country.stability == null) country.stability = diplomacyOn && profile ? profile.baseStability : 100;
     }
     this.adjE = new Map(data.enabled.map(id => [id, World.adj[id].filter(n => this.enabled.has(n))]));
+    for(const country of data.countries)if(country.dormant&&country.eliminated==null)country.eliminated=true;
     this.initFacings();
     // Scene rect = bounding box of the enabled areas + immediately adjacent unoccupied/neutral areas (1 ring)
     const renderAreas = new Set(data.enabled);
@@ -238,10 +241,7 @@ export class Stage {
     return relationColor({ stage: this, diplomacy: this.game?.diplomacy }, country);
   }
   // Army stats for a country, including its `armydef.xml` override when present.
-  armyDef(countryId, type) {
-    const flag = PORTED.countryArmyDefs ? this.countries.get(countryId)?.flag : null;
-    return (flag && this.armyDefs[flag]?.[type]) || this.armyDefs.others?.[type] || { maxHp: 100, movement: 1, minAttack: 0, maxAttack: 0 };
-  }
+  armyDef(countryId, type) { return customArmyDef(this,countryId,type); }
   adjacent(a, b) { return (this.adjE.get(a) || []).includes(b); }
   graphDistance(a, b, max = 99) {
     if (a === b) return 0;
@@ -304,7 +304,7 @@ export class Stage {
   movementPath(sId, tId, idx) {
     const start = this.st(sId), army = start?.armies[idx];
     if (!army || sId === tId || !this.enabled.has(sId) || !this.enabled.has(tId)) return null;
-    const budget = army.movement ?? this.armyDef(start.country, army.type).movement;
+    const budget = army.movement ?? this.armyDef(start.country, army).movement;
     if (budget <= 0) return null;
     const navy = NAVY_TYPES.has(army.type), ai = start.country !== this.player;
     const view = id => this.st(id) || { id, country: null, armies: [], sea: World.areas[id]?.f === 1 };
@@ -319,7 +319,7 @@ export class Stage {
           return false;
         }
       }
-      if (ai && this.armyDef(start.country, army.type).transportUnit && area.country !== start.country) return false;
+      if (ai && this.armyDef(start.country, army).transportUnit && area.country !== start.country) return false;
       return true;
     };
     const canContinue = area => area.sea ? navy : area.country === start.country || area.armies.length === 0;
@@ -360,8 +360,8 @@ export class Stage {
     } else if (nativeAlliance(this.alliance(s.country)) === nativeAlliance(this.alliance(t.country))) {
       return false;
     }
-    const a = s.armies[idx]; if (!(a.movement ?? this.armyDef(s.country, a.type).movement) || !this.canAct(a)) return false;
-    const def = this.armyDef(s.country, a.type);
+    const a = s.armies[idx]; if (!(a.movement ?? this.armyDef(s.country, a).movement) || !this.canAct(a)) return false;
+    const def = this.armyDef(s.country, a);
     if (def.targetingMode === 'airstrike' || def.combatRadius > 0 || a.type === 'aircraftcarrier') {
       const from = World.areas[sId]?.pts?.[0], to = World.areas[tId]?.pts?.[0];
       if (!from || !to) return false;
@@ -379,7 +379,7 @@ export class Stage {
   targetsFor(sId, airstrikeRadius = 300) {
     const out = new Map(); if (sId < 0) return out;
     const s = this.st(sId); if (!s || !s.armies.length || !this.isHumanArea(sId)) return out;
-    const front = s.armies[0], frontDef = this.armyDef(s.country, front.type);
+    const front = s.armies[0], frontDef = this.armyDef(s.country, front);
     const rocket = frontDef.targetingMode === 'range' || front.type === 'rocket';
     // like the original CScene::SetSelAreaTargets: arrows only to the ADJACENT areas (a unit with more movement still gets one arrow per neighbour,
     // not one to every area it could reach)
@@ -388,7 +388,7 @@ export class Stage {
       if (!out.has(n) && !rocket && s.armies[0].type !== 'aircraftcarrier' && this.attackable(sId, n, 0, airstrikeRadius)) out.set(n, TARGET.ATTACK);
       if (rocket) for (const m of this.adjE.get(n) || []) if (this.attackable(sId, m, 0, airstrikeRadius)) out.set(m, TARGET.ROCKET);
     }
-    if (s.armies[0].type === 'aircraftcarrier') {
+    if (rocket || s.armies[0].type === 'aircraftcarrier') {
       for (const id of this.enabled) if (this.attackable(sId, id, 0, airstrikeRadius)) out.set(id, TARGET.ROCKET);
     }
     return out;

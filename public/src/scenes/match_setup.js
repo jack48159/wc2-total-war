@@ -15,7 +15,7 @@ export class MatchSetup extends Page {
     this.source = source; this.stage = stage; this.options = options; this.title = title;
     // Reload returns to the picker rather than starting an unconfigured match.
     this.route = source.route;
-    this.fogOfWar = false; this.reparationRate = 1.8; this.turnOrder = 'first'; this.recruitWait = 0; this.supplyByInfrastructure = true; this.row = 0;
+    this.fogOfWar = !!options.sandboxConfig?.features?.fogOfWar; this.reparationRate = 1.8; this.turnOrder = 'first'; this.recruitWait = 0; this.supplyByInfrastructure = true; this.row = 0;
     this.llm = { enabled: false, countries: new Set(), gameId: newBridgeGameId(), url: bridgeUrlFor(E.state.bridgeUrl), countryList: [] };
     this.scroll = 0; this.gesture = null;
     this.isConquest = stage.startsWith('conquest_') || !!options.sandbox; this.freeDiplomacy = !!options.freeDiplomacy || !!options.sandbox;

@@ -1,3 +1,5 @@
+import { customCardReason } from '../sandbox_actions.js';
+import { applyAction, evaluateCondition } from './scenario_events.js';
 import { supplyCapacity } from '../supply.js';
 // Air-force card paths ported from orig_easytech.so:
 // CCountry::CheckCardTargetArea (RVA 0x48348), GetMinDstToAirport (0x47d14),
@@ -69,6 +71,7 @@ register('useCard', {
     if (country !== game.activeCountry) return 'not-active-country';
     const card = game.findCard(cmd.card, country);
     if (!card) return 'unknown-card';
+    if(card.custom){const why=customCardReason(game,card,cmd,country);if(why)return why;if((card.conditions||[]).some(c=>!evaluateCondition(game,c)))return 'conditions-not-met';return cmd.pendingPurchase?game.whyNot(card,country):country!==game.player||!game.hand[card.id]?'no-card':(game.cardCooldowns[card.id]||0)>0?'cooldown':null;}
     const type = AIR_CARD_TYPES.get(card.id);
     const armyType = ARMY_CARD_TYPES.get(card.id), development = DEVELOPMENT_CARDS.get(card.id), tactic = TACTIC_CARDS.get(card.id);
     const isPending = !!cmd.pendingPurchase;
@@ -125,6 +128,7 @@ register('useCard', {
     const country = cmd.country || game.activeCountry;
     const card = game.findCard(cmd.card, country), type = AIR_CARD_TYPES.get(card.id);
     const area = game.stage.st(cmd.target);
+    if(card.custom){consumeCard(game,card,cmd.target,cmd.pendingPurchase,country);const resolve=effect=>{const action=structuredClone(effect);if(action.area==='target')action.area=cmd.target;if(action.country==='actor')action.country=country;if(action.country==='target')action.country=area?.country;if(action.actions)action.actions=action.actions.map(resolve);return action;};for(const effect of card.effects)applyAction(game,resolve(effect));return;}
     const armyType = ARMY_CARD_TYPES.get(card.id), development = DEVELOPMENT_CARDS.get(card.id), tactic = TACTIC_CARDS.get(card.id);
     if (armyType || development || tactic || card.id === 26 || card.id === 27) {
       if (armyType) {
@@ -153,7 +157,7 @@ register('useCard', {
           const info = game.stage.countries.get(country), oldMaxHp = army.maxHp;
           info.commanderAlive = true;
           army.hp = Math.min(oldMaxHp, army.hp + commanderInstantRecovery(info.commanderLevel));
-          const def = game.stage.armyDef(country, army.type);
+          const def = game.stage.armyDef(country, army);
           army.maxHp = armyMaxHp(def.maxHp || 100, army.level, info.commanderLevel, true);
           army.hp = Math.min(army.maxHp, Math.trunc(army.hp * army.maxHp / oldMaxHp));
         }

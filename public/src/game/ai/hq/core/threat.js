@@ -115,7 +115,7 @@ export function holdStrength(model, areaId, extraUnits = [], occupants = null) {
   for (const army of allArmies) {
     const hp = army.hp ?? 100;
     totalHp += hp;
-    const def = model.st.armyDef ? model.st.armyDef(army.country || model.me, army.type) : {};
+    const def = model.st.armyDef ? model.st.armyDef(army.country || model.me, army) : {};
     const baseDefence = def.defence ?? def.cost?.defence ?? 2;
     totalDef += baseDefence + (army.level || 0);
   }

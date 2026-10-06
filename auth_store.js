@@ -25,7 +25,9 @@ const userFor = req => {
   if (!token) return null;
   return db.prepare('SELECT users.id, users.username FROM sessions JOIN users ON users.id=sessions.user_id WHERE token_hash=? AND expires_at>?').get(hash(token),Date.now()) || null;
 };
+const assetLibrary = require('./asset_library.js')(db,userFor,json);
 function handle(req,res,urlPath) {
+  if (assetLibrary(req,res,urlPath)) return true;
   if (!urlPath.startsWith('/api/auth/') && !['/api/profile','/api/saves'].includes(urlPath)) return false;
   (async () => {
     try {

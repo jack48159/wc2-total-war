@@ -1,3 +1,6 @@
+import { installWorkshop } from './sandbox_workshop.js';
+import { showAssetLibrary, syncAssetRefs } from './sandbox_assets.js';
+import { authToken } from '../core/auth.js';
 import { SANDBOX_CONDITIONS, COMPARISONS, defaultCondition } from '../game/sandbox_conditions.js';
 import { showSandboxShare } from './sandbox_share.js';
 import { E } from '../core/index.js';
@@ -27,15 +30,16 @@ export class SandboxEditor extends Page {
     }
     this.id=this.saved?.id || crypto.randomUUID();
     this.eventDraft=clone(this.saved?.eventDraft || null);
+    this.works=await sandboxLibrary();
     this.allCountries=clone((await E.json('data/stages/sandbox_world.json')).countries);
     loadSandboxStyles();
     this.tab='territory';this.tool='inspect';this.country=this.config.player;this.undoStack=[];this.redoStack=[];this.unit="infantry";this.pointers=new Map();
     this.root=document.createElement('div');this.root.className='mp-screen sb-screen sb-editor';this.root.dataset.panelOpen='true';
     this.header=element(this.root,'header');element(this.header,'h1','沙盒 · 战役编辑');
-    this.button(this.header,'返回',()=>this.onBack());this.button(this.header,'保存',()=>this.save(true));const start=this.button(this.header,'开始作战',()=>this.start());start.classList.add('is-primary');
+    this.button(this.header,'返回',()=>this.onBack());this.button(this.header,'素材库',()=>showAssetLibrary());this.button(this.header,'保存',()=>this.save(true));const start=this.button(this.header,'开始作战',()=>this.start());start.classList.add('is-primary');
     this.button(this.header,'操作面板',()=>{this.root.dataset.panelOpen=this.root.dataset.panelOpen==='true'?'false':'true';this.drawMap();});
     this.nav=element(this.root,'nav','','sb-tabs');
-    const tabs=[['country','国家'],['territory','领土'],['army','部队'],['diplomacy','外交'],['events','事件'],['review','预览']];
+    const tabs=[['country','国家'],['territory','领土'],['army','部队'],['diplomacy','外交'],['events','事件'],['objectives','目标'],['units','兵种创作'],['cards','卡牌创作'],['campaign','连续战役'],['review','预览']];
     for(const [id,name]of tabs){const b=this.button(this.nav,name,()=>{this.tab=id;this.tool='inspect';this.moving=null;this.root.dataset.panelOpen='true';this.renderPanel();});b.dataset.tab=id;}
     const work=element(this.root,'div','','workspace'),map=element(work,'div','','map');this.canvas=element(map,'canvas');this.aside=element(work,'aside');
     const mapTools=element(map,'div','','sb-map-tools');this.button(mapTools,'＋',()=>this.zoomBy(1.4));this.button(mapTools,'－',()=>this.zoomBy(1/1.4));this.button(mapTools,'全图',()=>{this.zoom=1;this.offset={x:0,y:0};this.drawMap();});
@@ -54,7 +58,7 @@ export class SandboxEditor extends Page {
   countryItems(neutral=false){return [...(neutral?[['','无主']]:[]),...this.config.countries.map(c=>[c.id,this.names[c.id]?.name||c.id])];}
   message(text){this.status.textContent=text;}
   changed(){this.renderPanel();this.drawMap();clearTimeout(this.saveTimer);this.saveTimer=setTimeout(()=>this.save().catch(e=>this.message('保存失败：'+e.message)),350);}
-  save(explicit=false){clearTimeout(this.saveTimer);const record={id:this.id,name:this.config.name||'未命名沙盒',updatedAt:Date.now(),config:clone(this.config),eventDraft:clone(this.eventDraft || null)};this.writeQueue=this.writeQueue.catch(()=>{}).then(async()=>{const library=await sandboxLibrary(),index=library.findIndex(r=>r.id===record.id);if(index<0)library.unshift(record);else library[index]=record;await localWrite('sandbox-designs',library);this.message(explicit?'作品已保存':'修改已自动保存');});return this.writeQueue;}
+  save(explicit=false){clearTimeout(this.saveTimer);const record={id:this.id,name:this.config.name||'未命名沙盒',updatedAt:Date.now(),config:clone(this.config),eventDraft:clone(this.eventDraft || null)};this.writeQueue=this.writeQueue.catch(()=>{}).then(async()=>{const library=await sandboxLibrary(),index=library.findIndex(r=>r.id===record.id);if(index<0)library.unshift(record);else library[index]=record;await localWrite('sandbox-designs',library);if(authToken()){const refKey=JSON.stringify([record.name,record.config]);if(this.lastRefKey!==refKey){await syncAssetRefs(record.id,record.name,record.config);this.lastRefKey=refKey;}}this.message(explicit?'作品已保存':'修改已自动保存');});return this.writeQueue;}
   draw(){}
   key(e){if(e.key!=="Escape")return;if(this.moving||this.tool!=="inspect"){this.moving=null;this.tool="inspect";this.renderPanel();}else this.onBack();}
   async onBack(){await this.save();E.go('sandbox');}
@@ -71,7 +75,7 @@ export class SandboxEditor extends Page {
   mapPointerMove(e){if(!this.pointers.has(e.pointerId))return;const p=this.point(e);this.pointers.set(e.pointerId,p);if(this.pinch&&this.pointers.size>=2){const [a,b]=[...this.pointers.values()],mid={x:(a.x+b.x)/2,y:(a.y+b.y)/2};this.zoom=Math.max(.6,Math.min(24,this.pinch.zoom*Math.hypot(a.x-b.x,a.y-b.y)/Math.max(1,this.pinch.distance)));this.offset={x:mid.x-this.pinch.world.x*this.scale(),y:mid.y-this.pinch.world.y*this.scale()};this.drawMap();return;}if(!this.drag)return;const dx=p.x-this.drag.p.x,dy=p.y-this.drag.p.y;if(Math.hypot(dx,dy)>5)this.drag.moved=true;if(['paint','neutral','exclude'].includes(this.tool)&&this.tab==='territory'){if(this.drag.moved){const from=this.drag.lastPaint||this.drag.p,steps=Math.max(1,Math.ceil(Math.hypot(p.x-from.x,p.y-from.y)/8));for(let i=0;i<=steps;i++)this.paintPoint({x:from.x+(p.x-from.x)*i/steps,y:from.y+(p.y-from.y)*i/steps},false);this.drag.lastPaint=p;this.drawMap();}return;}if(this.drag.moved){this.offset={x:this.drag.offset.x+dx,y:this.drag.offset.y+dy};this.drawMap();}}
   mapPointerUp(e,cancel=false){this.pointers.delete(e.pointerId);if(!cancel&&!this.pinch&&this.drag&&!this.drag.moved&&['paint','neutral','exclude'].includes(this.tool)&&this.tab==='territory')this.paintPoint(this.point(e));if(this.pinch){if(!this.pointers.size)this.pinch=null;this.drag=null;return;}if(this.drag?.undo){this.changed();}else if(!cancel&&this.drag&&!this.drag.moved)this.mapTap(this.point(e));this.drag=null;}
   paintPoint(p,draw=true){if(!this.drag)return;const world=this.toWorld(p),id=World.areaAt(world.x,world.y);if(id<0||this.drag.painted.has(id))return;this.drag.painted.add(id);if(!this.drag.undo){this.recordUndo();this.drag.undo=true;}let area=this.config.areas.find(a=>a.id===id);if(this.tool==='exclude'){this.config.areas=this.config.areas.filter(a=>a.id!==id);}else{if(!area){area={id,country:null,construction:'none',installation:'none',level:0,armies:[]};this.config.areas.push(area);}const owner=this.tool==='neutral'?null:this.country;if(area.country!==owner){area.country=owner;if(!owner)area.armies=[];}}this.selected=id;if(draw)this.drawMap();this.message(`已涂选 ${this.drag.painted.size} 个地块 · 松手保存`);}
-  mapTap(p){const world=this.toWorld(p),id=World.areaAt(world.x,world.y);if(id<0)return;this.selected=id;const area=this.config.areas.find(a=>a.id===id);try{if(this.tab==='army'&&this.tool==='deploy'){if(!area||area.country!==this.country)throw Error('请部署在选中国家的领土上');const sea=World.areas[id].f===1,navy=['destroyer','cruiser','battleship','aircraftcarrier'].includes(this.unit);if(sea!==navy)throw Error(sea?'海域请选择海军':'陆地请选择陆军');if(area.armies.length>=(World.areas[id].unitCapacity||4))throw Error('此地块驻军已满');this.recordUndo();area.armies.push({type:this.unit||'infantry',level:this.level||1,cards:0});this.changed();this.message(`${labels[this.unit||'infantry']}已部署 · 可继续点击地图`);return;}if(this.tab==='army'&&this.moving){const from=this.config.areas.find(a=>a.id===this.moving.area),army=from?.armies[this.moving.index];if(!army)throw Error('待移动部队已不存在');if(!area||area.country!==from.country)throw Error('请选择本国地块');if(area===from)throw Error('请选择另一个地块');if(area.armies.length>=(World.areas[id].unitCapacity||4))throw Error('目标驻军已满');if(['destroyer','cruiser','battleship','aircraftcarrier'].includes(army.type)!==(World.areas[id].f===1))throw Error('海陆兵种与目标地块不匹配');this.recordUndo();area.armies.push(from.armies.splice(this.moving.index,1)[0]);this.moving=null;this.tool='inspect';this.changed();this.message('部队已移动');return;}if(this.tab==='army'&&area?.armies.length){const mapArea=World.areas[id];let nearest=0,distance=Infinity;area.armies.forEach((army,i)=>{const position=this.armyPoint(mapArea,i),d=Math.hypot(world.x-position[0],world.y-position[1]);if(d<distance){distance=d;nearest=i;}});this.activeArmy=nearest;this.root.dataset.panelOpen='true';}this.renderPanel();this.drawMap();}catch(error){this.message(error.message);}}
+  mapTap(p){const world=this.toWorld(p),id=World.areaAt(world.x,world.y);if(id<0)return;this.selected=id;const area=this.config.areas.find(a=>a.id===id);try{if(this.tab==='army'&&this.tool==='deploy'){if(!area||area.country!==this.country)throw Error('请部署在选中国家的领土上');const sea=World.areas[id].f===1,navy=['destroyer','cruiser','battleship','aircraftcarrier'].includes(this.unit);if(sea!==navy)throw Error(sea?'海域请选择海军':'陆地请选择陆军');if(area.armies.length>=(World.areas[id].unitCapacity||4))throw Error('此地块驻军已满');this.recordUndo();area.armies.push({type:this.unit||'infantry',templateId:this.templateId,level:this.level||1,cards:0});this.changed();this.message(`${labels[this.unit||'infantry']}已部署 · 可继续点击地图`);return;}if(this.tab==='army'&&this.moving){const from=this.config.areas.find(a=>a.id===this.moving.area),army=from?.armies[this.moving.index];if(!army)throw Error('待移动部队已不存在');if(!area||area.country!==from.country)throw Error('请选择本国地块');if(area===from)throw Error('请选择另一个地块');if(area.armies.length>=(World.areas[id].unitCapacity||4))throw Error('目标驻军已满');if(['destroyer','cruiser','battleship','aircraftcarrier'].includes(army.type)!==(World.areas[id].f===1))throw Error('海陆兵种与目标地块不匹配');this.recordUndo();area.armies.push(from.armies.splice(this.moving.index,1)[0]);this.moving=null;this.tool='inspect';this.changed();this.message('部队已移动');return;}if(this.tab==='army'&&area?.armies.length){const mapArea=World.areas[id];let nearest=0,distance=Infinity;area.armies.forEach((army,i)=>{const position=this.armyPoint(mapArea,i),d=Math.hypot(world.x-position[0],world.y-position[1]);if(d<distance){distance=d;nearest=i;}});this.activeArmy=nearest;this.root.dataset.panelOpen='true';}this.renderPanel();this.drawMap();}catch(error){this.message(error.message);}}
   armyPoint(area,index){const p=area.pts?.[index]||area.pts?.[0]||[area.x+area.w/2,area.y+area.h/2];return p;}
   scale(){return Math.min(this.canvas.clientWidth/MAP_W,this.canvas.clientHeight/MAP_H)*this.zoom;}
   zoomBy(factor){const p={x:this.canvas.clientWidth/2,y:this.canvas.clientHeight/2},before=this.toWorld(p);this.zoom=Math.max(.6,Math.min(24,this.zoom*factor));this.offset={x:p.x-before.x*this.scale(),y:p.y-before.y*this.scale()};this.drawMap();}
@@ -84,13 +88,17 @@ export class SandboxEditor extends Page {
     if(this.tab==='army')this.renderTroops(panel);
     if(this.tab==='diplomacy')this.renderDiplomacy(panel);
     if(this.tab==='events')this.renderEvents(panel);
+    if(this.tab==='objectives')this.renderObjectives(panel);
+    if(this.tab==='campaign')this.renderCampaign(panel);
+    if(this.tab==='units')this.renderCustomUnits(panel);
+    if(this.tab==='cards')this.renderCustomCards(panel);
     if(this.tab==='review')this.renderReview(panel);
     panel.scrollTop=scroll;
   }
   countryPicker(parent,selected,run,countries=this.config.countries){const grid=element(parent,'div','','sb-flag-grid');for(const c of countries)flagButton(grid,c,this.names[c.id]?.name||c.id,c.id===selected,()=>{run(c.id);this.renderPanel();this.drawMap();});return grid;}
   tools(parent,items){const row=element(parent,'div','','sb-tool-row');for(const [id,name,run]of items){const b=this.button(row,name,run||(()=>{this.tool=id;this.renderPanel();}));b.classList.toggle('is-active',this.tool===id);}return row;}
   renderCountries(panel){this.text(panel,'参战国家','h3');this.countryPicker(panel,this.country,id=>this.country=id);const c=this.config.countries.find(c=>c.id===this.country)||this.config.countries[0];this.country=c.id;
-    this.text(panel,this.names[c.id]?.name||c.id,'h3');this.button(panel,this.config.player===c.id?'当前玩家国家':'设为玩家国家',()=>{this.config.player=c.id;this.changed();});
+    this.text(panel,this.names[c.id]?.name||c.id,'h3');this.select(panel,'国家入场状态',[['active','开局参战'],['dormant','等待事件激活']],c.dormant?'dormant':'active',v=>{if(v==='dormant'&&c.id===this.config.player)throw Error('玩家国家必须开局参战');c.dormant=v==='dormant';});this.button(panel,this.config.player===c.id?'当前玩家国家':'设为玩家国家',()=>{this.config.player=c.id;this.changed();});
     this.field(panel,'开局金币',c.money,v=>c.money=Math.max(0,v),'number');this.field(panel,'开局工业',c.industry,v=>c.industry=Math.max(0,v),'number');
     this.button(panel,'移除此国',()=>{if(this.config.countries.length<=2)throw Error('至少保留两个参战国');this.recordUndo();this.config.countries=this.config.countries.filter(x=>x.id!==c.id);for(const a of this.config.areas)if(a.country===c.id){a.country=null;a.armies=[];}for(const key of Object.keys(this.config.diplomacy.relations||{}))if(key.split('_').includes(c.id))delete this.config.diplomacy.relations[key];if(this.config.player===c.id)this.config.player=this.config.countries[0].id;this.country=this.config.player;this.first=null;this.second=null;this.changed();});
     const extras=this.allCountries.filter(x=>!this.config.countries.some(c=>c.id===x.id));if(extras.length){this.text(panel,'增添参战国','h3');this.countryPicker(panel,null,id=>{this.recordUndo();this.config.countries.push(clone(extras.find(c=>c.id===id)));this.country=id;this.changed();},extras);}
@@ -101,10 +109,11 @@ export class SandboxEditor extends Page {
     this.button(panel,'收起面板，编辑地图',()=>{this.root.dataset.panelOpen='false';this.drawMap();});
   }
   renderTroops(panel){this.text(panel,'部队部署','h3');this.countryPicker(panel,this.country,id=>this.country=id);this.text(panel,'选择兵种后直接点地图部署；点已有部队可移动或移除。');const grid=element(panel,'div','','sb-unit-grid');
-    for(const type of SANDBOX_UNITS){const b=this.button(grid,labels[type],()=>{this.unit=type;this.tool='deploy';this.moving=null;this.renderPanel();this.message('点击本国地块部署 '+labels[type]);});b.classList.toggle('is-active',this.unit===type&&this.tool==='deploy');}
+    for(const type of SANDBOX_UNITS){const b=this.button(grid,labels[type],()=>{this.unit=type;this.templateId=null;this.tool='deploy';this.moving=null;this.renderPanel();this.message('点击本国地块部署 '+labels[type]);});b.classList.toggle('is-active',this.unit===type&&!this.templateId&&this.tool==='deploy');}
+    for(const u of this.features().units||[]){const b=this.button(grid,u.name,()=>{this.unit=u.base;this.templateId=u.id;this.tool='deploy';this.moving=null;this.renderPanel();});b.classList.toggle('is-active',this.templateId===u.id&&this.tool==='deploy');}
     this.field(panel,'部署等级（1—5）',this.level||1,v=>this.level=Math.min(5,Math.max(1,Math.round(v))),'number');this.tools(panel,[['inspect','选择部队'],['deploy','连续部署']]);
     if(this.moving)this.text(panel,'已选中待移动部队，直接点击目标地块。');
-    const area=this.config.areas.find(a=>a.id===this.selected);if(area?.armies.length){this.text(panel,'地块 '+area.id+' 的驻军','h3');for(const [index,army]of area.armies.entries()){const card=element(panel,'div','','sb-event-card'+(index===this.activeArmy?' is-selected':''));element(card,'h4',labels[army.type]+' · '+army.level+'级');const row=element(card,'div','','row');this.button(row,'移动',()=>{this.moving={area:area.id,index};this.tool='inspect';this.root.dataset.panelOpen='false';this.message('点击本国目标地块移动部队');});this.button(row,'移除',()=>{this.recordUndo();area.armies.splice(index,1);this.changed();});}}
+    const area=this.config.areas.find(a=>a.id===this.selected);if(area?.armies.length){this.text(panel,'地块 '+area.id+' 的驻军','h3');for(const [index,army]of area.armies.entries()){const card=element(panel,'div','','sb-event-card'+(index===this.activeArmy?' is-selected':''));element(card,'h4',(this.features().units?.find(u=>u.id===army.templateId)?.name||labels[army.type])+' · '+army.level+'级');const row=element(card,'div','','row');this.button(row,'移动',()=>{this.moving={area:area.id,index};this.tool='inspect';this.root.dataset.panelOpen='false';this.message('点击本国目标地块移动部队');});this.button(row,'移除',()=>{this.recordUndo();area.armies.splice(index,1);this.changed();});}}
     this.button(panel,'收起面板，编辑地图',()=>{this.root.dataset.panelOpen='false';this.drawMap();});
   }
   renderDiplomacy(panel){this.text(panel,'旗帜外交','h3');this.text(panel,'先选两面国家旗帜，再决定两国的开局关系。');const valid=id=>this.config.countries.some(c=>c.id===id);if(!valid(this.first))this.first=this.config.player;if(!valid(this.second)||this.second===this.first)this.second=this.config.countries.find(c=>c.id!==this.first)?.id;
@@ -141,10 +150,10 @@ export class SandboxEditor extends Page {
         if(c.type!=='stabilityBelow')this.select(card,'比较方式',COMPARISONS,c.op||'eq',v=>c.op=v);
         this.field(card,c.type==='round'?'回合数':'门槛数值',c.value,v=>c.value=Math.max(c.type==='round'?1:0,Math.round(v)),'number');
       }
-      if(['eventResolved','decisionChosen'].includes(c.type)){
-        const candidates=this.config.scenarioEvents.definitions.filter(d=>d.id!==event.id&&(c.type!=='decisionChosen'||d.type==='decision'));
+      if(['eventResolved','decisionChosen','campaignDecision'].includes(c.type)){
+        const candidates=c.type==='campaignDecision'?(this.works||[]).flatMap(w=>(w.config.scenarioEvents?.definitions||[]).filter(d=>d.type==='decision').map(d=>({...d,title:w.name+' · '+d.title}))):this.config.scenarioEvents.definitions.filter(d=>d.id!==event.id&&(c.type!=='decisionChosen'||d.type==='decision'));
         this.select(card,'前置事件',[['','请选择'],...candidates.map(d=>[d.id,d.title])],c.eventId,v=>{c.eventId=v;c.choiceId='';});
-        if(c.type==='decisionChosen'){const previous=candidates.find(d=>d.id===c.eventId);this.select(card,'已选择的选项',[['','请选择'],...(previous?.choices||[]).map(ch=>[ch.id,ch.text])],c.choiceId,v=>c.choiceId=v);}
+        if(c.type==='decisionChosen'||c.type==='campaignDecision'){const previous=candidates.find(d=>d.id===c.eventId);this.select(card,'已选择的选项',[['','请选择'],...(previous?.choices||[]).map(ch=>[ch.id,ch.text])],c.choiceId,v=>c.choiceId=v);}
       }
       this.button(card,'移除此条件',()=>{group.conditions.splice(index,1);this.changed();});
     }
@@ -152,32 +161,13 @@ export class SandboxEditor extends Page {
   }
   renderEvents(panel){this.text(panel,'剧情与决策','h3');const defs=this.config.scenarioEvents.definitions;for(const e of defs){const card=element(panel,'div','','sb-event-card');element(card,'h4',e.title);element(card,'p',`${this.conditionSummary(e)} · ${e.type==='decision'?'分支决策':'剧情通知'} · ${this.names[e.targetCountry]?.name||e.targetCountry}`);element(card,'p',e.text);if(e.type==='decision')element(card,'p',e.choices.map(c=>c.text).join(' / '));const row=element(card,'div','','row');this.button(row,'编辑事件',()=>{this.eventDraft=clone(e);this.changed();});this.button(row,'删除',()=>{this.recordUndo();defs.splice(defs.indexOf(e),1);this.changed();});}
     this.button(panel,'新增剧情 / 决策',()=>{this.eventDraft={id:crypto.randomUUID(),type:'notice',title:'新剧情',text:'',targetCountry:this.config.player,trigger:'roundBegin',conditions:[{type:'round',op:'gte',value:1}],actions:[],choices:[{id:'accept',text:'接受',actions:[]},{id:'reject',text:'拒绝',actions:[]}]};this.changed();});
-    const e=this.eventDraft;if(!e)return;this.field(panel,'剧情标题',e.title,v=>e.title=v);this.field(panel,'剧情内容',e.text,v=>e.text=v,'textarea');this.renderConditions(panel,e);this.select(panel,'接收国家',this.countryItems(),e.targetCountry,v=>e.targetCountry=v);this.select(panel,'类型',[['notice','剧情通知'],['decision','分支决策']],e.type,v=>e.type=v);
-    this.text(panel,'效果可使用金币、工业、稳定度、外交、增援和领土转移。');const actions=(parent,title,array,set)=>{
-      this.text(parent,title,'h4');
-      const effects=[['changeMoney','金币'],['changeIndustry','工业'],['changeStability','稳定度'],['setDiplomacy','外交关系'],['spawnArmy','增援部队'],['captureArea','领土转移']];
-      for(const [index,action] of array.entries()){
-        this.select(parent,'效果类型',effects,action.type,v=>{Object.keys(action).forEach(k=>delete action[k]);Object.assign(action,{type:v,country:e.targetCountry,amount:100,area:this.selected??this.config.areas[0].id,armyType:'infantry',first:e.targetCountry,second:this.config.countries.find(c=>c.id!==e.targetCountry)?.id,state:'peace'});});
-        if(action.type==='setDiplomacy'){
-          this.select(parent,'国家一',this.countryItems(),action.first,v=>action.first=v);
-          this.select(parent,'国家二',this.countryItems(),action.second,v=>action.second=v);
-          this.select(parent,'新关系',[['war','战争'],['peace','和平'],['alliance','同盟']],action.state,v=>action.state=v);
-        }else{
-          this.select(parent,'目标国家',this.countryItems(),action.country||e.targetCountry,v=>action.country=v);
-          if(['spawnArmy','captureArea'].includes(action.type))this.field(parent,'目标地块编号',action.area,v=>action.area=Math.round(v),'number');
-          else this.field(parent,'变化数值',action.amount,v=>action.amount=v,'number');
-          if(action.type==='spawnArmy'){
-            this.select(parent,'增援兵种',SANDBOX_UNITS.map(t=>[t,labels[t]]),action.armyType,v=>action.armyType=v);
-            this.field(parent,'增援等级',action.level||1,v=>action.level=Math.min(5,Math.max(1,Math.round(v))),'number');
-          }
-        }
-        this.button(parent,'移除此效果',()=>{array.splice(index,1);this.changed();});
-      }
-      this.button(parent,'添加效果',()=>{array.push({type:'changeMoney',country:e.targetCountry,amount:100});this.changed();});
-    };
+    const e=this.eventDraft;if(!e)return;this.chooseImage(panel,'事件插图',e);this.field(panel,'剧情标题',e.title,v=>e.title=v);this.field(panel,'剧情内容',e.text,v=>e.text=v,'textarea');this.renderConditions(panel,e);this.select(panel,'接收国家',this.countryItems(),e.targetCountry,v=>e.targetCountry=v);this.select(panel,'类型',[['notice','剧情通知'],['decision','分支决策']],e.type,v=>e.type=v);
+    this.text(panel,'效果可使用金币、工业、稳定度、外交、增援和领土转移。');const actions=(parent,title,array,set)=>this.editEffects(parent,title,array,e);
     if(e.type==='notice')actions(panel,'通知效果',e.actions,a=>e.actions=a);
     else {for(const choice of e.choices){this.field(panel,'选项文字',choice.text,v=>choice.text=v);actions(panel,'选项效果',choice.actions,a=>choice.actions=a);}this.button(panel,'添加决策选项',()=>{e.choices.push({id:crypto.randomUUID(),text:'新选项',actions:[]});this.changed();});}
     this.select(panel,'快捷效果',[['changeMoney','金币'],['changeIndustry','工业'],['changeStability','稳定度']],this.effectType||'changeMoney',v=>this.effectType=v);this.field(panel,'效果数值（可为负数）',this.effectAmount??100,v=>this.effectAmount=v,'number');this.button(panel,e.type==='notice'?'加入通知效果':'加入第一个选项效果',()=>{const target=e.type==='notice'?e.actions:e.choices[0].actions;target.push({type:this.effectType||'changeMoney',country:e.targetCountry,amount:this.effectAmount??100});this.changed();});
     this.button(panel,'保存这条剧情',()=>{const next=clone(this.config),index=next.scenarioEvents.definitions.findIndex(x=>x.id===e.id);if(index<0)next.scenarioEvents.definitions.push(clone(e));else next.scenarioEvents.definitions[index]=clone(e);validateSandbox(next);this.config=next;this.eventDraft=null;this.changed();});
   }
 }
+
+installWorkshop(SandboxEditor);

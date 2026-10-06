@@ -1,3 +1,4 @@
+import { objectiveResult } from '../sandbox_features.js';
 // Country defeat and battle result, following CCountry::IsConquested,
 // BeConquestedBy and CGameManager::CheckAndSetResult in the native project.
 import { EV } from '../events.js';
@@ -115,6 +116,7 @@ export function checkVictory(game, victor = game.activeCountry) {
     finish(game, 'defeat');
     return;
   }
+  const objective=objectiveResult(game);if(objective){if(!objective.pending)finish(game,objective.result,null);return;}
   const playerAlliance = nativeAlliance(stage.alliance(game.player));
   const enemyAlive = stage.data.countries.some(country => {
     if (country.eliminated || country.id === game.player) return false;

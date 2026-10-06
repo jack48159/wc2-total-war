@@ -65,6 +65,7 @@ export function visibilityForCountry(game, country) {
       for (const next of neighbours(id)) if (sea(next) && !seen.has(next)) { seen.add(next); queue.push([next, distance + 1]); }
     }
   }
+  for(const intel of game.sandboxState?.intel?.[country]||[]){if(intel.until<game.round)continue;const queue=[[intel.area,0]],seen=new Set();while(queue.length){const [id,d]=queue.shift();if(seen.has(id))continue;seen.add(id);add(id);if(d<(intel.range||0))for(const next of neighbours(id))queue.push([next,d+1]);}}
   return saveView(game, country, 'visible', visible);
 }
 
@@ -106,6 +107,7 @@ export function countryGameView(game, country) {
   const data = { ...source.data, areas, countries: source.data.countries.map(value => ({ ...value, traits: value.traits?.slice() })) };
   if (data.scenarioEvents) data.scenarioEvents = { history: data.scenarioEvents.history, variables: data.scenarioEvents.variables };
   delete data.events;
+  if(data.sandboxFeatures)data.sandboxFeatures={...data.sandboxFeatures,campaign:undefined};
   const facade = new Proxy(source, { get(target, key) {
     if (key === 'areas') return areas;
     if (key === 'data') return data;
@@ -122,6 +124,8 @@ export function countryGameView(game, country) {
     if (key === 'describe') return () => describeCountry(game, country, now, memory);
     if (key === 'snapshot' || key === 'apply' || key === 'describeFull' || key === 'getGameLog' || key === 'visibilityMemory' || key === 'gameLog' || key === 'log' || key === 'logSink' || key === 'spawnArmy' || key === 'initArmies' || key === 'on' || key === 'emit' || key === 'flushGameLog' || key === 'setDiplomaticRelation' || key === 'registerDiplomaticHostility' || key === 'registerDiplomaticOccupation' || key === 'recordWarLoss' || key === 'proposeDiplomacy' || key === 'setStability' || key === 'changeStability') return undefined;
     if (key === 'events' || key === 'controllers' || key === 'rng') return undefined;
+    if(key==='campaignRun')return null;
+    if(key==='sandboxState')return {intel:{[country]:structuredClone(target.sandboxState?.intel?.[country]||[])},falseIntel:{[country]:structuredClone(target.sandboxState?.falseIntel?.[country]||[])}};
     if (key === 'scenarioEvents') return target.scenarioEvents ? { history: target.scenarioEvents.history, variables: target.scenarioEvents.variables } : null;
     if (key === 'diplomacy') return target.diplomacy ? JSON.parse(JSON.stringify(target.diplomacy)) : null;
     if (key === 'hand' || key === 'medalLevels' || key === 'cardCooldowns') return { ...target[key] };

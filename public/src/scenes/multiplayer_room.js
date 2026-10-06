@@ -54,7 +54,7 @@ export class MultiplayerRoom {
     const mySpectator = room.spectators?.find(m=>m.userId===E.user?.id);
     const readyCount = room.members.filter(m => m.country).length;
     const allReady = room.members.length >= 1 && room.members.every(m => m.country);
-    const countries = stage?.countries || [];
+    const countries = this.room.settings?.customCountries?.filter(c=>!c.dormant) || stage?.countries || [];
 
     this.container.innerHTML = `
       <div class="mp-room-view">
@@ -70,7 +70,7 @@ export class MultiplayerRoom {
                 ${mySpectator?'<span class="mp-badge">只读观战</span>':''}
               </div>
               <h2 style="margin:0; font-size:24px; font-weight:900; text-transform:uppercase; letter-spacing:0.05em; color:var(--mp-text);">
-                ${this.escapeHtml(room.name)}
+                ${this.escapeHtml(room.name)}${room.settings.customContentEnabled?'<span class="mp-badge">自定义沙盒 · '+this.escapeHtml((room.settings.configHash||'').slice(0,8))+'</span>':''}
               </h2>
               <div style="color:var(--mp-accent); font-size:13px; margin-top:4px;">
                 ${room.started ? `对局进行中 · 第 ${room.round} 回合 · ${room.paused ? '⏸ 联机已暂停' : `🚩 ${getCountryName(room.activeCountry, stage)} 行动中`}` : `部署大厅 · ${room.members.length}/${room.settings.playerLimit} 名指挥官已就位 · ${readyCount}/${room.members.length} 人选定阵营`}
@@ -152,7 +152,7 @@ export class MultiplayerRoom {
             <div class="mp-host-controls">
               <div class="mp-filter-group">
                 <label for="mp-host-name">战区名称</label>
-                <input id="mp-host-name" class="mp-input mp-host-name" value="${this.escapeHtml(room.name)}" maxlength="40">
+                <input id="mp-host-name" class="mp-input mp-host-name" value="${this.escapeHtml(room.name)}${room.settings.customContentEnabled?'<span class="mp-badge">自定义沙盒 · '+this.escapeHtml((room.settings.configHash||'').slice(0,8))+'</span>':''}" maxlength="40">
               </div>
 
               <div class="mp-filter-group">
@@ -251,7 +251,7 @@ export class MultiplayerRoom {
 
   renderHostDiplomacyRows(stage) {
     if (!stage) return '';
-    const countries = stage.countries || [];
+    const countries = this.room.settings?.customCountries?.filter(c=>!c.dormant) || stage.countries || [];
     const rels = this.relations;
     const rows = [];
 
@@ -415,6 +415,7 @@ export class MultiplayerRoom {
         initialRelations: this.relations || {},
       };
 
+      if(this.room.settings.customContentEnabled)delete payload.initialRelations;
       await this.delegate.saveRoomSettings(payload);
       this.delegate.showToast('✓ 房间设置已保存');
     } catch (err) {

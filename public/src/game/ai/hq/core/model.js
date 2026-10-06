@@ -97,7 +97,7 @@ export function buildModel(gameInstance, country, opts = {}) {
   function getUnitObj(army, areaId) {
     if (!army) return null;
     const armyCountry = army.country || st.st(areaId)?.country || me;
-    const def = st.armyDef ? st.armyDef(armyCountry, army.type) : {};
+    const def = st.armyDef ? st.armyDef(armyCountry, army) : {};
     const maxHp = army.maxHp ?? armyMaxHp(def?.maxHp ?? army.hp ?? 100, army.level || 0);
     const movement = army.movement ?? def.movement ?? 0;
     const maxMovement = def.movement ?? movement;
@@ -266,7 +266,7 @@ export function buildModel(gameInstance, country, opts = {}) {
         return result;
       }
 
-      const budget = army.movement ?? st.armyDef(start.country, army.type).movement;
+      const budget = army.movement ?? st.armyDef(start.country, army).movement;
       if (budget <= 0) {
         reachCache.set(uId, result);
         return result;
@@ -287,7 +287,7 @@ export function buildModel(gameInstance, country, opts = {}) {
             return false;
           }
         }
-        if (ai && st.armyDef(start.country, army.type).transportUnit && area.country !== start.country) return false;
+        if (ai && st.armyDef(start.country, army).transportUnit && area.country !== start.country) return false;
         return true;
       };
 
@@ -346,7 +346,7 @@ export function buildModel(gameInstance, country, opts = {}) {
 
       const originId = unitInput.area?.id ?? unitInput.area ?? army.area;
       const uCountry = army.country || unitInput.area?.country || st.st(originId)?.country || me;
-      const def = st.armyDef ? st.armyDef(uCountry, army.type) : {};
+      const def = st.armyDef ? st.armyDef(uCountry, army) : {};
       const targets = [];
       const airstrikeRadius = game.airstrikeRadius ? game.airstrikeRadius() : DEFAULT_AIRSTRIKE_RADIUS;
       const isEnemyTarget = (tCountry) => getRelation(game, uCountry, tCountry) === 'enemy';

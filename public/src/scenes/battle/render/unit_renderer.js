@@ -654,6 +654,8 @@ export class UnitRenderer {
 
   drawUnit(ar, cc, s0, S0, country, controlled, count, areaId, bob = 0, shift = null) {
     const s = { x: s0.x + (shift?.x || 0), y: s0.y - bob + (shift?.y || 0) };
+    const template=this.stage.data.sandboxFeatures?.units?.find(u=>u.id===ar.templateId);this.customImages||=new Map();if(template?.imageUrl&&!this.customImages.has(template.imageUrl)){this.customImages.set(template.imageUrl,null);E.image(template.imageUrl).then(img=>this.customImages.set(template.imageUrl,img)).catch(()=>{});}
+
     const S = S0 * UNIT_SCALE, A = this.army, c = E.ctx;
     const fade = this.colorFade(country, relationColor(this.game, country));
     const n = E.clamp(count, 1, 4);
@@ -736,6 +738,8 @@ export class UnitRenderer {
     const info = () => {
       const tx = s.x + BAR_DX * S, ty = s.y + BAR_DY * S;
       if (this.hudOccludes(tx, ty, S)) return;
+      const customImage=template?.imageUrl&&this.customImages.get(template.imageUrl);if(customImage){const size=Math.max(28,100*S0);c.drawImage(customImage,s.x-size/2,s.y-size,size,size);}
+      if(template)E.text(template.name,s.x,s.y+12,{size:Math.max(12,18*S0),align:'center',color:'#f8ecc4',stroke:'#222',strokeW:2});
       this.drawInfoBlock(ar, tx, ty, S, controlled, cc, country);
     };
     if (this.infoQueue) this.infoQueue.push(info); else info();

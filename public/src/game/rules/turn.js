@@ -99,7 +99,7 @@ export function beginCountry(game, country, aiControlled = country !== game.play
   for (const area of game.stage.areas) {
     if (area.country !== country) continue;
     for (const army of area.armies) {
-      army.movement = game.stage.armyDef(country, army.type).movement || 0;
+      army.movement = game.stage.armyDef(country, army).movement || 0;
       if (area.sea && !isNavalCombatUnit(army.type)) army.movement = Math.min(1, army.movement);
       army.active = army.movement > 0;
     }

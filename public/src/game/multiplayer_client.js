@@ -34,7 +34,7 @@ export class MultiplayerClient {
     const url = new URL(apiUrl('/api/mp/live'));
     url.protocol = url.protocol === 'https:' ? 'wss:' : 'ws:';
     this.socket = new WebSocket(url);
-    this.socket.onopen = () => this.socket.send(JSON.stringify({ type: 'subscribe', roomId: this.roomId, token: authToken(), accessKey: GAME_ACCESS_KEY, spectator:this.spectator }));
+    this.socket.onopen = () => this.socket.send(JSON.stringify({ type: 'subscribe', roomId: this.roomId, token: authToken(), accessKey: GAME_ACCESS_KEY, spectator:this.spectator,version:window.WC2_CONFIG?.version }));
     this.socket.onmessage = event => {
       try {
         const packet = JSON.parse(event.data);

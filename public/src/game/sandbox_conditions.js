@@ -1,6 +1,6 @@
 // Shared condition catalog for the sandbox editor and authoritative engine.
 export const SANDBOX_CONDITIONS = [
- ['round','回合门槛'],['diplomaticRelation','两国当前关系'],['allianceFormed','两国结盟后'],['warDeclared','某国被宣战后'],['peaceSigned','两国停战后'],['countryDefeated','国家灭亡'],['countryCapitulated','国家投降后'],['areaOwner','地块归属'],['areaCaptured','地块被占领后'],['capitalLost','首都失守'],['atWar','国家处于战争'],['resource','资源门槛'],['armyCount','兵力数量门槛'],['territoryCount','陆地数量门槛'],['stabilityBelow','稳定度低于门槛'],['eventResolved','前置事件完成'],['decisionChosen','前置决策选择']
+ ['round','回合门槛'],['diplomaticRelation','两国当前关系'],['allianceFormed','两国结盟后'],['warDeclared','某国被宣战后'],['peaceSigned','两国停战后'],['countryDefeated','国家灭亡'],['countryCapitulated','国家投降后'],['areaOwner','地块归属'],['areaCaptured','地块被占领后'],['capitalLost','首都失守'],['atWar','国家处于战争'],['resource','资源门槛'],['armyCount','兵力数量门槛'],['territoryCount','陆地数量门槛'],['stabilityBelow','稳定度低于门槛'],['eventResolved','前置事件完成'],['decisionChosen','前置决策选择'],['campaignDecision','继承上一章决策']
 ];
 export const COMPARISONS = [['gte','不少于'],['lte','不多于'],['eq','等于'],['gt','大于'],['lt','小于']];
 export function defaultCondition(type, config) {
@@ -25,6 +25,7 @@ export function validateCondition(cond, config, depth=0) {
   if(cond.type==='round'&&(!Number.isInteger(cond.value)||cond.value<1))throw Error('事件触发条件无效，请检查国家、地块、门槛或前置事件');
   if(['round','resource','armyCount','territoryCount'].includes(cond.type)&&!COMPARISONS.some(([op])=>op===(cond.op||'eq')))throw Error('事件触发条件无效，请检查国家、地块、门槛或前置事件');
   if(cond.type==='resource'&&!['money','industry'].includes(cond.resource))throw Error('事件触发条件无效，请检查国家、地块、门槛或前置事件');
+  if(cond.type==='campaignDecision'&&(!cond.eventId||!cond.choiceId))throw Error('请选择上一章决策及选项');
   if(['eventResolved','decisionChosen'].includes(cond.type)){
     const event=config.scenarioEvents?.definitions?.find(e=>e.id===cond.eventId);
     if(!event)throw Error('事件触发条件无效，请检查国家、地块、门槛或前置事件');
@@ -57,7 +58,7 @@ export function evaluateSandboxCondition(game, cond) {
   if(cond.type==='areaCaptured')return !!seen['capture:'+cond.area+':'+cond.country];
   if(cond.type==='countryCapitulated')return !!seen['capitulated:'+cond.country];
   if(cond.type==='eventResolved')return game.scenarioEvents?.history?.includes(cond.eventId)||false;
-  if(cond.type==='decisionChosen')return game.scenarioEvents?.variables?.['decision_'+cond.eventId]===cond.choiceId;
+  if(cond.type==='decisionChosen'||cond.type==='campaignDecision')return game.scenarioEvents?.variables?.['decision_'+cond.eventId]===cond.choiceId;
   if(cond.type==='resource'){
     const owner=cond.country===game.player?game:game.stage.countries.get(cond.country);
     return !!owner&&compareCondition(owner[cond.resource]||0,cond);

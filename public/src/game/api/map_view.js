@@ -21,7 +21,7 @@ export function getMapView(game, country = game.player) {
       construction: seen ? area.construction : null, constructionLevel: seen ? area.level : null,
       installation: seen ? area.installation : null,
       stackCount: seen ? area.armies.length : null,
-      units: units.map(u => ({ id: u.id, type: u.type, hp: u.hp, maxHp: u.maxHp, movement: u.movement })),
+      units: units.map(u => ({ id: u.id, type: u.type, templateId:u.templateId,name:game.stage.data.sandboxFeatures?.units?.find(d=>d.id===u.templateId)?.name, hp: u.hp, maxHp: u.maxHp, movement: u.movement })),
       neighbours: (view.stage.adjE.get(area.id) || []).filter(id => enabled.has(id)) };
   });
   const links = nodes.flatMap(n => n.neighbours.filter(id => n.id < id).map(id => [n.id, id]));

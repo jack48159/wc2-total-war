@@ -34,7 +34,7 @@ export function candidateTasks(order, model, units, settled = new Set()) {
     const source = stage.st(origin);
     if (!source || unit.movement <= 0 || settled.has(unit.id)) continue;
     const attackMovement = Math.max(ATTACK_MOVEMENT,
-      stage.armyDef(unit.country || source.country, unit.type)?.attackCost ?? ATTACK_MOVEMENT);
+      stage.armyDef(unit.country || source.country, unit)?.attackCost ?? ATTACK_MOVEMENT);
     if (!source.armies.some(a => a.id === unit.id)) continue;
 
     const isPlayerObedient = Boolean(order.obedient);

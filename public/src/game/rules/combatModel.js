@@ -163,7 +163,7 @@ function friendlyComponent(stage, origin, alliance, skipId = -1) {
 }
 
 function armyPowerForEncirclement(stage, army, area) {
-  const def = stage.armyDef(area.country, army.type), dice = armyDiceCount(army.hp, army.maxHp);
+  const def = stage.armyDef(area.country, army), dice = armyDiceCount(army.hp, army.maxHp);
   const level = levelBonus(army), cards = Math.trunc(army.cards || 0);
   const attackBonus = level.attack + ((cards & 1) ? 1 : 0);
   const defenceBonus = level.defence + ((cards & 2) ? 1 : 0) +
@@ -581,7 +581,7 @@ export function upgradeArmy(stage, area, army) {
   // ResetMaxStrength(false) then scales current HP proportionally to new max.
   army.hp = Math.min(oldMaxHp, Math.max(0, army.hp || 0) + ARMY_LEVELS[nextLevel][3]);
   const country = stage.countries?.get(area.country);
-  const def = stage.armyDef(area.country, army.type);
+  const def = stage.armyDef(area.country, army);
   const newMaxHp = armyMaxHp(def.maxHp || 100, nextLevel, country?.commanderLevel, !!(army.cards & 8));
   army.hp = Math.min(newMaxHp, Math.trunc(newMaxHp * army.hp / oldMaxHp));
   army.maxHp = newMaxHp;
@@ -629,8 +629,8 @@ function nativeDamage(row, defenderDefence, attackerDef, defenderDef, defenderAr
 // post-rate layer.
 export function resolveAttack({ game, attacker, defender, fromArea, toArea, kind, rng, suppressDefenderDamage = false }) {
   const st = game.stage;
-  const attackerDef = st.armyDef(fromArea.country, attacker.type);
-  const defenderDef = st.armyDef(toArea.country, defender.type);
+  const attackerDef = st.armyDef(fromArea.country, attacker);
+  const defenderDef = st.armyDef(toArea.country, defender);
   const stackSplash = (attackerDef.stackSplashFalloff || 0) > 0;
   const canDefenderCounter = !stackSplash && canCounterByDefs(attackerDef, defenderDef, toArea);
 
@@ -776,8 +776,8 @@ function rowDistribution(army, def, bonus) {
 export function estimateAttack(game, attacker, defender, fromArea, toArea, attackerCountry = null, encirclementMemo = null) {
   const stage = game.stage;
   const attackingCountry = attackerCountry || attacker.country || fromArea.country;
-  const attackerDef = stage.armyDef(attackingCountry, attacker.type);
-  const defenderDef = stage.armyDef(toArea.country, defender.type);
+  const attackerDef = stage.armyDef(attackingCountry, attacker);
+  const defenderDef = stage.armyDef(toArea.country, defender);
   const attackerTactics = tacticalBonus(game, attackingCountry, attacker, { role: 'attack', fromAreaId: fromArea.id, toAreaId: toArea.id });
   const defenderTactics = tacticalBonus(game, toArea.country, defender, { role: 'defend', fromAreaId: toArea.id, toAreaId: fromArea.id });
   if (attacker.type === 'aircraftcarrier') {

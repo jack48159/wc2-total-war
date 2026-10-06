@@ -1,3 +1,6 @@
+import { loadSandboxStyles } from '../sandbox_ui.js';
+import { attachSandboxObjectives } from '../sandbox_play_ui.js';
+import { nextCampaignOptions } from '../../game/sandbox_features.js';
 // Battle scene: wires the pieces together and routes input. All state lives in `game` (src/game); drawing lives in
 // MapRenderer / UnitRenderer / BattleHud / Opening / PauseMenu / CardShop; this class only decides who gets what.
 import { E } from '../../core/index.js';
@@ -240,8 +243,8 @@ export class Battle extends Page {
       }
     }).catch(() => {});
   }
-  onShow() { this.leaving = false; Danmaku.keepAlive(); if (this.bridgeEnabled) { clearInterval(this.sayTimer); this.sayTimer = setInterval(() => this.pollSays(), 2500); } }
-  dispose() { this.leaving = true; this.aiTurnRunner?.dispose(); clearInterval(this.sayTimer); Danmaku.detach(); clearInterval(this.bridgeHeartbeat); if (Perf.extra === this.perfExtra) Perf.extra = null; this.mpClient?.close(); this.mpStatus?.remove(); this.mpTurnWarning?.remove(); this.mpSpectatorBar?.remove(); if (this.photo) this.setPhoto(false); if (this.l3d) { this.l3d.dispose(); this.l3d = null; } if (this.cam) this.cam.desk3d = this.cam.tilt = false; }
+  onShow() { if(this.game.sandboxCustom)loadSandboxStyles();attachSandboxObjectives(this);this.leaving = false; Danmaku.keepAlive(); if (this.bridgeEnabled) { clearInterval(this.sayTimer); this.sayTimer = setInterval(() => this.pollSays(), 2500); } }
+  dispose() { this.sandboxGoalButton?.remove();this.sandboxGoalOverlay?.remove();this.leaving = true; this.aiTurnRunner?.dispose(); clearInterval(this.sayTimer); Danmaku.detach(); clearInterval(this.bridgeHeartbeat); if (Perf.extra === this.perfExtra) Perf.extra = null; this.mpClient?.close(); this.mpStatus?.remove(); this.mpTurnWarning?.remove(); this.mpSpectatorBar?.remove(); if (this.photo) this.setPhoto(false); if (this.l3d) { this.l3d.dispose(); this.l3d = null; } if (this.cam) this.cam.desk3d = this.cam.tilt = false; }
   configureBridge() {
     if (!this.game || this.options.multiplayerRoom) return;
     clearInterval(this.bridgeHeartbeat);
@@ -1613,6 +1616,7 @@ export class Battle extends Page {
       review: () => { this.dialog = null; },
       replay: () => { this.replayView = new ReplayControls(this); },
       quit: () => E.go('home'),
+      next: nextCampaignOptions(this.game)?()=>{const options=nextCampaignOptions(this.game);E.go('battle',options.sandboxConfig.stage,null,options);}:null,
     });
   }
 

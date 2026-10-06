@@ -23,7 +23,7 @@ export class CardShop {
     this.scroll = E.clamp(Number(previous.scroll) || 0, 0, this.maxScroll());
     this.ensureSelectedVisible();
     this.drag = null;
-    this.images = {};
+    this.images = {};this.customImages={};for(const card of cards)if(card.imageUrl)E.image(card.imageUrl).then(img=>this.customImages[card.id]=img).catch(()=>{});
     this.bar = new ResourceBar(ui.ui1);
     Promise.all([
       E.image('assets/buycardbg-568h@2x.webp'),
@@ -212,6 +212,8 @@ export class CardShop {
       if (selected && atlas && atlas.card_shadow) { const sh = atlas.card_shadow, q = 2 * k; frame(sh, Ax - sh.rx * q, Ay - sh.ry * q, sh.w * q, sh.h * q); }
       frame(body, px, 51, 221 * k, 324 * k);
       frame(atlas && atlas[card.image], Ax, Ay + 14 * k, 202 * k, 234 * k);
+      if(this.customImages[card.id])c.drawImage(this.customImages[card.id],Ax,Ay+14*k,202*k,234*k);
+      if(card.custom)E.text(card.name,px+102,165,{size:26,bold:true,align:'center',color:'#f8ecc4',stroke:'#222',strokeW:3});
       if (card.id === 21) {
         E.text(['I', 'II', 'III', 'IV', 'V'][Math.min(4, g.tech)] || 'IV',
           px + 102, 184, { size: 100, bold: true, align: 'center', font: SERIF,
@@ -241,7 +243,7 @@ export class CardShop {
     if (selected) {
       E.text(E.strings[selected.name] || selected.name, 588, 498,
         { size: 29, align: 'center', color: '#30251a', font: SERIF });
-      E.wrap(E.strings[selected.intro] || '', 570, 22).forEach((line, index) => {
+      E.wrap(selected.custom?selected.description||selected.name:E.strings[selected.intro] || '', 570, 22).forEach((line, index) => {
         E.text(line, 313, 537 + index * 30, { size: 22, color: '#342719' });
       });
     }

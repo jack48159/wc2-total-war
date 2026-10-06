@@ -30,7 +30,7 @@ register('attack', {
       game.registerDiplomaticHostility(fromArea.country, toArea.country, 'attack');
     }
     if (attacker.type === 'aircraftcarrier') {
-      const carrierDef = st.armyDef(fromArea.country, attacker.type);
+      const carrierDef = st.armyDef(fromArea.country, attacker);
       const { roll, damage: baseDamage } = resolveAirStrike(st, fromArea.country, toArea, 1, game.medalLevels.airforce || 0, game.rng);
       const carrierTactics = tacticalBonus(game, fromArea.country, attacker, { role: 'attack', fromAreaId: cmd.from, toAreaId: cmd.to }), targetTactics = tacticalBonus(game, toArea.country, defender, { role: 'defend', fromAreaId: cmd.to, toAreaId: cmd.from });
       const damage = Math.trunc(baseDamage * carrierTactics.attack * targetTactics.received);
@@ -105,7 +105,7 @@ register('attack', {
     defender.facing = normaliseFacing(st, toArea.id, defender.facing);
     const attackerFacingBefore = attacker.facing, defenderFacingBefore = defender.facing;
     const attackerMovementBefore = attacker.movement, defenderMovementBefore = defender.movement;
-    const attackerDef = st.armyDef(fromArea.country, attacker.type);
+    const attackerDef = st.armyDef(fromArea.country, attacker);
     // CFight::ApplyResult consumes the construction-damage roll before the
     // unit damage is applied, so preserve that RNG order.
     let constructionReduced = false;
@@ -231,7 +231,7 @@ register('attack', {
     // a non-rocket unit entrenched in a fort. GUIBattle then calls SecondAttack;
     // NormalAttack rolls both rows again but suppresses damage to the defender,
     // so this is an extra counter volley, not another offensive hit.
-    const defenderDef = st.armyDef(toArea.country, defender.type);
+    const defenderDef = st.armyDef(toArea.country, defender);
     if (!attackerKilled && !defenderKilled && toArea.installation === 'fort' &&
         defenderDef.attackClass !== 'rocket' && attackerDef.fortSecondAttack) {
       const second = resolveAttack({ game, attacker, defender, fromArea, toArea, kind: 'fortCounter', rng: game.rng, suppressDefenderDamage: true });

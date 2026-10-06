@@ -10,7 +10,7 @@ export const apiOrigin = () => window.WC2_CONFIG?.apiOrigin || localStorage.getI
 const viaLocalProxy = () => { try { return location.protocol === 'https:' && /^http:/.test(apiOrigin()) && /^(localhost|127\.0\.0\.1)$/.test(location.hostname); } catch { return false; } };
 export const apiUrl = path => viaLocalProxy() ? new URL('/remote' + path, location.origin).href : new URL(path, apiOrigin()).href;
 export const authToken = () => localStorage.getItem(TOKEN_KEY);
-export const authHeaders = () => ({ Authorization:`Bearer ${authToken() || ''}`, 'Content-Type':'application/json', 'X-Game-Access': GAME_ACCESS_KEY });
+export const authHeaders = () => ({ Authorization:`Bearer ${authToken() || ''}`, 'Content-Type':'application/json', 'X-Game-Access': GAME_ACCESS_KEY, 'X-WC2-Version': window.WC2_CONFIG?.version||'' });
 export const authFetch = (url, options = {}) => ['/api/profile', '/api/saves'].includes(url)
   ? localDataRequest(url, options)
   : platform.fetchRemote(apiUrl(url), {...options,headers:{...authHeaders(),...(options.headers || {})}});

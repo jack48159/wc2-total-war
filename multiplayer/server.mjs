@@ -7,6 +7,8 @@ import { DatabaseSync } from 'node:sqlite';
 import { WebSocketServer } from 'ws';
 import { startRoom, restoreRoom, submitCommand, roomSnapshot, spectatorSnapshot, roomVisualEvents, storedRoom } from './room_engine.mjs';
 import { stageDirectory, scenarioDirectory, gameModule } from './runtime.mjs';
+const { validateSandbox } = await import(gameModule('sandbox_config.js'));
+const { World } = await import(gameModule('world.js'));
 const { COUNTRY_NAMES } = await import(gameModule('api/names.js'));
 const { getDiplomaticRelation, initDiplomacy, relationKey, relationToString } = await import(gameModule('rules/diplomacy.js'));
 
@@ -22,6 +24,8 @@ CREATE TABLE IF NOT EXISTS rooms (id TEXT PRIMARY KEY, body TEXT NOT NULL, updat
 const rooms = new Map();
 const sockets = new Map();
 const queues = new Map();
+const changingRooms=new Set();
+const ROOM_IDLE_MS=7*24*60*60*1000;
 const turnTimers = new Map();
 const PORT = Number(process.env.PORT || 8643);
 const HOST = process.env.HOST || '0.0.0.0';
@@ -48,20 +52,22 @@ function json(res, status, body) {
 function cors(req, res) {
   // Bearer tokens are explicitly supplied in headers; no browser cookies are used.
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Headers', 'Authorization, Content-Type, X-Game-Access, X-WC2-Protocol');
+  res.setHeader('Access-Control-Allow-Headers', 'Authorization, Content-Type, X-Game-Access, X-WC2-Protocol, X-Asset-Name, X-WC2-Version');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE, OPTIONS');
 }
 async function bodyOf(req) {
   let body = '';
   for await (const part of req) {
     body += part;
-    if (body.length > 150_000) throw new Error('请求过大');
+    if (body.length > 8_000_000) throw new Error('请求过大');
   }
   return body ? JSON.parse(body) : {};
 }
+function supportedCustomVersion(value){const nums=String(value||'').split('.').map(Number);return nums.length===3&&nums.every(Number.isInteger)&&(nums[0]>1||nums[0]===1&&(nums[1]>0||nums[1]===0&&nums[2]>=13));}
 function publicRoom(room) {
+  const {sandboxConfig,...publicSettings}=room.settings;
   return { id: room.id, name: room.name, stage: room.stage, hostId: room.hostId, started: room.started,
-    members: room.members, spectators: (room.spectators || []).map(({ userId, username, viewCountry }) => ({ userId, username, viewCountry })), spectatorCount: room.spectators?.length || 0, settings: room.settings, turnOrder: room.turnOrder,
+    members: room.members, spectators: (room.spectators || []).map(({ userId, username, viewCountry }) => ({ userId, username, viewCountry })), spectatorCount: room.spectators?.length || 0, settings: publicSettings, turnOrder: room.turnOrder,
     activeCountry: room.started ? room.turnOrder[room.turnIndex] : null,
     round: room.game?.round || room.snapshot?.round || 1,
     phase: room.game?.phase || room.snapshot?.phase || 'lobby', revision: room.revision || 0,
@@ -88,7 +94,7 @@ function save(room) {
 function change(room, work) {
   const pending = (queues.get(room.id) || Promise.resolve()).catch(() => {}).then(async () => {
     if (rooms.get(room.id) !== room) throw new Error('房间不存在');
-    const result = await work();
+    changingRooms.add(room.id);let result;try{result=await work();}finally{changingRooms.delete(room.id);}
     if (result?.skipChange) { scheduleTurnTimer(room); return result; }
     if (result?.dissolve) {
       db.prepare('DELETE FROM rooms WHERE id=?').run(room.id);
@@ -111,8 +117,11 @@ function change(room, work) {
     return result;
   });
   queues.set(room.id, pending);
+  pending.finally(()=>{if(queues.get(room.id)===pending)queues.delete(room.id);}).catch(()=>{});
   return pending;
 }
+function roomExpired(room,now=Date.now()){return now-(room.lastPlayedAt||room.createdAt||now)>=ROOM_IDLE_MS;}
+function expireRooms(){const now=Date.now();for(const room of rooms.values()){if(changingRooms.has(room.id)||!roomExpired(room,now))continue;db.prepare('DELETE FROM rooms WHERE id=?').run(room.id);rooms.delete(room.id);clearTimeout(turnTimers.get(room.id));turnTimers.delete(room.id);queues.delete(room.id);for(const ws of sockets.get(room.id)||[]){send(ws,{type:'roomClosed',roomId:room.id,reason:'房间连续 7 天无人游玩，已自动销毁'});ws.close();}sockets.delete(room.id);}}
 function scheduleTurnTimer(room) {
   clearTimeout(turnTimers.get(room.id));
   turnTimers.delete(room.id);
@@ -136,7 +145,7 @@ function scheduleTurnTimer(room) {
   turnTimers.set(room.id, timer);
 }
 function memberOf(room, user) { return room.members.find(item => item.userId === user.id); }
-function stageName(value) { return typeof value === 'string' && /^(?:battle|conquest)_[a-z0-9_]+$/.test(value) ? value : null; }
+function stageName(value) { return typeof value === 'string' && /^(?:(?:battle|conquest)_[a-z0-9_]+|sandbox_world)$/.test(value) ? value : null; }
 async function stageData(name) {
   const data = JSON.parse(await fs.readFile(path.join(assetStages, `${name}.json`), 'utf8'));
   let diplomacy = data.diplomacy || null;
@@ -172,14 +181,15 @@ function validInitialRelations(input, countries) {
   return relations;
 }
 
-for (const row of db.prepare('SELECT body FROM rooms').all()) {
-  try { const room = await restoreRoom(JSON.parse(row.body)); rooms.set(room.id, room); }
+for (const row of db.prepare('SELECT id,body,updated_at FROM rooms').all()) {
+  try { const saved=JSON.parse(row.body);saved.lastPlayedAt??=row.updated_at;saved.createdAt??=row.updated_at;if(roomExpired(saved)){db.prepare('DELETE FROM rooms WHERE id=?').run(row.id);continue;}const room = await restoreRoom(saved); rooms.set(room.id, room);save(room); }
   catch (error) { console.error('Failed to restore room:', error); }
 }
 
 const server = http.createServer(async (req, res) => {
   cors(req, res);
   if (req.method === 'OPTIONS') return res.writeHead(204).end();
+  if (req.method === 'GET' && /^\/api\/library\/files\/[0-9a-f-]{36}$/.test(new URL(req.url, 'http://localhost').pathname) && auth.handle(req,res,new URL(req.url,'http://localhost').pathname)) return;
   if (req.headers['x-game-access'] !== ACCESS_KEY) return json(res, 404, { error: 'Not found' });
   const url = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
   if (url.pathname === '/api/health') return json(res, 200, { ok: true, rooms: rooms.size });
@@ -197,19 +207,22 @@ const server = http.createServer(async (req, res) => {
       }));
       return json(res, 200, { stages });
     }
+    if(url.pathname.startsWith('/api/mp/rooms'))expireRooms();
     if (url.pathname === '/api/mp/rooms' && req.method === 'GET')
       return json(res, 200, { rooms: [...rooms.values()].filter(room => !room.settings.private).map(publicRoom) });
     if (url.pathname === '/api/mp/rooms' && req.method === 'POST') {
       if (rooms.size >= maxRooms) throw new Error('房间数量已达上限');
       const input = await bodyOf(req), stage = stageName(input.stage);
       if (!stage) throw new Error('关卡名称无效');
-      const data = JSON.parse(await fs.readFile(path.join(assetStages, `${stage}.json`), 'utf8'));
+      let data = JSON.parse(await fs.readFile(path.join(assetStages, `${stage}.json`), 'utf8'));
+      const custom=input.sandboxConfig;if(custom){if(input.customContentEnabled!==true||custom.stage!==stage)throw Error('房主必须明确启用此沙盒配置');await World.load();if(data.mapPatch)World.applyPatch(data.mapPatch,data.mirror);validateSandbox(custom);if(custom.features?.campaign?.chapters?.length)throw Error('连续战役请在单人模式游玩；可复制单章创建联机');data={...data,countries:custom.countries,player:custom.player};}
       const playerLimit = Number(input.playerLimit || 2);
       if (!Number.isInteger(playerLimit) || playerLimit < 2 || playerLimit > Math.min(20, data.countries.length)) throw new Error('真人席位数量无效');
       const id = crypto.randomBytes(4).toString('hex').toUpperCase();
-      const room = { id, name: String(input.name || `${user.username}的房间`).slice(0, 40), stage,
-        hostId: user.id, members: [{ userId: user.id, username: user.username, country: null }],
+      const room = { id,createdAt:Date.now(),lastPlayedAt:Date.now(), name: String(input.name || `${user.username}的房间`).slice(0, 40), stage,
+        hostId: user.id, members: [{ userId: user.id, username: user.username, country: custom?custom.player:null }],
         settings: { playerLimit, turnSeconds: turnSeconds(input.turnSeconds ?? 180), fogOfWar: !!input.fogOfWar, private: !!input.private,
+          ...(custom?{sandboxConfig:structuredClone(custom),customContentEnabled:true,configHash:crypto.createHash('sha256').update(JSON.stringify(custom)).digest('hex'),customCountries:custom.countries.map(c=>({id:c.id,flag:c.flag,name:COUNTRY_NAMES[c.id]||c.id,dormant:!!c.dormant})),workName:custom.name}:{}),
           allowSpectators: input.allowSpectators !== false, spectatorLimit: 20,
           reparationRate: Number(input.reparationRate) || 1.8,
           recruitWait: recruitWait(input.recruitWait ?? 0),
@@ -223,6 +236,7 @@ const server = http.createServer(async (req, res) => {
     if (!match) return json(res, 404, { error: '接口不存在' });
     const room = rooms.get(match[1]);
     if (!room) return json(res, 404, { error: '房间不存在' });
+    if(room.settings.customContentEnabled&&!supportedCustomVersion(req.headers['x-wc2-version']))return json(res,409,{error:'此沙盒包含自定义内容，请先更新至 1.0.13 或更高版本',code:'version_mismatch'});
     if (match[2] === 'join' && req.method === 'POST') {
       return json(res, 200, await change(room, async () => {
         if (room.started) throw new Error('对局已开始');
@@ -280,8 +294,8 @@ const server = http.createServer(async (req, res) => {
     }));
     if (match[2] === 'country') return json(res, 200, await change(room, async () => {
       if (room.started) throw new Error('对局已开始');
-      const stage = JSON.parse(await fs.readFile(path.join(assetStages, `${room.stage}.json`), 'utf8'));
-      if (!stage.countries.some(c => c.id === input.country)) throw new Error('国家不存在');
+      const stage = room.settings.sandboxConfig||JSON.parse(await fs.readFile(path.join(assetStages, `${room.stage}.json`), 'utf8'));
+      if (!stage.countries.some(c => c.id === input.country && !c.dormant)) throw new Error('国家不存在');
       if (room.members.some(m => m.userId !== user.id && m.country === input.country)) throw new Error('国家已被选择');
       memberOf(room, user).country = input.country;
       return { room: publicRoom(room) };
@@ -297,7 +311,7 @@ const server = http.createServer(async (req, res) => {
       if ('allowSpectators' in input) room.settings.allowSpectators = !!input.allowSpectators;
       const order = input.turnOrder;
       if (order) {
-        const stage = JSON.parse(await fs.readFile(path.join(assetStages, `${room.stage}.json`), 'utf8'));
+        const stage = room.settings.sandboxConfig||JSON.parse(await fs.readFile(path.join(assetStages, `${room.stage}.json`), 'utf8'));
         const actual = stage.countries.map(c => c.id);
         if (!Array.isArray(order) || order.length !== actual.length || new Set(order).size !== actual.length || order.some(id => !actual.includes(id))) throw new Error('国家顺序无效');
         room.settings.turnOrder = order;
@@ -307,7 +321,7 @@ const server = http.createServer(async (req, res) => {
       if ('supplyByInfrastructure' in input) room.settings.supplyByInfrastructure = !!input.supplyByInfrastructure;
       if ('turnSeconds' in input) room.settings.turnSeconds = turnSeconds(input.turnSeconds);
       if ('playerLimit' in input) {
-        const stage = JSON.parse(await fs.readFile(path.join(assetStages, `${room.stage}.json`), 'utf8'));
+        const stage = room.settings.sandboxConfig||JSON.parse(await fs.readFile(path.join(assetStages, `${room.stage}.json`), 'utf8'));
         const limit = Number(input.playerLimit);
         if (!Number.isInteger(limit) || limit < Math.max(2, room.members.length) || limit > Math.min(20, stage.countries.length)) throw new Error('真人席位数量无效');
         room.settings.playerLimit = limit;
@@ -318,6 +332,7 @@ const server = http.createServer(async (req, res) => {
         room.settings.reparationRate = rate;
       }
       if ('initialRelations' in input) {
+        if(room.settings.sandboxConfig)throw Error('沙盒初始外交由作品确定，请编辑作品后重新建房');
         const { data } = await stageData(room.stage);
         room.settings.initialRelations = validInitialRelations(input.initialRelations, data.countries);
       }
@@ -332,6 +347,7 @@ const server = http.createServer(async (req, res) => {
         try { profiles[member.userId] = row ? JSON.parse(row.body) : {}; } catch { profiles[member.userId] = {}; }
       }
       await startRoom(room, profiles);
+      room.lastPlayedAt=Date.now();
       return { room: publicRoom(room) };
     }));
     if (match[2] === 'command') {
@@ -346,6 +362,7 @@ const server = http.createServer(async (req, res) => {
           }
         }
         const { result, events } = await submitCommand(room, user.id, input.command);
+        if(result?.ok)room.lastPlayedAt=Date.now();
         return { result, events, eventActor: user.id, includeActor: input.command?.type === 'endTurn', room: publicRoom(room) };
       });
       if (outcome.timedOut) return json(res, 409, { error: '本回合操作时间已结束' });
@@ -370,7 +387,8 @@ server.on('upgrade', (req, socket, head) => {
       try {
         const packet = JSON.parse(raw.toString());
         if (packet.type !== 'subscribe' || packet.accessKey !== ACCESS_KEY || !/^[A-F0-9]{8}$/.test(packet.roomId) || !/^[a-f0-9]{64}$/i.test(packet.token)) throw new Error('订阅参数无效');
-        const room = rooms.get(packet.roomId);
+        expireRooms();const room = rooms.get(packet.roomId);
+        if(room?.settings.customContentEnabled&&!supportedCustomVersion(packet.version))throw Error('自定义沙盒需要更新至 1.0.13');
         const user = auth.userFor({ headers: { authorization: `Bearer ${packet.token}` } });
         if (!room || !user) throw new Error('无权进入房间');
         let member=memberOf(room,user), spectator=spectatorOf(room,user);
@@ -394,3 +412,4 @@ server.on('upgrade', (req, socket, head) => {
 });
 server.listen(PORT, HOST, () => console.info(`WC2 multiplayer listening on ${HOST}:${PORT}`));
 for (const room of rooms.values()) scheduleTurnTimer(room);
+setInterval(expireRooms,15*60*1000).unref();

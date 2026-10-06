@@ -1471,7 +1471,7 @@ export class StrongAi extends Controller {
       for (const nid of (st.adjE.get(from.id) || [])) {
         if (st.moveable(from.id, nid, unitIndex)) validStep1.add(nid);
       }
-      const uMovement = unit.movement ?? st.armyDef(country, unit.type).movement ?? 1;
+      const uMovement = unit.movement ?? st.armyDef(country, unit).movement ?? 1;
       if (uMovement > 1) {
         for (const mid of (st.adjE.get(from.id) || [])) {
           for (const nid of (st.adjE.get(mid) || [])) {

@@ -44,6 +44,7 @@ export async function startRoom(room, profiles = {}) {
   if (!host?.country) throw new Error('房主尚未选择国家');
   const hostProfile = profiles[host.userId] || {};
   room.game = await Game.create(room.stage, null, {
+    ...(room.settings.sandboxConfig?{sandbox:true,sandboxCustom:true,sandboxConfig:room.settings.sandboxConfig,participatingCountries:room.settings.sandboxConfig.countries.map(c=>c.id),freeDiplomacy:true,historicalDiplomacy:false}:{}),
     player: host.country, fogOfWar: !!room.settings.fogOfWar,
     reparationRate: room.settings.reparationRate || 1.8,
     recruitWait: room.settings.recruitWait ?? 0,
@@ -185,6 +186,10 @@ export function roomVisualEvents(room, country, events, spectator = false) {
 }
 
 function stripSpectatorPrivateState(snapshot) {
+  if(snapshot.scenarioEvents)delete snapshot.scenarioEvents.scheduled;
+  snapshot.campaignRun=null;
+  if(snapshot.sandboxFeatures)delete snapshot.sandboxFeatures.campaign;
+  snapshot.sandboxState={intel:{},falseIntel:{}};
   if (snapshot.scenarioEvents?.pending) snapshot.scenarioEvents.pending = snapshot.scenarioEvents.pending.filter(event => !event.targetCountry);
   if (snapshot.scenarioEvents?.definitions) snapshot.scenarioEvents.definitions = snapshot.scenarioEvents.definitions.filter(event => !event.targetCountry);
   snapshot.money = snapshot.industry = snapshot.tech = snapshot.stability = null;
@@ -226,6 +231,9 @@ export function roomSnapshot(room, country) {
   if (!room.started) return null;
   const game = room.game;
   const snapshot = game.snapshot();
+  snapshot.campaignRun=null;if(snapshot.sandboxFeatures)delete snapshot.sandboxFeatures.campaign;
+  if(snapshot.scenarioEvents){delete snapshot.scenarioEvents.scheduled;if(snapshot.fogOfWar)snapshot.scenarioEvents.definitions=snapshot.scenarioEvents.definitions.filter(e=>snapshot.scenarioEvents.history.includes(e.id)||snapshot.scenarioEvents.pending.some(p=>p.id===e.id));}
+  snapshot.sandboxState={activated:copy(game.sandboxState?.activated||{}),holdSince:copy(game.sandboxState?.holdSince||{}),escortIds:copy(game.sandboxState?.escortIds||{}),intel:{[country]:copy(game.sandboxState?.intel?.[country]||[])},falseIntel:{[country]:copy(game.sandboxState?.falseIntel?.[country]||[])}};
   if (snapshot.scenarioEvents?.pending) snapshot.scenarioEvents.pending = snapshot.scenarioEvents.pending.filter(event => !event.targetCountry || event.targetCountry === country);
   if (snapshot.scenarioEvents?.definitions) snapshot.scenarioEvents.definitions = snapshot.scenarioEvents.definitions.filter(event => !event.targetCountry || event.targetCountry === country);
   room.wallets[game.player] = walletOf(game);

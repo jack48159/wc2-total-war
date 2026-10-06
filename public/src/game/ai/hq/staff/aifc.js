@@ -175,7 +175,7 @@ export function scoreUnitForStrikeGroup(model, unitItem, stagingAreaId) {
   const u = unitItem.unit || unitItem;
   const areaId = unitItem.areaId ?? u.area;
   const stage = model.game.stage;
-  const def = stage.armyDef ? stage.armyDef(u.country || model.me, u.type) : {};
+  const def = stage.armyDef ? stage.armyDef(u.country || model.me, u) : {};
 
   // 1. 基础攻击属性
   const attackPower = def.attack ?? def.cost?.attack ?? 2;

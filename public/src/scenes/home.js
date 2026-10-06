@@ -30,26 +30,24 @@ class Home extends Page {
     if (!this.updateButton) {
       const button = this.updateButton = document.createElement('button');
       button.textContent = '\u68c0\u67e5\u66f4\u65b0';
-      Object.assign(button.style, {position:'fixed',left:'16px',top:'max(16px,env(safe-area-inset-top))',zIndex:50,padding:'8px 12px',background:'#eee7d6',color:'#302518',border:'1px solid #987c45',borderRadius:'6px'});
+      Object.assign(button.style, {position:'fixed',right:'max(16px,env(safe-area-inset-right))',minHeight:'44px',top:'max(16px,env(safe-area-inset-top))',zIndex:50,padding:'8px 12px',background:'#eee7d6',color:'#302518',border:'1px solid #987c45',borderRadius:'6px'});
       button.onclick = () => { void Updates.check({force:true}); }; document.body.append(button);
     }
- E.prewarmMenus(); void Updates.check(); }
-  dispose() { this.updateButton?.remove(); this.updateButton = null; Updates.hide(); this.account?.remove(); this.account = null; }
+    if (!this.communityLabel) {
+      const label = this.communityLabel = document.createElement('div');
+      label.textContent = '交流群1060198224';
+      Object.assign(label.style, {position:'fixed',right:'max(16px,env(safe-area-inset-right))',top:'calc(max(16px,env(safe-area-inset-top)) + 52px)',zIndex:50,font:'bold clamp(14px,2.3vw,20px) "Microsoft YaHei", "PingFang SC", sans-serif',color:'#ffe6a3',textShadow:'0 1px 3px #302a22,0 0 2px #302a22',pointerEvents:'none'});
+      document.body.append(label);
+    }
+    E.prewarmMenus(); void Updates.check(); }
+  dispose() { this.communityLabel?.remove(); this.communityLabel = null; this.updateButton?.remove(); this.updateButton = null; Updates.hide(); this.account?.remove(); this.account = null; }
   exitGame() {
     try { window.close(); } catch (e) {}
     if (!window.closed) this.notice('浏览器阻止了自动关闭窗口，请手动关闭此标签页。');
   }
   renderBg() {
     E.cover(this.bg);
-    // Viewport coordinates keep the signature clear of the menu on every aspect ratio.
-    const c = E.ctx;
-    c.save();
-    c.globalAlpha = 0.9;
-    E.text('TOM-AKA创作', E.W - 28 - (E.reserveR || 0), 42, {
-      size: 32, bold: true, font: '"Segoe UI", "Microsoft YaHei", "PingFang SC", sans-serif',
-      align: 'right', color: '#ffe6a3', stroke: '#302a22', strokeW: 2,
-    });
-    c.restore();
+
   }
   render() {
     // Page.draw translates by ox/oy; convert the viewport edge back to content space.

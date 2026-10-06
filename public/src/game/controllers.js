@@ -162,7 +162,7 @@ export class ScriptedAi extends Controller {
       for (const nid of (st.adjE.get(from.id) || [])) {
         if (st.moveable(from.id, nid, unitIndex)) validStep1.add(nid);
       }
-      const uMovement = army.movement ?? st.armyDef(country, army.type).movement ?? 1;
+      const uMovement = army.movement ?? st.armyDef(country, army).movement ?? 1;
       if (uMovement > 1) {
         for (const mid of (st.adjE.get(from.id) || [])) {
           for (const nid of (st.adjE.get(mid) || [])) {

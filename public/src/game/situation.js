@@ -21,7 +21,7 @@ export function getCountryDisplayName(countryId, flag) {
 
 export function computeArmyPower(st, countryId, army) {
   if (!army) return 0;
-  const def = st.armyDef(countryId, army.type);
+  const def = st.armyDef(countryId, army);
   const hp = Math.max(0, army.hp || 0);
   const attack = (def.minAttack || 0) + (def.maxAttack || 0);
   const level = Math.max(0, army.level || 0);

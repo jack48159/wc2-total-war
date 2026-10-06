@@ -11,6 +11,7 @@ export class DecisionDialog {
     this.portrait = null;
     this.board = null;
     E.image('assets/board_result@2x.webp').then(img => { this.board = img; }).catch(() => {});
+    if(event.imageUrl)E.image(event.imageUrl).then(img=>{this.portrait=img;}).catch(()=>{});
     if (event.image) {
       E.image(`assets/${event.image}`).then(img => { this.portrait = img; }).catch(() => {});
     }
