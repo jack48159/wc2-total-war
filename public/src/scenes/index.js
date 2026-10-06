@@ -2,7 +2,7 @@
 // (and, if it should be reachable by URL, one case to routeFromHash).
 import { E } from '../core/index.js';
 import { Home } from './home.js';
-import { Sandbox } from './sandbox.js';
+import { SandboxMenu as Sandbox } from './sandbox_menu.js';
 import { SandboxEditor } from './sandbox_editor.js';
 import { Campaign } from './campaign.js';
 import { CampaignList } from './campaign_list.js';
