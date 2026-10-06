@@ -211,13 +211,13 @@ register('attack', {
       if (game.rng.int(100) < 50) toArea.installation = 'none';
       if (!attackerKilled) {
         if (canOccupyAfterAttack(attacker, fromArea, toArea, attackerDef)) {
-          const previousOwner = toArea.country;
+          const previousOwner = toArea.transitOwner||toArea.country;
           fromArea.armies.splice(fromArea.armies.indexOf(attacker), 1);
           toArea.armies.push(attacker);
           attacker.facing = facingAfterMove(st, fromArea.id, toArea.id, attacker.facing);
           toArea.country = fromArea.country;
           game.emit(EV.UNIT_MOVED, { from: fromArea.id, to: toArea.id, armyId: attacker.id, armyType: attacker.type, country: fromArea.country });
-          if (previousOwner !== toArea.country) game.emit(EV.AREA_CAPTURED, { area: toArea.id, from: previousOwner, to: toArea.country });
+          if(previousOwner&&previousOwner!==toArea.country&&st.areAllied(previousOwner,toArea.country)){toArea.transitOwner=previousOwner;toArea.transitCountry=toArea.country;game.emit('alliedTransitChanged',{area:toArea.id,owner:previousOwner,guest:toArea.country,phase:'entered'});}else{delete toArea.transitOwner;delete toArea.transitCountry;if(previousOwner!==toArea.country)game.emit(EV.AREA_CAPTURED,{area:toArea.id,from:previousOwner,to:toArea.country});}
         }
         if (game.rng.int(100) < 30) {
           attacker.morale = 2;

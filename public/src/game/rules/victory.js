@@ -8,11 +8,11 @@ import { GROUP_LIMIT } from '../army_groups.js';
 import { playerCountryName } from '../describe.js';
 
 function hasSurvivingObjective(stage, country, stabilityRule = false) {
-  const owned = stage.areas.filter(area => area.country === country.id);
+  const owned = stage.areas.filter(area => (area.transitOwner||area.country) === country.id);
   const hasLand = owned.some(area => !area.sea);
   if (!hasLand) return false; // In all modes, a nation without any land territory cannot survive
   if (stabilityRule) return true;
-  if (country.defeated === 'army') return owned.some(area => area.armies.length > 0);
+  if (country.defeated === 'army') return owned.some(area => area.country===country.id&&area.armies.length > 0);
   if (country.defeated === 'core') return owned.some(area => !area.sea && [1, 3, 4].includes(area.areaType));
   return true;
 }
@@ -25,7 +25,7 @@ function eliminateCountry(game, country, victor, defeatRule = country.defeated) 
   if (getDiplomaticRelation(game, country.id, beneficiary) === DIPLOMACY_STATE.WAR)
     collectSurrenderReparations(game, country.id, beneficiary);
   const sourceGroups = (game.armyGroups || []).filter(g => g.country === country.id);
-  const survivingUnits = game.stage.areas.filter(a => a.country === country.id).flatMap(a => a.armies);
+  const survivingUnits = game.stage.areas.filter(a => a.country === country.id&&!a.transitOwner).flatMap(a => a.armies);
   const survivingIds = new Set(survivingUnits.map(a => a.id));
   const assigned = new Set();
   const batches = [];
@@ -62,6 +62,7 @@ function eliminateCountry(game, country, victor, defeatRule = country.defeated) 
   const changed = [];
   for (const area of game.stage.areas) {
     if (area.country !== country.id) continue;
+    if(area.transitOwner){const host=area.transitOwner;area.armies=[];area.country=host;delete area.transitOwner;delete area.transitCountry;game.emit('alliedTransitChanged',{area:area.id,owner:host,guest:country.id,phase:'left',cause:'countryDefeated'});continue;}
     for (const army of area.armies) if (army.country != null) army.country = beneficiary;
     area.country = area.sea && !area.armies.length ? null : beneficiary;
     changed.push(area.id);
@@ -95,7 +96,7 @@ export function checkVictory(game, victor = game.activeCountry) {
     }
     if (!stabilityRule) continue;
     const capitalId = game.diplomacy.capitals?.[country.id];
-    const occupier = capitalId == null ? null : stage.st(capitalId)?.country;
+    const occupier = capitalId == null ? null : stage.territoryOwner(capitalId);
     if (occupier === country.id) delete game.diplomacy.capitalFallen?.[country.id];
     else registerCapitalFall(game, country.id);
     const threshold = stage.data.traitCatalog?.occupation?.surrenderBelow ?? 30;

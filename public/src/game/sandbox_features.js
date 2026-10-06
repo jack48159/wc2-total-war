@@ -17,7 +17,7 @@ export function objectiveResult(game){
  const objectives=game.stage.data.sandboxFeatures?.objectives;if(!objectives?.enabled)return null;
  const check=goal=>{
   if(goal.type==='holdArea'){
-   const ids=goal.areas||[goal.area],results=ids.map(area=>{const owns=game.stage.st(area)?.country===goal.country;game.sandboxState.holdSince||={};const key=goal.areas?goal.id+':'+area:goal.id;if(!owns){delete game.sandboxState.holdSince[key];return false;}game.sandboxState.holdSince[key]??=game.round;return game.round-game.sandboxState.holdSince[key]>=goal.value;});return results.length>0&&(goal.areaMatch==='any'?results.some(Boolean):results.every(Boolean));
+   const ids=goal.areas||[goal.area],results=ids.map(area=>{const owns=game.stage.territoryOwner(area)===goal.country;game.sandboxState.holdSince||={};const key=goal.areas?goal.id+':'+area:goal.id;if(!owns){delete game.sandboxState.holdSince[key];return false;}game.sandboxState.holdSince[key]??=game.round;return game.round-game.sandboxState.holdSince[key]>=goal.value;});return results.length>0&&(goal.areaMatch==='any'?results.some(Boolean):results.every(Boolean));
   }
   if(goal.type==='escort')return (goal.areas||[goal.area]).some(area=>game.stage.st(area)?.armies?.some(a=>a.id===game.sandboxState.escortIds?.[goal.id]&&game.stage.st(area).country===goal.country))||false;
   return evaluateCondition(game,goal);

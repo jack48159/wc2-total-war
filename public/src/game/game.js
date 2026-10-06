@@ -1,3 +1,4 @@
+import { restoreAlliedTransit } from './rules/movement.js';
 import { sandboxCards } from './sandbox_features.js';
 // The running game: a Stage plus the human player's economy and the turn structure.
 // Everything that changes game state goes through Game.apply(command) so that the UI, an AI script, an LLM or an
@@ -69,7 +70,7 @@ export class Game {
     const player = (snapshot && snapshot.player) || opts.player || null;
     const commanderLevel = snapshot?.commanderLevel ?? opts.commanderLevel;
     const historicalDiplomacy = snapshot ? (snapshot.historicalDiplomacy ?? true) : (opts.historicalDiplomacy !== false);
-    const [stage, camp, cards, conq] = await Promise.all([Stage.load(stageName, snapshot && snapshot.areas, { sandboxFeatures:snapshot?.sandboxFeatures, player, commanderLevel, countries: snapshot?.countries, historicalDiplomacy: snapshot ? false : historicalDiplomacy, ...opts, sandboxBattle: snapshot?.sandboxBattle || opts.sandboxBattle, sandboxCustom: snapshot?.sandboxCustom || opts.sandboxCustom, diplomacy: snapshot?.diplomacy || opts.diplomacy }), getJson('data/campaigns.json'), getJson('data/cards.json'), getJson('data/conquests.json'), readyCommanders()]);
+    const [stage, camp, cards, conq] = await Promise.all([Stage.load(stageName, snapshot && snapshot.areas, { stageEnabled:snapshot?.stageEnabled, sandboxFeatures:snapshot?.sandboxFeatures, player, commanderLevel, countries: snapshot?.countries, historicalDiplomacy: snapshot ? false : historicalDiplomacy, ...opts, sandboxBattle: snapshot?.sandboxBattle || opts.sandboxBattle, sandboxCustom: snapshot?.sandboxCustom || opts.sandboxCustom, diplomacy: snapshot?.diplomacy || opts.diplomacy }), getJson('data/campaigns.json'), getJson('data/cards.json'), getJson('data/conquests.json'), readyCommanders()]);
     let info = camp.factions.flatMap(f => f.battles.map(b => Object.assign({ faction: f.id }, b))).find(b => stageName === 'battle_' + b.id.replace('-', ''));
     if (stage.data.worldAssembly || opts.sandboxCustom || snapshot?.sandboxCustom) info = { faction: 'conquest', id: stageName, name: opts.sandboxConfig?.name || snapshot?.sandboxTitle || stage.data.name || stageName, conquest: true };
     if (stage.data.mapPatch || stage.data.duel) info = { faction: 'conquest', id: stageName, name: stageName, conquest: true };
@@ -423,7 +424,7 @@ export class Game {
   // ---- save / load ----
   snapshot() {
     this.replayRecorder?.capture();
-    return JSON.parse(JSON.stringify({ sandboxFeatures:this.stage.data.sandboxFeatures?{...this.stage.data.sandboxFeatures,campaign:undefined}:null, sandboxTitle:this.sandboxTitle,sandboxState:this.sandboxState, campaignRun:this.campaignRun, coordination: this.coordination, theatres: this.theatres, nextTheaterId: this.nextTheaterId, orders: this.orders, nextOrderId: this.nextOrderId, armyGroups: this.armyGroups, nextArmyGroupId: this.nextArmyGroupId, ownedCommanders: this.ownedCommanders, stage: this.name, sandboxBattle: this.sandboxBattle, sandboxCustom: this.sandboxCustom, player: this.player, activeCountry: this.activeCountry, phase: this.phase, result: this.result, gameId: this.gameId, bridgeOpponentCountry: this.bridgeOpponentCountry, fogOfWar: this.fogOfWar, turnOrder: this.turnOrder, reparationRate: this.reparationRate, recruitWait: this.recruitWait, supplyByInfrastructure: this.supplyByInfrastructure, capturedAt: this.capturedAt, visibilityMemory: this.visibilityMemory, historicalDiplomacy: this.historicalDiplomacy, commanderLevel: this.playerInfo.commanderLevel, medalLevels: this.medalLevels, cardCooldowns: this.cardCooldowns, techTurn: this.techTurn, nextArmyId: this.nextArmyId, round: this.round, dialogueIndex: this.dialogueIndex, money: this.money, industry: this.industry, tech: this.tech, stability: this.getStability(this.player), hand: this.hand, countries: this.stage.data.countries.map(c => c.id === this.player ? { ...c, money: this.money, industry: this.industry, techlevel: this.tech, stability: this.getStability(c.id) } : { ...c, stability: this.getStability(c.id) }), areas: this.stage.areas, diplomacy: this.diplomacy ? JSON.parse(JSON.stringify(this.diplomacy)) : null,
+    return JSON.parse(JSON.stringify({ stageEnabled:[...this.stage.enabled],sandboxFeatures:this.stage.data.sandboxFeatures?{...this.stage.data.sandboxFeatures,campaign:undefined}:null, sandboxTitle:this.sandboxTitle,sandboxState:this.sandboxState, campaignRun:this.campaignRun, coordination: this.coordination, theatres: this.theatres, nextTheaterId: this.nextTheaterId, orders: this.orders, nextOrderId: this.nextOrderId, armyGroups: this.armyGroups, nextArmyGroupId: this.nextArmyGroupId, ownedCommanders: this.ownedCommanders, stage: this.name, sandboxBattle: this.sandboxBattle, sandboxCustom: this.sandboxCustom, player: this.player, activeCountry: this.activeCountry, phase: this.phase, result: this.result, gameId: this.gameId, bridgeOpponentCountry: this.bridgeOpponentCountry, fogOfWar: this.fogOfWar, turnOrder: this.turnOrder, reparationRate: this.reparationRate, recruitWait: this.recruitWait, supplyByInfrastructure: this.supplyByInfrastructure, capturedAt: this.capturedAt, visibilityMemory: this.visibilityMemory, historicalDiplomacy: this.historicalDiplomacy, commanderLevel: this.playerInfo.commanderLevel, medalLevels: this.medalLevels, cardCooldowns: this.cardCooldowns, techTurn: this.techTurn, nextArmyId: this.nextArmyId, round: this.round, dialogueIndex: this.dialogueIndex, money: this.money, industry: this.industry, tech: this.tech, stability: this.getStability(this.player), hand: this.hand, countries: this.stage.data.countries.map(c => c.id === this.player ? { ...c, money: this.money, industry: this.industry, techlevel: this.tech, stability: this.getStability(c.id) } : { ...c, stability: this.getStability(c.id) }), areas: this.stage.areas, diplomacy: this.diplomacy ? JSON.parse(JSON.stringify(this.diplomacy)) : null,
       scenarioEvents: this.scenarioEvents ? JSON.parse(JSON.stringify(this.scenarioEvents)) : null, rng: this.rng.save(), replay: this.replay, log: this.log, gameLog: this.gameLog, nextGameLogId: this.nextGameLogId, reportLog: this.reportLog, nextReportId: this.nextReportId, reportRevision: this.reportRevision }));
   }
 
@@ -496,8 +497,8 @@ export class Game {
     const me = this.stage.countries.get(country); if (!me) return { money: 0, industry: 0 };
     let tax = 0, ind = 0;
     for (const area of this.stage.areas) {
-      if (area.country !== country || area.sea) continue;
-      const inc = areaIncome(this, area);
+      const owner=area.transitOwner||area.country;if(owner!==country||area.sea)continue;
+      const inc = areaIncome(this,area.transitOwner?{...area,country:owner}:area);
       tax += inc.money;
       ind += inc.industry;
     }
@@ -608,7 +609,9 @@ export class Game {
       }
     }
     if (commandCountry === this.player && ['move', 'attack', 'useCard'].includes(cmd.type) && cmd.armyId != null && !cmd.orderExecution) this.coordination.manual.push(cmd.armyId);
+    restoreAlliedTransit(this);
     if (this.phase !== 'finished' && (this.sandboxCustom || ['move', 'attack', 'useCard', 'endTurn'].includes(cmd.type))) checkVictory(this, commandCountry);
+    restoreAlliedTransit(this);
     if (this.logEnabled) this.gameLog.push({ schemaVersion: 2, id: this.nextGameLogId++, timestamp: new Date().toISOString(),
       gameId: this.gameId, round: this.round, phase: this.phase, actorCountry: commandCountry, category: 'command', event: 'commandApplied',
       data: { command: JSON.parse(JSON.stringify(cmd)), before: commandBefore,

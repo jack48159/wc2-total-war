@@ -43,3 +43,8 @@
 @media(orientation:landscape) and (max-height:600px){.sb-library-header{padding:6px 12px}.sb-library-header p,.sb-library footer{display:none}.sb-library-controls{display:flex;padding:4px 12px}.sb-library-controls label{flex:1;min-width:0}.sb-library-detail{width:280px}.sb-library-upload-list{max-height:35dvh}.sb-library-preview{height:150px}}
 
 .sb-content-form{position:static!important;height:auto!important;background:transparent!important;padding:0!important;display:block!important}.sb-content-form .sb-event-card{padding:10px}.sb-content-library .sb-library-controls{display:block}.sb-content-library .sb-library-grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}@media(max-width:760px){.sb-content-library .sb-library-detail{width:100%!important}}
+
+/* Keep map selection controls outside the clickable canvas. */
+.sb-screen .map[data-picking=true] canvas{height:calc(100% - 64px);bottom:64px}
+.sb-area-pickbar{top:auto;bottom:6px;min-height:52px;margin:0}
+@media(orientation:landscape) and (max-height:600px){.sb-library-header h2{font-size:18px}.sb-library-status{font-size:12px;min-height:26px;padding-top:3px;padding-bottom:3px}.sb-library-bulk{padding-top:3px;padding-bottom:3px}.sb-library-controls label{font-size:11px}.sb-library-controls input:not([type=checkbox]),.sb-library-controls select{min-height:36px;margin:2px 0}.sb-library-quota{padding-top:4px;padding-bottom:4px}.sb-library-bulk button{min-height:38px;padding:5px 10px}.sb-library-bulk span{font-size:12px}}

@@ -72,6 +72,7 @@ register('useCard', {
     const card = game.findCard(cmd.card, country);
     if (!card) return 'unknown-card';
     if(card.custom){const why=customCardReason(game,card,cmd,country);if(why)return why;if((card.conditions||[]).some(c=>!evaluateCondition(game,c)))return 'conditions-not-met';return cmd.pendingPurchase?game.whyNot(card,country):country!==game.player||!game.hand[card.id]?'no-card':(game.cardCooldowns[card.id]||0)>0?'cooldown':null;}
+    if(game.stage.st(cmd.target)?.transitOwner&&(ARMY_CARD_TYPES.has(card.id)||DEVELOPMENT_CARDS.has(card.id)))return 'allied-transit-area';
     const type = AIR_CARD_TYPES.get(card.id);
     const armyType = ARMY_CARD_TYPES.get(card.id), development = DEVELOPMENT_CARDS.get(card.id), tactic = TACTIC_CARDS.get(card.id);
     const isPending = !!cmd.pendingPurchase;

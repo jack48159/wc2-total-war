@@ -140,7 +140,7 @@ export class MatchSetup extends Page {
     this.rateSlider.up(); this.recruitSlider.up();
     this.focusables().forEach(b => b.disarm());
   }
-  renderBg() { this.source.renderBg(); }
+  renderBg() { if(typeof this.source.renderBg==='function')this.source.renderBg();else{E.ctx.fillStyle='#19232c';E.ctx.fillRect(0,0,E.W,E.H);if(this.source.image)E.cover(this.source.image);} }
   drawChoice(btn, selected, label, x, y, w = 112, h = 68) {
     Object.assign(btn, { x, y, w, h });
     E.layout.group(btn, 'scenes/match_setup/choice', () => {

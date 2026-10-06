@@ -231,7 +231,7 @@ export function ensureDiplomacyMeta(game) {
   const round = game.round || 1;
   for (const c of st.countries.values()) {
     if (!c || c.eliminated) continue;
-    const lands = st.areas.filter(a => a.country === c.id && !a.sea).length;
+    const lands = st.areas.filter(a => (a.transitOwner||a.country) === c.id && !a.sea).length;
     if (dip.originalLands[c.id] == null) {
       dip.originalLands[c.id] = lands;
     }
@@ -243,7 +243,7 @@ export function ensureDiplomacyMeta(game) {
       // 关卡可显式指定首都(stage.capitals: { 国家: 地块ID })，用于没有最高级城市的国家(否则会退而求其次选第一座小城市，可能正好在前线)
       const fixed = st.data?.capitals?.[c.id];
       if (fixed != null && st.st(fixed) && !st.st(fixed).sea) { dip.capitals[c.id] = fixed; continue; }
-      const owned = st.areas.filter(a => a.country === c.id && !a.sea);
+      const owned = st.areas.filter(a => (a.transitOwner||a.country) === c.id && !a.sea);
       const type1 = owned.find(a => a.areaType === 1);
       const type4 = owned.filter(a => a.areaType === 4);
       const cap = type1 || type4[0] || owned[0];
@@ -278,21 +278,21 @@ function countryWallet(game, id) {
 }
 
 export function countLands(game, id) {
-  return game.stage.areas.filter(a => a.country === id && !a.sea).length;
+  return game.stage.areas.filter(a => (a.transitOwner||a.country) === id && !a.sea).length;
 }
 
 export function countryPower(game, id) {
-  const lands = game.stage.areas.filter(a => a.country === id && !a.sea);
-  const power = lands.reduce((sum, a) => sum + a.armies.reduce((t, u) => t + (u.hp || 50), 0), 0);
+  const lands = game.stage.areas.filter(a => (a.transitOwner||a.country) === id && !a.sea);
+  const power = game.stage.areas.filter(a=>a.country===id).reduce((sum,a)=>sum+a.armies.reduce((t,u)=>t+(u.hp||50),0),0);
   return { lands: lands.length, power };
 }
 
 function shareBorder(game, a, b) {
   const st = game.stage;
-  const mine = new Set(st.areas.filter(x => x.country === a && !x.sea).map(x => x.id));
+  const mine = new Set(st.areas.filter(x => (x.transitOwner||x.country) === a && !x.sea).map(x => x.id));
   if (!mine.size) return false;
   for (const area of st.areas) {
-    if (area.country !== b || area.sea) continue;
+    if ((area.transitOwner||area.country) !== b || area.sea) continue;
     for (const nid of (st.adjE.get(area.id) || [])) {
       if (mine.has(nid)) return true;
     }
@@ -1045,7 +1045,7 @@ export function registerCapitalFall(game, countryId) {
   if (!dip || dip.capitalFallen[countryId]) return false;
   const capId = dip.capitals[countryId];
   const area = capId == null ? null : game.stage.st(capId);
-  const occupier = area?.country;
+  const occupier = area?.transitOwner||area?.country;
   if (!occupier || occupier === countryId ||
       getDiplomaticRelation(game, countryId, occupier) !== DIPLOMACY_STATE.WAR) return false;
   const info = game.stage.countries.get(countryId);
@@ -1070,7 +1070,7 @@ export function tickCountryStability(game, countryId) {
 
   registerCapitalFall(game, countryId);
   const capitalId = dip.capitals[countryId];
-  if (capitalId != null && game.stage.st(capitalId)?.country === countryId) delete dip.capitalFallen[countryId];
+  if (capitalId != null && game.stage.territoryOwner(capitalId) === countryId) delete dip.capitalFallen[countryId];
 
   const atWar = hasLivingWarOpponent(game, countryId);
   const stab = game.getStability(countryId);
@@ -1125,7 +1125,7 @@ export function tickCountryStability(game, countryId) {
 function maybeDefectLand(game, countryId) {
   const capId = game.diplomacy?.capitals?.[countryId];
   const st = game.stage;
-  const candidates = st.areas.filter(a => a.country === countryId && !a.sea && a.id !== capId && (!a.armies || a.armies.length === 0));
+  const candidates = st.areas.filter(a => (a.transitOwner||a.country) === countryId && !a.sea && a.id !== capId && (!a.armies || a.armies.length === 0));
   if (!candidates.length) return;
   const area = game.rng?.pick ? game.rng.pick(candidates) : candidates[0];
   let occupier = null;
@@ -1157,8 +1157,8 @@ export function evaluateAiCapitulation(game, countryId) {
   const capId = dip.capitals[countryId];
   if (capId == null) return null;
   const area = game.stage.st(capId);
-  if (!area || !area.country || area.country === countryId) return null;
-  const occupier = area.country;
+  const occupier=area?.transitOwner||area?.country;
+  if (!occupier || occupier === countryId) return null;
   if (getDiplomaticRelation(game, countryId, occupier) !== DIPLOMACY_STATE.WAR) return null;
   const lands = countLands(game, countryId);
   const orig = dip.originalLands[countryId] || lands;
@@ -1194,7 +1194,7 @@ export function applyCapitulation(game, countryId, occupier) {
 function getRecentNetLandLoss(game, countryId) {
   const dip = game.diplomacy;
   const hist = dip?.landHistory?.[countryId] || [];
-  const currentLands = game.stage.areas.filter(a => a.country === countryId && !a.sea).length;
+  const currentLands = game.stage.areas.filter(a => (a.transitOwner||a.country) === countryId && !a.sea).length;
   if (!hist.length) return 0;
   const round = game.round || 1;
   const targetRound = Math.max(1, round - 3);
@@ -1214,7 +1214,7 @@ function isCapitalThreatenedOrFallen(game, countryId) {
   const capId = dip?.capitals?.[countryId];
   if (capId == null) return false;
   const capArea = game.stage.st(capId);
-  if (!capArea || capArea.country !== countryId) return true;
+  if (!capArea || (capArea.transitOwner||capArea.country) !== countryId) return true;
   for (const nid of (game.stage.adjE.get(capId) || [])) {
     const na = game.stage.st(nid);
     if (na && na.country && na.armies.length > 0 && getDiplomaticRelation(game, countryId, na.country) === DIPLOMACY_STATE.WAR) {
@@ -1239,7 +1239,7 @@ export function evaluateAiPeaceOffer(game, countryId) {
   const lostRatio = orig > 0 ? (netLostRecent / orig) : 0;
   const capId = game.diplomacy?.capitals?.[countryId];
   const capArea = capId != null ? game.stage.st(capId) : null;
-  const capitalFallen = Boolean(game.diplomacy?.capitalFallen?.[countryId] || (capArea && capArea.country !== countryId));
+  const capitalFallen = Boolean(game.diplomacy?.capitalFallen?.[countryId] || (capArea && (capArea.transitOwner||capArea.country) !== countryId));
   const capitalThreat = isCapitalThreatenedOrFallen(game, countryId);
   const desperate = stability < 22 || (p.lands <= 2 && hasLivingWarOpponent(game, countryId));
 

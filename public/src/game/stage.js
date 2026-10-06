@@ -83,7 +83,7 @@ export class Stage {
     if (opts.sandboxFeatures) data.sandboxFeatures=structuredClone(opts.sandboxFeatures);
     if (data.mapPatch) World.applyPatch(data.mapPatch, data.mirror);
     if (areasOverride) data.areas = JSON.parse(JSON.stringify(areasOverride));
-    if (areasOverride && (opts.sandboxBattle || opts.sandboxCustom)) data.enabled = data.areas.map(a => a.id);
+    if (areasOverride && (opts.sandboxBattle || opts.sandboxCustom)) {const baseEnabled=data.enabled;data.enabled=Array.isArray(opts.stageEnabled)?opts.stageEnabled.filter(id=>World.areas[id]):data.areas.map(a=>a.id);if(!opts.stageEnabled){const present=new Set(data.enabled),excluded=new Set(opts.sandboxConfig?.excludedAreas||[]);for(const id of baseEnabled)if(World.areas[id]?.f===1&&!present.has(id)&&!excluded.has(id)){data.enabled.push(id);data.areas.push({id,country:null,armies:[],construction:'none',installation:'none',level:0});}}}
     let scenarioOverride = null;
     if (opts.historicalDiplomacy !== false && !opts.freeDiplomacy && name.startsWith('conquest_')) {
       try {
@@ -170,6 +170,7 @@ export class Stage {
     }
     this.enabled = new Set(data.enabled);                        // areas that take part in this stage
     this.byArea = new Map(this.areas.map(a => [a.id, a]));
+    for(const id of this.enabled)if(!this.byArea.has(id))this.ensureArea(id,null);
     this.countries = new Map(data.countries.map(c => [c.id, c]));
     const profiles = data.traitProfiles || {};
     const diplomacyOn = !!data.diplomacy?.enabled;
@@ -231,6 +232,7 @@ export class Stage {
 
   st(id) { return this.byArea.get(id); }
   ownerOf(id) { const s = this.st(id); return s && s.country; }
+  territoryOwner(id) { const s=this.st(id);return s?.transitOwner||s?.country; }
   isHumanArea(id) { return this.humanCountries.has(this.ownerOf(id)); }
   alliance(country) { const c = this.countries.get(country); return c && c.alliance; }
   friendly(country) { return this.alliance(country) === this.alliance(this.player); }
@@ -303,32 +305,30 @@ export class Stage {
   // army's movement budget. The returned cost is spent by the move command.
   movementPath(sId, tId, idx) {
     const start = this.st(sId), army = start?.armies[idx];
-    if (!army || sId === tId || !this.enabled.has(sId) || !this.enabled.has(tId)) return null;
+    if (!army || sId === tId || !this.enabled.has(sId) || tId!=null&&!this.enabled.has(tId)) return null;
     const budget = army.movement ?? this.armyDef(start.country, army).movement;
     if (budget <= 0) return null;
     const navy = NAVY_TYPES.has(army.type), ai = start.country !== this.player;
+    const visible=this.game?.fogOfWar?visibilityForCountry(this.game,start.country):null;
     const view = id => this.st(id) || { id, country: null, armies: [], sea: World.areas[id]?.f === 1 };
+    const allied=area=>area.country&&this.areAllied(start.country,area.country);
+    const canStop=area=>area.armies.length<this.maxArmies(area.id)&&(!area.armies.length||area.country===start.country);
     const canEnter = (area, id) => {
-      if (!this.enabled.has(id) || area.armies.length >= this.maxArmies(id)) return false;
-      if (area.armies.length && area.country !== start.country) return false;
+      if (!this.enabled.has(id)||visible&&!visible.has(id)) return false;
+      if (area.armies.length && area.country !== start.country && !allied(area)) return false;
       if (area.sea ? !navy && !(army.cards & 4) : navy) return false;
-      if (area.country && area.country !== start.country && !area.sea) {
-        if (this.game?.diplomacy?.enabled) {
-          if (!this.game.canOccupyTerritory(start.country, area.country, ai)) return false;
-        } else if (ai && this.areAllied(start.country, area.country)) {
-          return false;
-        }
-      }
-      if (ai && this.armyDef(start.country, army).transportUnit && area.country !== start.country) return false;
+      if(area.country&&area.country!==start.country&&!allied(area)&&this.game?.diplomacy?.enabled&&!this.game.canOccupyTerritory(start.country,area.country,ai))return false;
+      if(ai&&this.armyDef(start.country,army).transportUnit&&area.country!==start.country&&!allied(area))return false;
       return true;
     };
-    const canContinue = area => area.sea ? navy : area.country === start.country || area.armies.length === 0;
+    if(tId!=null&&!canStop(view(tId)))return null;
+    const canContinue = area => area.sea ? navy : area.country === start.country || area.armies.length === 0 || allied(area);
     const distance = new Map([[sId, 0]]), previous = new Map(), pending = [[0, sId]];
     while (pending.length) {
       pending.sort((a, b) => a[0] - b[0] || a[1] - b[1]);
       const [cost, current] = pending.shift();
       if (cost !== distance.get(current)) continue;
-      if (current === tId) break;
+      if (tId!=null&&current === tId) break;
       if (cost >= budget) continue;
       for (const next of this.adjE.get(current) || []) {
         const trait = World.areas[next];
@@ -341,6 +341,7 @@ export class Stage {
         if (canContinue(area)) pending.push([nextCost, next]);
       }
     }
+    if(tId==null)return new Map([...distance].filter(([id])=>id!==sId&&canStop(view(id))));
     if (!distance.has(tId)) return null;
     const ids = [tId];
     for (let id = tId; id !== sId;) {
@@ -381,9 +382,8 @@ export class Stage {
     const s = this.st(sId); if (!s || !s.armies.length || !this.isHumanArea(sId)) return out;
     const front = s.armies[0], frontDef = this.armyDef(s.country, front);
     const rocket = frontDef.targetingMode === 'range' || front.type === 'rocket';
-    // like the original CScene::SetSelAreaTargets: arrows only to the ADJACENT areas (a unit with more movement still gets one arrow per neighbour,
-    // not one to every area it could reach)
-    for (const id of this.adjE.get(sId) || []) if (this.moveable(sId, id, 0)) out.set(id, TARGET.MOVE);
+    // Show all legal stops within the movement budget, including routes through allied garrisons.
+    for(const id of (this.movementPath(sId,null,0)||new Map()).keys())out.set(id,TARGET.MOVE);
     for (const n of this.adjE.get(sId) || []) {
       if (!out.has(n) && !rocket && s.armies[0].type !== 'aircraftcarrier' && this.attackable(sId, n, 0, airstrikeRadius)) out.set(n, TARGET.ATTACK);
       if (rocket) for (const m of this.adjE.get(n) || []) if (this.attackable(sId, m, 0, airstrikeRadius)) out.set(m, TARGET.ROCKET);

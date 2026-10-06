@@ -7,7 +7,7 @@ const build = JSON.parse(await fs.readFile(path.join(root, 'dist/web/latest-buil
 const files = [];
 async function walk(dir) { for (const entry of await fs.readdir(dir, {withFileTypes:true})) { const file=path.join(dir,entry.name); if(entry.isDirectory()) await walk(file); else { const bytes=await fs.readFile(file);files.push({path:path.relative(build.output,file).split(path.sep).join('/'),size:bytes.length,sha256:crypto.createHash('sha256').update(bytes).digest('hex')}); } } }
 await walk(build.output);files.sort((a,b)=>a.path.localeCompare(b.path));
-const manifest = { release:build.release,version:'1.0.14',shell:1,protocol:'wc2-1',notes:'素材库升级：批量上传、分类标签、预览、引用管理与新版本替换；兵种和卡牌迁入账号素材库创作并选入作品；沙盒目标、条件和效果支持地图点选多块领土。',base:`https://wc2-1324086514.cos.ap-guangzhou.myqcloud.com/web/releases/${build.release}/`,files };
+const manifest = { release:build.release,version:'1.0.15',shell:1,protocol:'wc2-1',notes:'修复各模式海域移动与可达目标提示，补全空海域和旧作品海域；盟友可借道领地领海，离开后归还原属国并保留收入和目标归属；修复沙盒开战与手机地图点选布局。',base:`https://wc2-1324086514.cos.ap-guangzhou.myqcloud.com/web/releases/${build.release}/`,files };
 if (!process.env.WC2_UPDATE_SIGN_KEY) throw Error('Set WC2_UPDATE_SIGN_KEY to the private signing key path');
 const payload=Buffer.from(JSON.stringify(manifest));const signature=crypto.sign('sha256',payload,await fs.readFile(process.env.WC2_UPDATE_SIGN_KEY));
 await fs.writeFile(path.join(root,'dist/web/stable.json'),JSON.stringify({payload:payload.toString('base64'),signature:signature.toString('base64')}));

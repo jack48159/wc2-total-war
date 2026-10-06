@@ -72,7 +72,8 @@ export function validateSandbox(config) {
 export function applySandboxConfig(data, config) {
   validateSandbox(config);
   data.sandboxFeatures=structuredClone(config.features||{});
-  data.areas = structuredClone(config.areas);
+  const baseEnabled=data.enabled;data.areas = structuredClone(config.areas);
+  if(!config.mapComplete){const present=new Set(data.areas.map(a=>a.id)),excluded=new Set(config.excludedAreas||[]);for(const id of baseEnabled)if(World.areas[id]?.f===1&&!present.has(id)&&!excluded.has(id))data.areas.push({id,country:null,armies:[],construction:'none',installation:'none',level:0});}
   data.enabled = data.areas.map(a => a.id);
   data.countries = structuredClone(config.countries);
   data.player = config.player;

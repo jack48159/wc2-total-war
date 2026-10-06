@@ -46,26 +46,26 @@ export function evaluateCondition(game, cond) {
   }
   if (cond.type === 'areaOwner') {
     const area = game.stage.st(cond.area);
-    return area && area.country === cond.country;
+    return area && (area.transitOwner||area.country) === cond.country;
   }
   if (cond.type === 'areaOwnerNot') {
     const area = game.stage.st(cond.area);
-    return area && area.country !== cond.country;
+    return area && (area.transitOwner||area.country) !== cond.country;
   }
   if (cond.type === 'areaOwnerIn') {
     const area = game.stage.st(cond.area);
-    return area && Array.isArray(cond.countries) && cond.countries.includes(area.country);
+    return area && Array.isArray(cond.countries) && cond.countries.includes(area.transitOwner||area.country);
   }
   if (cond.type === 'areaOwnerAlliedWith') {
     const area = game.stage.st(cond.area);
     if (!area || !area.country) return false;
-    return area.country === cond.country || game.areDiplomaticAllies(area.country, cond.country);
+    return (area.transitOwner||area.country) === cond.country || game.areDiplomaticAllies(area.transitOwner||area.country, cond.country);
   }
   if (cond.type === 'countryDefeated') {
     const c = game.stage.countries.get(cond.country);
     if(c?.dormant&&!game.sandboxState?.activated?.[cond.country])return false;
     if (!c || c.eliminated) return true;
-    const lands = game.stage.areas.filter(a => a.country === cond.country && !a.sea).length;
+    const lands = game.stage.areas.filter(a => (a.transitOwner||a.country) === cond.country && !a.sea).length;
     return lands === 0;
   }
   if (cond.type === 'diplomaticRelation') {
@@ -191,8 +191,9 @@ export function applyAction(game, action) {
     }
   } else if (action.type === 'captureArea') {
     const area = st.st(action.area);
-    if (area && action.country && area.country !== action.country) {
-      const prev = area.country;
+    if (area && action.country && (area.transitOwner||area.country) !== action.country) {
+      const prev = area.transitOwner||area.country;
+      delete area.transitOwner;delete area.transitCountry;
       area.country = action.country;
       game.emit(EV.AREA_CAPTURED, { area: area.id, from: prev, to: action.country, cause: 'eventAction' });
     }

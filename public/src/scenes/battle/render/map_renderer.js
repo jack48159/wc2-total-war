@@ -144,7 +144,7 @@ export class MapRenderer {
     const st = this.stage, b = st.bounds, mine = st.humanCountries, list = [];
     for (const a of World.areas) {
       if (a.f === 1 || a.x > b.x1 || a.x + a.w < b.x0 || a.y > b.y1 || a.y + a.h < b.y0 || !st.enabled.has(a.id)) continue;
-      const own = st.ownerOf(a.id); if (!own || !(selection.set.has(a.id) || (flashing && mine.has(own)))) continue;
+      const own = st.territoryOwner(a.id); if (!own || !(selection.set.has(a.id) || (flashing && mine.has(own)))) continue;
       const k = st.countries.get(own).color, cv = this.tinted(a.id, `rgb(${k[0]},${k[1]},${k[2]})`); if (cv) list.push({ cv, x: a.x, y: a.y });
     }
     this._fl = { key, list }; return list;
@@ -173,7 +173,7 @@ export class MapRenderer {
     const entries = [];
     for (const a of World.areas) {
       if (a.f === 1 || a.x > b.x1 || a.x + a.w < b.x0 || a.y > b.y1 || a.y + a.h < b.y0) continue;
-      const enabled = st.enabled.has(a.id), own = enabled && st.ownerOf(a.id), fogged = !!intel && !intel.now.has(a.id);
+      const enabled = st.enabled.has(a.id), own = enabled && st.territoryOwner(a.id), fogged = !!intel && !intel.now.has(a.id);
       const color = own ? st.countries.get(own)?.color : null, sp = this.zoneSprite(a.id);
       entries.push({ a, enabled, own, color, fogged, sp,
         key: [a.id, enabled, own, color?.join(','), !own && fogged, !!sp].join(':') });
@@ -207,7 +207,7 @@ export class MapRenderer {
   }
   ownerSig() {
     const st = this.stage; let h = 0;
-    for (const id of st.enabled) { const o = st.ownerOf(id); const k = o ? st.countries.get(o)?.color : null; h = (Math.imul(h, 31) + id * 7 + (o ? String(o).length * 131 + String(o).charCodeAt(0) * 17 + String(o).charCodeAt(String(o).length - 1) : 0) + (k ? k[0] * 3 + k[1] * 5 + k[2] : 0)) | 0; }
+    for (const id of st.enabled) { const o = st.territoryOwner(id); const k = o ? st.countries.get(o)?.color : null; h = (Math.imul(h, 31) + id * 7 + (o ? String(o).length * 131 + String(o).charCodeAt(0) * 17 + String(o).charCodeAt(String(o).length - 1) : 0) + (k ? k[0] * 3 + k[1] * 5 + k[2] : 0)) | 0; }
     return h;
   }
   tinted(id, color) {

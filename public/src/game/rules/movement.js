@@ -23,13 +23,13 @@ register('move', {
   },
   execute(game, cmd) {
     const st = game.stage, { s, i, a } = locate(game, cmd);
-    const path = st.movementPath(cmd.from, cmd.to, i);
+    const actor=s.country;const path = st.movementPath(cmd.from, cmd.to, i);
     const to = st.ensureArea(cmd.to, null);
     a.facing = facingAfterMove(st, cmd.from, cmd.to, a.facing);
     // CArea::MoveArmyTo also captures unoccupied intermediate land areas.
     for (const id of path.ids.slice(1, -1)) {
       const intermediate = st.ensureArea(id, null);
-      if (intermediate.armies.length || intermediate.country === s.country) continue;
+      if(intermediate.armies.length||intermediate.country===actor||st.areAllied(actor,intermediate.transitOwner||intermediate.country))continue;
       const previousOwner = intermediate.country;
       if (game.diplomacy?.enabled && previousOwner) {
         game.registerDiplomaticOccupation(s.country, previousOwner, 'movementPath');
@@ -41,21 +41,14 @@ register('move', {
     a.movement = to.sea && !isNavalCombatUnit(a.type)
       ? 0 : Math.max(0, a.movement - path.cost);
     a.active = a.movement > 0;
-    game.emit(EV.UNIT_MOVED, { from: cmd.from, to: cmd.to, armyId: a.id, armyType: a.type, country: s.country,
+    game.emit(EV.UNIT_MOVED, { from: cmd.from, to: cmd.to, armyId: a.id, armyType: a.type, country: actor,
       path: path.ids, movementCost: path.cost, movementAfter: a.movement });
-    if (to.country !== s.country) {                              // walked into an undefended enemy / neutral area
-      const prev = to.country;
-      if (game.diplomacy?.enabled && prev) {
-        game.registerDiplomaticOccupation(s.country, prev, 'movement');
-      }
-      to.country = s.country;
-      game.emit(EV.AREA_CAPTURED, { area: to.id, from: prev, to: s.country });
-      // Walking into an ALLY's land (original CArea::MoveArmyTo): never when both countries are AI, otherwise a coin flip
-      // decides whether their general complains; the dialogue itself is the UI's business.
-      const pc = prev && st.countries.get(prev), mc = st.countries.get(s.country);
-      if (pc && mc && (prev === game.player || s.country === game.player) && st.areAllied(prev, s.country) && game.rng.chance(0.5))
-        game.emit(EV.COMMANDER_COMPLAINT, { country: prev, commander: pc.commander, variant: game.rng.int(2) + 1, area: to.id });
+    if(to.country!==actor){
+      const prev=to.transitOwner||to.country;
+      if(prev&&st.areAllied(actor,prev)){to.transitOwner=prev;to.transitCountry=actor;to.country=actor;game.emit('alliedTransitChanged',{area:to.id,owner:prev,guest:actor,phase:'entered'});}
+      else{if(game.diplomacy?.enabled&&prev)game.registerDiplomaticOccupation(actor,prev,'movement');delete to.transitOwner;delete to.transitCountry;to.country=actor;game.emit(EV.AREA_CAPTURED,{area:to.id,from:prev,to:actor});}
     }
+    restoreAlliedTransit(game);
     recomputeAdjacentEncirclement(st, cmd.from, payload => game.emit(EV.MORALE_CHANGED, payload));
   },
 });
@@ -75,3 +68,13 @@ register('frontArmy', {
     game.emit(EV.ARMY_FRONTED, { area: cmd.from, armyId: cmd.armyId, previousArmyId });
   },
 });
+
+// A transit garrison is controlled by its own country; the host keeps ownership.
+// Restoring when empty also handles losses, save restoration and unit removals.
+export function restoreAlliedTransit(game){
+ for(const area of game.stage.areas){if(!area.transitOwner)continue;const owner=area.transitOwner,guest=area.transitCountry||area.country;
+  if(area.country!==guest||game.stage.countries.get(owner)?.eliminated){delete area.transitOwner;delete area.transitCountry;continue;}
+  if(game.getDiplomaticRelation?.(guest,owner)===1){delete area.transitOwner;delete area.transitCountry;game.emit(EV.AREA_CAPTURED,{area:area.id,from:owner,to:guest,cause:'transitWar'});continue;}
+  if(area.armies.length)continue;area.country=owner;delete area.transitOwner;delete area.transitCountry;game.emit('alliedTransitChanged',{area:area.id,owner,guest,phase:'left'});
+ }
+}

@@ -65,6 +65,6 @@ export function evaluateSandboxCondition(game, cond) {
     return !!owner&&compareCondition(owner[cond.resource]||0,cond);
   }
   if(cond.type==='armyCount')return compareCondition(game.stage.areas.reduce((n,a)=>n+(a.country===cond.country?(a.armies?.length||0):0),0),cond);
-  if(cond.type==='territoryCount')return compareCondition(game.stage.areas.filter(a=>a.country===cond.country&&!a.sea).length,cond);
+  if(cond.type==='territoryCount')return compareCondition(game.stage.areas.filter(a=>(a.transitOwner||a.country)===cond.country&&!a.sea).length,cond);
   return null;
 }
