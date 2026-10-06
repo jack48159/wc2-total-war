@@ -449,8 +449,12 @@ function notifyPeaceAllies(game, first, second) {
 }
 
 export function setNap(game, first, second, reason = 'nap') {
+  if (!first || !second || first === second ||
+      !countryAlive(game.stage?.countries?.get(first)) || !countryAlive(game.stage?.countries?.get(second)) ||
+      getDiplomaticRelation(game, first, second) !== DIPLOMACY_STATE.PEACE) return false;
   const dip = ensureDiplomacyMeta(game);
   if (!dip) return false;
+  if (hasNap(game, first, second)) return true;
   dip.pacts[relationKey(first, second)] = { type: 'nap', sinceRound: game.round || 1, reason };
   dip.revision = (dip.revision || 0) + 1;
   game.emit(EV.DIPLOMACY_PACT, { first, second, pactType: 'nap', reason });
@@ -740,6 +744,10 @@ export function warCascade(game, attacker, target) {
       if (other === cur || other === attacker || component.has(other)) continue;
       const otherCountry = st.countries.get(other);
       if (otherCountry?.eliminated) continue;
+      // An automatic defensive call cannot tear up an existing treaty.
+      if (getDiplomaticRelation(game, attacker, other) === DIPLOMACY_STATE.ALLIANCE ||
+          hasNap(game, attacker, other) ||
+          (dip.truceUntil?.[relationKey(attacker, other)] || 0) > (game.round || 1)) continue;
 
       // Check if cur and other are allies
       if (getDiplomaticRelation(game, cur, other) === DIPLOMACY_STATE.ALLIANCE) {
@@ -772,6 +780,17 @@ export function setDiplomaticRelation(game, first, second, state, reason = 'manu
   const key = relationKey(first, second);
   const prevRelation = getDiplomaticRelation(game, first, second);
   const old = dip.relations[key];
+  // Inherited relations are real relations too: repeating one is a no-op.
+  if (prevRelation === stVal) {
+    if (!dip.enabled) {
+      dip.enabled = true;
+      dip.relations[key] = stVal;
+      dip.revision = (dip.revision || 0) + 1;
+    }
+    return true;
+  }
+  if (stVal === DIPLOMACY_STATE.WAR && SKIP_WAR_STABILITY.has(reason) &&
+      (prevRelation === DIPLOMACY_STATE.ALLIANCE || hasNap(game, first, second))) return false;
   dip.enabled = true;
 
   if (NEGOTIATED_REASONS.has(reason) && stVal !== prevRelation &&
@@ -799,8 +818,8 @@ export function setDiplomaticRelation(game, first, second, state, reason = 'manu
 
   if (stVal === DIPLOMACY_STATE.WAR) {
     const truceUntil = dip.truceUntil?.[key] || 0;
-    if (truceUntil > (game.round || 1) && reason !== 'war_cascade') {
-      return true;
+    if (truceUntil > (game.round || 1)) {
+      return false;
     }
   }
 
@@ -875,12 +894,11 @@ export function setDiplomaticRelation(game, first, second, state, reason = 'manu
 
       // Historical scenario responses:
       const p1 = first, p2 = second;
-      const isGermanWar = (p1 === 'de' || p2 === 'de');
       const other = (p1 === 'de' ? p2 : p1);
       const neutrals = ['nl', 'be', 'dk', 'no', 'yu', 'gr'];
 
       // §3.4: German declaration of war on neutral country -> GB & FR ally with that country
-      if (isGermanWar && neutrals.includes(other)) {
+      if (!isSandbox(game) && p1 === 'de' && neutrals.includes(other)) {
         const se = game.scenarioEvents;
         const evtId = `neutral_allied_${other}`;
         if (se && !se.history.includes(evtId)) {
@@ -900,7 +918,7 @@ export function setDiplomaticRelation(game, first, second, state, reason = 'manu
       }
 
       // §3.3: German-Soviet war -> GB & FR ally with USSR
-      if ((p1 === 'de' && p2 === 'ru') || (p1 === 'ru' && p2 === 'de')) {
+      if (!isSandbox(game) && ((p1 === 'de' && p2 === 'ru') || (p1 === 'ru' && p2 === 'de'))) {
         const se = game.scenarioEvents;
         const evtId = 'ussr_allied_west';
         if (se && !se.history.includes(evtId)) {
@@ -1559,7 +1577,7 @@ function finishWarInvitation(game, invitation, accepted) {
     && !hasNap(game, ally, enemy)
     && (game.diplomacy.truceUntil?.[relationKey(ally, enemy)] || 0) <= (game.round || 1);
   invitation.status = accepted && valid ? 'accepted' : accepted ? 'expired' : 'declined';
-  if (invitation.status === 'accepted') setDiplomaticRelation(game, ally, enemy, 'war', 'alliance_join_war');
+  if (invitation.status === 'accepted' && !setDiplomaticRelation(game, ally, enemy, 'war', 'alliance_join_war')) invitation.status = 'expired';
   game.addReport?.({ category: 'diplomacy', kind: 'warInvitation', actors: [inviter, ally, enemy],
     detail: { invitationId: invitation.id, status: invitation.status },
     factKey: invitation.id + '_' + invitation.status, importance: 2,
@@ -1574,6 +1592,8 @@ export function inviteWarAllies(game, inviter, enemy, selected = true) {
     if (ally === inviter || ally === enemy || (Array.isArray(selected) && !selected.includes(ally))) continue;
     if (getDiplomaticRelation(game, inviter, ally) !== DIPLOMACY_STATE.ALLIANCE
       || getDiplomaticRelation(game, ally, enemy) === DIPLOMACY_STATE.WAR) continue;
+    if (getDiplomaticRelation(game, ally, enemy) === DIPLOMACY_STATE.ALLIANCE || hasNap(game, ally, enemy) ||
+        (game.diplomacy.truceUntil?.[relationKey(ally, enemy)] || 0) > (game.round || 1)) continue;
     const previous = Object.values(records).find(x => x.inviter === inviter && x.ally === ally && x.enemy === enemy
       && (x.status === 'pending' || (game.round || 1) - x.round < 3));
     if (previous) continue;
@@ -1693,12 +1713,14 @@ register('setDiplomacy', {
     if (!countryAlive(game.stage?.countries?.get(cmd.first)) || !countryAlive(game.stage?.countries?.get(cmd.second))) return 'country-eliminated';
     const stVal = parseDiplomaticRelationState(cmd.state);
     if (stVal < DIPLOMACY_STATE.WAR || stVal > DIPLOMACY_STATE.ALLIANCE) return 'invalid-state';
+    if (stVal === DIPLOMACY_STATE.WAR && getDiplomaticRelation(game, cmd.first, cmd.second) !== DIPLOMACY_STATE.WAR &&
+        (game.diplomacy?.truceUntil?.[relationKey(cmd.first, cmd.second)] || 0) > (game.round || 1)) return 'truce-active';
     return null;
   },
   execute(game, cmd) {
     if (needsHumanConsent(game, cmd)) { deliverOfferToTarget(game, cmd); return; }
-    setDiplomaticRelation(game, cmd.first, cmd.second, cmd.state, cmd.reason || 'command');
-    if (cmd.inviteAllies && parseDiplomaticRelationState(cmd.state) === DIPLOMACY_STATE.WAR) inviteWarAllies(game, cmd.first, cmd.second, cmd.inviteAllies);
+    const changed = setDiplomaticRelation(game, cmd.first, cmd.second, cmd.state, cmd.reason || 'command');
+    if (changed && cmd.inviteAllies && parseDiplomaticRelationState(cmd.state) === DIPLOMACY_STATE.WAR) inviteWarAllies(game, cmd.first, cmd.second, cmd.inviteAllies);
     if (cmd.reason === 'player_accepted_offer') game.emit(EV.DIPLOMACY_OFFER_RESOLVED, {
       first: cmd.first, second: cmd.second, action: cmd.state, accepted: true, reason: cmd.reason,
     });
