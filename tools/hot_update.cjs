@@ -39,9 +39,10 @@ module.exports = function createUpdater(root, mime) {
     busy = true; progress = { running: true, done: 0, total: 0, downloaded: 0 };
     let staging;
     try {
-      const response = await fetch(BUCKET + '/updates/stable.json', { signal: AbortSignal.timeout(15000), redirect: 'error', cache: 'no-store' });
+      const response = await fetch(BUCKET + '/updates/windows/stable.json', { signal: AbortSignal.timeout(15000), redirect: 'error', cache: 'no-store' });
       if (!response.ok) throw Error('更新服务暂不可用');
       const m = verify(await response.json());
+      if (m.channel !== 'windows') throw Error('更新平台不匹配');
       if (m.release === state.active) { progress = { running: false, ready: m.release }; return; }
       staging = path.join(dir, m.release + '.staging'); fs.rmSync(staging, { recursive: true, force: true }); fs.mkdirSync(staging);
       progress.total = m.files.length;
@@ -79,7 +80,7 @@ module.exports = function createUpdater(root, mime) {
         const origin = req.headers.origin;
         if (req.headers['x-wc2-update'] !== '1' || (origin && origin !== `http://${req.headers.host}` && origin !== `https://${req.headers.host}`)) { res.writeHead(403); res.end(); return true; }
         const reply = value => { res.writeHead(200, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' }); res.end(JSON.stringify(value)); };
-        if (url === '/api/update/status') reply({ ...progress, active: state.active, ready: state.ready, shell: 1 });
+        if (url === '/api/update/status') reply({ ...progress, active: state.active, ready: state.ready, shell: 1, channel: 'windows' });
         else if (req.method !== 'POST') { res.writeHead(405); res.end(); }
         else if (url === '/api/update/prepare') { void prepare(); reply({ ok: true }); }
         else if (url === '/api/update/activate') { if (state.ready && !busy) { state.previous = state.active; state.active = state.ready; state.trial = true; state.ready = null; save(); setTimeout(() => { if (state.trial) { state.active = state.previous || null; state.trial = false; save(); } }, 120000).unref(); reply({ ok: true }); } else reply({ error: '更新尚未准备完成' }); }

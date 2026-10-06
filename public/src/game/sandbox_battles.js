@@ -10,11 +10,13 @@ export const SANDBOX_BATTLES = [
       pl: { tank: [137,154,161], panzer: [134,156], artillery: [127,137,153,154,161], infantry: [127,134,135,136,138,139,151,154,158,161] }
     }, capitals: { de:149, pl:154 } },
   { id: 'de_fr', name: '德国 vs 法国', year: '1940', countries: ['de', 'fr'],
-    description: '德国机动突击，对抗法国炮兵与纵深预备队；北方走廊可攻可守。',
-    economies: { de: [650, 240, 290, 100], fr: [700, 260, 285, 105] },
+    description: '1940年态势：法国坦克、炮兵较多，德国机动力量集中于西线。马奇诺方向坚固，北方与阿登方向可突破；法军可调动预备队改变战局。',
+    economies: { de: [620, 220, 280, 100], fr: [680, 260, 300, 110] },
+    techlevel: 2,
+    forts: { fr: [1122,1123] },
     forces: {
-      de: { tank:[140,141,144,147,149,150,172], panzer:[124,146,167,1020], artillery:[123,145,146,150,1024,1029], infantry:[124,145,149,167,171,1020,1046] },
-      fr: { tank:[65,68,1028,1121,1126,1139], panzer:[1124,1159], artillery:[73,1025,1027,1028,1122,1132,1142], infantry:[63,65,68,71,1028,1049,1117,1121,1122,1137] }
+      de: { tank:[172,172,1024,1024,148,148,1023], panzer:[146,146,171,171,1023,1025,1026,1028], artillery:[148,172,1024,1025,1026,149], infantry:[145,146,148,149,168,170,171,172,1023,1024,1025,1026,1028,1046] },
+      fr: { tank:[69,70,72,71,1124,1125,1132,1139,1121], panzer:[69,1124,1125], artillery:[70,72,71,1122,1122,1123,1123,1124,1132,1139], infantry:[65,68,69,70,71,72,73,1117,1120,1121,1122,1123,1137,1155] }
     }, capitals:{de:149,fr:1121} },
   { id: 'de_ru', name: '德国 vs 苏联', year: '1941', countries: ['de', 'ru'],
     description: '德国前线集中，苏联后备更厚；争夺交通线、工业与恢复空间。',
@@ -35,6 +37,12 @@ export function applySandboxBattle(data, id) {
   }
   if (id === 'de_fr') for (const area of data.areas) {
     if (['be','nl'].includes(area.country)) area.country = 'fr';
+    // Low Countries are represented by the French-led side in this two-seat
+    // abstraction; Swiss, Slovak, Hungarian and Italian land is outside it.
+    if (area.id === 147) area.country = 'fr';
+    if ([1025,1028].includes(area.id)) area.country = 'de';
+    if ([1019,1032,1041,1043,1027,1049,1089,1136,1138,1141,1156,1157,1158].includes(area.id)) area.country = null;
+    if (area.country === 'fr') area.installation = 'none';
   }
   if (id === 'de_ru') for (const area of data.areas) {
     if (area.country === 'pl') area.country = 'de';
@@ -49,7 +57,7 @@ export function applySandboxBattle(data, id) {
   delete data.scenarioEvents; delete data.events; delete data.ai_rules;
   for (const country of data.countries) {
     const [money, industry, income, industrialIncome] = preset.economies[country.id];
-    Object.assign(country, { money, industry, techlevel:3, stability:100, commanderLevel:3, alliance:country.id, taxfactor:1 });
+    Object.assign(country, { money, industry, techlevel:preset.techlevel ?? 3, stability:100, commanderLevel:3, alliance:country.id, taxfactor:1 });
     const capital = byArea.get(preset.capitals[country.id]);
     Object.assign(capital, { country:country.id, construction:'city', level:4, installation:'fort' });
     for (const [type, positions] of Object.entries(preset.forces[country.id])) for (const n of positions) {
@@ -70,11 +78,12 @@ export function applySandboxBattle(data, id) {
     country.taxfactor = income / Math.max(1, tax);
     country.industryfactor = industrialIncome / Math.max(1, production);
   }
+  for (const [country, ids] of Object.entries(preset.forts || {})) for (const id of ids) {
+    const area = byArea.get(id);
+    if (area?.country === country) area.installation = 'fort';
+  }
   // A closed theater prevents either side farming the rest of Europe for free income.
   const enabled = new Set(data.areas.filter(a => sides.has(a.country) && World.areas[a.id]?.f !== 1).map(a => a.id));
-  for (const n of [...enabled]) for (const neighbour of World.adj[n] || []) {
-    if (byArea.has(neighbour) && World.areas[neighbour]?.f !== 1) enabled.add(neighbour);
-  }
   data.enabled = [...enabled]; data.areas = data.areas.filter(a => enabled.has(a.id));
   data.sandboxBattle = preset.id;
 }

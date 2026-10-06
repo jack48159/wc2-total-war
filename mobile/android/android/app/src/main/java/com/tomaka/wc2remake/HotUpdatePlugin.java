@@ -60,6 +60,7 @@ public class HotUpdatePlugin extends Plugin {
                 Signature signature=Signature.getInstance("SHA256withRSA");signature.initVerify(KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(Base64.decode(KEY,Base64.DEFAULT))));signature.update(payload);
                 if(!signature.verify(Base64.decode(envelope.getString("signature"),Base64.DEFAULT)))throw new IOException("更新签名无效");
                 JSONObject m=new JSONObject(new String(payload,"UTF-8"));String release=m.getString("release"),base=m.getString("base");
+                if(!m.optString("channel").equals("android"))throw new IOException("更新平台不匹配");
                 if(!release.matches("\\d{14}") || m.getInt("shell")>1 || !m.getString("protocol").equals("wc2-1") || !base.equals(BUCKET + "/web/releases/" + release + "/"))throw new IOException("需要安装新版程序");
                 JSONArray files=m.getJSONArray("files");total=files.length();if(total>10000)throw new IOException("清单过大");
                 HashSet<String> names=new HashSet<>();long sum=0;

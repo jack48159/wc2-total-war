@@ -1,6 +1,9 @@
 import { E } from './kernel.js';
 import { platform } from '../platform/detect.js';
-const URL = 'https://wc2-1324086514.cos.ap-guangzhou.myqcloud.com/updates/stable.json';
+const BUCKET = 'https://wc2-1324086514.cos.ap-guangzhou.myqcloud.com';
+const localHost = () => ['127.0.0.1','localhost'].includes(location.hostname);
+const updateChannel = () => platform.isPackaged ? platform.id : localHost() ? 'windows' : 'web';
+const manifestUrl = channel => BUCKET + (channel === 'android' ? '/updates/stable.json' : `/updates/${channel}/stable.json`);
 const SPKI = 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtwfLjT9ZSRBF0haS4Kl6H8VsYtecwjFp6xC1WkpHYxBRiPCWWOBATugSDK6Y/nIMb+6wdt60i2xkYbN8E6I7MOBGzvTquoqMLwQ7vTgTRktMU3MaDq4zeSWfXGqkJiVuvBMJjQ0R5x/6SknPsIwW/HolFAkiRgRyLx4LF5e9JpRlQg9pTw3pfLOMtnAFq6X4zfN4b9Ut+crd+wCz72VZwZ4kDEa+SVbkY/mj05hPJR5WxVzQKY9Py/vUvIKIwxLQGpHBkwqOWp/7ON2r4GM2HUspULeTw/ItQqCalKFt8MSAu2Lww/wVhL2zKbQZNKZq3DOVx0hgJ7cRRU+MgddTWQIDAQAB';
 const bytes = value => Uint8Array.from(atob(value), char => char.charCodeAt(0));
 const home = () => (E.scene?.route === 'home' || E.scene?.constructor?.name === 'Home') && !E.busy;
@@ -65,7 +68,7 @@ export const Updates = {
         const timeout = setTimeout(() => controller.abort(), 15000);
         let envelope;
         try {
-          const response = await fetch(URL, { cache: 'no-store', signal: controller.signal });
+          const response = await fetch(manifestUrl(updateChannel()), { cache: 'no-store', signal: controller.signal });
           if (!response.ok) throw Error('Update server: ' + response.status);
           envelope = await response.json();
         } finally { clearTimeout(timeout); }
@@ -75,6 +78,7 @@ export const Updates = {
         m = JSON.parse(new TextDecoder().decode(payload));
       }
       if (!/^\d{14}$/.test(m.release)) throw Error('Invalid update release');
+      if (platform.id !== 'ios' && m.channel !== updateChannel()) throw Error('更新平台不匹配，请检查客户端的更新入口');
       if (m.release <= (window.WC2_CONFIG.release || '')) {
         if (force) this.notify('\u5df2\u662f\u6700\u65b0\u7248\u672c ' + (window.WC2_CONFIG.version || ''));
         return;
@@ -96,13 +100,14 @@ export const Updates = {
         action.disabled = true;
         try {
           let status = await native.status();
+          if (updateChannel() === 'windows' && status.channel !== 'windows') throw Error('Windows 启动程序需要迁移到独立更新清单，请先更新启动程序的更新组件');
           if (status.ready !== m.release) await native.prepare();
           do {
             await new Promise(resolve => setTimeout(resolve, 700)); status = await native.status();
             detail.textContent = `正在准备更新 ${status.done || 0}/${status.total || 0}，新下载 ${((status.downloaded || 0) / 1048576).toFixed(1)} MB。可继续游戏，回到首页后再切换。`;
           } while (status.running);
           if (status.error) throw Error(status.error);
-          if (!status.ready) throw Error('更新尚未准备完成');
+          if (status.ready !== m.release) throw Error('下载器准备的版本与本平台更新清单不一致，请重新检查更新');
           action.disabled = false; action.textContent = '重启界面并应用'; detail.textContent = '更新已校验完成。应用后会重新打开游戏界面，存档保持不变。';
           action.onclick = async () => { if (!home()) return; action.disabled = true; try { await native.activate(); if (!platform.isPackaged) location.reload(); } catch (e) { detail.textContent = e.message; action.disabled = false; } };
         } catch (e) { detail.textContent = e.message + '，当前版本仍可使用。'; action.disabled = false; }
