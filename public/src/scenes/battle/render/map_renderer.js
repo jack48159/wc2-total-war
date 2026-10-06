@@ -239,7 +239,16 @@ export class MapRenderer {
       for (const e of nearby) {
         const { a, sp, own, color, enabled, fogged } = e, dx = a.x - owned.x + 1, dy = a.y - owned.y + 1;
         if (!sp) continue;
-        if (!enabled) { if (st.data.mapResources || this.game.sandbox) { const shade=this.tinted(a.id,'rgb(115,111,100)');if(shade)closed.g.drawImage(shade,dx,dy); } else closed.g.drawImage(sp.img, sp.x, sp.y, sp.w, sp.h, dx, dy, sp.w, sp.h); closed.painted = true; continue; }
+        if (!enabled) {
+          if (this.game.sandbox) {
+            const paper = this.tinted(a.id, 'rgb(232,221,192)');
+            if (paper) { closed.g.save(); closed.g.globalAlpha = 0.5; closed.g.drawImage(paper, dx, dy); closed.g.restore(); }
+          } else if (st.data.mapResources) {
+            const shade = this.tinted(a.id, 'rgb(115,111,100)');
+            if (shade) closed.g.drawImage(shade, dx, dy);
+          } else closed.g.drawImage(sp.img, sp.x, sp.y, sp.w, sp.h, dx, dy, sp.w, sp.h);
+          closed.painted = true; continue;
+        }
         if (!own) {
           if (fogged) { const shade = this.tinted(a.id, 'rgb(62,56,46)'); if (shade) { closed.g.globalAlpha = 0.58; closed.g.drawImage(shade, dx, dy); closed.g.globalAlpha = 1; closed.painted = true; } }
           continue;

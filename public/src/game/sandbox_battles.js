@@ -38,10 +38,10 @@ export function applySandboxBattle(data, id) {
   if (id === 'de_fr') for (const area of data.areas) {
     if (['be','nl'].includes(area.country)) area.country = 'fr';
     // Low Countries are represented by the French-led side in this two-seat
-    // abstraction; Swiss, Slovak, Hungarian and Italian land is outside it.
+    // abstraction. Keep the original map's territorial footprints: generated
+    // city labels are approximate and must not be used to carve out borders.
     if (area.id === 147) area.country = 'fr';
     if ([1025,1028].includes(area.id)) area.country = 'de';
-    if ([1019,1032,1041,1043,1027,1049,1089,1136,1138,1141,1156,1157,1158].includes(area.id)) area.country = null;
     if (area.country === 'fr') area.installation = 'none';
   }
   if (id === 'de_ru') for (const area of data.areas) {
