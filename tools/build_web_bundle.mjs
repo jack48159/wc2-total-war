@@ -52,7 +52,7 @@ try {
 } catch (e) { if (e.code !== 'ENOENT') throw e; }
 await json('layouts.json', layouts.map(f => f.slice(0, -5)));
 await writeFile(path.join(output, 'runtime-config.js'), 'window.WC2_CONFIG = ' + JSON.stringify({
-  staticWeb: true, apiOrigin, musicPreloadSeconds: 20, release, version: '1.0.10', protocol: 'wc2-1', updateSupport: true, iosUpdateSupport: true
+  staticWeb: true, apiOrigin, musicPreloadSeconds: 20, release, version: '1.0.11', protocol: 'wc2-1', updateSupport: true, iosUpdateSupport: true
 }) + ';\n');
 // Keep dynamic imports as separate chunks, while combining the hundreds of small
 // startup modules into shared bundles. Runtime asset URLs still use the COS base.

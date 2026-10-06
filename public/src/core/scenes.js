@@ -24,10 +24,21 @@ const go = async (target, ...args) => {
   const mine = ++token;
   if (E.scene && !E.noFade) { E.fade.target = 1; E.busy = true; await E.sleep(210); }
   if (mine !== token) return;
-  if (E.scene && E.scene.dispose) E.scene.dispose();
+  const previous = E.scene;
+  if (previous && previous.dispose) previous.dispose();
   const next = instantiate(target, args);
   E.focus = null; E.pointer.down = false;
-  if (next.load) await next.load();
+  try {
+    if (next.load) await next.load();
+  } catch (error) {
+    next.dispose?.();
+    if (mine === token) {
+      E.scene = previous;
+      E.fade.target = 0; E.busy = false;
+      try { await previous?.onShow?.(); } catch (restoreError) { console.error('restore scene', restoreError); }
+    }
+    throw error;
+  }
   if (mine !== token) return;
   E.scene = next; E.fade.target = 0; E.busy = false;
   try { next.onShow?.(); } catch (e) { console.error('onShow', e); }   // 场景实例被(重新)显示时的钩子：复用的实例不会重新 init
