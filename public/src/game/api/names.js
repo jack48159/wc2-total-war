@@ -153,6 +153,8 @@ export function getAreaTypeName(area) {
 }
 
 export function getAreaName(areaId, stage = null) {
+  if (stage?.data?.mapResources) return stage.world?.areas[areaId]?.name || `第 ${areaId} 区`;
+  if (!stage && World.activeMap && World.activeMap !== 'original') return World.areas[areaId]?.name || `第 ${areaId} 区`;
   const named = FAMOUS_AREAS[areaId] || FAMOUS_AREAS[Number(areaId)];
   if (named) return named;
   if (stage) {

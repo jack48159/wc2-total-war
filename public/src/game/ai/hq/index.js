@@ -47,6 +47,7 @@ export class HqAi extends Controller {
   }
 
   commandsForTurn(game, country, blocked = new Set()) {
+    game.stage.useWorld();
     let viewGame = game;
     if (game.fogOfWar) {
       viewGame = countryGameView(game, country);

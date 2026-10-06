@@ -95,6 +95,7 @@ function blockedKey(command) {
 }
 
 async function runAi(room, country) {
+  room.game.stage.useWorld();
   const ai = room.ai.get(country) || new HqAi();
   room.ai.set(country, ai);
   const blocked = new Set();
@@ -118,6 +119,7 @@ async function runAi(room, country) {
 
 export async function advanceTurn(room) {
   const game = room.game;
+  game.stage.useWorld();
   room.turnDeadlineAt = null;
   if (game.phase === 'finished') return;
   for (let guard = 0; guard < room.turnOrder.length * 2; guard++) {
@@ -140,6 +142,7 @@ export async function advanceTurn(room) {
       return;
     }
     await runAi(room, country);
+    game.stage.useWorld();
     if (game.phase === 'finished') return;
     endCountry(game, country, true);
   }
@@ -147,6 +150,7 @@ export async function advanceTurn(room) {
 }
 
 export async function submitCommand(room, userId, command) {
+  room.game?.stage.useWorld();
   if (!room.started || room.game.phase !== 'playing') throw new Error('对局尚未开始或已经结束');
   if (room.paused) throw new Error('联机已暂停，等待房主继续');
   const country = room.turnOrder[room.turnIndex];
@@ -177,6 +181,7 @@ export async function submitCommand(room, userId, command) {
 }
 
 export function roomVisualEvents(room, country, events, spectator = false) {
+  room.game?.stage.useWorld();
   if (!events?.length) return [];
   if (spectator && !country) return events;
   if (!room.game.fogOfWar && !spectator) return events;
@@ -210,6 +215,7 @@ function stripSpectatorPrivateState(snapshot) {
 }
 
 export function spectatorSnapshot(room, followCountry = null) {
+  room.game?.stage.useWorld();
   if (!room.started) return null;
   const game = room.game, base = game.snapshot();
   const country = followCountry || room.turnOrder?.[room.turnIndex] || game.player;
@@ -228,6 +234,7 @@ export function spectatorSnapshot(room, followCountry = null) {
 }
 
 export function roomSnapshot(room, country) {
+  room.game?.stage.useWorld();
   if (!room.started) return null;
   const game = room.game;
   const snapshot = game.snapshot();

@@ -1,7 +1,8 @@
 // Player-facing Chinese labels for countries, areas and commands.
 // Shared by the AI-turn banner and auto-play status text.
 
-import { COUNTRY_NAMES, FAMOUS_AREAS, getCardName } from './api/names.js';
+import { COUNTRY_NAMES, FAMOUS_AREAS, getCardName, getAreaName } from './api/names.js';
+import { World } from './world.js';
 
 const ORDINALS = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十'];
 
@@ -38,8 +39,9 @@ export function playerCountryName(countryId, stage = null) {
   return `${flagName}第${ORDINALS[idx] || (idx + 1)}军`;
 }
 
-export function playerAreaName(areaId) {
+export function playerAreaName(areaId, stage = null) {
   if (areaId == null || areaId === '') return '未知地区';
+  if (stage?.data?.mapResources || (!stage && World.activeMap && World.activeMap !== 'original')) return getAreaName(areaId,stage);
   const named = FAMOUS_AREAS[areaId] || FAMOUS_AREAS[Number(areaId)];
   if (named) return named;
   const n = Number(areaId);

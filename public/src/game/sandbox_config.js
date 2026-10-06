@@ -5,20 +5,22 @@ import { World } from './world.js';
 export const SANDBOX_UNITS = ['infantry','panzer','tank','heavytank','artillery','rocket','destroyer','cruiser','battleship','aircraftcarrier'];
 export function validateSandbox(config) {
   if (!config || !Array.isArray(config.areas) || !Array.isArray(config.countries)) throw Error('沙盒数据不完整');
+  const map = World.profiles.get(World.stageMaps.get(config.stage) || 'original');
+  if (!map) throw Error('请先加载作品地图');
   const countries = new Set(config.countries.map(c => c.id));
   if (countries.size !== config.countries.length || countries.size < 2 || !countries.has(config.player)) throw Error('至少保留两个不同的参战国，并选择有效的玩家国家');
   validateFeatures(config,validateSandbox);
   const ids = new Set();
   for (const a of config.areas) {
-    if (!World.areas[a.id] || ids.has(a.id)) throw Error('存在无效或重复地块');
+    if (!map.areas[a.id] || ids.has(a.id)) throw Error('存在无效或重复地块');
     ids.add(a.id);
     if (a.country && !countries.has(a.country)) throw Error('地块归属必须是参战国或无主');
-    if (!Array.isArray(a.armies) || a.armies.length > (World.areas[a.id].unitCapacity || 4)) throw Error(`地块 ${a.id} 超过驻军容量`);
+    if (!Array.isArray(a.armies) || a.armies.length > (map.areas[a.id].unitCapacity || 4)) throw Error(`地块 ${a.id} 超过驻军容量`);
     for (const army of a.armies) {
       if (army.templateId && !(config.features?.units||[]).some(u=>u.id===army.templateId&&u.base===army.type)) throw Error('自定义兵种不存在或基础兵种不匹配');
       if (!SANDBOX_UNITS.includes(army.type) || !Number.isInteger(army.level) || army.level < 0 || army.level > 5) throw Error('兵种或等级无效');
       if (!a.country) throw Error('无主地块不能部署军队');
-      if (['destroyer','cruiser','battleship','aircraftcarrier'].includes(army.type) !== (World.areas[a.id].f === 1)) throw Error('陆军只能部署在陆地，海军只能部署在海域');
+      if (['destroyer','cruiser','battleship','aircraftcarrier'].includes(army.type) !== (map.areas[a.id].f === 1)) throw Error('陆军只能部署在陆地，海军只能部署在海域');
     }
   }
   for (const c of config.countries) for (const key of ['money','industry']) if (!Number.isFinite(c[key]) || c[key] < 0) throw Error('财政必须是非负数');

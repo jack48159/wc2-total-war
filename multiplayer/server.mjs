@@ -23,7 +23,7 @@ const userDb = new DatabaseSync(path.join(dataDir, 'users.sqlite'));
 const modHall=createModHall({db:userDb,userFor:auth.userFor,json,validateConfig:async config=>{
   if(!config||!/^[-a-zA-Z0-9_]+$/.test(config.stage||''))throw Error('作品地图无效');
   const data=JSON.parse(await fs.readFile(path.join(stageDirectory,config.stage+'.json'),'utf8'));
-  await World.load();if(data.mapPatch)World.applyPatch(data.mapPatch,data.mirror);validateSandbox(config);
+  await World.loadStageMap(config.stage,data);validateSandbox(config);
 }});
 db.exec(`PRAGMA journal_mode=WAL;
 CREATE TABLE IF NOT EXISTS rooms (id TEXT PRIMARY KEY, body TEXT NOT NULL, updated_at INTEGER NOT NULL);`);
@@ -222,7 +222,7 @@ const server = http.createServer(async (req, res) => {
       const input = await bodyOf(req), stage = stageName(input.stage);
       if (!stage) throw new Error('关卡名称无效');
       let data = JSON.parse(await fs.readFile(path.join(assetStages, `${stage}.json`), 'utf8'));
-      const custom=input.sandboxConfig;if(custom){if(input.customContentEnabled!==true||custom.stage!==stage)throw Error('房主必须明确启用此沙盒配置');await World.load();if(data.mapPatch)World.applyPatch(data.mapPatch,data.mirror);validateSandbox(custom);if(custom.features?.campaign?.chapters?.length)throw Error('连续战役请在单人模式游玩；可复制单章创建联机');data={...data,countries:custom.countries,player:custom.player};}
+      const custom=input.sandboxConfig;if(custom){if(input.customContentEnabled!==true||custom.stage!==stage)throw Error('房主必须明确启用此沙盒配置');await World.loadStageMap(custom.stage,data);validateSandbox(custom);if(custom.features?.campaign?.chapters?.length)throw Error('连续战役请在单人模式游玩；可复制单章创建联机');data={...data,countries:custom.countries,player:custom.player};}
       const playerLimit = Number(input.playerLimit || 2);
       if (!Number.isInteger(playerLimit) || playerLimit < 2 || playerLimit > Math.min(20, data.countries.length)) throw new Error('真人席位数量无效');
       const id = crypto.randomBytes(4).toString('hex').toUpperCase();

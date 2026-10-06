@@ -17,6 +17,7 @@ class CountrySelect extends Page {
     this.q = all.find(x => x.id === this.cid) || all[0];
     this.names = names; this.sc = sc; this.leather = leather;
     this.countries = this.q.countries;
+    if (this.q.mapPreview) this.mapPreview = await E.image(this.q.mapPreview);
     this.list = new E.ScrollList({ w: PANEL_W, h: 900, itemH: 127, count: this.countries.length });
     // map flags: only countries that can actually be picked are buttons
     this.flagBtns = [];
@@ -49,13 +50,28 @@ class CountrySelect extends Page {
     super.key(e);
   }
 
-  renderBg() { E.WorldMap.draw(this.q.center, ANCHOR); }
+  theatreMapRect() {
+    const roomW=E.panelLeft(PANEL_W)-70,roomH=E.H-235;
+    const scale=Math.min(roomW/this.q.mapSize[0],roomH/this.q.mapSize[1]);
+    return {x:35+(roomW-this.q.mapSize[0]*scale)/2,y:145,w:this.q.mapSize[0]*scale,h:this.q.mapSize[1]*scale,scale};
+  }
+  renderBg() {
+    if (!this.mapPreview) { E.WorldMap.draw(this.q.center, ANCHOR); return; }
+    E.cover(this.leather);const r=this.theatreMapRect();
+    E.ctx.drawImage(this.mapPreview,r.x,r.y,r.w,r.h);
+  }
   render() {
     const c = E.ctx, U = E.U, WM = E.WorldMap, cen = this.q.center, cur = this.countries[this.sel].id;
+    if (this.mapPreview) {
+      E.text(this.q.name+' · 1939年9月',45,60,{size:32,color:'#f4e7c3',font:E.CJK_SERIF});
+      const lines=E.wrap(this.q.objectiveDescriptions?.[cur]||'',E.panelLeft(PANEL_W)-110,22);
+      lines.forEach((line,i)=>E.text(line,45,98+i*28,{size:22,color:'#f4e7c3'}));
+    }
     // all flags on the map; pickable ones are buttons
     for (const f of this.q.flags) {
       const fr = this.sc['sflag_' + (f.frame || f.id)]; if (!fr) continue;
-      const p = WM.toScreen(f.x, f.y, cen, ANCHOR), s = U * f.scale, on = f.id === cur;
+      const r=this.mapPreview?this.theatreMapRect():null;
+      const p = r?{x:r.x+f.x*r.scale,y:r.y+f.y*r.scale}:WM.toScreen(f.x, f.y, cen, ANCHOR), s = U * f.scale, on = f.id === cur;
       const btn = this.flagBtns.find(b => b.f === f);
       const w = fr.w * s, h = fr.h * s;
       if (btn) { btn.visible = p.x < E.panelLeft(PANEL_W) - 36 && p.y < E.H - E.oy - 112; btn.w = Math.max(w, 72); btn.h = Math.max(h, 72); btn.x = p.x - btn.w / 2; btn.y = p.y - btn.h / 2; }

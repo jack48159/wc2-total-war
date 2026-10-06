@@ -4,6 +4,7 @@ import { getAreaName } from './names.js';
 
 // Geometry is public geography; current ownership, buildings and troops are not.
 export function getMapView(game, country = game.player) {
+  game.stage.useWorld();
   const view = game.fogOfWar ? countryGameView(game, country) : game;
   const visible = game.fogOfWar ? visibilityForCountry(game, country) : new Set(game.stage.enabled);
   const areas = view.stage.areas.filter(a => view.stage.enabled.has(a.id));

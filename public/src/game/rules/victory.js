@@ -120,7 +120,7 @@ export function checkVictory(game, victor = game.activeCountry) {
       eliminateCountry(game, country, victor);
       continue;
     }
-    if (sandbox) continue;
+    if (sandbox || stage.data.theatreObjectives) continue;
     if (!stabilityRule) continue;
     const capitalId = game.diplomacy.capitals?.[country.id];
     const occupier = capitalId == null ? null : stage.territoryOwner(capitalId);

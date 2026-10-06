@@ -30,6 +30,7 @@ function parseTacticCards(mask) {
  * @returns {Object} 纯 JSON 对象（无循环引用）
  */
 export function getPlayerView(game, country = game.player, opts = {}) {
+  game.stage.useWorld();
   const stage = game.stage;
   const isPlayer = country === game.player;
   const detail = opts.detail || 'summary';

@@ -15,6 +15,7 @@ const ACTIVE_ORDER = new Set(['pending', 'progressing', 'stalled']);
 const clone = value => value == null ? value : JSON.parse(JSON.stringify(value));
 
 function perspective(game, country) {
+  game.stage.useWorld();
   return game.fogOfWar ? countryGameView(game, country) : game;
 }
 

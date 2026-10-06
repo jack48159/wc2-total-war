@@ -80,6 +80,8 @@ export class Stage {
   // opts.player: country id the human plays (conquest scenarios have no fixed player: every country is AI in the data)
   static async load(name, areasOverride = null, opts = {}) {
     const [, data, defs, commanderRanks] = await Promise.all([World.load(), getJson(`data/stages/${name}.json`), loadArmyDefs(), loadCommanderRanks()]);
+    const mapKey = await World.loadStageMap(name,data);
+    World.useMap(mapKey);
     if (opts.sandboxFeatures) data.sandboxFeatures=structuredClone(opts.sandboxFeatures);
     if (data.mapPatch) World.applyPatch(data.mapPatch, data.mirror);
     if (areasOverride) data.areas = JSON.parse(JSON.stringify(areasOverride));
@@ -110,6 +112,7 @@ export class Stage {
     } catch (e) {
       data.traitCatalog = null;
     }
+    World.useMap(mapKey);
     if (!opts.countries && data.diplomacy?.enabled && data.traitCatalog) {
       data.traitProfiles = {};
       for (const country of data.countries) {
@@ -149,16 +152,24 @@ export class Stage {
       const human = data.countries.find(c => !c.ai);
       if (human) human.commanderLevel = opts.commanderLevel;
     }
+    if (data.theatreObjectives && !opts.sandbox && !opts.sandboxCustom) {
+      const selected = opts.player || data.player || data.countries[0]?.id;
+      data.sandboxFeatures = { ...(data.sandboxFeatures || {}), objectives: structuredClone(data.theatreObjectives[selected]) };
+    }
     // CGameManager::InitBattle calls MovePlayerCountryToFront before the first
     // turn. Country order is also the turn queue, not merely display data.
     const playerId = data.player || data.countries.find(c => !c.ai)?.id || data.countries[0]?.id;
     const playerIndex = data.countries.findIndex(c => c.id === playerId);
     if (playerIndex > 0) data.countries.unshift(...data.countries.splice(playerIndex, 1));
+    World.useMap(mapKey);
     return new Stage(name, data, defs, commanderRanks);
   }
 
   constructor(name, data, armyDefs = {}, commanderRanks = {}) {
     this.name = name; this.data = data; this.armyDefs = armyDefs;
+    this.mapKey = data.mapResources?.id || 'original';
+    this.world = World.profiles.get(this.mapKey);
+    this.useWorld();
     this.move = armyDefs.others || {}; this.strength = Object.fromEntries(Object.entries(this.move).map(([type, d]) => [type, d.maxHp]));
     this.areas = data.areas;                                     // per-area state: country, armies[], construction, level, installation
     // These immutable map traits come from the original area1.bin / areatax1.xml
@@ -224,9 +235,11 @@ export class Stage {
     if (finalY0 + targetH > 3500) finalY0 = 3500 - targetH;
 
     this.bounds = { x0: finalX0, y0: finalY0, x1: finalX0 + targetW, y1: finalY0 + targetH };
+    if (data.mapResources && data.bounds) this.bounds = { ...data.bounds };
   }
 
   get player() { return this.data.player || (this.data.countries.find(c => !c.ai) || this.data.countries[0]).id; }
+  useWorld() { return World.useMap(this.mapKey); }
   // Scenario ai flags do not grant the local player control of allied armies.
   get humanCountries() { return this._human || (this._human = new Set([this.player])); }
 

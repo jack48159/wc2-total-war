@@ -1759,5 +1759,83 @@
     "techLevel": 3
    }
   ]
+ },
+ {
+  "id": "germany_poland_1939",
+  "key": "germany-poland-1939",
+  "stage": "conquest_germany_poland_1939",
+  "featured": true,
+  "name": "德国与波兰 · 九月战役",
+  "region": "EUROPE",
+  "year": "1939",
+  "atlas": "mui_hd",
+  "card": "button_conquest1",
+  "center": [
+   261,
+   236
+  ],
+  "mapPreview": "assets/maps/germany_poland_1939/preview.webp",
+  "mapSize": [
+   4800,
+   3400
+  ],
+  "objectiveDescriptions": {
+   "de": "20回合内控制华沙、罗兹、克拉科夫与布列斯特，同时守住柏林。",
+   "pl": "守住华沙、卢布林与利沃夫至第21回合，或者反攻占领柏林。三座防御支点同时失守则失败。"
+  },
+  "flags": [
+   {
+    "id": "de",
+    "x": 1743.43,
+    "y": 1616.81,
+    "scale": 0.8
+   },
+   {
+    "id": "pl",
+    "x": 3159.59,
+    "y": 1677.92,
+    "scale": 0.8
+   }
+  ],
+  "countries": [
+   {
+    "id": "de",
+    "flag": "de",
+    "commander": "Guderian",
+    "ai": true,
+    "defeated": "land",
+    "alliance": "a",
+    "money": 260,
+    "industry": 135,
+    "techlevel": 2,
+    "taxfactor": 0.75,
+    "industryfactor": 0.75,
+    "color": [
+     95,
+     109,
+     114,
+     90
+    ]
+   },
+   {
+    "id": "pl",
+    "flag": "pl",
+    "commander": "common1",
+    "ai": true,
+    "defeated": "land",
+    "alliance": "b",
+    "money": 220,
+    "industry": 100,
+    "techlevel": 2,
+    "taxfactor": 1,
+    "industryfactor": 1,
+    "color": [
+     187,
+     113,
+     86,
+     90
+    ]
+   }
+  ]
  }
 ]

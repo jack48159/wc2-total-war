@@ -56,16 +56,22 @@ class Conquest extends Page {
     this.cn = cn;
     const m = { mui_hd: mui, mui2_hd: mui2 };
     this.data = data;
-    const official = this.data.filter(q => !q.test);
+    const official = this.data.filter(q => !q.test && !q.featured);
     this.cards = official.map((q, i) => Object.assign(new E.Button({ w: 515, h: 148, label: q.name, onClick: () => E.go('countrySelect', q.id) }),
       { q, img: withoutEnglish(m[q.atlas][q.card], i), cx: 132 + (i % 2) * 764, cy: 243 + Math.floor(i / 2) * 165 }));
     // test maps (e.g. the symmetric mirror map used to benchmark the AI) are not scenario cards: a text link at the bottom right
     this.tests = this.data.filter(q => q.test).map((q, i) => Object.assign(new E.Button({ w: 470, h: 56, label: q.name, onClick: () => E.go('countrySelect', q.id) }), { q, tx: 1000, ty: 96 + i * 60 }));
-    this.widgets = [...this.cards, ...this.tests];
+    this.featured = this.data.filter(q => q.featured).map((q,i) => Object.assign(new E.Button({w:740,h:66,label:q.name,onClick:()=>E.go('countrySelect',q.id)}), {q,x:220,y:143+i*70}));
+    this.widgets = [...this.cards, ...this.tests, ...this.featured];
   }
   renderBg() { E.cover(this.bg); }
   render() {
     E.drawKeyArt(this);
+    for (const button of this.featured) {
+      const f=E.fx(button,false);
+      E.panel(button.x,button.y+f.dy,button.w,button.h,{fill:'rgba(43,32,21,.92)',stroke:button.hover?'#ffe19a':'#b58e57',r:6});
+      E.text('新战场 · '+button.q.name,button.x+24,button.y+42+f.dy,{size:28,color:'#f2deaf',font:E.CJK_SERIF});
+    }
     for (const c of this.cards) {
       c.x = c.cx; c.y = c.cy;
       E.layout.group(c, 'scenes/conquest/scenario', () => {

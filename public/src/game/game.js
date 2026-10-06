@@ -73,18 +73,23 @@ export class Game {
     const [stage, camp, cards, conq] = await Promise.all([Stage.load(stageName, snapshot && snapshot.areas, { stageEnabled:snapshot?.stageEnabled, sandboxFeatures:snapshot?.sandboxFeatures, player, commanderLevel, countries: snapshot?.countries, historicalDiplomacy: snapshot ? false : historicalDiplomacy, ...opts, sandboxBattle: snapshot?.sandboxBattle || opts.sandboxBattle, sandboxCustom: snapshot?.sandboxCustom || opts.sandboxCustom, diplomacy: snapshot?.diplomacy || opts.diplomacy }), getJson('data/campaigns.json'), getJson('data/cards.json'), getJson('data/conquests.json'), readyCommanders()]);
     let info = camp.factions.flatMap(f => f.battles.map(b => Object.assign({ faction: f.id }, b))).find(b => stageName === 'battle_' + b.id.replace('-', ''));
     if (stage.data.worldAssembly || opts.sandboxCustom || snapshot?.sandboxCustom) info = { faction: 'conquest', id: stageName, name: opts.sandboxConfig?.name || snapshot?.sandboxTitle || stage.data.name || stageName, conquest: true };
-    if (stage.data.mapPatch || stage.data.duel) info = { faction: 'conquest', id: stageName, name: stageName, conquest: true };
+    if (stage.data.mapPatch || stage.data.duel || stage.data.mapResources) info = { faction: 'conquest', id: stageName, name: stage.data.name || stageName, conquest: true };
     const cq = /^conquest_(\d+)$/.exec(stageName);
     if (!info && cq) { const q = conq.find(x => x.id === +cq[1]); if (q) info = { faction: 'conquest', id: q.id, name: q.name, age: q.region || q.age, year: q.year, conquest: true }; }   // no round limit, no dialogue
     return new Game(stage, { info, labels: camp.labels, cards }, snapshot, opts);
   }
 
   constructor(stage, meta, snapshot = null, opts = {}) {
+    stage.useWorld();
     this.sandbox = !!(snapshot?.sandbox || opts.sandbox || snapshot?.sandboxCustom || opts.sandboxCustom || snapshot?.sandboxBattle || opts.sandboxBattle);
     this.sandboxCustom = snapshot?.sandboxCustom || !!opts.sandboxCustom;
     this.sandboxTitle=snapshot?.sandboxTitle||opts.sandboxConfig?.name||stage.data.name;
     this.sandboxBattle = snapshot?.sandboxBattle || opts.sandboxBattle || null;
     this.stage = stage; this.info = meta.info; this.labels = meta.labels; this.cardData = structuredClone(meta.cards);this.cardData.others.push(...sandboxCards(stage.data.sandboxFeatures));
+    if (!this.sandbox && stage.data.blockedCards?.length) {
+      const blocked = new Set(stage.data.blockedCards);
+      for (const [flag,cards] of Object.entries(this.cardData)) this.cardData[flag]=cards.filter(card=>!blocked.has(card.id));
+    }
     this.historicalDiplomacy = snapshot ? (snapshot.historicalDiplomacy ?? true) : (opts.historicalDiplomacy !== false);
     const me = stage.countries.get(stage.player);
     this.round = 1; this.money = me.money; this.industry = me.industry; this.tech = me.techlevel; this.hand = {};
@@ -424,6 +429,7 @@ export class Game {
 
   // ---- save / load ----
   snapshot() {
+    this.stage.useWorld();
     this.replayRecorder?.capture();
     return JSON.parse(JSON.stringify({ sandbox:this.sandbox, stageEnabled:[...this.stage.enabled],sandboxFeatures:this.stage.data.sandboxFeatures?{...this.stage.data.sandboxFeatures,campaign:undefined}:null, sandboxTitle:this.sandboxTitle,sandboxState:this.sandboxState, campaignRun:this.campaignRun, coordination: this.coordination, theatres: this.theatres, nextTheaterId: this.nextTheaterId, orders: this.orders, nextOrderId: this.nextOrderId, armyGroups: this.armyGroups, nextArmyGroupId: this.nextArmyGroupId, ownedCommanders: this.ownedCommanders, stage: this.name, sandboxBattle: this.sandboxBattle, sandboxCustom: this.sandboxCustom, player: this.player, activeCountry: this.activeCountry, phase: this.phase, result: this.result, gameId: this.gameId, bridgeOpponentCountry: this.bridgeOpponentCountry, fogOfWar: this.fogOfWar, turnOrder: this.turnOrder, reparationRate: this.reparationRate, recruitWait: this.recruitWait, supplyByInfrastructure: this.supplyByInfrastructure, capturedAt: this.capturedAt, visibilityMemory: this.visibilityMemory, historicalDiplomacy: this.historicalDiplomacy, commanderLevel: this.playerInfo.commanderLevel, medalLevels: this.medalLevels, cardCooldowns: this.cardCooldowns, techTurn: this.techTurn, nextArmyId: this.nextArmyId, round: this.round, dialogueIndex: this.dialogueIndex, money: this.money, industry: this.industry, tech: this.tech, stability: this.getStability(this.player), hand: this.hand, countries: this.stage.data.countries.map(c => c.id === this.player ? { ...c, money: this.money, industry: this.industry, techlevel: this.tech, stability: this.getStability(c.id) } : { ...c, stability: this.getStability(c.id) }), areas: this.stage.areas, diplomacy: this.diplomacy ? JSON.parse(JSON.stringify(this.diplomacy)) : null,
       scenarioEvents: this.scenarioEvents ? JSON.parse(JSON.stringify(this.scenarioEvents)) : null, rng: this.rng.save(), replay: this.replay, log: this.log, gameLog: this.gameLog, nextGameLogId: this.nextGameLogId, reportLog: this.reportLog, nextReportId: this.nextReportId, reportRevision: this.reportRevision }));
@@ -497,6 +503,7 @@ export class Game {
   }
 
   income(country = this.player) {
+    this.stage.useWorld();
     const me = this.stage.countries.get(country); if (!me) return { money: 0, industry: 0 };
     let tax = 0, ind = 0;
     for (const area of this.stage.areas) {
@@ -570,6 +577,7 @@ export class Game {
   // ---- commands ----
   // apply({ type, ...payload }) -> { ok: true } | { ok: false, reason }.  Handlers live in game/rules/* (see commands.js).
   apply(cmd) {
+    this.stage.useWorld();
     if (this.spectating) return { ok: false, reason: 'replay-read-only' };
     if (this.phase === 'finished') return { ok: false, reason: 'game-over' };
     if (cmd.type === 'endTurn' && window.GameLogger?.isDebug?.()) console.info('[WC2 log] endTurn apply:start', { round: this.round, logEnabled: this.logEnabled });

@@ -6,6 +6,7 @@ export const relationKey = (a, b) => (a < b ? `${a}_${b}` : `${b}_${a}`);
 
 // Well-known stage Chinese titles and backgrounds
 export const STAGE_META = {
+  conquest_germany_poland_1939: {name:'德国与波兰 · 九月战役',type:'conquest',sub:'1939年9月 · 历史疆界细化战场',bg:'assets/maps/germany_poland_1939/preview.webp'},
   // Campaign - Axis
   battle_axis1: { name: '闪电战 (1939.9)', type: 'campaign', sub: '波兰战役 · 闪击战开端', bg: 'backdrops/room_de.jpg' },
   battle_axis1_de: { name: '闪电战 (德军视角)', type: 'campaign', sub: '波兰战役 · 第一集团军', bg: 'backdrops/room_de_b.jpg' },

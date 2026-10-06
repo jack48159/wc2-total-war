@@ -34,6 +34,7 @@ const areaRest = area => {
 };
 
 export function endCountry(game, country, aiControlled = country !== game.player) {
+  game.stage.useWorld();
   game.emit(EV.TURN_END, { country, round: game.round, ai: aiControlled });
   const countryInfo = game.stage.countries.get(country);
   if (countryInfo && !countryInfo.commanderAlive && countryInfo.commanderTurn > 0) countryInfo.commanderTurn -= 1;
@@ -73,6 +74,7 @@ export function endCountry(game, country, aiControlled = country !== game.player
 }
 
 export function beginCountry(game, country, aiControlled = country !== game.player) {
+  game.stage.useWorld();
   game.activeCountry = country;
   if (game.diplomacy?.enabled) {
     if (aiControlled) evaluateAiDiplomacy(game, country);
@@ -147,6 +149,7 @@ export function isDormantNeutral(game, country) {
 }
 
 export function advanceRound(game) {
+  game.stage.useWorld();
   game.round += 1;
   game.expireOrders?.();
   checkVictory(game, game.player);

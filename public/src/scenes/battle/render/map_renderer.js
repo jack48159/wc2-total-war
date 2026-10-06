@@ -1,7 +1,7 @@
 // Draws the battlefield: world tiles, country-coloured zone sprites, the desktop background, the airport range circle and the
 // movement arrows. Follows CScene::Render's order. Knows nothing about input or HUD.
 import { E } from '../../../core/index.js';
-import { World } from '../../../game/world.js';
+import { World, MAP_W, MAP_H } from '../../../game/world.js';
 import { TARGET } from '../../../game/stage.js';
 import { UNIT_PX } from './camera.js';
 import { rememberVisibility } from '../../../game/rules/visibility.js';
@@ -12,14 +12,15 @@ import { rememberVisibility } from '../../../game/rules/visibility.js';
 // Neighbouring tiles overlap by 12 units (the overlapping strips are identical); later tiles are drawn over earlier ones.
 const TILE_STEP = 500, TILE_U = 512, TILE_PAD = 6;
 function tileRange(v) {
-  return { cx0: Math.max(0, Math.floor((v.x0 - TILE_U) / TILE_STEP)), cx1: Math.min(15, Math.floor((v.x1 + TILE_PAD) / TILE_STEP)),
-           cy0: Math.max(0, Math.floor((v.y0 - TILE_U) / TILE_STEP)), cy1: Math.min(6, Math.floor((v.y1 + TILE_PAD) / TILE_STEP)) };
+  return { cx0: Math.max(0, Math.floor((v.x0 - TILE_U) / TILE_STEP)), cx1: Math.min(Math.ceil(MAP_W/500)-1, Math.floor((v.x1 + TILE_PAD) / TILE_STEP)),
+           cy0: Math.max(0, Math.floor((v.y0 - TILE_U) / TILE_STEP)), cy1: Math.min(Math.ceil(MAP_H/500)-1, Math.floor((v.y1 + TILE_PAD) / TILE_STEP)) };
 }
 const OWN_ALPHA = 0.55, FLASH_LO = 0.5, FLASH_HI = 0.8, CLOSED_ALPHA = 0.8;
 // The base map has no country colours (all land is the same cream), so the zone layer is what shows ownership. ?zones=off hides it for alignment checks.
 
 export class MapRenderer {
   constructor(game, camera, { army, desktop, paperBorder }) {
+    game.stage.useWorld();
     this.game = game; this.stage = game.stage; this.cam = camera; this.army = army; this.desktop = desktop; this.paperBorder = paperBorder;
     this.tiles = new Map(); this.zoneImgs = new Map(); this.tintCache = new Map(); this.loads = 0; this.zoneRebuilds = 0;   // loads: bumped whenever a tile / zone image arrives (the tilt view repaints its ground texture on change)
     this.targets = new Map(); this.cardTargets = new Set();
@@ -45,16 +46,17 @@ export class MapRenderer {
   // ---- loading ----
   // Load the tiles / zone sprites the current view needs, so entering the scene never shows an empty map.
   preload() {
+    this.stage.useWorld();
     const v = this.cam.view(), jobs = [];
     const R = tileRange(v);
     for (let cy = R.cy0; cy <= R.cy1; cy++)
       for (let cx = R.cx0; cx <= R.cx1; cx++) {
         const k = cy * 16 + cx; if (this.tiles.has(k)) continue; this.tiles.set(k, { img: null });
-        jobs.push(E.image(`assets/map/${cx}_${cy}.webp`).then(img => { this.tiles.get(k).img = img; this.loads++; }, () => {}));
+        jobs.push(E.image(`${this.stage.data.mapResources?.tileRoot || 'assets/map'}/${cx}_${cy}.webp`).then(img => { this.tiles.get(k).img = img; this.loads++; }, () => {}));
       }
     for (const a of World.areas) if (a.x < v.x1 && a.x + a.w > v.x0 && a.y < v.y1 && a.y + a.h > v.y0) {
       const zn = World.zone[a.id] && World.zone[a.id][0]; if (!zn || this.zoneImgs.get(zn) !== undefined) continue;
-      this.zoneImgs.set(zn, null); jobs.push(E.image('assets/zones/' + zn).then(i => { this.zoneImgs.set(zn, i); this.loads++; }, () => {}));
+      this.zoneImgs.set(zn, null); jobs.push(E.image((this.stage.data.mapResources?.zoneRoot || 'assets/zones') + '/' + zn).then(i => { this.zoneImgs.set(zn, i); this.loads++; }, () => {}));
     }
     return Promise.all(jobs);
   }
@@ -62,7 +64,7 @@ export class MapRenderer {
     const k = cy * 16 + cx, t = this.tiles.get(k);
     if (t) return t.img || null;
     this.tiles.set(k, { img: null });
-    E.image(`assets/map/${cx}_${cy}.webp`).then(img => { this.tiles.get(k).img = img; this.loads++; }, () => {});
+    E.image(`${this.stage.data.mapResources?.tileRoot || 'assets/map'}/${cx}_${cy}.webp`).then(img => { this.tiles.get(k).img = img; this.loads++; }, () => {});
     return null;
   }
   // Virtual areas of a mirrored benchmark map (stage.data.mirror, e.g. conquest_mirror_de) have no zone image of their own: their
@@ -89,7 +91,7 @@ export class MapRenderer {
   zoneSpriteOf(id) {
     const z = World.zone[id]; if (!z) return null;
     const img = this.zoneImgs.get(z[0]);
-    if (img === undefined) { this.zoneImgs.set(z[0], null); E.image('assets/zones/' + z[0]).then(i => { this.zoneImgs.set(z[0], i); this.loads++; }, () => {}); return null; }
+    if (img === undefined) { this.zoneImgs.set(z[0], null); E.image((this.stage.data.mapResources?.zoneRoot || 'assets/zones') + '/' + z[0]).then(i => { this.zoneImgs.set(z[0], i); this.loads++; }, () => {}); return null; }
     return img ? { img, x: z[1], y: z[2], w: z[3], h: z[4] } : null;
   }
 
@@ -237,7 +239,7 @@ export class MapRenderer {
       for (const e of nearby) {
         const { a, sp, own, color, enabled, fogged } = e, dx = a.x - owned.x + 1, dy = a.y - owned.y + 1;
         if (!sp) continue;
-        if (!enabled) { closed.g.drawImage(sp.img, sp.x, sp.y, sp.w, sp.h, dx, dy, sp.w, sp.h); closed.painted = true; continue; }
+        if (!enabled) { if (st.data.mapResources) { const shade=this.tinted(a.id,'rgb(115,111,100)');if(shade)closed.g.drawImage(shade,dx,dy); } else closed.g.drawImage(sp.img, sp.x, sp.y, sp.w, sp.h, dx, dy, sp.w, sp.h); closed.painted = true; continue; }
         if (!own) {
           if (fogged) { const shade = this.tinted(a.id, 'rgb(62,56,46)'); if (shade) { closed.g.globalAlpha = 0.58; closed.g.drawImage(shade, dx, dy); closed.g.globalAlpha = 1; closed.painted = true; } }
           continue;

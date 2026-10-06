@@ -243,7 +243,7 @@ export class Battle extends Page {
       }
     }).catch(() => {});
   }
-  onShow() { if(this.game.sandboxCustom)loadSandboxStyles();attachSandboxObjectives(this);this.leaving = false; Danmaku.keepAlive(); if (this.bridgeEnabled) { clearInterval(this.sayTimer); this.sayTimer = setInterval(() => this.pollSays(), 2500); } }
+  onShow() { this.game.stage.useWorld();if(this.game.sandboxCustom||this.game.stage.data.theatreObjectives)loadSandboxStyles();attachSandboxObjectives(this);this.leaving = false; Danmaku.keepAlive(); if (this.bridgeEnabled) { clearInterval(this.sayTimer); this.sayTimer = setInterval(() => this.pollSays(), 2500); } }
   dispose() { this.map?.releasePreviews(); this.sandboxGoalButton?.remove();this.sandboxGoalOverlay?.remove();this.leaving = true; this.aiTurnRunner?.dispose(); clearInterval(this.sayTimer); Danmaku.detach(); clearInterval(this.bridgeHeartbeat); if (Perf.extra === this.perfExtra) Perf.extra = null; this.mpClient?.close(); this.mpStatus?.remove(); this.mpTurnWarning?.remove(); this.mpSpectatorBar?.remove(); if (this.photo) this.setPhoto(false); if (this.l3d) { this.l3d.dispose(); this.l3d = null; } if (this.cam) this.cam.desk3d = this.cam.tilt = false; }
   configureBridge() {
     if (!this.game || this.options.multiplayerRoom) return;
@@ -1673,6 +1673,7 @@ export class Battle extends Page {
     }).finally(() => { this.autosavePending = false; });
   }
   update(dt) {
+    this.game.stage.useWorld();
     this.game.spectating = !!this.replayView || !!this.multiplayerSpectator;
     this.liveTick();
     this.autosaveTick();
@@ -1715,6 +1716,7 @@ export class Battle extends Page {
     this.map.update(dt); this.effects.update(dt * bridgePlaybackSpeed); this.units.update(dt * bridgePlaybackSpeed); this.updateTalks(dt);
   }
   draw() {
+    this.game.stage.useWorld();
     const t0 = performance.now(); this.ms = this.ms || {};
     if (!this.dialog?.hideHud && !this.photo && !E.exp('nohud')) this.hud.tileInfo.prepare(this.inspectArea ?? this.sel);
     Perf.mark('hudPrepare', performance.now() - t0);
