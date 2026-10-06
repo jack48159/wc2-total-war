@@ -382,8 +382,11 @@ export class Stage {
     const s = this.st(sId); if (!s || !s.armies.length || !this.isHumanArea(sId)) return out;
     const front = s.armies[0], frontDef = this.armyDef(s.country, front);
     const rocket = frontDef.targetingMode === 'range' || front.type === 'rocket';
-    // Show all legal stops within the movement budget, including routes through allied garrisons.
-    for(const id of (this.movementPath(sId,null,0)||new Map()).keys())out.set(id,TARGET.MOVE);
+    // Action arrows show the next adjacent step, rather than every reachable stop.
+    const reachable = this.movementPath(sId, null, 0) || new Map();
+    for (const id of this.adjE.get(sId) || []) {
+      if (reachable.has(id)) out.set(id, TARGET.MOVE);
+    }
     for (const n of this.adjE.get(sId) || []) {
       if (!out.has(n) && !rocket && s.armies[0].type !== 'aircraftcarrier' && this.attackable(sId, n, 0, airstrikeRadius)) out.set(n, TARGET.ATTACK);
       if (rocket) for (const m of this.adjE.get(n) || []) if (this.attackable(sId, m, 0, airstrikeRadius)) out.set(m, TARGET.ROCKET);
