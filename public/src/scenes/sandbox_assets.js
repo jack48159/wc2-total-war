@@ -38,7 +38,7 @@ function confirmDialog(parent, title, text) {
 }
 
 export async function showAssetLibrary(select = null, options = {}) {
-  await requireNetworkLogin(); loadSandboxStyles();
+  await requireNetworkLogin(); await loadSandboxStyles();
   const screen = element(document.body, 'div', '', 'sb-library');
   screen.setAttribute('role', 'dialog'); screen.setAttribute('aria-modal', 'true'); screen.setAttribute('aria-label', '个人素材库');
   const previousFocus = document.activeElement;
