@@ -13,6 +13,7 @@ export function validateCondition(cond, config, depth=0) {
     if(!Array.isArray(cond.conditions)||!cond.conditions.length||cond.conditions.length>32)throw Error('事件触发条件无效，请检查国家、地块、门槛或前置事件');
     for(const c of cond.conditions)validateCondition(c,config,depth+1);return;
   }
+  if(Array.isArray(cond.areas)){if(!['areaOwner','areaCaptured'].includes(cond.type)||!cond.areas.length||cond.areas.length>64||new Set(cond.areas).size!==cond.areas.length||!['all','any'].includes(cond.areaMatch||'all'))throw Error('请在地图点选 1 至 64 块目标领土');for(const area of cond.areas)validateCondition({...cond,area,areas:undefined},config,depth+1);return;}
   if(!SANDBOX_CONDITIONS.some(([id])=>id===cond.type))throw Error('事件触发条件无效，请检查国家、地块、门槛或前置事件');
   const countries=new Set(config.countries.map(c=>c.id));
   const pair=['diplomaticRelation','allianceFormed','peaceSigned'].includes(cond.type);

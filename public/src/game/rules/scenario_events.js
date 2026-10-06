@@ -19,6 +19,7 @@ export function initScenarioEvents(config = null) {
 
 export function evaluateCondition(game, cond) {
   if (!cond) return true;
+  if(Array.isArray(cond.areas)){const values=cond.areas.map(area=>evaluateCondition(game,{...cond,area,areas:undefined}));return values.length>0&&(cond.areaMatch==='any'?values.some(Boolean):values.every(Boolean));}
   const sandboxResult = evaluateSandboxCondition(game, cond);
   if (sandboxResult !== null) return sandboxResult;
   if (cond.type === 'any' && Array.isArray(cond.conditions)) {
@@ -153,6 +154,7 @@ function evaluateEventsPass(game, triggerType = 'roundBegin') {
 }
 
 export function applyAction(game, action) {
+  if(Array.isArray(action.areas)){for(const area of action.areas)applyAction(game,{...action,area,areas:undefined});return;}
   if (!action) return;
   const st = game.stage;
   if(sandboxAction(game,action))return;

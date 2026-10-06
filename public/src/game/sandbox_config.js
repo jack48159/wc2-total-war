@@ -30,6 +30,7 @@ export function validateSandbox(config) {
   const checkActions = (actions,depth=0) => {
     if(depth>4||!Array.isArray(actions||[])||(actions||[]).length>32)throw Error('事件效果过多或嵌套过深');
     for (const a of actions || []) {
+      if(Array.isArray(a.areas)){if(!a.areas.length||a.areas.length>64||new Set(a.areas).size!==a.areas.length)throw Error('请点选 1 至 64 块作用领土');for(const area of a.areas)checkActions([{...a,area,areas:undefined}],depth+1);continue;}
       if(a.type==='delay'){if(!Number.isInteger(a.rounds)||a.rounds<1||a.rounds>100)throw Error('延迟需为 1 至 100 回合');checkActions(a.actions,depth+1);continue;}
       if(['healArmy','damageArmy','revealArea','falseIntel'].includes(a.type)&&(!ids.has(a.area)||!countries.has(a.country)))throw Error('战场效果的目标无效');
       if(['healArmy','damageArmy'].includes(a.type)&&(!Number.isFinite(a.amount)||a.amount<0||a.amount>10000))throw Error('效果数值无效');

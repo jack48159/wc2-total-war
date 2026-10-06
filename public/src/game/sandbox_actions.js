@@ -21,7 +21,7 @@ export function customCardReason(game,card,cmd,country){
  if(card.target==='enemy'&&(!area.country||game.getDiplomaticRelation(country,area.country)!==1))return 'illegal-target';
  if(game.fogOfWar&&area.country!==country&&!visibilityForCountry(game,country).has(area.id)&&!(card.effects||[]).every(e=>e.type==='revealArea'||e.type==='falseIntel'))return 'target-hidden';
  const spawns=new Map();
- for(const effect of card.effects||[])if(effect.type==='spawnArmy'){
+ for(const effect of (card.effects||[]).flatMap(e=>Array.isArray(e.areas)?e.areas.map(area=>({...e,area,areas:undefined})):[e]))if(effect.type==='spawnArmy'){
   const target=game.stage.st(effect.area==='target'?cmd.target:effect.area);
   const owner=effect.country==='actor'||!effect.country?country:effect.country;
   if(!target||!game.stage.enabled.has(target.id)||target.country!==owner)return 'illegal-target';
