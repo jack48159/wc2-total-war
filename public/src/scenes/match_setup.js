@@ -53,7 +53,7 @@ export class MatchSetup extends Page {
       const data = await E.json('data/stages/' + this.stage + '.json');
       const player = this.options.player || data.player || data.countries?.find(c => c.ai === false)?.id || data.countries?.[0]?.id; // 与 Stage 选玩家的规则一致
       this.llm.player = player; this.llm.playerName = playerCountryName(player);
-      this.llm.countryList = (data.countries || []).filter(c => c.id && (!this.options.sandbox || this.options.participatingCountries.includes(c.id))).map(c => ({ id: c.id, name: playerCountryName(c.id) }));
+      this.llm.countryList = (this.options.sandboxConfig?.countries || data.countries || []).filter(c => c.id && (!this.options.sandbox || this.options.participatingCountries.includes(c.id))).map(c => ({ id: c.id, name: playerCountryName(c.id) }));
     } catch { this.llm.countryList = []; }
   }
   setLlm(on) {

@@ -430,6 +430,7 @@ export class Battle extends Page {
   openShop() {
     const g = this.game;
     if (g.phase === 'finished') return;
+    this.select(-1);
     let shop;
     const close = () => {
       this.shopSelection = { tab: shop.tab, cardId: shop.card?.id ?? null, scroll: E.clamp(shop.scroll, 0, shop.maxScroll()) };
@@ -437,7 +438,7 @@ export class Battle extends Page {
     };
     shop = new CardShop(g, { ui1: this.ui1, ui2: this.ui2 }, shopCards(g.cardData, g.playerInfo.flag), {
       close,
-      armyPanelWidth: () => this.panel.area(this.sel) ? 180 : 0,
+      armyPanelWidth: () => 0,
       purchased: (card, opts) => {
         close();
         if (TARGETED_CARDS.has(card.id)) this.enterCardMode(card.id, opts?.pending);
@@ -462,7 +463,7 @@ export class Battle extends Page {
   enterCardMode(cardId, isPending = false) {
     this.cardTarget = cardId;
     this.cardPending = isPending;
-    if (![22, 23, 24].includes(cardId)) this.select(-1);
+    this.select(-1);
     this.map.setCardTargets(this.cardTargetsFor(cardId, isPending));
     this.hud.setCardMode(true);
   }

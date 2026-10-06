@@ -7,6 +7,7 @@ import { loadNationalTraits, resolveCountryProfile } from './rules/national_trai
 import { relationColor } from './relation_color.js';
 import { visibilityForCountry } from './rules/visibility.js';
 import { applySandboxBattle } from './sandbox_battles.js';
+import { applySandboxConfig } from './sandbox_config.js';
 
 export const TARGET = { ROCKET: 2, MOVE: 3, ATTACK: 4 };   // numbering follows the original arrow types
 const NAVY_TYPES = new Set(['destroyer', 'cruiser', 'battleship', 'aircraftcarrier']);
@@ -80,7 +81,7 @@ export class Stage {
     const [, data, defs, commanderRanks] = await Promise.all([World.load(), getJson(`data/stages/${name}.json`), loadArmyDefs(), loadCommanderRanks()]);
     if (data.mapPatch) World.applyPatch(data.mapPatch, data.mirror);
     if (areasOverride) data.areas = JSON.parse(JSON.stringify(areasOverride));
-    if (areasOverride && opts.sandboxBattle) data.enabled = data.areas.map(a => a.id);
+    if (areasOverride && (opts.sandboxBattle || opts.sandboxCustom)) data.enabled = data.areas.map(a => a.id);
     let scenarioOverride = null;
     if (opts.historicalDiplomacy !== false && !opts.freeDiplomacy && name.startsWith('conquest_')) {
       try {
@@ -137,6 +138,7 @@ export class Stage {
       delete data.ai_rules;
     }
     if (opts.sandboxBattle && !areasOverride && !opts.countries) applySandboxBattle(data, opts.sandboxBattle);
+    if (opts.sandboxConfig && !areasOverride) applySandboxConfig(data, opts.sandboxConfig);
     if (opts.player) {
       data.player = opts.player;
       for (const c of data.countries) c.ai = c.id !== opts.player;

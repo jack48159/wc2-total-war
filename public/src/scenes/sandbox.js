@@ -1,13 +1,41 @@
 import { E } from '../core/index.js';
 import { Page } from '../ui/ui.js';
 import { SANDBOX_BATTLES } from '../game/sandbox_battles.js';
+import { sandboxLibrary } from './sandbox_editor.js';
+import { localWrite } from '../core/local_data.js';
 
 export class Sandbox extends Page {
   constructor() { super(); this.route = 'sandbox'; this.mapIndex = 0; this.page = 0; this.selected = new Set(); }
   async init() {
     [this.maps, this.names, this.paper] = await Promise.all([E.json('data/conquests.json'), E.json('data/countries.json'), E.image('assets/board_paper@2x.webp')]);
+    this.maps = [...this.maps];
+    this.maps.unshift({id:"world",stage:"sandbox_world",name:"原版完整世界 · 跨关卡拼合"});
     await this.loadMap();
   }
+  openEditor() {
+    if (this.selected.size < 2) { this.notice("至少选择两个参战国"); return; }
+    const q = this.maps[this.mapIndex];
+    E.go("sandboxEditor", this, q.stage || "conquest_" + q.id, {sandbox:true, player:this.player, participatingCountries:[...this.selected], freeDiplomacy:true, historicalDiplomacy:false, ...(this.preset ? {sandboxBattle:this.preset.id} : {})});
+  }
+  async onShow() {
+    this.libraryPanel?.remove();
+    const library = await sandboxLibrary();
+    if (!library.length || E.scene !== this) return;
+    const panel = this.libraryPanel = document.createElement("div");
+    Object.assign(panel.style,{position:"fixed",left:"12px",bottom:"12px",maxHeight:"28vh",overflow:"auto",zIndex:55,background:"#dbc9a4",color:"#302317",padding:"10px",borderRadius:"8px",maxWidth:"min(600px,90vw)"});
+    const title=document.createElement("strong");title.textContent="我的沙盒作品";panel.append(title);
+    for (const record of library) {
+      const row=document.createElement("div");row.style.marginTop="6px";
+      const name=document.createElement("span");name.textContent=record.name+" · "+record.config.countries.length+"国 · "+record.config.areas.length+"地块 ";row.append(name);
+      const button=(text,run)=>{const b=document.createElement("button");b.textContent=text;b.style.margin="0 4px";b.onclick=run;row.append(b);};
+      button("编辑 / 开始",()=>E.go("sandboxEditor",this,record.config.stage,{},record));
+      button("复制",async()=>{const all=await sandboxLibrary();const copy=structuredClone(record);copy.id=crypto.randomUUID();copy.name+=" · 副本";copy.config.name=copy.name;all.unshift(copy);await localWrite("sandbox-designs",all);this.onShow();});
+      button("删除",async()=>{if (!confirm("删除沙盒作品“"+record.name+"”？"))return;await localWrite("sandbox-designs",(await sandboxLibrary()).filter(r=>r.id!==record.id));this.onShow();});
+      panel.append(row);
+    }
+    document.body.append(panel);
+  }
+  dispose() { this.libraryPanel?.remove(); }
   onBack() { E.go('home'); }
   nameOf(id) { return this.names[id]?.name || id; }
   async loadMap() {
@@ -36,6 +64,7 @@ export class Sandbox extends Page {
   makeButtons() {
     const button = (label, x, y, w, action) => Object.assign(new E.Button({ label, onClick: action }), { x, y, w, h: 54 });
     this.widgets = [
+      button('编辑沙盒', 640, 270, 170, () => this.openEditor()),
       button('上一地图', 220, 190, 190, () => this.changeMap(-1)),
       button('下一地图', 1190, 190, 190, () => this.changeMap(1)),
       button('全部参战', 220, 270, 190, () => { this.selected = new Set(this.countries.map(c => c.id)); this.makeButtons(); }),

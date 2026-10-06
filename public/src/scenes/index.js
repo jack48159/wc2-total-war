@@ -3,6 +3,7 @@
 import { E } from '../core/index.js';
 import { Home } from './home.js';
 import { Sandbox } from './sandbox.js';
+import { SandboxEditor } from './sandbox_editor.js';
 import { Campaign } from './campaign.js';
 import { CampaignList } from './campaign_list.js';
 import { Conquest } from './conquest.js';
@@ -15,7 +16,7 @@ import { Bank } from './bank.js';
 import { Battle } from './battle/battle.js';
 import { Multiplayer } from './multiplayer.js';
 
-export const SCENES = { home: Home, sandbox: Sandbox, campaign: Campaign, campaignList: CampaignList, conquest: Conquest, countrySelect: CountrySelect, matchSetup: MatchSetup,
+export const SCENES = { home: Home, sandbox: Sandbox, sandboxEditor: SandboxEditor, campaign: Campaign, campaignList: CampaignList, conquest: Conquest, countrySelect: CountrySelect, matchSetup: MatchSetup,
   commander: Commander, options: Options, saveScreen: SaveScreen, bank: Bank, battle: Battle, multiplayer: Multiplayer };
 
 E.registerScenes(SCENES);
