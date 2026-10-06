@@ -50,29 +50,44 @@ function withoutEnglish(frame, index) {
 }
 
 class Conquest extends Page {
-  constructor() { super(); this.route = 'conquest'; }
+  constructor() { super(); this.route = 'conquest'; this.page = 0; }
   async init() {
     const [, cn, mui, mui2, data] = await Promise.all([E.loadKeyArt(this), E.atlas('mui_cn_hd'), E.atlas('mui_hd'), E.atlas('mui2_hd'), E.json('data/conquests.json')]);
     this.cn = cn;
     const m = { mui_hd: mui, mui2_hd: mui2 };
     this.data = data;
     const official = this.data.filter(q => !q.test && !q.featured);
-    this.cards = official.map((q, i) => Object.assign(new E.Button({ w: 515, h: 148, label: q.name, onClick: () => E.go('countrySelect', q.id) }),
-      { q, img: withoutEnglish(m[q.atlas][q.card], i), cx: 132 + (i % 2) * 764, cy: 243 + Math.floor(i / 2) * 165 }));
+    const scenarios = [...this.data.filter(q => q.featured), ...official];
+    this.cards = scenarios.map(q => Object.assign(new E.Button({ w: 515, h: 148, label: q.name, onClick: () => E.go('countrySelect', q.id) }),
+      { q, img: withoutEnglish(m[q.atlas][q.card], Math.max(0, official.indexOf(q))) }));
+    this.pageCount = Math.ceil(this.cards.length / 8);
+    this.pageBtns = [-1, 1].map(dir => new E.Button({ w: 150, h: 48, label: dir < 0 ? '上一页' : '下一页', onClick: () => { this.page = E.clamp(this.page + dir, 0, this.pageCount - 1); this.layoutCards(); } }));
+    this.layoutCards();
     // test maps (e.g. the symmetric mirror map used to benchmark the AI) are not scenario cards: a text link at the bottom right
     this.tests = this.data.filter(q => q.test).map((q, i) => Object.assign(new E.Button({ w: 470, h: 56, label: q.name, onClick: () => E.go('countrySelect', q.id) }), { q, tx: 1000, ty: 96 + i * 60 }));
-    this.featured = this.data.filter(q => q.featured).map((q,i) => Object.assign(new E.Button({w:740,h:66,label:q.name,onClick:()=>E.go('countrySelect',q.id)}), {q,x:220,y:143+i*70}));
-    this.widgets = [...this.cards, ...this.tests, ...this.featured];
+    this.widgets = [...this.cards, ...this.tests, ...this.pageBtns];
+  }
+  layoutCards() {
+    this.cards.forEach((card, i) => {
+      card.visible = Math.floor(i / 8) === this.page;
+      card.cx = 132 + (i % 2) * 764; card.cy = 243 + Math.floor((i % 8) / 2) * 165;
+      card.x = card.cx; card.y = card.cy;
+    });
+    this.pageBtns.forEach((button, i) => { button.visible = this.pageCount > 1; button.enabled = i === 0 ? this.page > 0 : this.page < this.pageCount - 1; });
   }
   renderBg() { E.cover(this.bg); }
   render() {
     E.drawKeyArt(this);
-    for (const button of this.featured) {
-      const f=E.fx(button,false);
-      E.panel(button.x,button.y+f.dy,button.w,button.h,{fill:'rgba(43,32,21,.92)',stroke:button.hover?'#ffe19a':'#b58e57',r:6});
-      E.text('新战场 · '+button.q.name,button.x+24,button.y+42+f.dy,{size:28,color:'#f2deaf',font:E.CJK_SERIF});
+    for (const [i, button] of this.pageBtns.entries()) {
+      if (!button.visible) continue;
+      button.x = 132 + i * 320; button.y = 166;
+      const f = E.fx(button, false), frame = this.ui1.blue_normal;
+      E.drawFrameCentered(frame, button.x + button.w / 2, button.y + button.h / 2 + f.dy, { sx: button.w / frame.w, sy: button.h / frame.h, filter: button.enabled ? f.filter : 'brightness(.65)' });
+      E.label(button.label, button.x + button.w / 2, button.y + 34 + f.dy, 23, { align: 'center', font: E.CJK_SERIF });
     }
+    if (this.pageCount > 1) E.label(`${this.page + 1} / ${this.pageCount}`, 367, 201, 23, { align: 'center', font: E.CJK_SERIF });
     for (const c of this.cards) {
+      if (!c.visible) continue;
       c.x = c.cx; c.y = c.cy;
       E.layout.group(c, 'scenes/conquest/scenario', () => {
         // the original card is stretched wider than the atlas frame (x1.18 / y1.09 of the base scale)
@@ -83,9 +98,9 @@ class Conquest extends Page {
         // Match the original two-line hierarchy: small "征服模式", large "欧洲 1939", both straight on the card art.
         E.ctx.save();
         E.ctx.filter = f.filter;
-        E.label('征服模式', x + 12 * SX, y + 48 * SY, 18 * U * 1.1,
+        E.label(c.q.featured ? '九月战役 · 1939' : '征服模式', x + 12 * SX, y + 48 * SY, 18 * U * 1.1,
           { font: E.CJK_SERIF, strokeW: 2 * U });
-        E.label(c.q.name, x + 12 * SX, y + 77 * SY, 24 * U * 1.1,
+        E.label(c.q.featured ? '德国与波兰' : c.q.name, x + 12 * SX, y + 77 * SY, 24 * U * 1.1,
           { font: E.CJK_SERIF, strokeW: 2.5 * U });
         E.ctx.restore();
       });

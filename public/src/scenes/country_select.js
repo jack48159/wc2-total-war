@@ -50,22 +50,34 @@ class CountrySelect extends Page {
     super.key(e);
   }
 
+  theatreHeaderHeight() {
+    const cur = this.countries[this.sel].id;
+    const lines = E.wrap(this.q.objectiveDescriptions?.[cur] || '', Math.max(120, E.panelLeft(PANEL_W) + E.ox - 56), 22);
+    return { lines, h: 82 + lines.length * 28 };
+  }
   theatreMapRect() {
-    const roomW=E.panelLeft(PANEL_W)-70,roomH=E.H-235;
-    const scale=Math.min(roomW/this.q.mapSize[0],roomH/this.q.mapSize[1]);
-    return {x:35+(roomW-this.q.mapSize[0]*scale)/2,y:145,w:this.q.mapSize[0]*scale,h:this.q.mapSize[1]*scale,scale};
+    // Map background uses screen coordinates; flags use Page's centered content coordinates.
+    const header = this.theatreHeaderHeight().h;
+    const roomW = Math.max(1, E.panelLeft(PANEL_W) + E.ox - 48), roomH = Math.max(1, E.H - header - 100);
+    const scale = Math.min(roomW / this.q.mapSize[0], roomH / this.q.mapSize[1]);
+    const w = this.q.mapSize[0] * scale, h = this.q.mapSize[1] * scale;
+    return { x: -E.ox + 24 + (roomW - w) / 2, y: -E.oy + header + (roomH - h) / 2, w, h, scale };
   }
   renderBg() {
     if (!this.mapPreview) { E.WorldMap.draw(this.q.center, ANCHOR); return; }
-    E.cover(this.leather);const r=this.theatreMapRect();
-    E.ctx.drawImage(this.mapPreview,r.x,r.y,r.w,r.h);
+    const c = E.ctx, r = this.theatreMapRect(), v = E.view || {}, k = v.scale || 1;
+    // Leather is a narrow country-list asset, never a full-screen background.
+    c.fillStyle = '#a39f8c';
+    c.fillRect(-(v.il || 0) / k, -(v.it || 0) / k, E.W + ((v.il || 0) + (v.ir || 0)) / k, E.H + ((v.it || 0) + (v.ib || 0)) / k);
+    c.drawImage(this.mapPreview, r.x + E.ox, r.y + E.oy, r.w, r.h);
+    c.fillStyle = '#293b41'; c.fillRect(0, 0, E.panelLeft(PANEL_W) + E.ox, this.theatreHeaderHeight().h);
   }
   render() {
     const c = E.ctx, U = E.U, WM = E.WorldMap, cen = this.q.center, cur = this.countries[this.sel].id;
     if (this.mapPreview) {
-      E.text(this.q.name+' · 1939年9月',45,60,{size:32,color:'#f4e7c3',font:E.CJK_SERIF});
-      const lines=E.wrap(this.q.objectiveDescriptions?.[cur]||'',E.panelLeft(PANEL_W)-110,22);
-      lines.forEach((line,i)=>E.text(line,45,98+i*28,{size:22,color:'#f4e7c3'}));
+      const x = 28 - E.ox, y = -E.oy, header = this.theatreHeaderHeight();
+      E.text(this.q.name + ' · 1939年9月', x, y + 44, { size: 30, color: '#f4e7c3', font: E.CJK_SERIF });
+      header.lines.forEach((line, i) => E.text(line, x, y + 80 + i * 28, { size: 22, color: '#f4e7c3' }));
     }
     // all flags on the map; pickable ones are buttons
     for (const f of this.q.flags) {
