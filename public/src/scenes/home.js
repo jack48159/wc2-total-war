@@ -30,13 +30,13 @@ class Home extends Page {
     if (!this.updateButton) {
       const button = this.updateButton = document.createElement('button');
       button.textContent = '\u68c0\u67e5\u66f4\u65b0';
-      Object.assign(button.style, {position:'fixed',right:'max(16px,env(safe-area-inset-right))',minHeight:'44px',top:'max(16px,env(safe-area-inset-top))',zIndex:50,padding:'8px 12px',background:'#eee7d6',color:'#302518',border:'1px solid #987c45',borderRadius:'6px'});
+      Object.assign(button.style, {position:'fixed',left:'max(16px,env(safe-area-inset-left))',minHeight:'44px',bottom:'max(16px,env(safe-area-inset-bottom))',zIndex:50,padding:'8px 12px',background:'#eee7d6',color:'#302518',border:'1px solid #987c45',borderRadius:'6px'});
       button.onclick = () => { void Updates.check({force:true}); }; document.body.append(button);
     }
     if (!this.communityLabel) {
       const label = this.communityLabel = document.createElement('div');
       label.textContent = '交流群1060198224';
-      Object.assign(label.style, {position:'fixed',right:'max(16px,env(safe-area-inset-right))',top:'calc(max(16px,env(safe-area-inset-top)) + 52px)',zIndex:50,font:'bold clamp(14px,2.3vw,20px) "Microsoft YaHei", "PingFang SC", sans-serif',color:'#ffe6a3',textShadow:'0 1px 3px #302a22,0 0 2px #302a22',pointerEvents:'none'});
+      Object.assign(label.style, {position:'fixed',right:'max(16px,env(safe-area-inset-right))',top:'max(16px,env(safe-area-inset-top))',maxWidth:'calc(100vw - 32px - env(safe-area-inset-left) - env(safe-area-inset-right))',zIndex:50,font:'bold clamp(14px,2.3vw,20px) "Microsoft YaHei", "PingFang SC", sans-serif',color:'#ffe6a3',textShadow:'0 1px 3px #302a22,0 0 2px #302a22',pointerEvents:'none'});
       document.body.append(label);
     }
     E.prewarmMenus(); void Updates.check(); }

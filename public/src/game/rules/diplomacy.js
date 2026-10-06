@@ -3,6 +3,7 @@
 // betrayal policies, and integration with combat and movement rules.
 
 import { register } from '../commands.js';
+import { isSandbox } from '../sandbox_policy.js';
 import { EV } from '../events.js';
 import { reportFactKey } from '../report.js';
 import { nativeAlliance } from './combatModel.js';
@@ -173,6 +174,7 @@ export function stabilityIncomeMultiplier(stab) {
 }
 
 export function declareWarStabilityCost(game, attacker, defender) {
+  if (isSandbox(game)) return 0;
   const rel = getDiplomaticRelation(game, attacker, defender);
   if (rel === DIPLOMACY_STATE.ALLIANCE || hasNap(game, attacker, defender)) return 20;
   const info = game.stage?.countries?.get(attacker);
@@ -1058,11 +1060,12 @@ export function registerCapitalFall(game, countryId) {
   game.changeStability(occupier, 4, 'enemy_capital_taken');
   pushDiplomacyReport(game, `capital_fallen_${countryId}_r${game.round || 1}`,
     `${countryName(game, countryId)}首都沦陷`,
-    `${countryName(game, occupier)}占领了${countryName(game, countryId)}的首都，该国稳定度大幅下滑。`);
+    `${countryName(game, occupier)}占领了${countryName(game, countryId)}的首都。${isSandbox(game)?'是否灭亡由沙盒国家失败条件决定。':'该国稳定度大幅下滑。'}`);
   return true;
 }
 
 export function tickCountryStability(game, countryId) {
+  if (isSandbox(game)) return;
   const dip = ensureDiplomacyMeta(game);
   if (!dip || !game.changeStability) return;
   const info = game.stage.countries.get(countryId);
@@ -1150,6 +1153,7 @@ function maybeDefectLand(game, countryId) {
 }
 
 export function evaluateAiCapitulation(game, countryId) {
+  if (isSandbox(game)) return null;
   const dip = ensureDiplomacyMeta(game);
   if (!dip) return null;
   const info = game.stage.countries.get(countryId);
@@ -1167,6 +1171,7 @@ export function evaluateAiCapitulation(game, countryId) {
 }
 
 export function applyCapitulation(game, countryId, occupier) {
+  if (isSandbox(game)) return false;
   const dip = ensureDiplomacyMeta(game);
   if (!dip) return false;
   setDiplomaticRelation(game, countryId, occupier, DIPLOMACY_STATE.PEACE, 'capitulation');

@@ -3,7 +3,7 @@ html:is([data-platform="ios"],[data-platform="android"]),html:is([data-platform=
   touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;
   -webkit-text-size-adjust:100%;
 }
-html:is([data-platform="ios"],[data-platform="android"]) canvas {
+html:is([data-platform="ios"],[data-platform="android"]) canvas#c {
   position:fixed;left:0;top:0;width:100vw;height:100dvh;touch-action:none;
 }
 html:is([data-platform="ios"],[data-platform="android"]) button,html:is([data-platform="ios"],[data-platform="android"]) a,html:is([data-platform="ios"],[data-platform="android"]) select,
@@ -41,3 +41,6 @@ html:is([data-platform="ios"],[data-platform="android"]) .wc2-danmaku-btn {min-w
 html:is([data-platform="ios"],[data-platform="android"]) .wc2-danmaku-wrap.collapsed .wc2-danmaku-grip {border-radius:4px;}
 html:is([data-platform="ios"],[data-platform="android"]) .wc2-danmaku-pop {padding:5px 8px;gap:6px;font-size:10px;}
 html:is([data-platform="ios"],[data-platform="android"]) .wc2-danmaku-pop input {width:100px;min-width:0!important;min-height:0!important;}
+
+/* Sandbox has its own responsive touch interface, including portrait editing. */
+html:is([data-platform="ios"],[data-platform="android"])[data-sandbox-ui="true"] body::after{display:none}

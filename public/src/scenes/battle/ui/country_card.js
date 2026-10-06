@@ -1,3 +1,4 @@
+import { isSandbox } from '../../../game/sandbox_policy.js';
 import { E } from '../../../core/index.js';
 import { World } from '../../../game/world.js';
 import { relationKind, relationColor, paintHex, KIND_LABEL } from '../../../game/relation_color.js';
@@ -201,7 +202,7 @@ export class CountryCard {
     if (m.finance) {
       const f = m.finance;
       for (const value of [`金钱 ${f.money ?? 0}    工业 ${f.industry ?? 0}`,
-        `每回合：金钱 +${f.income.money} / 工业 +${f.income.industry}`, `稳定度 ${f.stability}`])
+        `每回合：金钱 +${f.income.money} / 工业 +${f.income.industry}`, ...(!isSandbox(this.game)?[`稳定度 ${f.stability}`]:[])])
         top += add(value, top) + 4;
     } else top += add('财务：情报不足', top, 0, { color: STYLE.muted }) + 4;
     top += 6;

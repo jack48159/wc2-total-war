@@ -4,6 +4,15 @@ const IMAGE=/^https:\/\/208\.87\.207\.49\/api\/library\/files\/[0-9a-f-]{36}$/;
 export function validateFeatures(config,validateNested){
  if(config.countries.find(c=>c.id===config.player)?.dormant)throw Error('玩家国家必须开局参战');
  const f=config.features||{},countries=new Set(config.countries.map(c=>c.id)),areas=new Set(config.areas.map(a=>a.id));
+ for(const [country,rule] of Object.entries(f.countryDefeats||{})){
+  if(!countries.has(country)||!rule||typeof rule.enabled!=='boolean')throw Error('国家失败规则无效');
+  if(!rule.enabled)continue;
+  if(!['all','any'].includes(rule.mode)||!Array.isArray(rule.conditions)||!rule.conditions.length||rule.conditions.length>32)throw Error('国家失败条件需配置 1 至 32 项');
+  const check=c=>{if(['all','any'].includes(c.type))for(const child of c.conditions||[])check(child);else if(['countryCapitulated','stabilityBelow'].includes(c.type)||c.type==='countryDefeated'&&c.country===country)throw Error('不能用本国已灭亡、自动投降或稳定度决定本国失败');};
+  for(const c of rule.conditions){validateCondition(c,config);check(c);}
+ }
+ const dependencies=new Map();for(const [country,rule] of Object.entries(f.countryDefeats||{})){if(!rule.enabled)continue;const ids=[];const collect=c=>{if(['all','any'].includes(c.type))c.conditions.forEach(collect);else if(c.type==='countryDefeated')ids.push(c.country);};rule.conditions.forEach(collect);dependencies.set(country,ids);}
+ const visiting=new Set(),done=new Set();const visit=id=>{if(visiting.has(id))throw Error('国家失败条件存在循环依赖');if(done.has(id))return;visiting.add(id);for(const next of dependencies.get(id)||[])visit(next);visiting.delete(id);done.add(id);};for(const id of dependencies.keys())visit(id);
  const amount=(v,min,max)=>Number.isFinite(v)&&v>=min&&v<=max;
  const image=url=>{if(url&&!IMAGE.test(url))throw Error('请选择个人素材库中的图片');};image(f.coverUrl);
  const unitIds=new Set(),recruitIds=new Set();if((f.units||[]).length>64||(f.cards||[]).length>64)throw Error('自定义兵种和卡牌各最多 64 个');

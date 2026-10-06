@@ -1,3 +1,4 @@
+import { isSandbox } from '../../../game/sandbox_policy.js';
 // In-battle HUD: resource board (top-left), pause (top-right), cards (bottom-left), end round (bottom-right).
 // Buttons hug their screen corners (edge coordinates). The HUD only reports clicks through callbacks.
 import { E } from '../../../core/index.js';
@@ -403,7 +404,7 @@ export class BattleHud {
     const stability = (g.spectating || g.bridgeSpectating) && this.replayEconomy ? (economy.stability ?? 100) : g.getStability ? g.getStability(g.player) : (g.stability ?? 100);
     const touch = !!E.platform?.isTouch, NU = E.nudge || 0, resourceY = NU; // 资源条贴着屏幕左上角(触屏圆角屏往里让 NU)
     const bp = this.barPos(), sz0 = this._barSize || { w: 268, h: 72 };
-    this._barArgs = [bp.x, bp.y, 268, economy.money, economy.industry, { stability }];
+    this._barArgs = [bp.x, bp.y, 268, economy.money, economy.industry, { stability: isSandbox(g)?undefined:stability }];
     const capBar = capCorners();
     if (capBar) { const sz = this._barSize || { w: 268, h: 72 }; E.ctx.save(); E.ctx.beginPath(); E.ctx.roundRect(0, 0, sz.w, sz.h, 22); E.ctx.clip(); }
     const barSize = this.bar.draw(...this._barArgs);

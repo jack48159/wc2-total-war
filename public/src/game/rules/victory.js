@@ -1,4 +1,6 @@
 import { objectiveResult } from '../sandbox_features.js';
+import { isSandbox } from '../sandbox_policy.js';
+import { evaluateCondition } from './scenario_events.js';
 // Country defeat and battle result, following CCountry::IsConquested,
 // BeConquestedBy and CGameManager::CheckAndSetResult in the native project.
 import { EV } from '../events.js';
@@ -25,7 +27,7 @@ function eliminateCountry(game, country, victor, defeatRule = country.defeated) 
   if (getDiplomaticRelation(game, country.id, beneficiary) === DIPLOMACY_STATE.WAR)
     collectSurrenderReparations(game, country.id, beneficiary);
   const sourceGroups = (game.armyGroups || []).filter(g => g.country === country.id);
-  const survivingUnits = game.stage.areas.filter(a => a.country === country.id&&!a.transitOwner).flatMap(a => a.armies);
+  const survivingUnits = beneficiary ? game.stage.areas.filter(a => a.country === country.id&&!a.transitOwner).flatMap(a => a.armies) : [];
   const survivingIds = new Set(survivingUnits.map(a => a.id));
   const assigned = new Set();
   const batches = [];
@@ -64,6 +66,7 @@ function eliminateCountry(game, country, victor, defeatRule = country.defeated) 
     if (area.country !== country.id) continue;
     if(area.transitOwner){const host=area.transitOwner;area.armies=[];area.country=host;delete area.transitOwner;delete area.transitCountry;game.emit('alliedTransitChanged',{area:area.id,owner:host,guest:country.id,phase:'left',cause:'countryDefeated'});continue;}
     for (const army of area.armies) if (army.country != null) army.country = beneficiary;
+    if (!beneficiary) area.armies = [];
     area.country = area.sea && !area.armies.length ? null : beneficiary;
     changed.push(area.id);
     game.emit(EV.AREA_CAPTURED, { area: area.id, from: country.id, to: area.country, cause: 'countryDefeated' });
@@ -84,16 +87,40 @@ function finish(game, result, stars = 0) {
   game.emit(EV.GAME_OVER, game.result);
 }
 
+function sandboxDefeat(game,country,victor) {
+  const stage=game.stage,rule=stage.data.sandboxFeatures?.countryDefeats?.[country.id];
+  if(country.eliminated||!rule?.enabled)return false;
+  const results=rule.conditions.map(c=>evaluateCondition(game,c));
+  if(!results.length||!(rule.mode==='any'?results.some(Boolean):results.every(Boolean)))return false;
+  const captor=stage.territoryOwner(game.diplomacy?.capitals?.[country.id]);
+  const valid=id=>id&&id!==country.id&&stage.countries.has(id)&&!stage.countries.get(id).eliminated;
+  const beneficiary=valid(captor)?captor:valid(victor)?victor
+    :stage.data.countries.find(c=>valid(c.id)&&game.getDiplomaticRelation(country.id,c.id)===DIPLOMACY_STATE.WAR)?.id
+    ||stage.data.countries.find(c=>valid(c.id))?.id||null;
+  eliminateCountry(game,country,beneficiary,'sandboxConditions');return true;
+}
+
 export function checkVictory(game, victor = game.activeCountry) {
   if (game.phase === 'finished') return;
   const stage = game.stage;
   for (const country of stage.data.countries) {
     if (country.eliminated || (!game.diplomacy?.enabled && nativeAlliance(country.alliance) === 4)) continue;
+    const sandbox = isSandbox(game);
+    if (sandbox) {
+      const cap = game.diplomacy?.capitals?.[country.id];
+      if (cap != null && stage.territoryOwner(cap) === country.id) delete game.diplomacy.capitalFallen?.[country.id];
+      else registerCapitalFall(game, country.id);
+    }
+    const defeat = sandbox && stage.data.sandboxFeatures?.countryDefeats?.[country.id];
+    if (defeat?.enabled) {
+      continue;
+    }
     const stabilityRule = !!game.diplomacy?.enabled || game.name.startsWith('battle_');
     if (!hasSurvivingObjective(stage, country, stabilityRule)) {
       eliminateCountry(game, country, victor);
       continue;
     }
+    if (sandbox) continue;
     if (!stabilityRule) continue;
     const capitalId = game.diplomacy.capitals?.[country.id];
     const occupier = capitalId == null ? null : stage.territoryOwner(capitalId);
@@ -105,6 +132,12 @@ export function checkVictory(game, victor = game.activeCountry) {
         && game.getStability(country.id) <= threshold) {
       eliminateCountry(game, country, occupier, 'stability');
     }
+  }
+
+  // Resolve dependencies before deciding the player result, irrespective of country order.
+  if(isSandbox(game))for(let pass=0;pass<stage.data.countries.length;pass++){
+    let changed=false;for(const country of stage.data.countries)changed=sandboxDefeat(game,country,victor)||changed;
+    if(!changed)break;
   }
 
   // The native manager fails a campaign as soon as the next round exceeds

@@ -1,3 +1,4 @@
+import { isSandbox } from '../../../game/sandbox_policy.js';
 // Card shop, composed from the original WC2 background and texture atlases.
 import { E } from '../../../core/index.js';
 import '../../../ui/ui.js';
@@ -278,6 +279,6 @@ export class CardShop {
     // Screen-space HUD, like BattleHud and Bank.drawChrome: do not inherit
     // the shop's 1136x640 content scale or its vertical letterbox offset.
     const bp = E.platform?.isTouch ? resourceBarPos() : { x: 0, y: 0 };   // 触屏：和战斗 HUD 同一个(可拖动的)位置
-    this.bar.draw(bp.x, bp.y, 268, g.money, g.industry, { stability: g.getStability(g.player) });
+    this.bar.draw(bp.x, bp.y, 268, g.money, g.industry, { stability: isSandbox(g)?undefined:g.getStability(g.player) });
   }
 }

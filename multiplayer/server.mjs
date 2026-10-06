@@ -5,6 +5,7 @@ import crypto from 'node:crypto';
 import { createRequire } from 'node:module';
 import { DatabaseSync } from 'node:sqlite';
 import { WebSocketServer } from 'ws';
+import { createModHall } from './mod_hall.mjs';
 import { startRoom, restoreRoom, submitCommand, roomSnapshot, spectatorSnapshot, roomVisualEvents, storedRoom } from './room_engine.mjs';
 import { stageDirectory, scenarioDirectory, gameModule } from './runtime.mjs';
 const { validateSandbox } = await import(gameModule('sandbox_config.js'));
@@ -19,6 +20,11 @@ const dataDir = path.join(root, 'data');
 await fs.mkdir(dataDir, { recursive: true });
 const db = new DatabaseSync(path.join(dataDir, 'multiplayer.sqlite'));
 const userDb = new DatabaseSync(path.join(dataDir, 'users.sqlite'));
+const modHall=createModHall({db:userDb,userFor:auth.userFor,json,validateConfig:async config=>{
+  if(!config||!/^[-a-zA-Z0-9_]+$/.test(config.stage||''))throw Error('作品地图无效');
+  const data=JSON.parse(await fs.readFile(path.join(stageDirectory,config.stage+'.json'),'utf8'));
+  await World.load();if(data.mapPatch)World.applyPatch(data.mapPatch,data.mirror);validateSandbox(config);
+}});
 db.exec(`PRAGMA journal_mode=WAL;
 CREATE TABLE IF NOT EXISTS rooms (id TEXT PRIMARY KEY, body TEXT NOT NULL, updated_at INTEGER NOT NULL);`);
 const rooms = new Map();
@@ -63,7 +69,7 @@ async function bodyOf(req) {
   }
   return body ? JSON.parse(body) : {};
 }
-function supportedCustomVersion(value){const nums=String(value||'').split('.').map(Number);return nums.length===3&&nums.every(Number.isInteger)&&(nums[0]>1||nums[0]===1&&(nums[1]>0||nums[1]===0&&nums[2]>=14));}
+function supportedCustomVersion(value){const nums=String(value||'').split('.').map(Number);return nums.length===3&&nums.every(Number.isInteger)&&(nums[0]>1||nums[0]===1&&(nums[1]>0||nums[1]===0&&nums[2]>=16));}
 function publicRoom(room) {
   const {sandboxConfig,...publicSettings}=room.settings;
   return { id: room.id, name: room.name, stage: room.stage, hostId: room.hostId, started: room.started,
@@ -196,6 +202,7 @@ const server = http.createServer(async (req, res) => {
   if (url.pathname === '/api/mp/version') return json(res, 200, { protocol: 'wc2-1' });
   if (url.pathname.startsWith('/api/mp/') && req.headers['x-wc2-protocol'] && req.headers['x-wc2-protocol'] !== 'wc2-1') return json(res, 409, { error: '游戏规则版本不一致，请回到首页更新后再联机。', code: 'version_mismatch' });
   if (auth.handle(req, res, url.pathname)) return;
+  if (await modHall(req,res,url)) return;
   const user = auth.userFor(req);
   if (!user) return json(res, 401, { error: '请先登录' });
   try {
@@ -236,7 +243,7 @@ const server = http.createServer(async (req, res) => {
     if (!match) return json(res, 404, { error: '接口不存在' });
     const room = rooms.get(match[1]);
     if (!room) return json(res, 404, { error: '房间不存在' });
-    if(room.settings.customContentEnabled&&!supportedCustomVersion(req.headers['x-wc2-version']))return json(res,409,{error:'此沙盒包含自定义内容，请先更新至 1.0.14 或更高版本',code:'version_mismatch'});
+    if(room.settings.customContentEnabled&&!supportedCustomVersion(req.headers['x-wc2-version']))return json(res,409,{error:'此沙盒包含自定义内容，请先更新至 1.0.16 或更高版本',code:'version_mismatch'});
     if (match[2] === 'join' && req.method === 'POST') {
       return json(res, 200, await change(room, async () => {
         if (room.started) throw new Error('对局已开始');
@@ -388,7 +395,7 @@ server.on('upgrade', (req, socket, head) => {
         const packet = JSON.parse(raw.toString());
         if (packet.type !== 'subscribe' || packet.accessKey !== ACCESS_KEY || !/^[A-F0-9]{8}$/.test(packet.roomId) || !/^[a-f0-9]{64}$/i.test(packet.token)) throw new Error('订阅参数无效');
         expireRooms();const room = rooms.get(packet.roomId);
-        if(room?.settings.customContentEnabled&&!supportedCustomVersion(packet.version))throw Error('自定义沙盒需要更新至 1.0.14');
+        if(room?.settings.customContentEnabled&&!supportedCustomVersion(packet.version))throw Error('自定义沙盒需要更新至 1.0.16');
         const user = auth.userFor({ headers: { authorization: `Bearer ${packet.token}` } });
         if (!room || !user) throw new Error('无权进入房间');
         let member=memberOf(room,user), spectator=spectatorOf(room,user);

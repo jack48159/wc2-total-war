@@ -1,3 +1,4 @@
+import { isSandbox } from '../../../game/sandbox_policy.js';
 // Zhengwu / Strategic Administration Panel
 // Implements the leather document folder design conforming to ZHENGWU_UI_TASK.md
 
@@ -416,7 +417,7 @@ export class ZhengwuDialog {
             const bill = this.reparationsBill(player, c.id);
             this.confirmDialog = {
               title: `向 ${cName} 签署和约？`,
-              content: `对方可能拒绝此和约。\n赔款 $${bill.paid}、工业 ${bill.industry}\n（对方在本次战争中损失部队造价的 ${bill.rate.toFixed(1)} 倍，必须全额支付，不足部分记为负债）\n并扣除稳定度 10 点。`,
+              content: `对方可能拒绝此和约。\n赔款 $${bill.paid}、工业 ${bill.industry}\n（对方在本次战争中损失部队造价的 ${bill.rate.toFixed(1)} 倍，必须全额支付，不足部分记为负债）${isSandbox(this.game)?'':'\n并扣除稳定度 10 点。'}`,
               onConfirm: () => {
                 this.game.apply({ type: 'setDiplomacy', first: player, second: c.id, state: 'peace', reason: 'player_action' });
                 if (getDiplomaticRelation(this.game, player, c.id) === DIPLOMACY_STATE.WAR) {
@@ -432,7 +433,7 @@ export class ZhengwuDialog {
             const cascadedCountries = cascadeIds.map(id => allStageCountries.find(x => x.id === id) || { id, name: id });
             this.confirmDialog = {
               title: `向盟国 ${cName} 宣战？`,
-              content: `退出同盟并宣战将扣除国家稳定度 20 点。\n确认宣战？`,
+              content: `${isSandbox(this.game)?'退出同盟并立即进入交战状态。':'退出同盟并宣战将扣除国家稳定度 20 点。'}\n确认宣战？`,
               cascadedCountries,
               inviteAllies: true,
               onConfirm: (inviteAllies) => {
@@ -455,7 +456,7 @@ export class ZhengwuDialog {
             const cascadedCountries = cascadeIds.map(id => allStageCountries.find(x => x.id === id) || { id, name: id });
             this.confirmDialog = nap ? {
               title: `向 ${cName} 宣战？`,
-              content: `稳定度 −20\n确认宣战？`,
+              content: `${isSandbox(this.game)?'撕毁互不侵犯条约并进入交战状态。':'稳定度 −20'}\n确认宣战？`,
               warning: '撕毁互不侵犯条约',
               cascadedCountries,
               inviteAllies: true,
@@ -464,7 +465,7 @@ export class ZhengwuDialog {
               }
             } : {
               title: `向 ${cName} 宣战？`,
-              content: `宣战将扣除国家稳定度 12 点，并立即进入交战状态。\n确认宣战？`,
+              content: `${isSandbox(this.game)?'宣战后立即进入交战状态。':'宣战将扣除国家稳定度 12 点，并立即进入交战状态。'}\n确认宣战？`,
               cascadedCountries,
               inviteAllies: true,
               onConfirm: (inviteAllies) => {
@@ -489,7 +490,7 @@ export class ZhengwuDialog {
           if (!nap && hitBtn(dg.btn3X)) {
             this.confirmDialog = {
               title: `向 ${cName} 提议互不侵犯？`,
-              content: `递交互不侵犯条约草案，对方可能拒绝。\n若签署，撕毁后再宣战将付出与背盟相当的稳定度代价。`,
+              content: `递交互不侵犯条约草案，对方可能拒绝。\n${isSandbox(this.game)?'签署后，撕毁条约将改变双方关系。':'若签署，撕毁后再宣战将付出与背盟相当的稳定度代价。'}`,
               onConfirm: () => {
                 this.game.apply({ type: 'proposeDiplomacy', first: player, second: c.id, action: 'nap', reason: 'player_action' });
                 if (!hasNap(this.game, player, c.id)) {
@@ -978,7 +979,7 @@ export class ZhengwuDialog {
     E.text('领地', colArea, headerY, hOpt);
     E.text('军力', colArmy, headerY, hOpt);
     E.text('经济', colEco, headerY, hOpt);
-    E.text('稳定度', colStab, headerY, hOpt);
+    if(!isSandbox(this.game))E.text('稳定度', colStab, headerY, hOpt);
 
     // 1px dividing line under headers
     c.save();
@@ -1103,7 +1104,7 @@ export class ZhengwuDialog {
 
       // Stability
       const stab = this.game.getStability ? this.game.getStability(r.id) : (r.stability ?? 100);
-      E.text(String(stab), colStab, ry + rowH / 2, {
+      if(!isSandbox(this.game))E.text(String(stab), colStab, ry + rowH / 2, {
         size: Math.round(17 * s),
         bold: true,
         font: E.NUM || 'sans-serif',

@@ -1,4 +1,5 @@
 import { sandboxAction } from '../sandbox_actions.js';
+import { isSandbox } from '../sandbox_policy.js';
 // Port of formwork's Scenario Events system (scenario_events/ Notices.cpp, Execution.cpp, Actions.cpp, Conditions.cpp)
 // Handles event notices and branching decisions.
 
@@ -65,6 +66,7 @@ export function evaluateCondition(game, cond) {
     const c = game.stage.countries.get(cond.country);
     if(c?.dormant&&!game.sandboxState?.activated?.[cond.country])return false;
     if (!c || c.eliminated) return true;
+    if (isSandbox(game) && game.stage.data.sandboxFeatures?.countryDefeats?.[cond.country]?.enabled) return false;
     const lands = game.stage.areas.filter(a => (a.transitOwner||a.country) === cond.country && !a.sea).length;
     return lands === 0;
   }
@@ -74,6 +76,7 @@ export function evaluateCondition(game, cond) {
     return rel === targetState;
   }
   if (cond.type === 'stabilityBelow') {
+    if (isSandbox(game)) return false;
     const country = cond.country || game.player;
     const stab = game.getStability ? game.getStability(country) : 100;
     return stab < (cond.value ?? 30);

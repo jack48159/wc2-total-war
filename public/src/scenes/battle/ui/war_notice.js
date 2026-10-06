@@ -1,3 +1,4 @@
+import { isSandbox } from '../../../game/sandbox_policy.js';
 // War event notice dialog: presents historical war events, consequences, and confirms application.
 import { E } from '../../../core/index.js';
 import { World } from '../../../game/world.js';
@@ -162,6 +163,7 @@ export class WarNoticeDialog {
     // Search actions
     const actions = ev.actions || ev.effects || [];
     for (const act of actions) {
+      if(act.type==='changeStability'&&isSandbox(this.game))continue;
       if (act.area != null) return act.area;
       if (act.areaId != null) return act.areaId;
       if (act.targetArea != null) return act.targetArea;
@@ -210,6 +212,7 @@ export class WarNoticeDialog {
     // 2. From actions (diplomacy changes)
     const actions = ev.actions || ev.effects || [];
     for (const act of actions) {
+      if(act.type==='changeStability'&&isSandbox(this.game))continue;
       if (act.type === 'setDiplomacy' && act.first && act.second) {
         const c1 = COUNTRY_MAP[act.first];
         const c2 = COUNTRY_MAP[act.second];
@@ -262,6 +265,7 @@ export class WarNoticeDialog {
     const actions = ev.actions || ev.effects || [];
 
     for (const act of actions) {
+      if(act.type==='changeStability'&&isSandbox(this.game))continue;
       if (act.type === 'changeStability') {
         const cName = COUNTRY_MAP[act.country]?.name || act.country || '本国';
         const sign = act.amount > 0 ? '+' : '';

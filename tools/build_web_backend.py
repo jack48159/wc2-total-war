@@ -15,7 +15,7 @@ shutil.copytree(Path(build['output']) / 'data', engine / 'data')
 (engine / 'assets').mkdir()
 for name in ['armydef.xml', 'commanderdef.xml']:
     shutil.copy2(root / 'project/app/src/main/assets' / name, engine / 'assets' / name)
-for name in ['server.mjs', 'runtime.mjs', 'room_engine.mjs', 'package.json']:
+for name in ['server.mjs', 'runtime.mjs', 'room_engine.mjs', 'mod_hall.mjs', 'package.json']:
     shutil.copy2(root / 'multiplayer' / name, output / 'multiplayer' / name)
 shutil.copy2(root / 'auth_store.js', output / 'auth_store.js')
 shutil.copy2(root / 'asset_library.js', output / 'asset_library.js')
