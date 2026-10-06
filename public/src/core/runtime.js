@@ -194,6 +194,7 @@ E.start = async (canvasId, initial) => {
     } else { ctx.fillStyle = '#080503'; ctx.fillRect(0, 0, cv.width, cv.height); }
     ctx.setTransform(v.scale, 0, 0, v.scale, v.ox, v.oy);
     ctx.save(); if (!insets) { ctx.beginPath(); ctx.rect(0, 0, E.W, E.H); ctx.clip(); }
+    E.layout.refresh();
     if (E.layout.on) E.layout.beginFrame();
     if (E.scene) {
       const a = performance.now(); E.scene.update && E.scene.update(dt);

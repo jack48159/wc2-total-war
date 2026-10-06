@@ -52,10 +52,10 @@ function withoutEnglish(frame, index) {
 class Conquest extends Page {
   constructor() { super(); this.route = 'conquest'; }
   async init() {
-    await E.loadKeyArt(this);
-    this.cn = await E.atlas('mui_cn_hd');
-    const m = { mui_hd: await E.atlas('mui_hd'), mui2_hd: await E.atlas('mui2_hd') };
-    this.data = await E.json('data/conquests.json');
+    const [, cn, mui, mui2, data] = await Promise.all([E.loadKeyArt(this), E.atlas('mui_cn_hd'), E.atlas('mui_hd'), E.atlas('mui2_hd'), E.json('data/conquests.json')]);
+    this.cn = cn;
+    const m = { mui_hd: mui, mui2_hd: mui2 };
+    this.data = data;
     const official = this.data.filter(q => !q.test);
     this.cards = official.map((q, i) => Object.assign(new E.Button({ w: 515, h: 148, label: q.name, onClick: () => E.go('countrySelect', q.id) }),
       { q, img: withoutEnglish(m[q.atlas][q.card], i), cx: 132 + (i % 2) * 764, cy: 243 + Math.floor(i / 2) * 165 }));

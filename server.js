@@ -43,7 +43,8 @@ const openWindow = url => {
   if (process.argv.includes('--no-open')) return;
   // borderless full screen by default (Options > 游戏 > 启动时全屏 can turn it off); the setting is in data/settings.json
   let full = true; try { full = JSON.parse(fs.readFileSync(path.join(DATA, 'settings.json'), 'utf8')).autoFullscreen !== false; } catch (e) {}
-  exec(`start msedge --app=${url} ${full ? '--start-fullscreen' : '--window-size=1280,760'} || start ${url}`);
+  const backgroundFlags = '--disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-renderer-backgrounding';
+  exec(`start msedge --app=${url} ${backgroundFlags} ${full ? '--start-fullscreen' : '--window-size=1280,760'} || start ${url}`);
 };
 
 
@@ -87,6 +88,22 @@ function proxyRemoteUpgrade(req, socket, head) {
 const hotUpdater = require('./tools/hot_update.cjs')(__dirname, MIME);
 const handler = (req, res) => {
   if (!WEB_BASE && hotUpdater.handle(req, res, req.url.split('?')[0])) return;
+  // 本机桥同源转发：HTTPS 游戏页无需再信任 8651 的自签证书。
+  // 固定转发到本机桥，不接受客户端提供的主机地址。
+  if (!WEB_BASE && req.url.startsWith('/api/bridge/bridge/')) {
+    const headers = { ...req.headers, host: `127.0.0.1:${BRIDGE_PORT}` };
+    delete headers.origin; delete headers.referer;
+    const upstream = http.request({ host: '127.0.0.1', port: BRIDGE_PORT,
+      path: req.url.slice('/api/bridge'.length), method: req.method, headers }, reply => {
+      res.writeHead(reply.statusCode, reply.headers); reply.pipe(res);
+    });
+    upstream.on('error', error => {
+      if (!res.headersSent) res.writeHead(502, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: '无法连接本机对战桥：' + error.message }));
+    });
+    res.on('close', () => { if (!res.writableEnded) upstream.destroy(); });
+    req.pipe(upstream); return;
+  }
   if (!WEB_BASE && req.url.startsWith('/remote/')) return proxyRemote(req, res);
   let urlPath = req.url.split('?')[0];
   if (WEB_BASE) {

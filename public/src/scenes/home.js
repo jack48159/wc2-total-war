@@ -7,14 +7,15 @@ import { Updates } from '../core/updates.js';
 class Home extends Page {
   constructor() { super(); this.showBack = false; this.route = 'home'; }
   async init() {
-    E.user = await requireLogin();
-    this.bg = await E.image('assets/mainbg-historical-v2.png');
-    this.plank = (await E.atlas('mui_hd')).button_mainmenu;
-    const cn = await E.atlas('mui_cn_hd');
+    if (!E.user) E.user = await requireLogin();
+    const [bg, mui, cn] = await Promise.all([E.image('assets/mainbg-historical-v2.png'), E.atlas('mui_hd'), E.atlas('mui_cn_hd')]);
+    this.bg = bg;
+    this.plank = mui.button_mainmenu;
     this.menuText = { '战役': cn.m_buttontext_campaign, '征服': cn.m_buttontext_conquest, '指挥官': cn.m_buttontext_commander, '选项': cn.m_buttontext_options };
     this.widgets = [
       ['战役', () => E.go('campaign')],
       ['征服', () => E.go('conquest')],
+      ['沙盒', () => E.go('sandbox')],
       ['联机', () => E.go('multiplayer')],
       ['读取', () => E.go('saveScreen', null, 'load', 'home')],
       ['指挥官', () => E.go('commander')],
@@ -32,7 +33,7 @@ class Home extends Page {
       Object.assign(button.style, {position:'fixed',left:'16px',top:'max(16px,env(safe-area-inset-top))',zIndex:50,padding:'8px 12px',background:'#eee7d6',color:'#302518',border:'1px solid #987c45',borderRadius:'6px'});
       button.onclick = () => { void Updates.check({force:true}); }; document.body.append(button);
     }
- void Updates.check(); }
+ E.prewarmMenus(); void Updates.check(); }
   dispose() { this.updateButton?.remove(); this.updateButton = null; Updates.hide(); this.account?.remove(); this.account = null; }
   exitGame() {
     try { window.close(); } catch (e) {}
@@ -53,7 +54,7 @@ class Home extends Page {
   render() {
     // Page.draw translates by ox/oy; convert the viewport edge back to content space.
     // Keep the complete plank (including its baked shadow) inside that edge.
-    const scale = 1.24, pitch = 102, pressTravel = 2;
+    const scale = Math.min(1.24, (E.H - 40) / (this.plank.h + (this.widgets.length - 1) * 82)), pitch = 82 * scale, pressTravel = 2;
     const w = this.plank.w * scale, h = this.plank.h * scale;
     const totalH = (this.widgets.length - 1) * pitch + h;
     const top = Math.max(20, Math.min(E.H * .64 - totalH / 2,

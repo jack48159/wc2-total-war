@@ -48,7 +48,8 @@ E.playlist = [
   'hoi4/music/lotsofbattles.ogg'
 ];
 let pausedByHidden = false;
-const audio = E.audio = { music: null, unlocked: false, list: null, idx: 0, pending: null };
+const audio = E.audio = { music: null, unlocked: false, list: null, idx: 0, pending: null, next: null };
+const failedTracks = new Set();
 const PLAYED_KEY = 'wc2.music.played';   // 本轮已放过的曲目；随机选曲，一轮内每首都放到，放完再开新一轮
 const readPlayed = () => { try { const v = JSON.parse(localStorage.getItem(PLAYED_KEY) || '[]'); return Array.isArray(v) ? v : []; } catch (e) { return []; } };
 const writePlayed = a => { try { localStorage.setItem(PLAYED_KEY, JSON.stringify(a)); } catch (e) {} };
@@ -60,29 +61,68 @@ const pick = (list, last) => {
     left = list.length > 1 ? list.filter(n => n !== last) : list.slice();
   }
   const name = left[Math.floor(Math.random() * left.length)];
-  writePlayed([...played, name]);
   return name;
 };
 
+const release = a => {
+  if (!a) return;
+  a.onended = a.onerror = a.ontimeupdate = null;
+  a.pause(); a.removeAttribute('src'); a.load();
+};
+const discardNext = () => { release(audio.next?.element); audio.next = null; };
+const recordPlayed = name => {
+  if (!audio.list) return;
+  let played = readPlayed().filter(n => audio.list.includes(n));
+  if (audio.list.every(n => played.includes(n))) played = [];
+  writePlayed([...new Set([...played, name])]);
+};
+const prepareNext = a => {
+  if (audio.music !== a || !audio.list || audio.next || E.muted || document.hidden || a.paused) return;
+  const seconds = Number(window.WC2_CONFIG?.musicPreloadSeconds ?? 20);
+  if (!Number.isFinite(a.duration) || a.duration <= 0 || a.duration - a.currentTime > Math.max(5, seconds || 20)) return;
+  const list = audio.list.filter(n => !failedTracks.has(n));
+  if (!list.length) return;
+  const name = pick(list, a.dataset.name), element = new Audio();
+  audio.next = { name, element, list: audio.list };
+  element.preload = 'auto';
+  element.onerror = () => { failedTracks.add(name); if (audio.next?.element === element) discardNext(); };
+  element.src = 'assets/' + name;
+  element.load();
+};
+
 const track = (name, loop) => {
-  if (audio.music) { audio.music.onended = null; audio.music.pause(); }
-  const a = new Audio('assets/' + name); a.loop = loop; a.volume = audio.music ? audio.music.volume : E.state.music; a.dataset.name = name;
-  const next = () => {
+  if (!name) return;
+  const volume = audio.music ? audio.music.volume : E.state.music;
+  const prepared = audio.next?.name === name && audio.next.list === audio.list ? audio.next.element : null;
+  if (prepared) audio.next = null; else discardNext();
+  release(audio.music);
+  const a = prepared || new Audio();
+  a.preload = 'auto'; a.loop = loop; a.volume = volume; a.dataset.name = name;
+  const next = failed => {
     if (audio.music !== a || !audio.list) return;
-    track(pick(audio.list, name), false);
+    if (failed) failedTracks.add(name);
+    const list = audio.list.filter(n => !failedTracks.has(n));
+    if (!list.length) { discardNext(); return; }
+    const upcoming = audio.next?.list === audio.list && !failedTracks.has(audio.next.name) ? audio.next.name : pick(list, name);
+    track(upcoming, false);
   };
-  a.onended = next;
-  a.onerror = next;
-  a.play().then(() => { audio.unlocked = true; }).catch(() => { audio.unlocked = false; });   // blocked until the first user gesture
+  a.onended = () => next(false);
+  a.onerror = () => next(true);
+  a.ontimeupdate = () => prepareNext(a);
   audio.music = a;
+  recordPlayed(name);
+  if (!prepared) a.src = 'assets/' + name;
+  a.play().then(() => { audio.unlocked = true; }).catch(() => { audio.unlocked = false; });   // blocked until the first user gesture
   if (document.hidden) { a.pause(); pausedByHidden = true; }   // 页面隐藏期间切歌：不出声，回来后恢复
 };
 
 E.playPlaylist = (list = E.playlist) => {
   audio.pending = { list };
   if (E.muted) return;
+  if (!list?.length) return;
   if (audio.list === list && audio.music) { if (audio.music.paused && audio.unlocked) audio.music.play().catch(() => {}); return; }
   audio.list = list;
+  failedTracks.clear();
   track(pick(list, null), false);
 };
 E.playMusic = name => {

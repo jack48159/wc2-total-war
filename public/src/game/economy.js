@@ -9,6 +9,6 @@ export function areaIncome(game, area) {
   const city = Math.max(baseCity, a.construction === 'city' ? a.level || 0 : 0);
   const industry = Math.max(baseIndustry, a.construction === 'industry' ? a.level || 0 : 0);
   const tax = Math.trunc((5 * city + (World.areas[a.id]?.tax || 0)) * (me?.taxfactor ?? 1));
-  const ind = 5 * industry + (World.areas[a.id]?.industry || 0);
+  const ind = Math.trunc((5 * industry + (World.areas[a.id]?.industry || 0)) * (me?.industryfactor ?? 1));
   return { money: tax, industry: ind };
 }

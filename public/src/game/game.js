@@ -67,7 +67,7 @@ export class Game {
     const player = (snapshot && snapshot.player) || opts.player || null;
     const commanderLevel = snapshot?.commanderLevel ?? opts.commanderLevel;
     const historicalDiplomacy = snapshot ? (snapshot.historicalDiplomacy ?? true) : (opts.historicalDiplomacy !== false);
-    const [stage, camp, cards, conq] = await Promise.all([Stage.load(stageName, snapshot && snapshot.areas, { player, commanderLevel, countries: snapshot?.countries, historicalDiplomacy: snapshot ? false : historicalDiplomacy, ...opts, diplomacy: snapshot?.diplomacy || opts.diplomacy }), getJson('data/campaigns.json'), getJson('data/cards.json'), getJson('data/conquests.json'), readyCommanders()]);
+    const [stage, camp, cards, conq] = await Promise.all([Stage.load(stageName, snapshot && snapshot.areas, { player, commanderLevel, countries: snapshot?.countries, historicalDiplomacy: snapshot ? false : historicalDiplomacy, ...opts, sandboxBattle: snapshot?.sandboxBattle || opts.sandboxBattle, diplomacy: snapshot?.diplomacy || opts.diplomacy }), getJson('data/campaigns.json'), getJson('data/cards.json'), getJson('data/conquests.json'), readyCommanders()]);
     let info = camp.factions.flatMap(f => f.battles.map(b => Object.assign({ faction: f.id }, b))).find(b => stageName === 'battle_' + b.id.replace('-', ''));
     if (stage.data.mapPatch || stage.data.duel) info = { faction: 'conquest', id: stageName, name: stageName, conquest: true };
     const cq = /^conquest_(\d+)$/.exec(stageName);
@@ -76,6 +76,7 @@ export class Game {
   }
 
   constructor(stage, meta, snapshot = null, opts = {}) {
+    this.sandboxBattle = snapshot?.sandboxBattle || opts.sandboxBattle || null;
     this.stage = stage; this.info = meta.info; this.labels = meta.labels; this.cardData = meta.cards;
     this.historicalDiplomacy = snapshot ? (snapshot.historicalDiplomacy ?? true) : (opts.historicalDiplomacy !== false);
     const me = stage.countries.get(stage.player);
@@ -416,8 +417,35 @@ export class Game {
   // ---- save / load ----
   snapshot() {
     this.replayRecorder?.capture();
-    return JSON.parse(JSON.stringify({ coordination: this.coordination, theatres: this.theatres, nextTheaterId: this.nextTheaterId, orders: this.orders, nextOrderId: this.nextOrderId, armyGroups: this.armyGroups, nextArmyGroupId: this.nextArmyGroupId, ownedCommanders: this.ownedCommanders, stage: this.name, player: this.player, activeCountry: this.activeCountry, phase: this.phase, result: this.result, gameId: this.gameId, bridgeOpponentCountry: this.bridgeOpponentCountry, fogOfWar: this.fogOfWar, turnOrder: this.turnOrder, reparationRate: this.reparationRate, recruitWait: this.recruitWait, supplyByInfrastructure: this.supplyByInfrastructure, capturedAt: this.capturedAt, visibilityMemory: this.visibilityMemory, historicalDiplomacy: this.historicalDiplomacy, commanderLevel: this.playerInfo.commanderLevel, medalLevels: this.medalLevels, cardCooldowns: this.cardCooldowns, techTurn: this.techTurn, nextArmyId: this.nextArmyId, round: this.round, dialogueIndex: this.dialogueIndex, money: this.money, industry: this.industry, tech: this.tech, stability: this.getStability(this.player), hand: this.hand, countries: this.stage.data.countries.map(c => c.id === this.player ? { ...c, money: this.money, industry: this.industry, techlevel: this.tech, stability: this.getStability(c.id) } : { ...c, stability: this.getStability(c.id) }), areas: this.stage.areas, diplomacy: this.diplomacy ? JSON.parse(JSON.stringify(this.diplomacy)) : null,
+    return JSON.parse(JSON.stringify({ coordination: this.coordination, theatres: this.theatres, nextTheaterId: this.nextTheaterId, orders: this.orders, nextOrderId: this.nextOrderId, armyGroups: this.armyGroups, nextArmyGroupId: this.nextArmyGroupId, ownedCommanders: this.ownedCommanders, stage: this.name, sandboxBattle: this.sandboxBattle, player: this.player, activeCountry: this.activeCountry, phase: this.phase, result: this.result, gameId: this.gameId, bridgeOpponentCountry: this.bridgeOpponentCountry, fogOfWar: this.fogOfWar, turnOrder: this.turnOrder, reparationRate: this.reparationRate, recruitWait: this.recruitWait, supplyByInfrastructure: this.supplyByInfrastructure, capturedAt: this.capturedAt, visibilityMemory: this.visibilityMemory, historicalDiplomacy: this.historicalDiplomacy, commanderLevel: this.playerInfo.commanderLevel, medalLevels: this.medalLevels, cardCooldowns: this.cardCooldowns, techTurn: this.techTurn, nextArmyId: this.nextArmyId, round: this.round, dialogueIndex: this.dialogueIndex, money: this.money, industry: this.industry, tech: this.tech, stability: this.getStability(this.player), hand: this.hand, countries: this.stage.data.countries.map(c => c.id === this.player ? { ...c, money: this.money, industry: this.industry, techlevel: this.tech, stability: this.getStability(c.id) } : { ...c, stability: this.getStability(c.id) }), areas: this.stage.areas, diplomacy: this.diplomacy ? JSON.parse(JSON.stringify(this.diplomacy)) : null,
       scenarioEvents: this.scenarioEvents ? JSON.parse(JSON.stringify(this.scenarioEvents)) : null, rng: this.rng.save(), replay: this.replay, log: this.log, gameLog: this.gameLog, nextGameLogId: this.nextGameLogId, reportLog: this.reportLog, nextReportId: this.nextReportId, reportRevision: this.reportRevision }));
+  }
+
+  // Adopt a validated Agent result in place, keeping UI listeners and controllers attached.
+  adoptBridgeSnapshot(snapshot, country) {
+    if (!snapshot || snapshot.stage !== this.name || snapshot.gameId !== this.gameId
+        || snapshot.round !== this.round || snapshot.activeCountry !== country
+        || snapshot.player !== this.player || !snapshot.rng
+        || !Array.isArray(snapshot.areas) || !Array.isArray(snapshot.countries)) {
+      throw new Error('桥提交状态与当前对局、回合或席位不匹配');
+    }
+    const snap = structuredClone(snapshot);
+    if (snap.areas.length !== this.stage.areas.length
+        || snap.countries.length !== this.stage.countries.size
+        || new Set(snap.areas.map(a => a.id)).size !== snap.areas.length
+        || new Set(snap.countries.map(c => c.id)).size !== snap.countries.length
+        || snap.areas.some(a => !this.stage.byArea.has(a.id))
+        || snap.countries.some(c => !this.stage.countries.has(c.id))) {
+      throw new Error('桥提交状态的地图或国家列表不匹配');
+    }
+    const rng = Rng.restore(snap.rng);
+    for (const incoming of snap.areas) Object.assign(this.stage.byArea.get(incoming.id), incoming);
+    for (const incoming of snap.countries) Object.assign(this.stage.countries.get(incoming.id), incoming);
+    const special = new Set(['stage', 'player', 'commanderLevel', 'areas', 'countries', 'rng', 'replay']);
+    for (const [key, value] of Object.entries(snap)) if (!special.has(key)) this[key] = value;
+    this.rng = rng;
+    // Preserve the browser's animation replay and record the authoritative correction as a frame.
+    this.replayRecorder?.capture();
   }
 
   // ---- economy ----

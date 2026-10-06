@@ -6,9 +6,8 @@ import '../ui/keyart.js';
 class Campaign extends Page {
   constructor() { super(); this.route = 'campaign'; }
   async init() {
-    await E.loadKeyArt(this);
-    const mui = await E.atlas('mui_hd'); this.cn = await E.atlas('mui_cn_hd');
-    this.data = await E.json('data/campaigns.json');
+    const [, mui, cn, data] = await Promise.all([E.loadKeyArt(this), E.atlas('mui_hd'), E.atlas('mui_cn_hd'), E.json('data/campaigns.json')]);
+    this.cn = cn; this.data = data;
     this.cards = this.data.factions.map((f, i) => Object.assign(new E.Button({ w: 580, h: 194, label: f.name, onClick: () => this.pick(f) }),
       { f, img: mui[f.card], txt: this.cn[f.text], i, cx: 192 + (i % 2) * 635, cy: 316 + Math.floor(i / 2) * 216 }));
     this.loadBtn = E.makeLoadButton(() => E.go('saveScreen', null, 'load', 'campaign'));

@@ -51,6 +51,7 @@ function setPortrait(container, spec, tier) {
   const path = portraitPath(spec);
   if (!path) return;
   const img = document.createElement('img'); img.alt = '';
+  img.loading = 'lazy'; img.decoding = 'async';
   img.onload = () => { if (img.isConnected) container.querySelector('svg')?.remove(); };
   img.onerror = () => img.remove();
   img.src = path;

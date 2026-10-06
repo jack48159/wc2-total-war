@@ -28,8 +28,9 @@ const inset = name => {
 export const platform = {
   id,
   isTouch: id === 'ios' || id === 'android',
+  isStaticWeb: !!(hasWindow && window.WC2_CONFIG?.staticWeb),
   isPackaged: ((hasLocation && location.protocol === 'capacitor:') || !!(hasWindow && window.Capacitor?.isNativePlatform?.())),
-  assetIndex(name) { return this.isPackaged ? `ios_meta/${name}.json` : `/api/${name}`; },
+  assetIndex(name) { return this.isStaticWeb ? `web_meta/${name}.json` : this.isPackaged ? `ios_meta/${name}.json` : `/api/${name}`; },
   async fetchRemote(url, options = {}) {
     const native = this.isPackaged && hasWindow && window.Capacitor?.Plugins?.CapacitorHttp;
     if (!native) return fetch(url, options);

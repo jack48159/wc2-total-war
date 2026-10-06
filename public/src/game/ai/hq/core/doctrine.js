@@ -58,7 +58,7 @@ function getDoctrinesData() {
   }
   if (fsModule && fsModule.readFileSync) {
     try {
-      const fileUrl = new URL('../../../../../data/ai_doctrines.json', import.meta.url);
+      const fileUrl = typeof document !== 'undefined' ? new URL('data/ai_doctrines.json', document.baseURI) : new URL('../../../../../data/ai_doctrines.json', import.meta.url);
       const text = fsModule.readFileSync(fileUrl, 'utf8');
       _doctrineDataCache = JSON.parse(text);
       return _doctrineDataCache;

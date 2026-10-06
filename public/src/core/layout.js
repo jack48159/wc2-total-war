@@ -30,7 +30,13 @@ const L = E.layout = {
   items: [], byId: new Map(), tap: null, drawOverlay: null, editorLoader: null, editor: null,
   _buttons: new WeakMap(), _parent: null, _n: new Map(), _sk: '', _frames: new Map(),
 
-  refresh() { this.on = this.active || this.applySaved; },
+  refresh() {
+    const key = this.sceneKey();
+    // A saved battle layout must not enable expensive per-draw recording in
+    // every unrelated menu. Preserve full recording when the editor is active.
+    this.on = this.active || (this.applySaved &&
+      (Object.keys(this.overrides[key] || {}).length > 0 || (this.added[key]?.length || 0) > 0));
+  },
   sceneKey() { return E.scene ? E.scene.constructor.name : ''; },
   beginFrame() { this._buttons = new WeakMap(); this._parent = null; this.items.length = 0; this.byId.clear(); this._n.clear(); this._sk = this.sceneKey(); },
   get(id, sk = this._sk) { const o = this.overrides[sk]; return o && o[id]; },
@@ -134,9 +140,9 @@ const L = E.layout = {
   },
 
   // ---- persistence: data/layouts/<name>.json, one file per recording ----
-  async list() { try { return await (await fetch('/api/layouts')).json(); } catch (e) { return []; } },
+  async list() { try { return await (await fetch(E.platform?.isStaticWeb ? 'web_meta/layouts.json' : '/api/layouts')).json(); } catch (e) { return []; } },
   async loadNamed(name) {
-    try { const r = await fetch('/api/layouts/' + encodeURIComponent(name)); if (r.ok) { const d = await r.json(); return { scenes: d.scenes || {}, added: d.added || {} }; } } catch (e) {}
+    try { const r = await fetch(E.platform?.isStaticWeb ? 'web_meta/layouts/' + encodeURIComponent(name) + '.json' : '/api/layouts/' + encodeURIComponent(name)); if (r.ok) { const d = await r.json(); return { scenes: d.scenes || {}, added: d.added || {} }; } } catch (e) {}
     return null;
   },
   prune() {

@@ -20,8 +20,7 @@ E.platform = platform;
 installIosControls(E);
 
 E.user = await requireLogin();
-await E.loadProfile();
-await SaveStore.preload();
+await Promise.all([E.loadProfile(), SaveStore.preload()]);
 const q = new URLSearchParams(location.search);
 if (q.has('nofade')) E.noFade = true;
 if (q.has('mute')) E.muted = true;                       // e.g. the studio's embedded debug page
@@ -34,7 +33,7 @@ E.layout.editorLoader = () => import('./debug/layout_editor.js');
 // Global game config (data/game_config.json). Currently: `layout` = the adopted layout, embedded { name, scenes, added },
 // written by "adopt" in the layout editor / Studio. ?layout=<name> tries a saved recording instead, ?layout=none turns layouts off.
 {
-  let cfg = {}; if (!platform.isPackaged) try { const r = await fetch('/api/game-config'); if (r.ok) cfg = await r.json(); } catch (e) {}
+  let cfg = {}; if (!platform.isPackaged) try { const r = await fetch(platform.isStaticWeb ? 'web_meta/game-config.json' : '/api/game-config'); if (r.ok) cfg = await r.json(); } catch (e) {}
   E.gameConfig = cfg;
   const want = q.get('layout');
   const saved = want === 'none' || want === 'off' ? null : want ? await E.layout.loadNamed(want) : cfg.layout && cfg.layout.scenes ? { scenes: cfg.layout.scenes, added: cfg.layout.added || {} } : null;
@@ -46,7 +45,7 @@ LiveGames.purge();
 if (scene === 'battle' && args[2]?.liveGameId) {
   const rec = await LiveGames.get(args[2].liveGameId);
   if (rec && rec.snapshot) args = [rec.stageName, rec.snapshot, { ...(rec.options || {}), liveRestore: true }];
-  else { scene = 'home'; args = []; history.replaceState(null, '', '#'); }   // 记录不存在或已过期
+  else { scene = 'home'; args = []; history.replaceState(null, '', new URL('#', location.href).href); }   // 记录不存在或已过期
 }
 await E.start('c', new SCENES[scene](...args));
 void Updates.ready();

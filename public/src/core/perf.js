@@ -65,6 +65,7 @@ export const Perf = {
 
   send(t) {
     this.sent = t; this.dirty = false;
+    if (window.WC2_CONFIG?.staticWeb) return;
     try { fetch('/api/perf', { method: 'POST', body: JSON.stringify(this.report()) }).catch(() => {}); } catch (e) {}
   },
 };

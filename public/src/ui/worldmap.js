@@ -7,12 +7,26 @@ import { clampScroll, dragScroll, scrollMax } from './menu_scroll_math.mjs';
 const WM = E.WorldMap = {
   K: 2.87, AX: 46, AY: 31, S: 0.98, img: null,
   async load() {
-    if (this.tiles) return;
-    this.meta = await E.json('assets/map/ov/index.json');
-    const m = this.meta, jobs = [];
-    this.tiles = [];
-    for (let cy = 0; cy < m.rows; cy++) for (let cx = 0; cx < m.cols; cx++) jobs.push(E.image(`assets/map/ov/${cx}_${cy}.webp`).then(i => { this.tiles[cy * m.cols + cx] = i; }));
-    await Promise.all(jobs);
+    if (this.meta) return;
+    return this.loading || (this.loading = E.json('assets/map/ov/index.json').then(meta => {
+      this.tiles = []; this.requests = new Map(); this.queue = []; this.activeLoads = 0;
+      this.meta = meta;
+    }).catch(error => { this.loading = null; throw error; }));
+  },
+  requestTile(cx, cy) {
+    const index = cy * this.meta.cols + cx;
+    if (this.tiles[index] || this.requests.has(index)) return;
+    this.requests.set(index, true); this.queue.push({ cx, cy, index });
+    this.pumpTiles();
+  },
+  pumpTiles() {
+    while (this.activeLoads < 4 && this.queue.length) {
+      const { cx, cy, index } = this.queue.shift();
+      this.activeLoads++;
+      E.image(`assets/map/ov/${cx}_${cy}.webp`).then(image => { this.tiles[index] = image; })
+        .catch(() => { setTimeout(() => this.requests.delete(index), 5000); })
+        .finally(() => { this.activeLoads--; this.pumpTiles(); });
+    }
   },
   // Screen offset (real coords) of the overview's top-left so that world point `center` lands on `anchor`,
   // clamped so the map always covers the whole window (no empty sea/void past the map edge).
@@ -33,7 +47,8 @@ const WM = E.WorldMap = {
     const x0 = Math.max(0, Math.floor((-g.l - dx) / s / T)), x1 = Math.min(m.cols - 1, Math.floor((E.W + g.r - dx) / s / T));
     const y0 = Math.max(0, Math.floor((-g.t - dy) / s / T)), y1 = Math.min(m.rows - 1, Math.floor((E.H + g.b - dy) / s / T));
     for (let cy = y0; cy <= y1; cy++) for (let cx = x0; cx <= x1; cx++) {
-      const t = this.tiles[cy * m.cols + cx]; if (!t) continue;
+      const t = this.tiles[cy * m.cols + cx];
+      if (!t) { this.requestTile(cx, cy); continue; }
       E.layout.canvas(c, 'ui/worldmap.js:33').drawImage(t, Math.floor(dx + cx * T * s), Math.floor(dy + cy * T * s), Math.ceil(t.width * s) + 1, Math.ceil(t.height * s) + 1);
     }
   },

@@ -4,7 +4,7 @@ const TOKEN_KEY = 'wc2.auth.token';
 export const GAME_ACCESS_KEY = 'DUA5DN8AG4A';
 // Local UI can use the authoritative public game server. Override this key for a
 // different deployment without changing the source tree.
-export const apiOrigin = () => localStorage.getItem('wc2.api.origin') ||
+export const apiOrigin = () => window.WC2_CONFIG?.apiOrigin || localStorage.getItem('wc2.api.origin') ||
   'http://208.87.207.49:8643';
 // 页面是 https、公网服务器是 http 时，浏览器会拦截混合内容：改走本机服务的同源转发 /remote/(见 server.js)
 const viaLocalProxy = () => { try { return location.protocol === 'https:' && /^http:/.test(apiOrigin()) && /^(localhost|127\.0\.0\.1)$/.test(location.hostname); } catch { return false; } };

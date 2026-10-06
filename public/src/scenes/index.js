@@ -2,6 +2,7 @@
 // (and, if it should be reachable by URL, one case to routeFromHash).
 import { E } from '../core/index.js';
 import { Home } from './home.js';
+import { Sandbox } from './sandbox.js';
 import { Campaign } from './campaign.js';
 import { CampaignList } from './campaign_list.js';
 import { Conquest } from './conquest.js';
@@ -14,7 +15,7 @@ import { Bank } from './bank.js';
 import { Battle } from './battle/battle.js';
 import { Multiplayer } from './multiplayer.js';
 
-export const SCENES = { home: Home, campaign: Campaign, campaignList: CampaignList, conquest: Conquest, countrySelect: CountrySelect, matchSetup: MatchSetup,
+export const SCENES = { home: Home, sandbox: Sandbox, campaign: Campaign, campaignList: CampaignList, conquest: Conquest, countrySelect: CountrySelect, matchSetup: MatchSetup,
   commander: Commander, options: Options, saveScreen: SaveScreen, bank: Bank, battle: Battle, multiplayer: Multiplayer };
 
 E.registerScenes(SCENES);
@@ -28,6 +29,7 @@ export function routeFromHash(hash = location.hash) {
     case 'battles': return ['campaignList', arg || 'axis'];
     case 'load': return ['saveScreen', null, 'load', 'campaign'];
     case 'conquest': return ['conquest'];
+    case 'sandbox': return ['sandbox'];
     case 'countries': return ['countrySelect', /^\d+$/.test(arg || '') ? +arg : (arg || 1)];
     case 'commander': return ['commander'];
     case 'multiplayer': return ['multiplayer', arg || null, { stayInRoom: section === 'info' }];

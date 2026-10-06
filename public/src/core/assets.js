@@ -6,15 +6,28 @@ import { E } from './kernel.js';
 const pendingImgs = new Set();
 E.image = url => E.imgs[url] || (E.imgs[url] = new Promise((res, rej) => {
   const i = new Image(); pendingImgs.add(i);
+  i.decoding = 'async';
+  // Bucket images must remain readable by the canvas pixel/pose analysis.
+  if (window.WC2_CONFIG?.staticWeb && new URL(url, document.baseURI).origin !== location.origin) i.crossOrigin = 'anonymous';
   i.onload = () => { pendingImgs.delete(i); res(i); };
   i.onerror = () => { pendingImgs.delete(i); delete E.imgs[url]; rej(new Error('image ' + url)); };
   i.src = url;
 }));
-E.json = url => fetch(url).then(r => r.json());
+const jsonLoads = new Map();
+E.json = url => {
+  if (jsonLoads.has(url)) return jsonLoads.get(url);
+  const pending = fetch(url).then(r => { if (!r.ok) throw new Error(`json ${url}: ${r.status}`); return r.json(); })
+    .catch(error => { jsonLoads.delete(url); throw error; });
+  jsonLoads.set(url, pending);
+  return pending;
+};
 
 // Atlas XML: <Texture name=".."/><Images><Image name x y w h refx refy/></Images>
+const atlasLoads = new Map();
 E.atlas = async name => {
   if (E.atlases[name]) return E.atlases[name];
+  if (atlasLoads.has(name)) return atlasLoads.get(name);
+  const pending = (async () => {
   const txt = (await (await fetch(`assets/${name}.xml`)).text()).replace(/^﻿/, '');
   const doc = new DOMParser().parseFromString('<root>' + txt.replace(/<\?xml[^>]*\?>/, '') + '</root>', 'text/xml');
   const img = await E.image('assets/' + doc.querySelector('Texture').getAttribute('name'));
@@ -24,8 +37,11 @@ E.atlas = async name => {
     const nm = n.getAttribute('name').replace(/\.png$/, '');
     frames[nm] = { img, x: g('x'), y: g('y'), w: g('w'), h: g('h'), rx: g('refx'), ry: g('refy'), name: nm, atlas: name };
   });
-  if (name === 'ui1_hd') await loadHudRedraw();
   return (E.atlases[name] = frames);
+  })();
+  atlasLoads.set(name, pending);
+  try { return await pending; }
+  finally { atlasLoads.delete(name); }
 };
 
 // Battle-scoped view: shared menu atlases and detached original canvases stay original.
@@ -40,11 +56,31 @@ function loadHudRedraw() {
     }));
   }).catch(error => { hudRedrawLoad = null; throw error; }));
 }
-E.hudAtlas = frames => new Proxy(frames, {
+E.hudAtlas = frames => {
+  if (E.state.hudArt === 'redraw') loadHudRedraw().catch(() => {});
+  return new Proxy(frames, {
   get(target, name) {
+    if (E.state.hudArt === 'redraw' && !hudRedrawLoad) loadHudRedraw().catch(() => {});
     return E.state.hudArt === 'redraw' && hudRedrawFrames[name] || target[name];
   }
-});
+  });
+};
+
+// Small, shared navigation assets only. No portraits, maps, music or galleries.
+E.prewarmMenus = () => {
+  if (E._menusWarming) return;
+  E._menusWarming = true;
+  const jobs = [
+    ...['mui_hd', 'mui_cn_hd', 'mui2_hd', 'selcountry_hd'].map(name => () => E.atlas(name)),
+    ...['assets/mainbg@2x.webp', 'assets/board_common@2x.webp', 'assets/commonbg@2x.png'].map(url => () => E.image(url)),
+    ...['data/campaigns.json', 'data/conquests.json'].map(url => () => E.json(url)),
+  ];
+  const start = () => {
+    const worker = async () => { while (jobs.length) { const job = jobs.shift(); try { await job(); } catch {} } };
+    void worker(); void worker();
+  };
+  if (window.requestIdleCallback) requestIdleCallback(start, { timeout: 1000 }); else setTimeout(start, 0);
+};
 
 // Draw a frame; top-left is (x - refx*s, y - refy*s) unless o.noRef.
 E.drawFrame = (f, x, y, o = {}) => {

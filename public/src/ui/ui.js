@@ -104,9 +104,8 @@ class Page {
     // Concurrent navigation to the same page must await its entire initialization.
     if (this._loading) return this._loading;
     this._loading = (async () => {
-      const [ui1, ui2] = await Promise.all([E.atlas('ui1_hd'), E.atlas('ui2_hd')]);
+      const [ui1, ui2] = await Promise.all([E.atlas('ui1_hd'), E.atlas('ui2_hd'), E.loadStrings()]);
       this.ui1 = ui1; this.ui2 = ui2;
-      await E.loadStrings();
       const U = E.U;
       this.back = new E.Button({ w: 71 * U + 26, h: 58 * U + 22, edge: true, sfx: 'cancel.wav', label: '返回', onClick: () => this.onBack() });
       this.ok = new E.Button({ w: 71 * U + 26, h: 58 * U + 22, edge: true, label: '确认', onClick: () => this.onOk && this.onOk() });

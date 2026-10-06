@@ -4,7 +4,7 @@ import { E } from '../../core/index.js';
 import { Page } from '../../ui/ui.js';
 import { World } from '../../game/world.js';
 import { Game } from '../../game/game.js';
-import { BridgeController, newBridgeGameId, bridgeUrlFor } from '../../game/bridge_controller.js';
+import { BridgeController, newBridgeGameId, bridgeTransportUrl } from '../../game/bridge_controller.js';
 import { Danmaku } from '../../ui/danmaku.js';
 import { playerCountryName } from '../../game/describe.js';
 import { LiveGames } from '../../game/live_games.js';
@@ -92,7 +92,7 @@ export class Battle extends Page {
     this.configureBridge();
     const img = await this.loadDesk();
     this.map.desktop = img;
-    if (this.want3d && this.l3dMod) {
+    if (this.want3d && this.deskOn && this.l3dMod) {
       try { if (this.l3d) this.l3d.setDesk(img, this.deskTile); else this.l3d = this.l3dMod.Layer3D.create(this.cam, this.game.stage.bounds, img, this.acc, this.deskTile); } catch (e) { console.warn('3D desk disabled:', e); this.l3d = null; }
     }
     if (this.l3d) applyRoom(this.l3d);                                    // the room may have been changed in Options
@@ -101,7 +101,23 @@ export class Battle extends Page {
   // 3D view on: the map (drawn flat, laid on the desk), the units (2D icons standing on it), the accessories and the desk share one perspective
   applyDeskView() { const on = this.deskOn && !!this.l3d; this.cam.desk3d = on; this.cam.tilt = on; }
 
+  async ensureDesk3d() {
+    if (!this.want3d || this.l3d) return;
+    if (this.deskLoading) return this.deskLoading;
+    this.deskLoading = (async () => {
+      try {
+        this.l3dMod = await import('./render/layer3d.js');
+        if (this.leaving) return;
+        this.l3d = this.l3dMod.Layer3D.create(this.cam, this.game.stage.bounds, this.map.desktop, this.acc, this.deskTile);
+        applyRoom(this.l3d);
+      } catch (e) { console.warn('3D desk disabled:', e); }
+    })();
+    try { await this.deskLoading; } finally { this.deskLoading = null; }
+  }
+
   async init() {
+    const resources = Promise.all([E.atlas('army_hd'), this.loadDesk(), Promise.all([1, 2, 3].map(i => E.image(`assets/box${i}_paper@2x.png`))), E.atlas('text_cn_hd')]);
+    resources.catch(() => {}); // Observe failures while the independent game data is loading.
     const gameId = this.snapshotData?.gameId || this.options.bridge?.gameId || newBridgeGameId();
     const game = this.game = await Game.create(this.stageName, this.snapshotData, {
       ...this.options, fogOfWar: this.options.fogOfWar ?? (E.state.fogOfWar === true), medalLevels: E.state.medalLevels, gameId, logEnabled: E.state.logEnabled !== false,
@@ -120,7 +136,7 @@ export class Battle extends Page {
     clearInterval(this.sayTimer); this.sayTimer = setInterval(() => this.pollSays(), 2500);
     E.state.lastPlayedCountry = game.player; E.saveState();
     const stage = game.stage;
-    const [army, desktop, paperBorder, txt] = await Promise.all([E.atlas('army_hd'), this.loadDesk(), Promise.all([1, 2, 3].map(i => E.image(`assets/box${i}_paper@2x.png`))), E.atlas('text_cn_hd')]);
+    const [army, desktop, paperBorder, txt] = await resources;
     this.txt = txt;
     this.cam = new Camera(stage.bounds);
     // camera starts on the middle of the stage's areas
@@ -128,24 +144,20 @@ export class Battle extends Page {
     this.cam.x = sx / stage.data.enabled.length; this.cam.y = sy / stage.data.enabled.length; this.cam.clamp();
     this.portraitMenu = new TheaterPanel({game,battle:this,close:()=>{this.portraitMenu.menu=null;}});
     this.map = new MapRenderer(game, this.cam, { army, desktop, paperBorder });
+    const mapReady = this.map.preload();
     this.acc = new AccessoryLayer(this.cam, stage.bounds);             // desk accessories (Pause > 摆件); drawn between map and units
     await Library.ready(); await Promise.all(this.acc.items.map(it => Library.load(it.id)));
     this.units = new UnitRenderer(game, this.cam, army);
     this.units.map = this.map;
-    this.leaders = await loadLeaders(stage).catch(() => []);            // the hostile countries' leaders round the desk (render/leaders.js)
+    this.leaders = [];
+    const leadersReady = loadLeaders(stage).then(leaders => { this.leaders = leaders; }).catch(() => {});
     // dragging left / right may go as far as the side leaders' chairs (camera.js stayAtTable)
     this.cam.sideSeats = () => this.leaders.map(L => seatExtent(L, this.acc.desk(), this.cam.upm)).filter(Boolean);
     // The 3D desk (layer3d.js): the desk, the room and the accessories outside the flat 2D map get the standing player's perspective. The map
     // and the units are the original 2D. Optional: if three.js fails to load the game keeps the flat top-down desk. `?flat` starts without
     // it; V toggles.
     this.want3d = !new URLSearchParams(location.search).has('flat'); this.deskOn = new URLSearchParams(location.search).has('3d');   // a battle opens in 2D (?3d: in 3D, for tests); V / the pause menu switch
-    if (this.want3d) {
-      try {
-        this.l3dMod = await import('./render/layer3d.js');
-        this.l3d = this.l3dMod.Layer3D.create(this.cam, stage.bounds, desktop, this.acc, this.deskTile);
-        applyRoom(this.l3d);                                                // the room round the desk: wall + floor (render/rooms.js)
-      } catch (e) { console.warn('3D desk disabled:', e); this.l3d = null; }
-    }
+    if (this.deskOn) await Promise.all([this.ensureDesk3d(), leadersReady]);
     this.applyDeskView();
     this.perfExtra = () => ({ mode: this.cam.desk3d ? '3D' : 'flat', zoom: +this.cam.zoom.toFixed(2), sel: this.sel, dialog: this.dialog ? this.dialog.constructor.name : null, opening: !!this.opening,
       repaints: this.l3d ? this.l3d.repaints || 0 : 0, zoneRebuilds: this.map?.zoneRebuilds || 0, glRenders: this.l3d ? this.l3d.glRenders || 0 : 0, region: this.l3d && this.l3d.region ? `${this.l3d.region.cw}x${this.l3d.region.ch}@${this.l3d.region.ppu.toFixed(2)}` : '', gpu: this.l3d ? this.l3d.glInfo() : '' });
@@ -180,8 +192,9 @@ export class Battle extends Page {
       if (!this.options.multiplayerRoom && game.turnOrder === 'second' && game.phase === 'playing') this.aiTurnRunner.start();
     }, bank: () => E.go('bank', this) });
     if (game.phase === 'finished' && game.result) this.showResult(game.result);
-    await this.map.preload();
+    await mapReady;
     if (new URLSearchParams(location.search).has('leaderAudit')) {
+      await leadersReady;
       this.opening = null;
       this.cam.zoom = this.cam.minZoom();
       this.cam.x = (stage.bounds.x0 + stage.bounds.x1) / 2;
@@ -228,7 +241,7 @@ export class Battle extends Page {
     }).catch(() => {});
   }
   onShow() { this.leaving = false; Danmaku.keepAlive(); if (this.bridgeEnabled) { clearInterval(this.sayTimer); this.sayTimer = setInterval(() => this.pollSays(), 2500); } }
-  dispose() { this.leaving = true; clearInterval(this.sayTimer); Danmaku.detach(); clearInterval(this.bridgeHeartbeat); if (Perf.extra === this.perfExtra) Perf.extra = null; this.mpClient?.close(); this.mpStatus?.remove(); this.mpTurnWarning?.remove(); this.mpSpectatorBar?.remove(); if (this.photo) this.setPhoto(false); if (this.l3d) { this.l3d.dispose(); this.l3d = null; } if (this.cam) this.cam.desk3d = this.cam.tilt = false; }
+  dispose() { this.leaving = true; this.aiTurnRunner?.dispose(); clearInterval(this.sayTimer); Danmaku.detach(); clearInterval(this.bridgeHeartbeat); if (Perf.extra === this.perfExtra) Perf.extra = null; this.mpClient?.close(); this.mpStatus?.remove(); this.mpTurnWarning?.remove(); this.mpSpectatorBar?.remove(); if (this.photo) this.setPhoto(false); if (this.l3d) { this.l3d.dispose(); this.l3d = null; } if (this.cam) this.cam.desk3d = this.cam.tilt = false; }
   configureBridge() {
     if (!this.game || this.options.multiplayerRoom) return;
     clearInterval(this.bridgeHeartbeat);
@@ -238,7 +251,7 @@ export class Battle extends Page {
       }
     }
     this.bridgeBuiltinControllers = new Map();
-    this.bridgeUrl = bridgeUrlFor(this.options.bridge?.url || E.state.bridgeUrl);
+    this.bridgeUrl = bridgeTransportUrl(this.options.bridge?.url || E.state.bridgeUrl);
     this.bridgeTimeoutMinutes = Math.max(1, Number(E.state.bridgeTimeoutMinutes) || 10);
     const param = new URLSearchParams(location.search).get('llmOpponent');
     const candidates = this.game.stage.data.countries.map(c => c.id);
@@ -365,7 +378,12 @@ export class Battle extends Page {
   stopAutoPlay() { this.autoPlayer.stop(); E.playSfx('cancel.wav'); }
   openSituation() { this.openZhengwu('situation'); }
   openDiplomacy() { this.openZhengwu('diplomacy'); }
-  toggleMode() { if (!this.l3d) return; this.deskOn = !this.deskOn; this.applyDeskView(); }        // 3D desk <-> the flat top-down desk
+  async toggleMode() {
+    if (!this.want3d || this.modeSwitching) return;
+    this.modeSwitching = true;
+    try { await this.ensureDesk3d(); if (!this.leaving && this.l3d) { this.deskOn = !this.deskOn; this.applyDeskView(); } }
+    finally { this.modeSwitching = false; }
+  }
   // The card-style army-group dialog is gone: groups are built on the map (Shift+click or drag) and managed in the right-edge theatre strips.
   // Callers that used to open the dialog land here: with a group id it opens the commander picker, otherwise it explains the flow.
   openArmyGroups(groupId = null) {

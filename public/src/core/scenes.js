@@ -31,5 +31,5 @@ const go = async (target, ...args) => {
   if (mine !== token) return;
   E.scene = next; E.fade.target = 0; E.busy = false;
   try { next.onShow?.(); } catch (e) { console.error('onShow', e); }   // 场景实例被(重新)显示时的钩子：复用的实例不会重新 init
-  try { history.replaceState(null, '', '#' + (next.route || '')); } catch (e) {}
+  try { history.replaceState(null, '', new URL('#' + (next.route || ''), location.href).href); } catch (e) {}
 };

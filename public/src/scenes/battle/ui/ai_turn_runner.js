@@ -55,7 +55,24 @@ export class AiTurnRunner {
     this.bannerOffset = { x: 0, y: 0 };
     this.bannerDrag = null;
     this.paper = null;
+    this.lastForegroundTick = performance.now();
+    this.backgroundTimer = setInterval(() => {
+      const b = this.battle;
+      if (b.leaving || E.scene !== b || !b.bridgeEnabled || b.replayView
+          || b.options.multiplayerRoom || b.mpRoom?.paused || b.dialog || b.opening) return;
+      // requestAnimationFrame stops in hidden tabs and can stall behind other windows.
+      if (!document.hidden && performance.now() - this.lastForegroundTick < 1000) return;
+      this.startBridgedPlayer();
+      this.update(0.25, true);
+      b.autosaveTick?.();
+    }, 250);
     E.image('assets/board_paper-568h@2x.webp').then(img => { this.paper = img; }).catch(() => {});
+  }
+
+  dispose() {
+    clearInterval(this.backgroundTimer);
+    this.bridgeTurn = null;
+    this.running = false;
   }
 
   get game() {
@@ -280,7 +297,10 @@ export class AiTurnRunner {
         try { if (unitCmd) b.select(-1); if (cardCmd) b.cancelCardMode(); } catch (e) {}
         if (!res.ok) {
           console.error('[WC2 bridge] command rejected', command, res);
-          this.failBridge(turn, item.country, `桥接命令失败：${res.reason || command.type}`);
+          if (turn.endSnapshot) {
+            // Animation is best effort; the validated Agent result decides the turn.
+            turn.index = turn.commands.length;
+          } else this.failBridge(turn, item.country, `桥接命令失败：${res.reason || command.type}`);
         }
         return;
       }
@@ -292,14 +312,20 @@ export class AiTurnRunner {
       if (actual !== turn.hash) {
         console.error('[WC2 bridge] state diverged', { actual, expected: turn.hash });
         try { activeController.request('debug', { turnId: turn.turnId, actual, expected: turn.hash, commands: turn.commands, snapshot: this.game.snapshot() }).catch(() => {}); } catch (e) {}
-        this.failBridge(turn, item.country, '桥接状态不同步');
-        return;
+        if (!turn.endSnapshot) {
+          this.failBridge(turn, item.country, '桥未提供最终状态，无法同步');
+          return;
+        }
       }
       if (turn.endSnapshot) {
-        this.game.visibilityMemory = turn.endSnapshot.visibilityMemory;
-        this.game.reportLog = turn.endSnapshot.reportLog;
-        this.game.nextReportId = turn.endSnapshot.nextReportId;
-        this.game.reportRevision = turn.endSnapshot.reportRevision;
+        try {
+          this.game.adoptBridgeSnapshot(turn.endSnapshot, item.country);
+          this.battle.map.invalidate();
+          this.battle.units.fcache?.clear(); this.battle.units.gcache?.clear();
+        } catch (error) {
+          this.failBridge(turn, item.country, error.message);
+          return;
+        }
       }
       endCountry(this.game, item.country);
       this.seqIndex++; this.countryBegun = false; this.roundAdvancedForItem = false;
@@ -406,7 +432,8 @@ export class AiTurnRunner {
     this.setCountryBanner(country, '本回合改用内置 AI');
   }
 
-  update(dt) {
+  update(dt, background = false) {
+    if (!background) this.lastForegroundTick = performance.now();
     if (!this.active || this.battle.dialog || this.battle.opening) {
       if (!this.active) this.skipKind = null;
       return;

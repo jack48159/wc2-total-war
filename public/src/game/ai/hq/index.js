@@ -5,6 +5,7 @@ import { buildModel } from './core/model.js';
 import { GeneralStaff } from './staff/staff.js';
 import { commanderView } from './commander/intel.js';
 import { planStackFrontCommands } from './commander/stack_front.js';
+import { nextExpeditionCommand } from './commander/expedition.js';
 
 export const HQ_MAX_ACTIONS_LIMIT = 40;
 export const HQ_PLAN_TIMEOUT_MS = 250;
@@ -57,6 +58,7 @@ export class HqAi extends Controller {
     if (this._lastTurnKey !== turnKey) {
       this._lastTurnKey = turnKey;
       this._actionCount = 0;
+      this._expeditionActions = 0;
       this.preTurnQueue = [];
       this.frontArmyQueue = [];
       this.assignedCommanders = [];
@@ -129,6 +131,22 @@ export class HqAi extends Controller {
     }
 
     // 2. 优先执行编组、生产与外交命令
+    // Reserve an early action budget for overseas operations before production
+    // spends the transport budget. Rebuild the visible model after each action.
+    if (this._expeditionActions < 12) {
+      try {
+        const expeditionModel = buildModel(viewGame, country);
+        const expedition = nextExpeditionCommand(expeditionModel, c => isCommandBlocked(c, blocked));
+        if (expedition) {
+          this._expeditionActions++;
+          this._actionCount++;
+          return [expedition];
+        }
+      } catch (err) {
+        this._expeditionActions = 12;
+        console.warn?.(`[HqAi] expedition planning exception: ${err?.message}`);
+      }
+    }
     while (this.preTurnQueue.length > 0) {
       const nextCmd = this.preTurnQueue.shift();
       if (isCommandBlocked(nextCmd, blocked)) continue;

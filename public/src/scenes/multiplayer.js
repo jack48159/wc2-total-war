@@ -280,7 +280,7 @@ export class Multiplayer extends Page {
     this.room = result.room;
     this.spectator = result.role === 'spectator';
     this.route = `multiplayer/${roomId}${this.stayInRoom ? '/info' : ''}`;
-    history.replaceState(null, '', `#${this.route}`);
+    history.replaceState(null, '', new URL(`#${this.route}`, location.href).href);
 
     // If started and snapshot exists, direct jump to battle if not stayInRoom
     if (this.room.started && result.snapshot && !this.stayInRoom) {
@@ -437,7 +437,7 @@ export class Multiplayer extends Page {
     this.stayInRoom = false;
     this.spectator = false;
     this.battleSnapshot = null;
-    history.replaceState(null, '', '#multiplayer');
+    history.replaceState(null, '', new URL('#multiplayer', location.href).href);
   }
 
   showJoinCodeModal() {

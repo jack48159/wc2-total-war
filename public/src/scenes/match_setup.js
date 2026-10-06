@@ -18,7 +18,7 @@ export class MatchSetup extends Page {
     this.fogOfWar = false; this.reparationRate = 1.8; this.turnOrder = 'first'; this.recruitWait = 0; this.supplyByInfrastructure = true; this.row = 0;
     this.llm = { enabled: false, countries: new Set(), gameId: newBridgeGameId(), url: bridgeUrlFor(E.state.bridgeUrl), countryList: [] };
     this.scroll = 0; this.gesture = null;
-    this.isConquest = stage.startsWith('conquest_'); this.freeDiplomacy = false;
+    this.isConquest = stage.startsWith('conquest_') || !!options.sandbox; this.freeDiplomacy = !!options.freeDiplomacy || !!options.sandbox;
   }
   async init() {
     this.paper = await E.image('assets/board_paper@2x.webp');
@@ -43,7 +43,7 @@ export class MatchSetup extends Page {
     this.supplyBtns = [new E.Button({ label: '地区产出补给', onClick: () => { this.row = 4; this.supplyByInfrastructure = !this.supplyByInfrastructure; } })];
     this.llmBtns = [new E.Button({ label: 'LLM 接管', onClick: () => this.llm.enabled ? this.openLlm() : this.setLlm(true) })];
     this.start = new E.Button({ label: '开始作战', onClick: () => this.onOk() });
-    this.diplomacyBtn = new E.Button({ label: '外交背景', onClick: () => { this.row = 6; this.freeDiplomacy = !this.freeDiplomacy; } });
+    this.diplomacyBtn = new E.Button({ label: '外交背景', onClick: () => { this.row = 6; if (!this.options.sandbox) this.freeDiplomacy = !this.freeDiplomacy; } });
     this.widgets = [...this.fogBtns, this.rateSlider, ...this.turnBtns, this.recruitSlider, ...this.supplyBtns, ...this.llmBtns, this.start];
     if (this.isConquest) this.widgets.push(this.diplomacyBtn);
     this.loadLlmCountries();
@@ -53,7 +53,7 @@ export class MatchSetup extends Page {
       const data = await E.json('data/stages/' + this.stage + '.json');
       const player = this.options.player || data.player || data.countries?.find(c => c.ai === false)?.id || data.countries?.[0]?.id; // 与 Stage 选玩家的规则一致
       this.llm.player = player; this.llm.playerName = playerCountryName(player);
-      this.llm.countryList = (data.countries || []).filter(c => c.id).map(c => ({ id: c.id, name: playerCountryName(c.id) }));
+      this.llm.countryList = (data.countries || []).filter(c => c.id && (!this.options.sandbox || this.options.participatingCountries.includes(c.id))).map(c => ({ id: c.id, name: playerCountryName(c.id) }));
     } catch { this.llm.countryList = []; }
   }
   setLlm(on) {
@@ -84,7 +84,7 @@ export class MatchSetup extends Page {
         else if (this.row === 3) this.recruitSlider.adjust(dir);
         else if (this.row === 4) this.supplyByInfrastructure = !this.supplyByInfrastructure;
         else if (this.row === 5) this.setLlm(!this.llm.enabled);
-        else if (this.row === 6) this.freeDiplomacy = !this.freeDiplomacy;
+        else if (this.row === 6) { if (!this.options.sandbox) this.freeDiplomacy = !this.freeDiplomacy; }
         else this.turnOrder = this.turnOrder === 'first' ? 'second' : 'first';
       }
       E.focus = this.rowControl(this.row);

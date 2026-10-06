@@ -6,6 +6,7 @@ import { nativeAlliance } from './rules/combatModel.js';
 import { loadNationalTraits, resolveCountryProfile } from './rules/national_traits.js';
 import { relationColor } from './relation_color.js';
 import { visibilityForCountry } from './rules/visibility.js';
+import { applySandboxBattle } from './sandbox_battles.js';
 
 export const TARGET = { ROCKET: 2, MOVE: 3, ATTACK: 4 };   // numbering follows the original arrow types
 const NAVY_TYPES = new Set(['destroyer', 'cruiser', 'battleship', 'aircraftcarrier']);
@@ -79,6 +80,7 @@ export class Stage {
     const [, data, defs, commanderRanks] = await Promise.all([World.load(), getJson(`data/stages/${name}.json`), loadArmyDefs(), loadCommanderRanks()]);
     if (data.mapPatch) World.applyPatch(data.mapPatch, data.mirror);
     if (areasOverride) data.areas = JSON.parse(JSON.stringify(areasOverride));
+    if (areasOverride && opts.sandboxBattle) data.enabled = data.areas.map(a => a.id);
     let scenarioOverride = null;
     if (opts.historicalDiplomacy !== false && !opts.freeDiplomacy && name.startsWith('conquest_')) {
       try {
@@ -112,7 +114,21 @@ export class Stage {
       }
     }
     if (opts.countries) data.countries = JSON.parse(JSON.stringify(opts.countries));
-    if (opts.freeDiplomacy && name.startsWith('conquest_') && !areasOverride && !opts.countries) {
+    if (opts.sandbox && !opts.sandboxBattle && !areasOverride && !opts.countries) {
+      const participants = new Set(opts.participatingCountries || []);
+      const available = new Set(data.countries.map(c => c.id));
+      if (participants.size < 2 || !participants.has(opts.player)
+          || [...participants].some(id => !available.has(id))) {
+        throw new Error('沙盒需要至少两个有效参战国，且必须包含玩家国家。');
+      }
+      data.countries = data.countries.filter(c => participants.has(c.id));
+      for (const area of data.areas) {
+        if (area.country && !participants.has(area.country)) {
+          area.country = null; area.armies = [];
+        }
+      }
+    }
+    if ((opts.freeDiplomacy || opts.sandbox) && (name.startsWith('conquest_') || opts.sandbox) && !areasOverride && !opts.countries) {
       data.diplomacy = { enabled: true, relations: {}, pacts: {} };
       // Each country starts independently; legacy coalition IDs must not imply alliances.
       for (const country of data.countries) country.alliance = country.id;
@@ -120,6 +136,7 @@ export class Stage {
       delete data.events;
       delete data.ai_rules;
     }
+    if (opts.sandboxBattle && !areasOverride && !opts.countries) applySandboxBattle(data, opts.sandboxBattle);
     if (opts.player) {
       data.player = opts.player;
       for (const c of data.countries) c.ai = c.id !== opts.player;

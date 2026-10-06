@@ -104,7 +104,7 @@ export class MenuDialog {
 }
 export class MenuPage extends Page {
   constructor(){super();this.showMedals=true;this.okText='开始作战';}
-  async load(){if(this._loaded)return;await loadFonts();await super.load();this.keyImage=await E.image(menuAssets.keyArt);this.enterAt=performance.now();}
+  async load(){if(this._loaded)return;void loadFonts().catch(()=>{});const [,image]=await Promise.all([super.load(),E.image(menuAssets.keyArt)]);this.keyImage=image;this.enterAt=performance.now();}
   notice(msg,o={}){this.dialog=new MenuDialog(this,msg,o);E.playSfx('pop.wav');}
   lockHint(msg){this.dialog=new MenuDialog(this,msg,{},true);E.playSfx('pop.wav');}
   renderBg(){const c=E.ctx;c.save();c.fillStyle=C.bg;E.layout.canvas(c, 'ui/theme.js:110').fillRect(0,0,E.W,E.H);cover(this.keyImage,{x:0,y:0,w:E.W,h:E.H});const g=c.createLinearGradient(0,E.H,E.W,0);g.addColorStop(0,'rgba(11,13,15,.97)');g.addColorStop(.45,'rgba(11,13,15,.80)');g.addColorStop(1,'rgba(11,13,15,.18)');c.fillStyle=g;E.layout.canvas(c, 'ui/theme.js:110').fillRect(0,0,E.W,E.H);filmTexture();c.restore();}

@@ -1,7 +1,7 @@
 // Per-match LLM takeover (对战桥) setup, opened from 对局配置. Writes the choice into the shared options object.
 import { E } from '../core/index.js';
 import { Page } from '../ui/ui.js';
-import { bridgePrompt } from '../game/bridge_controller.js';
+import { bridgePrompt, bridgeTransportUrl } from '../game/bridge_controller.js';
 
 const COLS = 3, ROWS = 4, CELL_W = 350, ROW_H = 66, GRID_X = 300, GRID_Y = 405;
 // 手机/应用内页面(不是电脑本机的 http 页面)：桥在电脑上，需要填电脑的局域网地址
@@ -57,7 +57,7 @@ export class LlmSetup extends Page {
       this.starting = true; this.online = null; await ensureBridge(); this.starting = false;
     }
     try {
-      const res = await fetch(`${this.bridge.url.replace(/\/$/, '')}/bridge/status`);
+      const res = await fetch(`${bridgeTransportUrl(this.bridge.url)}/bridge/status`);
       const data = res.ok ? await res.json() : null;
       this.online = !!data; this.sessions = data?.activeSessions || 0; this.lan = data?.lanAddresses || []; this.port = data?.port || 8651;
     } catch { this.online = false; }

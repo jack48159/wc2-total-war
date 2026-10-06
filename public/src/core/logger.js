@@ -21,6 +21,7 @@ const logQueue = [];
 let flushTimer = null;
 
 function sendLogs() {
+  if (window.WC2_CONFIG?.staticWeb) return;
   if (!isDebugMode() || logQueue.length === 0) return;
   const batch = logQueue.splice(0, logQueue.length);
   fetch('/api/debug-log', {

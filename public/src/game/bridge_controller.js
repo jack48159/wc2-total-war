@@ -35,11 +35,23 @@ export function bridgeUserId() {
   } catch { return 'WC2U-NOSTOR'.slice(0, 11); }
 }
 
-// 页面是 https 时，桥地址默认/规范化为 https://127.0.0.1:8651(桥用同一份自签证书；浏览器需先访问一次该地址并信任证书)
+// 保留用户填写的桥地址；本机页面通过游戏服务转发，不另行要求信任桥端口证书。
 export function bridgeUrlFor(url) {
-  let u = url || 'http://127.0.0.1:8651';
-  try { if (location.protocol === 'https:') u = u.replace(/^http:(\/\/(?:127\.0\.0\.1|localhost):8651)/, 'https:$1'); } catch {}
-  return u;
+  return url || 'http://127.0.0.1:8651';
+}
+
+export function bridgeTransportUrl(url) {
+  const address = bridgeUrlFor(url).replace(/\/$/, '');
+  try {
+    const bridge = new URL(address);
+    const loopback = host => /^(localhost|127\.0\.0\.1)$/.test(host);
+    if (loopback(location.hostname) && ['8642', '8644'].includes(location.port)
+        && loopback(bridge.hostname) && bridge.port === '8651'
+        && /^https?:$/.test(bridge.protocol) && bridge.pathname === '/') {
+      return `${location.origin}/api/bridge`;
+    }
+  } catch {}
+  return address;
 }
 
 export function bridgePrompt({ country, countryName, stage, player, url }) {
@@ -62,7 +74,7 @@ export function bridgePrompt({ country, countryName, stage, player, url }) {
 
 export class BridgeController {
   constructor(battle, country) { this.battle = battle; this.country = country; this.maxActions = 1000; }
-  get url() { return bridgeUrlFor(this.battle.bridgeUrl).replace(/\/$/, ''); }
+  get url() { return bridgeTransportUrl(this.battle.bridgeUrl); }
   async request(path, data) {
     const res = await fetch(`${this.url}/bridge/${path}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
     const value = await res.json(); if (!res.ok) throw new Error(value.error || `HTTP ${res.status}`); return value;

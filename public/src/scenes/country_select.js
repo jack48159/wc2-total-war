@@ -10,12 +10,12 @@ class CountrySelect extends Page {
   constructor(id) { super(); this.cid = id || 1; this.route = 'countries/' + this.cid; this.hasOk = true; this.showMedals = true; this.sel = 0; }
   onBack() { E.go('conquest'); }
   async init() {
-    const all = await E.json('data/conquests.json');
+    const [all, names, sc, , leather] = await Promise.all([
+      E.json('data/conquests.json'), E.json('data/countries.json'),
+      E.atlas('selcountry_hd'), E.WorldMap.load(), E.image('assets/board_selbattle@2x.webp'),
+    ]);
     this.q = all.find(x => x.id === this.cid) || all[0];
-    this.names = await E.json('data/countries.json');
-    this.sc = await E.atlas('selcountry_hd');
-    await E.WorldMap.load();
-    this.leather = await E.image('assets/board_selbattle@2x.webp');
+    this.names = names; this.sc = sc; this.leather = leather;
     this.countries = this.q.countries;
     this.list = new E.ScrollList({ w: PANEL_W, h: 900, itemH: 127, count: this.countries.length });
     // map flags: only countries that can actually be picked are buttons
@@ -75,6 +75,7 @@ class CountrySelect extends Page {
       // 顶部偏移与 list.pad(点击换算)一致
       const y = this.list.pad - E.oy + i * 127 - this.list.scroll, on = i === this.sel, fr = this.sc['button_' + (co.frame || co.id)];
       if (!fr) return;
+      if (y + fr.h * U * 1.05 < -E.oy || y > E.H - E.oy) return;
       E.drawFrame(fr, on ? L - 6 : L + 14, y, { scale: on ? U * 1.05 : U, filter: on ? 'brightness(1.12)' : 'brightness(0.85)' });
     });
     c.restore();

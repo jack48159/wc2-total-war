@@ -135,27 +135,25 @@ class Options extends Page {
   set widgets(v) { }
 
   async init() {
-    this.board = await E.image('assets/board_common@2x.webp');
-    this.bg = await E.image('assets/commonbg@2x.png');
-    await loadDesktops();
+    const [board, bg, , rooms, flags] = await Promise.all([
+      E.image('assets/board_common@2x.webp'), E.image('assets/commonbg@2x.png'),
+      loadDesktops(), loadRooms(), E.atlas('selcountry_hd').catch(() => null)
+    ]);
+    this.board = board; this.bg = bg;
     this.desktopTexture = desktopById(this.desktopTexture)?.id || this.desktopTexture;
-    await Promise.all(DESKTOPS.map(async d => {
-      try { d.img = await E.image(d.file); d.preview = frameDesktop(d.img, 256, d.id); } catch (e) {}
-    }));
-    this.rooms = await loadRooms();
+    this.rooms = rooms;
     this.roomBackdrop = (roomById(this.rooms, this.roomBackdrop) || {}).id;
-    await Promise.all(this.rooms.map(async r => { if (r.thumb && !r.img) try { r.img = await E.image(r.thumb); } catch (e) {} }));
     try {
       const saved = JSON.parse(localStorage.getItem('wc2.aiconfig') || 'null'); if (saved) this.merge(saved);
     } catch (e) {}
-    this.flags = await E.atlas('selcountry_hd').catch(() => null);
+    this.flags = flags;
     this.bridgeMgr?.init();
     this.side = TABS.map((t, i) => Object.assign(new E.Button({
       x: 77, y: 195 + i * 106, w: 461, h: 93, label: t.name,
       onClick: () => {
         this.commit(); this.capture = null; this.tab = t.id; this.contentScrollY = 0;
         this.route = t.id === 'takeover' ? 'ai' : 'options';
-        try { history.replaceState(null, '', '#' + this.route); } catch (e) {}
+        try { history.replaceState(null, '', new URL('#' + this.route, location.href).href); } catch (e) {}
       }
     }), { t, i, baseY: 195 + i * 106 }));
 
@@ -679,6 +677,11 @@ class Options extends Page {
     c.save(); E.layout.canvas(c, 'scenes/options.js/original').beginPath(); E.layout.canvas(c, 'scenes/options.js/original').rect(730, 1080 - this.contentScrollY, 728, 100); E.layout.canvas(c, 'scenes/options.js/original').clip();
     for (const b of this.desktopBtns) {
       if (b.x + b.w < 730 || b.x > 1458 || b.y + b.h < 140 || b.y > 790) continue;
+      if (!b.d.img && !b.d.previewLoading && !b.d.previewFailed) {
+        b.d.previewLoading = true;
+        E.image(b.d.file).then(img => { b.d.img = img; b.d.preview = frameDesktop(img, 256, b.d.id); })
+          .catch(() => { b.d.previewFailed = true; }).finally(() => { b.d.previewLoading = false; });
+      }
       const isSel = this.desktopTexture === b.d.id;
       const f = E.fx(b);
       const bx = b.x, by = b.y + f.dy, bw = b.w, bh = b.h;
@@ -736,7 +739,12 @@ class Options extends Page {
     E.text('仅 3D 模式可见 · 拖动或滚轮切换', 730, this.roomTitleY - this.contentScrollY, { size: 22, color: '#5a3d18' });
     c.save(); E.layout.canvas(c, 'scenes/options.js/original').beginPath(); E.layout.canvas(c, 'scenes/options.js/original').rect(730, this.roomTitleY + 40 - this.contentScrollY, 728, 160); E.layout.canvas(c, 'scenes/options.js/original').clip();
     for (const b of this.roomBtns) {
-      if (b.y + b.h < 140 || b.y > 790) continue;
+      if (b.x + b.w < 730 || b.x > 1458 || b.y + b.h < 140 || b.y > 790) continue;
+      if (b.r.thumb && !b.r.img && !b.r.previewLoading && !b.r.previewFailed) {
+        b.r.previewLoading = true;
+        E.image(b.r.thumb).then(img => { b.r.img = img; }).catch(() => { b.r.previewFailed = true; })
+          .finally(() => { b.r.previewLoading = false; });
+      }
       const isSel = this.roomBackdrop === b.r.id, f = E.fx(b);
       const bx = b.x, by = b.y + f.dy, bw = b.w, bh = b.h;
       c.save();
