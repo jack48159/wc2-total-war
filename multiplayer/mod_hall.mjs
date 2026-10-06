@@ -87,9 +87,11 @@ export function createModHall({db,userFor,json,validateConfig}) {
       }
       if(!route[2]&&req.method==='GET'){json(res,200,{mod:summary(row,user),config:JSON.parse(row.config)});return true;}
       if(!route[2]&&req.method==='DELETE'){
-        if(!user){json(res,401,{error:'请登录'});return true;}if(row.user_id!==user.id){json(res,403,{error:'只能取消发布自己的作品'});return true;}
-        db.exec('BEGIN IMMEDIATE');try{db.prepare('UPDATE sandbox_mods SET published=0,updated_at=? WHERE id=?').run(Date.now(),row.id);
-          db.prepare('DELETE FROM sandbox_asset_refs WHERE user_id=? AND work_id=?').run(user.id,'mod-'+row.id);db.exec('COMMIT');
+        if(!user){json(res,401,{error:'请登录'});return true;}if(row.user_id!==user.id){json(res,403,{error:'只能删除自己共享的作品'});return true;}
+        db.exec('BEGIN IMMEDIATE');try{
+          db.prepare('DELETE FROM sandbox_mod_likes WHERE mod_id=?').run(row.id);
+          db.prepare('DELETE FROM sandbox_asset_refs WHERE user_id=? AND work_id=?').run(user.id,'mod-'+row.id);
+          db.prepare('DELETE FROM sandbox_mods WHERE id=? AND user_id=?').run(row.id,user.id);db.exec('COMMIT');
         }catch(error){db.exec('ROLLBACK');throw error;}json(res,200,{ok:true});return true;
       }
       json(res,405,{error:'请求方法错误'});return true;
