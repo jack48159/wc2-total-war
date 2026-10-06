@@ -3,11 +3,20 @@ import { platform } from '../platform/detect.js';
 const URL = 'https://wc2-1324086514.cos.ap-guangzhou.myqcloud.com/updates/stable.json';
 const SPKI = 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtwfLjT9ZSRBF0haS4Kl6H8VsYtecwjFp6xC1WkpHYxBRiPCWWOBATugSDK6Y/nIMb+6wdt60i2xkYbN8E6I7MOBGzvTquoqMLwQ7vTgTRktMU3MaDq4zeSWfXGqkJiVuvBMJjQ0R5x/6SknPsIwW/HolFAkiRgRyLx4LF5e9JpRlQg9pTw3pfLOMtnAFq6X4zfN4b9Ut+crd+wCz72VZwZ4kDEa+SVbkY/mj05hPJR5WxVzQKY9Py/vUvIKIwxLQGpHBkwqOWp/7ON2r4GM2HUspULeTw/ItQqCalKFt8MSAu2Lww/wVhL2zKbQZNKZq3DOVx0hgJ7cRRU+MgddTWQIDAQAB';
 const bytes = value => Uint8Array.from(atob(value), char => char.charCodeAt(0));
-const home = () => E.scene?.constructor?.name === 'Home' && !E.busy;
+const home = () => (E.scene?.route === 'home' || E.scene?.constructor?.name === 'Home') && !E.busy;
 let banner, checkAt = 0, checking = false;
 function adapter() {
   if (!window.WC2_CONFIG?.updateSupport || (platform.id === 'ios' && platform.isPackaged && !window.WC2_CONFIG?.iosUpdateSupport)) return null;
-  if (platform.isPackaged) return window.Capacitor?.registerPlugin?.('Wc2Updater') || window.Capacitor?.Plugins?.Wc2Updater || null;
+  if (platform.isPackaged) {
+    const cap = window.Capacitor;
+    // iOS injects plugin methods directly; prefer these over an optional JS proxy.
+    const injected = cap?.Plugins?.Wc2Updater;
+    if (injected?.check) return injected;
+    if (cap?.nativePromise && cap.PluginHeaders?.some(p => p.name === 'Wc2Updater')) {
+      return Object.fromEntries(['check','ready','status','prepare','activate'].map(name => [name, () => cap.nativePromise('Wc2Updater', name, {})]));
+    }
+    return cap?.registerPlugin?.('Wc2Updater') || injected || null;
+  }
   if (location.hostname !== '127.0.0.1' && location.hostname !== 'localhost') return null;
   const call = async (name, method = 'POST') => {
     const response = await fetch('/api/update/' + name, { method, headers: { 'X-WC2-Update': '1' } });
@@ -28,7 +37,11 @@ export const Updates = {
     banner.append(text, close); document.body.append(banner);
   },
   async check({force = false} = {}) {
-    if (!window.WC2_CONFIG?.updateSupport || (platform.id === 'ios' && platform.isPackaged && !window.WC2_CONFIG?.iosUpdateSupport) || (!force && Date.now() - checkAt < 60000)) return;
+    if (!window.WC2_CONFIG?.updateSupport || (platform.id === 'ios' && platform.isPackaged && !window.WC2_CONFIG?.iosUpdateSupport)) {
+      if (force) this.notify(`当前页面 ${window.WC2_CONFIG?.version || '未知版本'} 未启用热更新。可能加载了旧缓存，请使用修复后的 iOS 启动入口。`);
+      return;
+    }
+    if (!force && Date.now() - checkAt < 60000) return;
     if (checking) {
       if (force) this.notify('\u6b63\u5728\u68c0\u67e5\u66f4\u65b0\uff0c\u8bf7\u7a0d\u5019...');
       return;
@@ -94,6 +107,6 @@ export const Updates = {
           action.onclick = async () => { if (!home()) return; action.disabled = true; try { await native.activate(); if (!platform.isPackaged) location.reload(); } catch (e) { detail.textContent = e.message; action.disabled = false; } };
         } catch (e) { detail.textContent = e.message + '，当前版本仍可使用。'; action.disabled = false; }
       };
-    } catch (error) { console.warn("Update check failed", error); if (home()) this.notify(error.message || "Update check failed"); } finally { checking = false; }
+    } catch (error) { console.warn("Update check failed", error); if (force || home()) this.notify(error.message || "Update check failed"); } finally { checking = false; }
   }
 };

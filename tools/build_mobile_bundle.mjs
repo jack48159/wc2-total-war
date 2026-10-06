@@ -18,6 +18,14 @@ if (obfuscate) { try { obfuscator = mobileRequire('javascript-obfuscator'); } ca
 await rm(output, { recursive:true, force:true });
 await mkdir(output, { recursive:true });
 await cp(source, output, { recursive:true });
+// A cover install must identify its bundled page as newer than stale updates.
+// Keep this timestamp local to the IPA, independently of the web release pointer.
+const runtimePath = path.join(output, 'runtime-config.js');
+const runtimeSource = await readFile(runtimePath, 'utf8');
+const releaseField = /(["']?release["']?\s*:\s*)["'][0-9]{14}["']/;
+if (!releaseField.test(runtimeSource)) throw new Error('Packaged runtime release is missing');
+const packagedRelease = new Date().toISOString().replace(/[^0-9]/g, '').slice(0,14);
+await writeFile(runtimePath, runtimeSource.replace(releaseField, (_, prefix) => prefix + JSON.stringify(packagedRelease)));
 // The desktop server resolves /assets and /data from the original project first.
 await cp(gameAssets,path.join(output,'assets'),{recursive:true,force:true});
 await cp(path.join(gameAssets,'remake','data'),path.join(output,'data'),{recursive:true,force:true});
