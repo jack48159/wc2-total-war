@@ -730,7 +730,7 @@ export class CommandUI {
   }
   toggleTouchSelection() {
     this.setTouchSelection(!this.touchBoxSelect);
-    this.say(this.touchBoxSelect ? '\u6846\u9009\u6a21\u5f0f\uff1a\u70b9\u9009\u6216\u62d6\u52a8\u9009\u62e9\u6211\u65b9\u90e8\u961f\uff1b\u677e\u624b\u540e\u6062\u590d\u5730\u56fe\u64d6\u52a8' : '\u5df2\u9000\u51fa\u6846\u9009\u6a21\u5f0f');
+    this.say(this.touchBoxSelect ? '\u6846\u9009\u6a21\u5f0f\uff1a\u70b9\u9009\u6216\u62d6\u52a8\u9009\u62e9\u6211\u65b9\u90e8\u961f\uff1b\u677e\u624b\u540e\u6062\u590d\u5730\u56fe\u62d6\u52a8' : '\u5df2\u9000\u51fa\u6846\u9009\u6a21\u5f0f');
   }
   click(h, p) {
     const now = performance.now();
