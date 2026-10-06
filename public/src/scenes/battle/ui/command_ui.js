@@ -107,8 +107,11 @@ export class CommandUI {
 
   // ---- draw --------------------------------------------------------------------------------------------------------------------------
   draw(c) {
-    this.hits = []; this.strips = []; this.markers = [];
-    if (!this.visible()) return;
+    this.hits = []; this.strips = []; this.markers = []; this.barRect = null;
+    if (!this.visible()) {
+      if (this.touchBoxSelect || this.box) this.setTouchSelection(false);
+      return;
+    }
     const s = this.s, act = this.interactive();
     c.save(); if (!act) c.globalAlpha = .55;
     this.drawStack(c, s);
@@ -416,7 +419,16 @@ export class CommandUI {
   }
   // ---- selection bar (units picked with Shift+click or drag) -------------------------------------------------------------------------
   drawSelBar(c, s) {
-    if (!this.sel.size) return;
+    if (!this.sel.size) {
+      if (this.touchBoxSelect) {
+        const u = E.H / (E.cv?.clientHeight || E.H), H = Math.max(46 * s, 44 * u);
+        const W = Math.min(320 * s, E.W - 24 * u), x = (E.W - W) / 2, y = E.H - H - 14 * u;
+        steel(c, x, y, W, H); this.barRect = { x, y, w: W, h: H };
+        label('\u9000\u51fa\u6846\u9009\uff0c\u6062\u590d\u5730\u56fe\u64cd\u4f5c', x + W / 2, y + H / 2, 14 * s, { bold: true, align: 'center', w: W - 16 * u });
+        this.hit(x, y, W, H, { act: 'clearSel' });
+      }
+      return;
+    }
     const groups = this.groups(), can = this.game.activeCountry === this.country && this.game.phase === 'playing';
     const H = 46 * s, bw = 130 * s, W = 22 * s + 150 * s + bw * (groups.length ? 3 : 2) + 8 * s * 3, x = (E.W - W) / 2, y = E.H - H - 14 * s;
     steel(c, x, y, W, H); this.barRect = { x, y, w: W, h: H };
@@ -589,6 +601,8 @@ export class CommandUI {
   }
   finishBox() {
     const b = this.box; this.box = null; if (!b) return;
+    // Touch selection is one gesture; the selected units remain available for grouping.
+    if (this.touchBoxSelect) this.setTouchSelection(false);
     const x0 = Math.min(b.x0, b.x1), x1 = Math.max(b.x0, b.x1), y0 = Math.min(b.y0, b.y1), y1 = Math.max(b.y0, b.y1);
     if (x1 - x0 < 8 && y1 - y0 < 8) {
       if (b.clickUnitId != null) {
@@ -619,10 +633,13 @@ export class CommandUI {
     }
     return ids;
   }
-  clearSelection() { this.sel.clear(); }
+  clearSelection() {
+    this.sel.clear();
+    if (this.touchBoxSelect || this.box) this.setTouchSelection(false);
+  }
   key(e) {
     if (e.key === 'Escape') {
-      if (this.sel.size || this.focus || this.selectedGroups.size) { this.sel.clear(); this.setFocus(null); return true; }
+      if (this.sel.size || this.focus || this.selectedGroups.size || this.touchBoxSelect || this.box) { this.clearSelection(); this.setFocus(null); return true; }
       return false;
     }
     if (!/^[0-9]$/.test(e.key) || e.repeat || e.ctrlKey || e.metaKey || e.altKey) return false;
@@ -702,19 +719,24 @@ export class CommandUI {
       E.playSfx('cancel.wav');
     }
   }
-  toggleTouchSelection() {
-    this.touchBoxSelect = !this.touchBoxSelect;
+  setTouchSelection(enabled) {
+    this.pointerCancel();
+    this.touchBoxSelect = !!enabled;
     this.battle.drag = null; this.battle.press = null; this.battle.isDragging = false;
     this.battle.touchPan = null;
-    this.battle.cam.bouncing = false;
-    this.say(this.touchBoxSelect ? '\u6846\u9009\u6a21\u5f0f\uff1a\u70b9\u9009\u6216\u62d6\u52a8\u9009\u62e9\u6211\u65b9\u90e8\u961f\uff1b\u518d\u70b9\u5934\u50cf\u9000\u51fa' : '\u5df2\u9000\u51fa\u6846\u9009\u6a21\u5f0f');
+    this.battle.disarmHud?.();
+    if (enabled) this.battle.cam.bouncing = false;
+    else this.battle.cam.release();
+  }
+  toggleTouchSelection() {
+    this.setTouchSelection(!this.touchBoxSelect);
+    this.say(this.touchBoxSelect ? '\u6846\u9009\u6a21\u5f0f\uff1a\u70b9\u9009\u6216\u62d6\u52a8\u9009\u62e9\u6211\u65b9\u90e8\u961f\uff1b\u677e\u624b\u540e\u6062\u590d\u5730\u56fe\u64d6\u52a8' : '\u5df2\u9000\u51fa\u6846\u9009\u6a21\u5f0f');
   }
   click(h, p) {
     const now = performance.now();
     switch (h.act) {
       case 'touchBoxSelect':
-        this.touchBoxSelect = !this.touchBoxSelect;
-        if (this.touchBoxSelect) this.say('拖动画框选择我方部队；松手后恢复地图拖动');
+        this.toggleTouchSelection();
         break;
       case 'toggleStack':
         this.stackHidden = !this.stackHidden; this.macroOpen = false;
@@ -802,7 +824,7 @@ export class CommandUI {
       case 'closeBar': this.setFocus(null); break;
       case 'newGroup': this.chooseCommander(null); break;
       case 'joinGroup': this.chooseGroupToJoin(); break;
-      case 'clearSel': this.sel.clear(); break;
+      case 'clearSel': this.clearSelection(); break;
     }
   }
   portraitsReady() { return this.portraits; }

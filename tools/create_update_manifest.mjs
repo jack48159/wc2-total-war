@@ -7,7 +7,7 @@ const build = JSON.parse(await fs.readFile(path.join(root, 'dist/web/latest-buil
 const files = [];
 async function walk(dir) { for (const entry of await fs.readdir(dir, {withFileTypes:true})) { const file=path.join(dir,entry.name); if(entry.isDirectory()) await walk(file); else { const bytes=await fs.readFile(file);files.push({path:path.relative(build.output,file).split(path.sep).join('/'),size:bytes.length,sha256:crypto.createHash('sha256').update(bytes).digest('hex')}); } } }
 await walk(build.output);files.sort((a,b)=>a.path.localeCompare(b.path));
-const manifest = { release:build.release,version:'1.0.16',shell:1,protocol:'wc2-1',notes:'新增沙盒 Mod 大厅，支持作者署名、共享与点赞；优化我的作品、下拉选择及安卓编辑界面；沙盒停用稳定度并支持各国失败条件；更新按钮位于左下角，交流群位于右上角；修复行动箭头跨越相邻地块、自动参战撕毁条约、重复宣战重置战争记录等问题。',base:`https://wc2-1324086514.cos.ap-guangzhou.myqcloud.com/web/releases/${build.release}/`,files };
+const manifest = { release:build.release,version:'1.0.17',shell:1,protocol:'wc2-1',notes:'修复安卓与 iOS 指挥部框选退出后地图操作受阻：框选完成自动恢复拖动和缩放，取消选择统一退出框选，清除已隐藏工具栏的点击区域；框选时提供退出按钮。包含 1.0.16 的全部更新。',base:`https://wc2-1324086514.cos.ap-guangzhou.myqcloud.com/web/releases/${build.release}/`,files };
 if (!process.env.WC2_UPDATE_SIGN_KEY) throw Error('Set WC2_UPDATE_SIGN_KEY to the private signing key path');
 const payload=Buffer.from(JSON.stringify(manifest));const signature=crypto.sign('sha256',payload,await fs.readFile(process.env.WC2_UPDATE_SIGN_KEY));
 await fs.writeFile(path.join(root,'dist/web/stable.json'),JSON.stringify({payload:payload.toString('base64'),signature:signature.toString('base64')}));
