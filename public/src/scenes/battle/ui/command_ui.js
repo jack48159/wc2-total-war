@@ -456,6 +456,9 @@ export class CommandUI {
     // 地图上的集团军小条会挡住视线、妨碍点选地块和单位：只有在指挥部里选中(聚焦/多选)该集团军或其战区时才画；
     // 想一直显示全部，可设 WC2.state.groupBanners = true
     for (const g of groups) {
+      const own = g.country === this.country, th = own ? this.theatreOf(g) : null;
+      const multi = own && this.selectedGroups.has(g.id), foc = own && ((this.focus?.kind === 'group' && this.focus.id === g.id) || (th && this.focus?.kind === 'theatre' && this.focus.id === th.id));
+      if (E.state.groupBanners !== true && !multi && !foc) continue;
       const rows = liveGroupUnits(this.game, g); if (!rows.length) continue;
       const pts = rows.map(r => this.center(r.area.id)).filter(Boolean); if (!pts.length) continue;
       const worldCenter = rows.reduce((sum, r) => {
@@ -466,10 +469,7 @@ export class CommandUI {
       const bannerScale = s * visualScale * 2.25;
       const center = pts.reduce((sum, p) => ({ x: sum.x + p.x, y: sum.y + p.y }), { x: 0, y: 0 });
       center.x /= pts.length; center.y /= pts.length;
-      const own = g.country === this.country, th = own ? this.theatreOf(g) : null;
       const col = own ? this.colorOfGroup(g) : getGroupColor(g, this.game, g.country);
-      const multi = own && this.selectedGroups.has(g.id), foc = own && ((this.focus?.kind === 'group' && this.focus.id === g.id) || (th && this.focus?.kind === 'theatre' && this.focus.id === th.id));
-      if (E.state.groupBanners !== true && !multi && !foc) continue;   // 未被选中的集团军不画小条
       const w = 98 * bannerScale, h = 22 * bannerScale, x = center.x - w / 2, y = center.y - h / 2;
       if (x + w < 0 || x > E.W || y + h < 0 || y > E.H) continue;
       c.save(); c.fillStyle = '#23261f'; c.strokeStyle = multi ? PALETTE.sel : foc ? PALETTE.gold : '#0b0c0a'; c.lineWidth = (foc || multi ? 2.5 : 1.5) * visualScale * 1.25; c.beginPath(); c.roundRect(x, y, w, h, 2.5 * visualScale); c.fill(); c.stroke();

@@ -102,6 +102,46 @@ export class MapRenderer {
     const ids = sel instanceof Set ? [...sel] : Array.isArray(sel) ? sel : [sel];
     return { set: new Set(ids), key: ids.slice().sort((a, b) => a - b).join(',') };
   }
+  releasePreviews() {
+    for (const entry of this.reducedTiles?.values() || []) entry.canvas.width = entry.canvas.height = 0;
+    this.reducedTiles?.clear(); this.reducedPixels = 0;
+  }
+  reducedImage(image, ratio, revision = 0) {
+    let factor = 1;
+    while (factor > .125 && ratio <= factor / 2) factor /= 2;
+    if (factor === 1) return { image, factor: 1 };
+    this.reducedTiles ||= new Map();
+    let entry = this.reducedTiles.get(image);
+    if (entry && entry.revision === revision && entry.factor === factor) {
+      entry.used = this.reducedFrame; return { image: entry.canvas, factor };
+    }
+    if (entry) {
+      this.reducedPixels -= entry.pixels; entry.canvas.width = entry.canvas.height = 0;
+      this.reducedTiles.delete(image);
+    }
+    // Warm at most four previews per frame. Never delay a capture or display a
+    // stale colour while warming: use the original texture until ready.
+    if (this.reducedBuilds >= 4) return { image, factor: 1 };
+    const width = Math.max(1, Math.ceil(image.width * factor)), height = Math.max(1, Math.ceil(image.height * factor)), pixels = width * height;
+    this.reducedPixels ||= 0;
+    const budget = 8 * 1024 * 1024; // 32 MiB of preview pixels per battlefield.
+    if (this.reducedPixels + pixels > budget) {
+      for (const [source, old] of this.reducedTiles) {
+        // Keep previews used in the previous frame to avoid a full-map churn.
+        if (old.used >= this.reducedFrame - 1) continue;
+        this.reducedPixels -= old.pixels; old.canvas.width = old.canvas.height = 0; this.reducedTiles.delete(source);
+        if (this.reducedPixels + pixels <= budget) break;
+      }
+      if (this.reducedPixels + pixels > budget) return { image, factor: 1 };
+    }
+    const canvas = document.createElement('canvas'); canvas.width = width; canvas.height = height;
+    const context = canvas.getContext('2d'); context.imageSmoothingEnabled = true; context.imageSmoothingQuality = 'high';
+    context.drawImage(image, 0, 0, width, height);
+    // Edge tiles can have odd dimensions; crop using the actual independent scales.
+    entry = { canvas, factor, revision, pixels, used: this.reducedFrame };
+    this.reducedTiles.set(image, entry); this.reducedPixels += pixels; this.reducedBuilds++;
+    return { image: canvas, factor };
+  }
   drawTerrain(c, { sel, flashing, visible, cam = this.cam, desk = true, part = 'all', flashAlpha = null }) {
     const z = cam.zoom, v = cam.view();
     if (part === 'flash') {
@@ -111,6 +151,8 @@ export class MapRenderer {
       c.save(); cam.apply(c); c.globalAlpha = a; for (const d of this.flashList(sel, flashing)) c.drawImage(d.cv, d.x, d.y); c.restore();
       return;
     }
+    this.reducedFrame = (this.reducedFrame || 0) + 1; this.reducedBuilds = 0;
+    const pixelScale = E.cv.width / Math.max(1, E.W);
     c.save(); cam.apply(c); if (desk) this.drawBox(c); this.drawPaperBorder(c); c.restore();   // desk = false: the 3D desk (layer3d.js) is already on the canvas
     const R = cam.screenRect();
     c.save(); c.beginPath(); c.rect(R.x0, R.y0, R.x1 - R.x0, R.y1 - R.y0); c.clip();     // the map exists only inside the scene rect
@@ -119,14 +161,17 @@ export class MapRenderer {
       for (let cx = R2.cx0; cx <= R2.cx1; cx++) {
         const img = this.tile(cx, cy); if (!img) continue;
         const s = cam.toScreen(cx * TILE_STEP - TILE_PAD, cy * TILE_STEP - TILE_PAD), n = TILE_U * z;
-        c.drawImage(img, Math.floor(s.x), Math.floor(s.y), Math.ceil(n) + 1, Math.ceil(n) + 1);
+        const small = this.reducedImage(img, z * pixelScale / 2);
+        c.drawImage(small.image, Math.floor(s.x), Math.floor(s.y), Math.ceil(n) + 1, Math.ceil(n) + 1);
       }
     c.save(); cam.apply(c);
     const L = this.zoneLayers(), view = cam.view(), put = (layer, alpha) => {
       c.globalAlpha = alpha;
       for (const l of layer.tiles) {
         if (!l.cv || !l.painted || l.x > view.x1 || l.x + l.w < view.x0 || l.y > view.y1 || l.y + l.h < view.y0) continue;
-        c.drawImage(l.cv, 1, 1, l.w, l.h, l.x, l.y, l.w, l.h);
+        const small = this.reducedImage(l.cv, z * pixelScale, l.key);
+        const sx = small.image.width / l.cv.width, sy = small.image.height / l.cv.height;
+        c.drawImage(small.image, sx, sy, l.w * sx, l.h * sy, l.x, l.y, l.w, l.h);
       }
       c.globalAlpha = 1;
     };

@@ -138,9 +138,11 @@ export function getGroupColor(groupOrId, game = null, country = null) {
   if (!id) return null;
   const c = country || grp?.country;
   if (game?.armyGroups && c) {
-    const list = game.armyGroups.filter(g => g.country === c);
-    const idx = list.findIndex(g => g.id === id);
-    if (idx >= 0) return GROUP_GLOW_COLORS[idx % GROUP_GLOW_COLORS.length];
+    let idx = 0;
+    for (const group of game.armyGroups) if (group.country === c) {
+      if (group.id === id) return GROUP_GLOW_COLORS[idx % GROUP_GLOW_COLORS.length];
+      idx++;
+    }
   }
   let hash = 0;
   for (let i = 0; i < id.length; i++) {
@@ -426,8 +428,32 @@ export class UnitRenderer {
 
   drawLive(visible) {
     const c = E.ctx, quality = c.imageSmoothingQuality;
+    // This index lives only during one synchronous render. Orders, transfers and
+    // restored snapshots cannot leave a persistent membership cache stale.
+    this.renderGroups = new Map(); this.renderFallbackGroups = new Map(); this.renderGroupNumbers = new Map(); this.renderColors = new Map();
+    const counts = new Map();
+    for (const group of this.game.armyGroups || []) {
+      let members = this.renderGroups.get(group.country);
+      if (!members) this.renderGroups.set(group.country, members = new Map());
+      const number = counts.get(group.country) || 0;
+      this.renderGroupNumbers.set(group, number); counts.set(group.country, number + 1);
+      for (const id of group.unitIds || []) {
+        if (!members.has(id)) members.set(id, group);
+        if (!this.renderFallbackGroups.has(id)) this.renderFallbackGroups.set(id, group);
+      }
+    }
     c.imageSmoothingQuality = 'low';
-    try { this.drawArtwork(visible); } finally { c.imageSmoothingQuality = quality; }
+    try { this.drawArtwork(visible); } finally { c.imageSmoothingQuality = quality; this.renderGroups = this.renderFallbackGroups = this.renderGroupNumbers = this.renderColors = null; }
+  }
+
+  renderGroup(country, id) {
+    return this.renderGroups ? this.renderGroups.get(country)?.get(id) || this.renderFallbackGroups.get(id) || null : groupForArmy(this.game, country, id);
+  }
+
+  renderColor(country) {
+    if (!this.renderColors) return relationColor(this.game, country);
+    if (!this.renderColors.has(country)) this.renderColors.set(country, relationColor(this.game, country));
+    return this.renderColors.get(country);
   }
 
   drawArtwork(visible) {
@@ -657,7 +683,7 @@ export class UnitRenderer {
     const template=this.stage.data.sandboxFeatures?.units?.find(u=>u.id===ar.templateId);this.customImages||=new Map();if(template?.imageUrl&&!this.customImages.has(template.imageUrl)){this.customImages.set(template.imageUrl,null);E.image(template.imageUrl).then(img=>this.customImages.set(template.imageUrl,img)).catch(()=>{});}
 
     const S = S0 * UNIT_SCALE, A = this.army, c = E.ctx;
-    const fade = this.colorFade(country, relationColor(this.game, country));
+    const fade = this.colorFade(country, this.renderColor(country));
     const n = E.clamp(count, 1, 4);
     const base = A[`unitbase_${fade.color}_${n}`] || A[`unitbase_gray_${n}`];
     const basePrev = A[`unitbase_${fade.prev}_${n}`] || A[`unitbase_gray_${n}`];
@@ -686,7 +712,7 @@ export class UnitRenderer {
       this.l3d.add(feet.x, feet.y, left, gain);
     } else if (spr) {
       const unitCountry = ar.country || country;
-      const grp = groupForArmy(this.game, unitCountry, ar.id);
+      const grp = this.renderGroup(unitCountry, ar.id);
       const ownUnit = unitCountry === this.game.player;
       const selected = ownUnit && this.selectedUnitIds?.has(ar.id);
       const glowAlpha = selected ? 1 : (E.state.groupGlowIntensity ?? 0.85);
@@ -777,9 +803,9 @@ export class UnitRenderer {
     c.fillRect(tx + 33 * S, ty + 14 * S, 66 * S * ratio, 7 * S);
     c.fillStyle = 'rgba(255,255,255,0.35)'; c.fillRect(tx + 33 * S, ty + 14 * S, 66 * S * ratio, 2.5 * S);
     const unitCountry = country || ar.country || cc;
-    const group = unitCountry && groupForArmy(this.game, unitCountry, ar.id);
+    const group = unitCountry && this.renderGroup(unitCountry, ar.id);
     if (group) {
-      const n = this.game.armyGroups.filter(g => g.country === unitCountry).indexOf(group);
+      const n = group.country !== unitCountry ? -1 : this.renderGroupNumbers?.get(group) ?? this.game.armyGroups.filter(g => g.country === unitCountry).indexOf(group);
       const badgeColor = group.color || getGroupColor(group, this.game, unitCountry);
       c.save();
       c.fillStyle = badgeColor;
@@ -816,7 +842,7 @@ export class UnitRenderer {
     if (spr) {
       const y = bottom - infoH - 4 * k, c = E.ctx;
       const unitCountry = ar.country || cc;
-      const grp = groupForArmy(this.game, unitCountry, ar.id);
+      const grp = this.renderGroup(unitCountry, ar.id);
       const ownUnit = unitCountry === this.game.player;
       const selected = ownUnit && this.selectedUnitIds?.has(ar.id);
       const glowAlpha = selected ? 1 : (E.state.groupGlowIntensity ?? 0.85);

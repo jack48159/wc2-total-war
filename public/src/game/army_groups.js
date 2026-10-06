@@ -79,9 +79,16 @@ export function groupForArmy(game, country, armyId) {
   return game.armyGroups.find(g => (g.unitIds || []).includes(armyId)) || null;
 }
 export function pruneArmyGroups(game) {
+  if (!game.armyGroups?.length) return;
+  const liveByCountry = new Map();
+  for (const area of game.stage.areas) {
+    let live = liveByCountry.get(area.country);
+    if (!live) liveByCountry.set(area.country, live = new Set());
+    for (const army of area.armies) if (army.hp > 0) live.add(army.id);
+  }
   for (const group of game.armyGroups || []) {
-    const live = new Set(armyRows(game, group.country).map(r => r.army.id));
-    group.unitIds = (group.unitIds || []).filter(id => live.has(id));
+    const live = liveByCountry.get(group.country);
+    group.unitIds = (group.unitIds || []).filter(id => live?.has(id));
   }
 }
 const clamp = (n, lo, hi) => Math.max(lo, Math.min(hi, n));

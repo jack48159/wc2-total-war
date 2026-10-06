@@ -244,7 +244,7 @@ export class Battle extends Page {
     }).catch(() => {});
   }
   onShow() { if(this.game.sandboxCustom)loadSandboxStyles();attachSandboxObjectives(this);this.leaving = false; Danmaku.keepAlive(); if (this.bridgeEnabled) { clearInterval(this.sayTimer); this.sayTimer = setInterval(() => this.pollSays(), 2500); } }
-  dispose() { this.sandboxGoalButton?.remove();this.sandboxGoalOverlay?.remove();this.leaving = true; this.aiTurnRunner?.dispose(); clearInterval(this.sayTimer); Danmaku.detach(); clearInterval(this.bridgeHeartbeat); if (Perf.extra === this.perfExtra) Perf.extra = null; this.mpClient?.close(); this.mpStatus?.remove(); this.mpTurnWarning?.remove(); this.mpSpectatorBar?.remove(); if (this.photo) this.setPhoto(false); if (this.l3d) { this.l3d.dispose(); this.l3d = null; } if (this.cam) this.cam.desk3d = this.cam.tilt = false; }
+  dispose() { this.map?.releasePreviews(); this.sandboxGoalButton?.remove();this.sandboxGoalOverlay?.remove();this.leaving = true; this.aiTurnRunner?.dispose(); clearInterval(this.sayTimer); Danmaku.detach(); clearInterval(this.bridgeHeartbeat); if (Perf.extra === this.perfExtra) Perf.extra = null; this.mpClient?.close(); this.mpStatus?.remove(); this.mpTurnWarning?.remove(); this.mpSpectatorBar?.remove(); if (this.photo) this.setPhoto(false); if (this.l3d) { this.l3d.dispose(); this.l3d = null; } if (this.cam) this.cam.desk3d = this.cam.tilt = false; }
   configureBridge() {
     if (!this.game || this.options.multiplayerRoom) return;
     clearInterval(this.bridgeHeartbeat);
