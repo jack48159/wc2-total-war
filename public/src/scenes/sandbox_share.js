@@ -1,0 +1,22 @@
+import { E } from '../core/index.js';
+import { World } from '../game/world.js';
+import { validateSandbox } from '../game/sandbox_config.js';
+import { element } from './sandbox_ui.js';
+const LIMIT=2*1024*1024;
+async function limitedBytes(stream){const reader=stream.getReader(),chunks=[];let length=0;try{while(true){const {value,done}=await reader.read();if(done)break;length+=value.length;if(length>LIMIT)throw Error('分享配置过大');chunks.push(value);}}finally{await reader.cancel().catch(()=>{});}const out=new Uint8Array(length);let offset=0;for(const chunk of chunks){out.set(chunk,offset);offset+=chunk.length;}return out;}
+export async function encodeSandbox(config){
+ validateSandbox(config);const raw=new TextEncoder().encode(JSON.stringify({format:'wc2-sandbox',version:1,config}));if(raw.length>LIMIT)throw Error('分享配置过大');
+ const zipped=typeof CompressionStream==='function';const bytes=zipped?await limitedBytes(new Blob([raw]).stream().pipeThrough(new CompressionStream('gzip'))):raw;
+ let binary='';for(let i=0;i<bytes.length;i+=8192)binary+=String.fromCharCode(...bytes.subarray(i,i+8192));
+ return 'WC2SB1'+(zipped?'Z':'J')+':'+btoa(binary).replaceAll('+','-').replaceAll('/','_').replace(/=+$/,'');
+}
+export async function decodeSandbox(code){
+ const clean=code.trim().replace(/\s/g,'');if(clean.length>LIMIT*2)throw Error('分享码过长');const match=clean.match(/^WC2SB1([ZJ]):([A-Za-z0-9_-]+)$/);if(!match)throw Error('分享码格式无效，请完整复制分享码');
+ let bytes;try{bytes=Uint8Array.from(atob(match[2].replaceAll('-','+').replaceAll('_','/')),c=>c.charCodeAt(0));if(match[1]==='Z'){if(typeof DecompressionStream!=='function')throw Error('当前客户端不支持压缩分享码，请更新客户端');bytes=await limitedBytes(new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip')));}if(bytes.length>LIMIT)throw Error('分享配置过大');}catch(error){throw Error('分享码无法解析：'+error.message);}
+ let data;try{data=JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(bytes));}catch{throw Error('分享配置已损坏');}
+ if(data.format!=='wc2-sandbox'||data.version!==1||!data.config||!/^[-a-zA-Z0-9_]+$/.test(data.config.stage||''))throw Error('不支持的沙盒分享版本或地图');
+ await World.load();const stage=await E.json('data/stages/'+data.config.stage+'.json');if(!stage?.countries)throw Error('分享配置的地图不存在');if(stage.mapPatch)World.applyPatch(stage.mapPatch,stage.mirror);validateSandbox(data.config);return data.config;
+}
+function dialog(title){const overlay=element(document.body,'div','','sb-share-overlay'),panel=element(overlay,'section','','sb-share-dialog');panel.setAttribute('role','dialog');panel.setAttribute('aria-modal','true');panel.setAttribute('aria-label',title);element(panel,'h2',title);const close=()=>overlay.remove(),button=(text,action)=>{const b=element(panel,'button',text,'mp-header-btn');b.type='button';b.onclick=()=>Promise.resolve().then(action).catch(e=>status.textContent=e.message);return b;};const status=element(panel,'p');button('关闭',close);return {panel,status,button,close};}
+export async function showSandboxShare(config){const code=await encodeSandbox(config),d=dialog('分享沙盒作品');element(d.panel,'p','把完整分享码发给其他玩家，对方可在沙盒菜单输入解析。分享包含地图、国家、领土、兵力、外交与已保存事件。');const input=element(d.panel,'textarea');input.value=code;input.readOnly=true;input.setAttribute('aria-label','沙盒分享码');d.button('复制分享码',async()=>{try{await navigator.clipboard.writeText(code);d.status.textContent='分享码已复制';}catch{input.focus();input.select();d.status.textContent=document.execCommand('copy')?'分享码已复制':'请长按或选中上方分享码手动复制';}});input.focus();input.select();}
+export function showSandboxImport(save){const d=dialog('输入分享码');element(d.panel,'p','粘贴分享码，解析后确认保存。导入会创建新作品，保留你已有的作品。');const input=element(d.panel,'textarea');input.placeholder='WC2SB1…';input.setAttribute('aria-label','待解析的沙盒分享码');let config=null;const preview=element(d.panel,'p');const confirm=d.button('保存到我的作品',async()=>{if(!config)return;await save(structuredClone(config));d.close();});confirm.disabled=true;input.oninput=()=>{config=null;confirm.disabled=true;preview.textContent='';};d.button('解析分享码',async()=>{const code=input.value;confirm.disabled=true;config=null;const decoded=await decodeSandbox(code);if(input.value!==code)return;config=decoded;preview.textContent=(config.name||'未命名沙盒')+' · '+config.countries.length+' 国 · '+config.areas.length+' 地块 · '+config.areas.reduce((n,a)=>n+a.armies.length,0)+' 支部队 · '+(config.scenarioEvents?.definitions?.length||0)+' 个事件';d.status.textContent='解析成功，确认后保存为新作品';confirm.disabled=false;});input.focus();}

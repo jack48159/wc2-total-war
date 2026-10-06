@@ -15,6 +15,7 @@ import { handlerFor } from './commands.js';
 import { armyMaxHp } from './rules/combatModel.js';
 import { checkVictory } from './rules/victory.js';
 import { defaultControllers, strongAiControllers } from './controllers.js';
+import { recordScenarioOccurrence } from './sandbox_conditions.js';
 import { initScenarioEvents, evaluateEvents } from './rules/scenario_events.js';
 import { initDiplomacy, getDiplomaticRelation, areDiplomaticAllies, canCountryInitiateAttack, canCountryOccupyTerritory, registerDiplomaticHostility, registerDiplomaticOccupation, setDiplomaticRelation, recordWarLoss, warCascade, ensureDiplomacyMeta, stabilityIncomeMultiplier, hasNap, proposeDiplomaticAction } from './rules/diplomacy.js';
 import { traitDef } from './rules/national_traits.js';
@@ -224,6 +225,7 @@ export class Game {
     } catch (error) { console.warn('战报写入失败', error); }
   }
   emit(type, payload = {}) {
+    recordScenarioOccurrence(this, type, payload);
     const event = { ...payload, type }, category = LOG_CATEGORY[type];
     if (category && this.logEnabled) this.gameLog.push({
       schemaVersion: 2, id: this.nextGameLogId++, timestamp: new Date().toISOString(),
@@ -236,6 +238,7 @@ export class Game {
     if (type === EV.UNIT_DESTROYED) for (const group of this.armyGroups || []) group.unitIds = (group.unitIds || []).filter(id => id !== payload.armyId);
     this.replayRecorder?.event(event);
     this.events.emit(event);
+    if (this.sandboxCustom && [EV.DIPLOMACY_CHANGED, EV.COUNTRY_DEFEATED, EV.COUNTRY_CAPITULATED, EV.AREA_CAPTURED, EV.RESOURCES_CHANGED, EV.STABILITY_CHANGED, EV.UNIT_DEPLOYED, EV.UNIT_DESTROYED, EV.SCENARIO_EVENT].includes(type)) evaluateEvents(this, 'stateChanged');
   }      // `type` is always the event name, whatever the payload holds
   getGameLog(category = null) {
     const rows = category ? this.gameLog.filter(entry => entry.category === category) : this.gameLog;
@@ -614,6 +617,7 @@ export class Game {
           actorTech: commandCountry === this.player ? this.tech : this.stage.countries.get(commandCountry)?.techlevel,
           fromArmies: cmd.from != null ? this.stage.st(cmd.from)?.armies?.map(a => ({ id: a.id, hp: a.hp, movement: a.movement })) : undefined,
           toArmies: cmd.to != null ? this.stage.st(cmd.to)?.armies?.map(a => ({ id: a.id, hp: a.hp, movement: a.movement })) : undefined } } });
+    if (this.sandboxCustom) evaluateEvents(this, 'stateChanged');
     this.replayRecorder?.capture(cmd);
     this.log.push({ ...cmd, card: typeof cmd.card === 'object' ? cmd.card.id : cmd.card, round: this.round });
     if (cmd.type === 'endTurn' || this.phase === 'finished') this.flushGameLog();

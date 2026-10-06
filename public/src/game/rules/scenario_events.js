@@ -2,6 +2,7 @@
 // Handles event notices and branching decisions.
 
 import { register } from '../commands.js';
+import { evaluateSandboxCondition } from '../sandbox_conditions.js';
 import { EV } from '../events.js';
 
 export function initScenarioEvents(config = null) {
@@ -9,12 +10,15 @@ export function initScenarioEvents(config = null) {
     definitions: Array.isArray(config?.definitions) ? JSON.parse(JSON.stringify(config.definitions)) : [],
     history: Array.isArray(config?.history) ? [...config.history] : [],
     variables: { ...(config?.variables || {}) },
+    occurrences: { ...(config?.occurrences || {}) },
     pending: Array.isArray(config?.pending) ? JSON.parse(JSON.stringify(config.pending)) : [],
   };
 }
 
 export function evaluateCondition(game, cond) {
   if (!cond) return true;
+  const sandboxResult = evaluateSandboxCondition(game, cond);
+  if (sandboxResult !== null) return sandboxResult;
   if (cond.type === 'any' && Array.isArray(cond.conditions)) {
     return cond.conditions.some(c => evaluateCondition(game, c));
   }
@@ -90,6 +94,11 @@ export function evaluateCondition(game, cond) {
 }
 
 export function evaluateEvents(game, triggerType = 'roundBegin') {
+  if(game._evaluatingScenarioEvents)return [];
+  game._evaluatingScenarioEvents=true;
+  try{return evaluateEventsPass(game,triggerType);}finally{game._evaluatingScenarioEvents=false;}
+}
+function evaluateEventsPass(game, triggerType = 'roundBegin') {
   const se = game.scenarioEvents;
   if (!se || !se.definitions || !se.definitions.length) return [];
 

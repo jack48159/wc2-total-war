@@ -1,3 +1,5 @@
+import { SANDBOX_CONDITIONS, COMPARISONS, defaultCondition } from '../game/sandbox_conditions.js';
+import { showSandboxShare } from './sandbox_share.js';
 import { E } from '../core/index.js';
 import { Page } from '../ui/ui.js';
 import { World, MAP_W, MAP_H } from '../game/world.js';
@@ -110,16 +112,47 @@ export class SandboxEditor extends Page {
     const key=[this.first,this.second].sort().join('_'),current=this.config.diplomacy.relations?.[key]||'peace';const row=element(panel,'div','','sb-tool-row');for(const [state,label]of [['war','战争'],['peace','和平'],['alliance','同盟']]){const b=this.button(row,label,()=>{this.recordUndo();this.config.diplomacy.relations||={};this.config.diplomacy.relations[key]=state;this.changed();});b.classList.toggle('is-active',current===state);}
     this.text(panel,'已配置关系','h3');for(const [pair,state]of Object.entries(this.config.diplomacy.relations||{})){const card=element(panel,'div','','sb-event-card');element(card,'h4',pair.split('_').map(id=>this.names[id]?.name||id).join(' ↔ '));element(card,'p',({war:'战争',peace:'和平',alliance:'同盟'})[state]);}
   }
-  renderReview(panel){this.text(panel,'战役预览','h3');this.field(panel,'战役名称',this.config.name,v=>this.config.name=v);const grid=element(panel,'div','','sb-summary');for(const [name,value]of [['参战国',this.config.countries.length],['战区地块',this.config.areas.length],['部队',this.config.areas.reduce((n,a)=>n+a.armies.length,0)],['事件',this.config.scenarioEvents.definitions.length]])element(grid,'div',name+' · '+value);this.text(panel,'玩家国家：'+(this.names[this.config.player]?.name||this.config.player));this.button(panel,'保存作品',()=>this.save(true));this.button(panel,'开始作战',()=>this.start());this.button(panel,'导出作品',()=>this.export());this.button(panel,'导入作品',()=>this.import());this.text(panel,'修改自动保存在本机，可在沙盒的“我的作品”中继续编辑。');}
+  renderReview(panel){this.text(panel,'战役预览','h3');this.field(panel,'战役名称',this.config.name,v=>this.config.name=v);const grid=element(panel,'div','','sb-summary');for(const [name,value]of [['参战国',this.config.countries.length],['战区地块',this.config.areas.length],['部队',this.config.areas.reduce((n,a)=>n+a.armies.length,0)],['事件',this.config.scenarioEvents.definitions.length]])element(grid,'div',name+' · '+value);this.text(panel,'玩家国家：'+(this.names[this.config.player]?.name||this.config.player));this.button(panel,'保存作品',()=>this.save(true));this.button(panel,'开始作战',()=>this.start());this.button(panel,'复制分享码',()=>showSandboxShare(this.config));this.button(panel,'导出作品',()=>this.export());this.button(panel,'导入作品',()=>this.import());this.text(panel,'修改自动保存在本机，可在沙盒的“我的作品”中继续编辑。');}
   renderArea(panel){let area=this.config.areas.find(a=>a.id===this.selected);this.text(panel,`地块 ${this.selected}${World.areas[this.selected].f===1?' · 海域':' · 陆地'}`,'h3');if(!area){this.button(panel,'加入战区',()=>{this.config.areas.push({id:this.selected,country:null,construction:'none',level:0,installation:'none',armies:[]});this.changed();});return;}
     this.select(panel,'所属国家',this.countryItems(true),area.country,v=>{area.country=v||null;if(!v)area.armies=[];});this.button(panel,'移出战区',()=>{this.config.areas=this.config.areas.filter(a=>a.id!==this.selected);this.changed();});
     for(const [i,a]of area.armies.entries()){const row=document.createElement('div');row.className='unit';panel.append(row);this.text(row,`${i+1}. ${labels[a.type]} · ${a.level}级`,'span');this.button(row,'移除',()=>{area.armies.splice(i,1);this.changed();});this.button(row,'移动',()=>{this.moving={area:area.id,index:i};this.message('点击目标地块，再按“移入此地块”');});}
     if(this.moving)this.button(panel,'将选中军队移入此地块',()=>{const from=this.config.areas.find(a=>a.id===this.moving.area),army=from?.armies[this.moving.index];if(!army)throw Error('待移动部队已不存在');if(from===area)throw Error('请选择另一个地块');if(area.country!==from.country)throw Error('部队只能摆放在本国地块');const next=clone(this.config),src=next.areas.find(a=>a.id===from.id),dst=next.areas.find(a=>a.id===area.id);dst.armies.push(src.armies.splice(this.moving.index,1)[0]);validateSandbox(next);this.config=next;this.moving=null;this.changed();});
     const sea=World.areas[area.id].f===1,types=SANDBOX_UNITS.filter(t=>['destroyer','cruiser','battleship','aircraftcarrier'].includes(t)===sea);this.select(panel,'添加兵种',types.map(t=>[t,labels[t]]),types.includes(this.unit)?this.unit:types[0],v=>this.unit=v);this.field(panel,'部队等级（1—5）',this.level||1,v=>this.level=Math.min(5,Math.max(1,Math.round(v))),'number');this.button(panel,'添加一支部队',()=>{if(!area.country)throw Error('请先设置地块所属国家');if(area.armies.length>=(World.areas[area.id].unitCapacity||4))throw Error('地块驻军已满');area.armies.push({type:types.includes(this.unit)?this.unit:types[0],level:this.level||1,cards:0});this.changed();});
   }
-  renderEvents(panel){this.text(panel,'剧情与决策','h3');const defs=this.config.scenarioEvents.definitions;for(const e of defs){const card=element(panel,'div','','sb-event-card');element(card,'h4',e.title);element(card,'p',`第 ${e.conditions[0].value} 回合 · ${e.type==='decision'?'分支决策':'剧情通知'} · ${this.names[e.targetCountry]?.name||e.targetCountry}`);element(card,'p',e.text);if(e.type==='decision')element(card,'p',e.choices.map(c=>c.text).join(' / '));const row=element(card,'div','','row');this.button(row,'编辑事件',()=>{this.eventDraft=clone(e);this.changed();});this.button(row,'删除',()=>{this.recordUndo();defs.splice(defs.indexOf(e),1);this.changed();});}
+  conditionSummary(event){const group=event.conditions?.[0],conditions=['all','any'].includes(group?.type)?group.conditions:event.conditions||[];return conditions.map(c=>SANDBOX_CONDITIONS.find(([id])=>id===c.type)?.[1]||c.type).join(group?.type==='any'?' 或 ':' 且 ');}
+  renderConditions(panel,event){
+    const existing=event.conditions||[];
+    let group=existing.length===1&&['all','any'].includes(existing[0].type)?existing[0]:{type:'all',conditions:existing};
+    event.conditions=[group];event.trigger=['gameStart','roundBegin','stateChanged'];
+    this.text(panel,'触发条件','h3');this.select(panel,'组合方式',[['all','全部满足'],['any','任一满足']],group.type,v=>group.type=v);
+    this.text(panel,'“结盟后、被宣战后”等记录开局后的实际变化；“当前关系”等检查当前状态。条件满足后事件默认只触发一次。');
+    for(const [index,c] of group.conditions.entries()){
+      const card=element(panel,'div','','sb-event-card');
+      this.select(card,'条件类型',SANDBOX_CONDITIONS,c.type,v=>group.conditions[index]=defaultCondition(v,this.config));
+      if(['diplomaticRelation','allianceFormed','peaceSigned'].includes(c.type)){
+        this.select(card,'国家一',this.countryItems(),c.first,v=>c.first=v);this.select(card,'国家二',this.countryItems(),c.second,v=>c.second=v);
+      }
+      if(['warDeclared','countryDefeated','countryCapitulated','areaOwner','areaCaptured','capitalLost','atWar','resource','armyCount','territoryCount','stabilityBelow'].includes(c.type))this.select(card,c.type==='warDeclared'?'被宣战国':'目标国家',this.countryItems(),c.country,v=>c.country=v);
+      if(c.type==='warDeclared')this.select(card,'宣战国',[['','任意其他国家'],...this.countryItems().filter(([id])=>id!==c.country)],c.first||'',v=>c.first=v);
+      if(c.type==='diplomaticRelation')this.select(card,'当前关系',[['war','战争'],['peace','和平'],['alliance','同盟']],c.state,v=>c.state=v);
+      if(['areaOwner','areaCaptured'].includes(c.type)){this.field(card,'地块编号',c.area,v=>c.area=Math.round(v),'number');this.button(card,'使用地图选中的地块',()=>{if(this.selected==null)throw Error('请先在地图上点选地块');c.area=this.selected;this.changed();});}
+      if(c.type==='resource')this.select(card,'资源类型',[['money','金币'],['industry','工业']],c.resource,v=>c.resource=v);
+      if(['round','resource','armyCount','territoryCount','stabilityBelow'].includes(c.type)){
+        if(c.type!=='stabilityBelow')this.select(card,'比较方式',COMPARISONS,c.op||'eq',v=>c.op=v);
+        this.field(card,c.type==='round'?'回合数':'门槛数值',c.value,v=>c.value=Math.max(c.type==='round'?1:0,Math.round(v)),'number');
+      }
+      if(['eventResolved','decisionChosen'].includes(c.type)){
+        const candidates=this.config.scenarioEvents.definitions.filter(d=>d.id!==event.id&&(c.type!=='decisionChosen'||d.type==='decision'));
+        this.select(card,'前置事件',[['','请选择'],...candidates.map(d=>[d.id,d.title])],c.eventId,v=>{c.eventId=v;c.choiceId='';});
+        if(c.type==='decisionChosen'){const previous=candidates.find(d=>d.id===c.eventId);this.select(card,'已选择的选项',[['','请选择'],...(previous?.choices||[]).map(ch=>[ch.id,ch.text])],c.choiceId,v=>c.choiceId=v);}
+      }
+      this.button(card,'移除此条件',()=>{group.conditions.splice(index,1);this.changed();});
+    }
+    this.button(panel,'添加触发条件',()=>{group.conditions.push(defaultCondition('round',this.config));this.changed();});
+  }
+  renderEvents(panel){this.text(panel,'剧情与决策','h3');const defs=this.config.scenarioEvents.definitions;for(const e of defs){const card=element(panel,'div','','sb-event-card');element(card,'h4',e.title);element(card,'p',`${this.conditionSummary(e)} · ${e.type==='decision'?'分支决策':'剧情通知'} · ${this.names[e.targetCountry]?.name||e.targetCountry}`);element(card,'p',e.text);if(e.type==='decision')element(card,'p',e.choices.map(c=>c.text).join(' / '));const row=element(card,'div','','row');this.button(row,'编辑事件',()=>{this.eventDraft=clone(e);this.changed();});this.button(row,'删除',()=>{this.recordUndo();defs.splice(defs.indexOf(e),1);this.changed();});}
     this.button(panel,'新增剧情 / 决策',()=>{this.eventDraft={id:crypto.randomUUID(),type:'notice',title:'新剧情',text:'',targetCountry:this.config.player,trigger:'roundBegin',conditions:[{type:'round',op:'gte',value:1}],actions:[],choices:[{id:'accept',text:'接受',actions:[]},{id:'reject',text:'拒绝',actions:[]}]};this.changed();});
-    const e=this.eventDraft;if(!e)return;this.field(panel,'剧情标题',e.title,v=>e.title=v);this.field(panel,'剧情内容',e.text,v=>e.text=v,'textarea');this.field(panel,'触发回合',e.conditions[0].value,v=>e.conditions[0].value=Math.max(1,Math.round(v)),'number');this.select(panel,'接收国家',this.countryItems(),e.targetCountry,v=>e.targetCountry=v);this.select(panel,'类型',[['notice','剧情通知'],['decision','分支决策']],e.type,v=>e.type=v);
+    const e=this.eventDraft;if(!e)return;this.field(panel,'剧情标题',e.title,v=>e.title=v);this.field(panel,'剧情内容',e.text,v=>e.text=v,'textarea');this.renderConditions(panel,e);this.select(panel,'接收国家',this.countryItems(),e.targetCountry,v=>e.targetCountry=v);this.select(panel,'类型',[['notice','剧情通知'],['decision','分支决策']],e.type,v=>e.type=v);
     this.text(panel,'效果可使用金币、工业、稳定度、外交、增援和领土转移。');const actions=(parent,title,array,set)=>{
       this.text(parent,title,'h4');
       const effects=[['changeMoney','金币'],['changeIndustry','工业'],['changeStability','稳定度'],['setDiplomacy','外交关系'],['spawnArmy','增援部队'],['captureArea','领土转移']];

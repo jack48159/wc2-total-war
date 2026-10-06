@@ -1,3 +1,4 @@
+import { validateCondition } from './sandbox_conditions.js';
 import { World } from './world.js';
 
 export const SANDBOX_UNITS = ['infantry','panzer','tank','heavytank','artillery','rocket','destroyer','cruiser','battleship','aircraftcarrier'];
@@ -37,7 +38,8 @@ export function validateSandbox(config) {
     if (!e.id || eventIds.has(e.id) || !e.title || !e.text || !['notice','decision'].includes(e.type)) throw Error('剧情需要唯一编号、标题、内容和类型');
     eventIds.add(e.id);
     if (!countries.has(e.targetCountry)) throw Error('剧情接收国无效');
-    if (e.conditions?.length !== 1 || e.conditions[0]?.type !== 'round' || !Number.isInteger(e.conditions[0].value) || e.conditions[0].value < 1) throw Error('剧情触发回合无效');
+    if (!Array.isArray(e.conditions) || !e.conditions.length || e.conditions.length > 32) throw Error('剧情需要 1 至 32 项触发条件');
+    for (const condition of e.conditions) validateCondition(condition, config);
     checkActions(e.actions);
     if (e.type === 'decision') {
       if (!Array.isArray(e.choices) || e.choices.length < 2) throw Error('决策至少需要两个选项');
@@ -45,6 +47,11 @@ export function validateSandbox(config) {
       for (const choice of e.choices) { if (!choice.id || !choice.text || choices.has(choice.id)) throw Error('决策选项编号或文字无效'); choices.add(choice.id); checkActions(choice.actions); }
     }
   }
+  const dependencies=new Map();
+  const collect=(condition,out)=>{if(['all','any'].includes(condition.type))for(const child of condition.conditions)collect(child,out);else if(['eventResolved','decisionChosen'].includes(condition.type))out.push(condition.eventId);};
+  for(const event of config.scenarioEvents?.definitions||[]){const deps=[];for(const c of event.conditions)collect(c,deps);dependencies.set(event.id,deps);}
+  const visiting=new Set(),done=new Set();const visit=id=>{if(visiting.has(id))throw Error('前置事件存在循环依赖');if(done.has(id))return;visiting.add(id);for(const next of dependencies.get(id)||[])visit(next);visiting.delete(id);done.add(id);};
+  for(const id of dependencies.keys())visit(id);
   return config;
 }
 
